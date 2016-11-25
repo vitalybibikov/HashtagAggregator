@@ -22,6 +22,7 @@ namespace MyStudyProject.Controllers
         public string Get(int id)
         {
             try
+
             {
                 string str = "1";
                 string str3 = Environment.GetEnvironmentVariable("APPSETTIING_my-var");
@@ -36,7 +37,7 @@ namespace MyStudyProject.Controllers
                 {
                     str = String.Concat(str, str2);
                 }
-                return Environment.GetEnvironmentVariable(str);
+                return str;
             }
             catch (Exception ex)
             {

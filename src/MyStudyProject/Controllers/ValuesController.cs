@@ -21,28 +21,7 @@ namespace MyStudyProject.Controllers
         [HttpGet("{id}")]
         public string Get(int id)
         {
-            try
-
-            {
-                string str = "1";
-                string str3 = Environment.GetEnvironmentVariable("APPSETTIING_my-var");
-                string str2 = Environment.GetEnvironmentVariable("my-var");
-
-                if (!String.IsNullOrEmpty(str3))
-                {
-                    str = String.Concat(str, str3);
-                }
-
-                if (!String.IsNullOrEmpty(str2))
-                {
-                    str = String.Concat(str, str2);
-                }
-                return str;
-            }
-            catch (Exception ex)
-            {
-                return id.ToString();
-            }
+            return Environment.GetEnvironmentVariable("my-var");
         }
 
         // POST api/values

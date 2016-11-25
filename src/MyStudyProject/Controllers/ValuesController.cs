@@ -14,27 +14,34 @@ namespace MyStudyProject.Controllers
         [HttpGet]
         public IEnumerable<string> Get()
         {
-            return new string[] { "value1", "value2" };
+            return new string[] {"value1", "value2"};
         }
 
         // GET api/values/5
         [HttpGet("{id}")]
         public string Get(int id)
         {
-            string str = "1";
-            string str3 = Environment.GetEnvironmentVariable("APPSETTIING_my-var");
-            string str2 = Environment.GetEnvironmentVariable("my-var");
-
-            if (!String.IsNullOrEmpty(str3))
+            try
             {
-                str = String.Concat(str, str3);
-            }
+                string str = "1";
+                string str3 = Environment.GetEnvironmentVariable("APPSETTIING_my-var");
+                string str2 = Environment.GetEnvironmentVariable("my-var");
 
-            if (!String.IsNullOrEmpty(str2))
-            {
-                str = String.Concat(str, str2);
+                if (!String.IsNullOrEmpty(str3))
+                {
+                    str = String.Concat(str, str3);
+                }
+
+                if (!String.IsNullOrEmpty(str2))
+                {
+                    str = String.Concat(str, str2);
+                }
+                return Environment.GetEnvironmentVariable(str);
             }
-            return Environment.GetEnvironmentVariable(str);
+            catch (Exception ex)
+            {
+                return ex.Message;
+            }
         }
 
         // POST api/values

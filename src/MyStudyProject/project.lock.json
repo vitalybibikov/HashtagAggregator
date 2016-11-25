@@ -3,6 +3,19 @@
   "version": 2,
   "targets": {
     ".NETCoreApp,Version=v1.1": {
+      "Autofac/4.2.1": {
+        "type": "package",
+        "dependencies": {
+          "NETStandard.Library": "1.6.0",
+          "System.ComponentModel": "4.0.1"
+        },
+        "compile": {
+          "lib/netstandard1.1/Autofac.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.1/Autofac.dll": {}
+        }
+      },
       "Libuv/1.9.1": {
         "type": "package",
         "dependencies": {
@@ -3618,6 +3631,19 @@
     }
   },
   "libraries": {
+    "Autofac/4.2.1": {
+      "sha512": "mLXJziTZPIt7R6m8SmPIOjMTd4k8Ok9L21j4yFniyA8AogHxEL2XburSwElJLmGU5KsgeMkpuTI22S3GSOeLqQ==",
+      "type": "package",
+      "path": "Autofac/4.2.1",
+      "files": [
+        "Autofac.4.2.1.nupkg.sha512",
+        "Autofac.nuspec",
+        "lib/net45/Autofac.dll",
+        "lib/net45/Autofac.xml",
+        "lib/netstandard1.1/Autofac.dll",
+        "lib/netstandard1.1/Autofac.xml"
+      ]
+    },
     "Libuv/1.9.1": {
       "sha512": "uqX2Frwf9PW8MaY7PRNY6HM5BpW1D8oj1EdqzrmbEFD5nH63Yat3aEjN/tws6Tw6Fk7LwmLBvtUh32tTeTaHiA==",
       "type": "package",
@@ -9762,11 +9788,13 @@
   },
   "projectFileDependencyGroups": {
     "": [
+      "Autofac >= 4.2.1",
       "Microsoft.AspNetCore.Mvc >= 1.1.0",
       "Microsoft.AspNetCore.Routing >= 1.1.0",
       "Microsoft.AspNetCore.Server.IISIntegration >= 1.1.0",
       "Microsoft.AspNetCore.Server.IISIntegration.Tools >= 1.1.0-preview4-final",
       "Microsoft.AspNetCore.Server.Kestrel >= 1.1.0",
+      "Microsoft.Extensions.Configuration >= 1.1.0",
       "Microsoft.Extensions.Configuration.EnvironmentVariables >= 1.1.0",
       "Microsoft.Extensions.Configuration.FileExtensions >= 1.1.0",
       "Microsoft.Extensions.Configuration.Json >= 1.1.0",

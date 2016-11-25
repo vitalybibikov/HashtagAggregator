@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-
+using Microsoft.Extensions.Configuration;
 
 namespace MyStudyProject.Controllers
 {
@@ -21,6 +21,7 @@ namespace MyStudyProject.Controllers
         [HttpGet("{id}")]
         public string Get(int id)
         {
+            var builder = new ConfigurationBuilder().AddEnvironmentVariables("Web.config");
             return "value";
         }
 

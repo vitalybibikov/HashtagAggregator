@@ -6,6 +6,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
+using MyStudyProject.DependencyInjection;
+
 namespace MyStudyProject
 {
     public class Startup
@@ -23,12 +25,12 @@ namespace MyStudyProject
         public IConfigurationRoot Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices(IServiceCollection services)
+        public IServiceProvider ConfigureServices(IServiceCollection services)
         {
             // Add framework services.
             services.AddMvc();
-            //var dependencyConfigurator = new DependencyConfigurator();
-            //return dependencyConfigurator.Populate(services);
+            var builder = new AutofacModulesConfigurator();
+            return builder.Configure(services);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

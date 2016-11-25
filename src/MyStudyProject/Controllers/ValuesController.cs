@@ -21,8 +21,7 @@ namespace MyStudyProject.Controllers
         [HttpGet("{id}")]
         public string Get(int id)
         {
-            var builder = new ConfigurationBuilder().AddEnvironmentVariables("Web.config");
-            return "value";
+            return Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
         }
 
         // POST api/values

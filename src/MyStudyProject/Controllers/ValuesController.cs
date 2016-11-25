@@ -21,27 +21,28 @@ namespace MyStudyProject.Controllers
         [HttpGet("{id}")]
         public string Get(int id)
         {
-            try
-            {
-                string str = "1";
-                string str3 = Environment.GetEnvironmentVariable("APPSETTIING_my-var");
-                string str2 = Environment.GetEnvironmentVariable("my-var");
+            return "55";
+            //try
+            //{
+            //    string str = "1";
+            //    string str3 = Environment.GetEnvironmentVariable("APPSETTIING_my-var");
+            //    string str2 = Environment.GetEnvironmentVariable("my-var");
 
-                if (!String.IsNullOrEmpty(str3))
-                {
-                    str = String.Concat(str, str3);
-                }
+            //    if (!String.IsNullOrEmpty(str3))
+            //    {
+            //        str = String.Concat(str, str3);
+            //    }
 
-                if (!String.IsNullOrEmpty(str2))
-                {
-                    str = String.Concat(str, str2);
-                }
-                return Environment.GetEnvironmentVariable(str);
-            }
-            catch (Exception ex)
-            {
-                return ex.Message;
-            }
+            //    if (!String.IsNullOrEmpty(str2))
+            //    {
+            //        str = String.Concat(str, str2);
+            //    }
+            //    return Environment.GetEnvironmentVariable(str);
+            //}
+            //catch (Exception ex)
+            //{
+            //    return ex.Message;
+            //}
         }
 
         // POST api/values

@@ -21,7 +21,7 @@ namespace MyStudyProject.Controllers
         [HttpGet("{id}")]
         public string Get(int id)
         {
-            return Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
+            return Environment.GetEnvironmentVariable("APPSETTIING_ASPNETCORE_ENVIRONMENT");
         }
 
         // POST api/values

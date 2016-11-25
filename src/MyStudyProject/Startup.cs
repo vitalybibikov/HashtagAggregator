@@ -5,7 +5,6 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using MyStudyProject.DependencyInjection;
 
 namespace MyStudyProject
 {
@@ -24,12 +23,12 @@ namespace MyStudyProject
         public IConfigurationRoot Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
-        public IServiceProvider ConfigureServices(IServiceCollection services)
+        public void ConfigureServices(IServiceCollection services)
         {
             // Add framework services.
             services.AddMvc();
-            var dependencyConfigurator = new DependencyConfigurator();
-            return dependencyConfigurator.Populate(services);
+            //var dependencyConfigurator = new DependencyConfigurator();
+            //return dependencyConfigurator.Populate(services);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -3,33 +3,6 @@
   "version": 2,
   "targets": {
     ".NETCoreApp,Version=v1.1": {
-      "Autofac/4.2.1": {
-        "type": "package",
-        "dependencies": {
-          "NETStandard.Library": "1.6.0",
-          "System.ComponentModel": "4.0.1"
-        },
-        "compile": {
-          "lib/netstandard1.1/Autofac.dll": {}
-        },
-        "runtime": {
-          "lib/netstandard1.1/Autofac.dll": {}
-        }
-      },
-      "Autofac.Extensions.DependencyInjection/4.0.0": {
-        "type": "package",
-        "dependencies": {
-          "Autofac": "4.0.0",
-          "Microsoft.Extensions.DependencyInjection.Abstractions": "1.0.0",
-          "NETStandard.Library": "1.6.0"
-        },
-        "compile": {
-          "lib/netstandard1.1/Autofac.Extensions.DependencyInjection.dll": {}
-        },
-        "runtime": {
-          "lib/netstandard1.1/Autofac.Extensions.DependencyInjection.dll": {}
-        }
-      },
       "Libuv/1.9.1": {
         "type": "package",
         "dependencies": {
@@ -3470,30 +3443,6 @@
     }
   },
   "libraries": {
-    "Autofac/4.2.1": {
-      "sha512": "mLXJziTZPIt7R6m8SmPIOjMTd4k8Ok9L21j4yFniyA8AogHxEL2XburSwElJLmGU5KsgeMkpuTI22S3GSOeLqQ==",
-      "type": "package",
-      "path": "Autofac/4.2.1",
-      "files": [
-        "Autofac.4.2.1.nupkg.sha512",
-        "Autofac.nuspec",
-        "lib/net45/Autofac.dll",
-        "lib/net45/Autofac.xml",
-        "lib/netstandard1.1/Autofac.dll",
-        "lib/netstandard1.1/Autofac.xml"
-      ]
-    },
-    "Autofac.Extensions.DependencyInjection/4.0.0": {
-      "sha512": "UQP+CkHs6wfjWhisuhSFoG8CNrG8fmYOclFwx/aYNc+He1Qoi8s9UDTSzcPncJ2JOtmZmFRWSLT0jhtT6KmYJg==",
-      "type": "package",
-      "path": "Autofac.Extensions.DependencyInjection/4.0.0",
-      "files": [
-        "Autofac.Extensions.DependencyInjection.4.0.0.nupkg.sha512",
-        "Autofac.Extensions.DependencyInjection.nuspec",
-        "lib/netstandard1.1/Autofac.Extensions.DependencyInjection.dll",
-        "lib/netstandard1.1/Autofac.Extensions.DependencyInjection.xml"
-      ]
-    },
     "Libuv/1.9.1": {
       "sha512": "uqX2Frwf9PW8MaY7PRNY6HM5BpW1D8oj1EdqzrmbEFD5nH63Yat3aEjN/tws6Tw6Fk7LwmLBvtUh32tTeTaHiA==",
       "type": "package",
@@ -9520,8 +9469,6 @@
   },
   "projectFileDependencyGroups": {
     "": [
-      "Autofac >= 4.2.1",
-      "Autofac.Extensions.DependencyInjection >= 4.0.0",
       "Microsoft.AspNetCore.Mvc >= 1.1.0",
       "Microsoft.AspNetCore.Routing >= 1.1.0",
       "Microsoft.AspNetCore.Server.IISIntegration >= 1.1.0",

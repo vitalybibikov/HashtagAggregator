@@ -1,22 +1,22 @@
 ﻿using System;
 
-using Autofac;
-using Autofac.Extensions.DependencyInjection;
+//using Autofac;
+//using Autofac.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace MyStudyProject.DependencyInjection
 {
     public class AutofacModulesConfigurator
     {
-        public IServiceProvider Configure(IServiceCollection services)
-        {
-            var builder = new ContainerBuilder();
-            builder.RegisterModule<ConfigurationModule>();
-            builder.Populate(services);
+        //public IServiceProvider Configure(IServiceCollection services)
+        //{
+        //    var builder = new ContainerBuilder();
+        //    builder.RegisterModule<ConfigurationModule>();
+        //    builder.Populate(services);
 
-            var container = builder.Build();
+        //    var container = builder.Build();
 
-            return container.Resolve<IServiceProvider>();
-        }
+        //    return container.Resolve<IServiceProvider>();
+        //}
     }
 }

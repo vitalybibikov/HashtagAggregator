@@ -21,8 +21,7 @@ namespace MyStudyProject.Controllers
         [HttpGet("{id}")]
         public string Get(int id)
         {
-            //return Environment.GetEnvironmentVariable("APPSETTIING_My_Variable");
-            return "5";
+            return Environment.GetEnvironmentVariable("APPSETTIING_My_Variable");
         }
 
         // POST api/values

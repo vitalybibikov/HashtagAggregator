@@ -9,6 +9,7 @@ namespace MyStudyProject.DependencyInjection
     {
         public void Configure(IComponentRegistry componentRegistry)
         {
+
         }
     }
 }

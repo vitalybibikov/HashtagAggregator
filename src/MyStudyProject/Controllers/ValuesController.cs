@@ -21,11 +21,19 @@ namespace MyStudyProject.Controllers
         [HttpGet("{id}")]
         public string Get(int id)
         {
-            
-            string str = Environment.GetEnvironmentVariable("APPSETTIING_my-var");
+            string str = "1";
+            string str3 = Environment.GetEnvironmentVariable("APPSETTIING_my-var");
             string str2 = Environment.GetEnvironmentVariable("my-var");
-            str = String.Concat(str, str2);
-            str = String.Concat(str, "1");
+
+            if (!String.IsNullOrEmpty(str3))
+            {
+                str = String.Concat(str, str3);
+            }
+
+            if (!String.IsNullOrEmpty(str2))
+            {
+                str = String.Concat(str, str2);
+            }
             return Environment.GetEnvironmentVariable(str);
         }
 

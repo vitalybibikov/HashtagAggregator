@@ -40,7 +40,7 @@ namespace MyStudyProject.Controllers
             }
             catch (Exception ex)
             {
-                return "77";
+                return id.ToString();
             }
         }
 

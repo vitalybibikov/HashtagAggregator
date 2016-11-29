@@ -11,8 +11,13 @@
     "Microsoft.Extensions.Logging.Console": "1.1.0",
     "Microsoft.Extensions.Logging.Debug": "1.1.0",
     "Microsoft.Extensions.Options.ConfigurationExtensions": "1.1.0",
+    "MyStudyProject.Shared.Common": "1.0.0-*",
+    "MyStudyProject.Data.DataAccess": "1.0.0-*",
+    "MyStudyProject.Data.Contracts": "1.0.0-*",
+    "AutoMapper": "5.2.0",
     "Autofac.Extensions.DependencyInjection": "4.0.0",
-    "Autofac": "4.2.1"
+    "MyStudyProject.Core.Cqrs": "1.0.0-*",
+    "MyStudyProject.Core.Models": "1.0.0-*"
   },
 
   "tools": {

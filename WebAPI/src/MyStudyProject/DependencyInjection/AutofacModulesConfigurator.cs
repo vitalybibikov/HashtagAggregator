@@ -1,5 +1,4 @@
 ﻿using System;
-using Autofac;
 
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
@@ -15,8 +14,8 @@ namespace MyStudyProject.DependencyInjection
             builder.RegisterModule<ConfigurationModule>();
             builder.Populate(services);
 
-            var container = builder.Build();
-
+            IContainer container = builder.Build();
+            
             return container.Resolve<IServiceProvider>();
         }
     }

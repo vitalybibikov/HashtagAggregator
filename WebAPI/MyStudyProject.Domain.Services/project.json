@@ -1,0 +1,27 @@
+{
+  "version": "1.0.0-*",
+
+  "dependencies": {
+    "MyStudyProject.Core.Contracts": "1.0.0-*",
+    "MyStudyProject.Core.Cqrs": "1.0.0-*",
+    "MyStudyProject.Core.Models": "1.0.0-*",
+    "MyStudyProject.Data.Entities": "1.0.0-*",
+    "TweetinviAPI": "1.1.1"
+  },
+
+
+  "frameworks": {
+    "netcoreapp1.1": {
+      "dependencies": {
+        "Microsoft.NETCore.App": {
+          "type": "platform",
+          "version": "1.1.0"
+        }
+      },
+      "imports": "dnxcore50"
+    }
+  }
+}
+
+
+

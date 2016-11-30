@@ -1,45 +1,55 @@
 ﻿using System;
 using System.Collections.Generic;
-
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 using AutoMapper;
 
 using Microsoft.AspNetCore.Mvc;
-using MyStudyProject.Core.Contracts.Interface.Cqrs;
+using MyStudyProject.Core.Contracts.Interface.ServiceFacades;
 using MyStudyProject.Core.Cqrs.Results;
 using MyStudyProject.ViewModels;
-using MyStudyProject.Core.Models.Queries;
+
 
 namespace MyStudyProject.Controllers
 {
     [Route("api/[controller]")]
     public class StatisticsController : Controller
     {
-        private readonly IQueryDispatcher queryDispatcher;
-        private readonly ICommandDispatcher commandDispatcher;
+        private readonly IMessageServiceFacade<MessageQueryResult> service;
         private IMapper Mapper { get; }
 
-        public StatisticsController(IMapper mapper, IQueryDispatcher queryDispatcher, ICommandDispatcher commandDispatcher)
+        public StatisticsController(IMapper mapper, IMessageServiceFacade<MessageQueryResult> service)
         {
-            this.queryDispatcher = queryDispatcher;
-            this.commandDispatcher = commandDispatcher;
+            this.service = service;
             this.Mapper = mapper;
         }
 
         // GET: api/statistics/
-        [HttpGet("{id}")]
-        public IEnumerable<MessageViewModel> Get(int id = 5)
+        [HttpGet("{hashtag}")]
+        public async Task<IEnumerable<MessageViewModel>> Get(string hashtag)
         {
-            MessageViewModel model = new MessageViewModel () { Id = 5, Body = "123"};
-            var view = Mapper.Map<MessageViewModel, MessagesQuery>(model);
-            var result = queryDispatcher.Dispatch<MessagesQuery, MessageQueryResult>(view);
-            throw new NotImplementedException();
+            if (!hashtag.StartsWith("#"))
+            {
+                hashtag = "#" + hashtag;
+            }
+
+            var messages = await service.GetAll(hashtag);
+            var models = Mapper.Map<IEnumerable<MessageViewModel>>(messages);
+            return models;
         }
 
-        //// GET: api/statistics/amount
-        //[HttpGet("{amount}")]
-        //public IEnumerable<MessageViewModel> Get(int amount)
-        //{
-        //    throw new NotImplementedException();
-        //}
+        // GET: api/statistics/
+        public async Task<IEnumerable<MessageViewModel>> Get(string hashtag, long id)
+        {
+            if (!hashtag.StartsWith("#"))
+            {
+                hashtag = "#" + hashtag;
+            }
+
+            var messages = await service.GetSinceLastId(id, hashtag);
+            var models = Mapper.Map<IEnumerable<MessageViewModel>>(messages);
+            return models;
+        }
     }
 }

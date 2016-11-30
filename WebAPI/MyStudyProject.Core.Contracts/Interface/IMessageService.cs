@@ -1,6 +1,6 @@
 ﻿namespace MyStudyProject.Core.Contracts.Interface
 {
-    public interface IService
+    public interface IMessageService
     {
 
     }

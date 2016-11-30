@@ -1,8 +1,11 @@
 ﻿using System;
+using System.Net;
 using AutoMapper;
 
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -29,7 +32,6 @@ namespace MyStudyProject
             {
                 cfg.AddProfile(new AutoMapperProfileConfiguration());
             });
-
         }
 
         private MapperConfiguration mapperConfiguration;
@@ -42,24 +44,16 @@ namespace MyStudyProject
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
             services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
+            services.Configure<TwitterSettings>(Configuration.GetSection("TwitterSettings"));
 
             // Add framework services.
+            services.AddMvc();
             services.AddEntityFrameworkSqlServer()
                 .AddDbContext<SqlApplicationDbContext>();
 
-            //options =>
-            //          options.UseSqlServer(Configuration["AppSettings:ConnectionString"],
-            //              b => b.MigrationsAssembly("MyStudyProject.Data.DbMigration"))
-
-            //.options.UseSqlServer(Configuration["AppSettings:ConnectionString"])
-
-            services.AddMvc();
-
             services.AddSingleton(sp => mapperConfiguration.CreateMapper());
-            mapperConfiguration.AssertConfigurationIsValid();
-
             services.AddSingleton<IConfiguration>(Configuration);
-            //services.AddTransient<IMessageService, MessageService>();
+            mapperConfiguration.AssertConfigurationIsValid();
 
             var builder = new AutofacModulesConfigurator();
             return builder.Configure(services);
@@ -70,6 +64,21 @@ namespace MyStudyProject
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
+
+            app.UseExceptionHandler(options =>
+            {
+                options.Run(
+                    async context =>
+                    {
+                        context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
+                        var ex = context.Features.Get<IExceptionHandlerFeature>();
+                        if (ex != null)
+                        {
+                            var err = $"Error: {ex.Error.Message}{ex.Error.StackTrace}";
+                            await context.Response.WriteAsync(err).ConfigureAwait(false);
+                        }
+                    });
+            });
 
             app.UseMvc();
         }

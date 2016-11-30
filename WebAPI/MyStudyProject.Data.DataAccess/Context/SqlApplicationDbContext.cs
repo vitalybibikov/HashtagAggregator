@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
-
 using Microsoft.Extensions.Options;
+
 using MyStudyProject.Data.Contracts.Interface;
 using MyStudyProject.Data.Entities.Entities;
 using MyStudyProject.Shared.Common.Settings;

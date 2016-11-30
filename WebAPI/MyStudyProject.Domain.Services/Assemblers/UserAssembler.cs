@@ -3,7 +3,7 @@
 
 namespace MyStudyProject.Domain.Services.Assemblers
 {
-    //public class UserAssembler: IAssembler<UserEntity, SocialUser>
+    //public class UserAssembler: IMapper<UserEntity, SocialUser>
     //{
     //    public SocialUser CreateModel(UserEntity entity)
     //    {

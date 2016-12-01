@@ -1,2 +1,2 @@
 [config]
-project = MyStudyProject\WebAPI\src\MyStudyProject.xproj
+project = WebAPI\src\MyStudyProject.xproj

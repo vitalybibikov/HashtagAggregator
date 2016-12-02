@@ -3,6 +3,19 @@
   "version": 2,
   "targets": {
     ".NETCoreApp,Version=v1.1": {
+      "AspNetCore.Security.OAuth.Vkontakte/1.0.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.AspNetCore.Authentication.OAuth": "1.0.0",
+          "NETStandard.Library": "1.6.0"
+        },
+        "compile": {
+          "lib/netstandard1.6/AspNetCore.Security.OAuth.Vkontakte.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.6/AspNetCore.Security.OAuth.Vkontakte.dll": {}
+        }
+      },
       "Autofac/4.2.1": {
         "type": "package",
         "dependencies": {
@@ -102,6 +115,38 @@
         },
         "runtime": {
           "lib/netstandard1.3/Microsoft.AspNetCore.Antiforgery.dll": {}
+        }
+      },
+      "Microsoft.AspNetCore.Authentication/1.0.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.AspNetCore.DataProtection": "1.0.0",
+          "Microsoft.AspNetCore.Http": "1.0.0",
+          "Microsoft.AspNetCore.Http.Extensions": "1.0.0",
+          "Microsoft.Extensions.Logging.Abstractions": "1.0.0",
+          "Microsoft.Extensions.Options": "1.0.0",
+          "Microsoft.Extensions.WebEncoders": "1.0.0",
+          "System.Net.Http": "4.1.0"
+        },
+        "compile": {
+          "lib/netstandard1.3/Microsoft.AspNetCore.Authentication.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.3/Microsoft.AspNetCore.Authentication.dll": {}
+        }
+      },
+      "Microsoft.AspNetCore.Authentication.OAuth/1.0.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.AspNetCore.Authentication": "1.0.0",
+          "Newtonsoft.Json": "9.0.1",
+          "System.Runtime.Serialization.Primitives": "4.1.1"
+        },
+        "compile": {
+          "lib/netstandard1.3/Microsoft.AspNetCore.Authentication.OAuth.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.3/Microsoft.AspNetCore.Authentication.OAuth.dll": {}
         }
       },
       "Microsoft.AspNetCore.Authorization/1.1.0": {
@@ -1570,7 +1615,7 @@
           "System.Xml.XDocument": "4.3.0"
         }
       },
-      "Newtonsoft.Json/9.0.1": {
+      "Newtonsoft.Json/9.0.2-beta1": {
         "type": "package",
         "dependencies": {
           "Microsoft.CSharp": "4.0.1",
@@ -1587,6 +1632,7 @@
           "System.Resources.ResourceManager": "4.0.1",
           "System.Runtime": "4.1.0",
           "System.Runtime.Extensions": "4.1.0",
+          "System.Runtime.Numerics": "4.0.1",
           "System.Runtime.Serialization.Primitives": "4.1.1",
           "System.Text.Encoding": "4.0.11",
           "System.Text.Encoding.Extensions": "4.0.11",
@@ -1597,10 +1643,10 @@
           "System.Xml.XDocument": "4.0.11"
         },
         "compile": {
-          "lib/netstandard1.0/Newtonsoft.Json.dll": {}
+          "lib/netstandard1.1/Newtonsoft.Json.dll": {}
         },
         "runtime": {
-          "lib/netstandard1.0/Newtonsoft.Json.dll": {}
+          "lib/netstandard1.1/Newtonsoft.Json.dll": {}
         }
       },
       "Remotion.Linq/2.1.1": {
@@ -3909,11 +3955,13 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v1.1",
         "dependencies": {
+          "AspNetCore.Security.OAuth.Vkontakte": "1.0.0",
           "Microsoft.NETCore.App": "1.1.0",
           "MyStudyProject.Core.Contracts": "1.0.0",
           "MyStudyProject.Core.Cqrs": "1.0.0",
           "MyStudyProject.Core.Models": "1.0.0",
           "MyStudyProject.Data.Entities": "1.0.0",
+          "Newtonsoft.Json": "9.0.2-beta1",
           "TweetinviAPI": "1.1.1"
         },
         "compile": {
@@ -3952,6 +4000,17 @@
     }
   },
   "libraries": {
+    "AspNetCore.Security.OAuth.Vkontakte/1.0.0": {
+      "sha512": "wbATL0/oaYULaE2CvauLgpLNj1ZiqW35B+nxTZt2/I0NLOroeR8r9va7qU8l/NaHgyi8O5q6g29DcCR3kzbUiQ==",
+      "type": "package",
+      "path": "AspNetCore.Security.OAuth.Vkontakte/1.0.0",
+      "files": [
+        "AspNetCore.Security.OAuth.Vkontakte.1.0.0.nupkg.sha512",
+        "AspNetCore.Security.OAuth.Vkontakte.nuspec",
+        "lib/netstandard1.6/AspNetCore.Security.OAuth.Vkontakte.dll",
+        "lib/netstandard1.6/AspNetCore.Security.OAuth.Vkontakte.xml"
+      ]
+    },
     "Autofac/4.2.1": {
       "sha512": "mLXJziTZPIt7R6m8SmPIOjMTd4k8Ok9L21j4yFniyA8AogHxEL2XburSwElJLmGU5KsgeMkpuTI22S3GSOeLqQ==",
       "type": "package",
@@ -4020,6 +4079,32 @@
         "lib/net451/Microsoft.AspNetCore.Antiforgery.xml",
         "lib/netstandard1.3/Microsoft.AspNetCore.Antiforgery.dll",
         "lib/netstandard1.3/Microsoft.AspNetCore.Antiforgery.xml"
+      ]
+    },
+    "Microsoft.AspNetCore.Authentication/1.0.0": {
+      "sha512": "3af/pZSoaIkZPjGPTlpvIXKDA4NCN6O7++iSO4N2rnKjC5OFHnCX5CLzRxO6721kqovIssRPo84q1HvT4IL6GQ==",
+      "type": "package",
+      "path": "Microsoft.AspNetCore.Authentication/1.0.0",
+      "files": [
+        "Microsoft.AspNetCore.Authentication.1.0.0.nupkg.sha512",
+        "Microsoft.AspNetCore.Authentication.nuspec",
+        "lib/net451/Microsoft.AspNetCore.Authentication.dll",
+        "lib/net451/Microsoft.AspNetCore.Authentication.xml",
+        "lib/netstandard1.3/Microsoft.AspNetCore.Authentication.dll",
+        "lib/netstandard1.3/Microsoft.AspNetCore.Authentication.xml"
+      ]
+    },
+    "Microsoft.AspNetCore.Authentication.OAuth/1.0.0": {
+      "sha512": "QZfUgJPv/jnFCZ+CJOSeAXzhYQVBe864krJcijDfTE0dspuF1+uifRJDaCuHGKSJlnsyOGVGjrBcMZLK3wnCkg==",
+      "type": "package",
+      "path": "Microsoft.AspNetCore.Authentication.OAuth/1.0.0",
+      "files": [
+        "Microsoft.AspNetCore.Authentication.OAuth.1.0.0.nupkg.sha512",
+        "Microsoft.AspNetCore.Authentication.OAuth.nuspec",
+        "lib/net451/Microsoft.AspNetCore.Authentication.OAuth.dll",
+        "lib/net451/Microsoft.AspNetCore.Authentication.OAuth.xml",
+        "lib/netstandard1.3/Microsoft.AspNetCore.Authentication.OAuth.dll",
+        "lib/netstandard1.3/Microsoft.AspNetCore.Authentication.OAuth.xml"
       ]
     },
     "Microsoft.AspNetCore.Authorization/1.1.0": {
@@ -5325,12 +5410,12 @@
         "dotnet_library_license.txt"
       ]
     },
-    "Newtonsoft.Json/9.0.1": {
-      "sha512": "U82mHQSKaIk+lpSVCbWYKNavmNH1i5xrExDEquU1i6I5pV6UMOqRnJRSlKO3cMPfcpp0RgDY+8jUXHdQ4IfXvw==",
+    "Newtonsoft.Json/9.0.2-beta1": {
+      "sha512": "bq5DjCtCJpy9R5rsEeQlKz8qGF1Bh3wGaJKMlRwmCoKZ8WUCIFtU3JlyMOdAkSn66KCehCCAxMZFOQD4nNnH/w==",
       "type": "package",
-      "path": "Newtonsoft.Json/9.0.1",
+      "path": "Newtonsoft.Json/9.0.2-beta1",
       "files": [
-        "Newtonsoft.Json.9.0.1.nupkg.sha512",
+        "Newtonsoft.Json.9.0.2-beta1.nupkg.sha512",
         "Newtonsoft.Json.nuspec",
         "lib/net20/Newtonsoft.Json.dll",
         "lib/net20/Newtonsoft.Json.xml",
@@ -5342,6 +5427,8 @@
         "lib/net45/Newtonsoft.Json.xml",
         "lib/netstandard1.0/Newtonsoft.Json.dll",
         "lib/netstandard1.0/Newtonsoft.Json.xml",
+        "lib/netstandard1.1/Newtonsoft.Json.dll",
+        "lib/netstandard1.1/Newtonsoft.Json.xml",
         "lib/portable-net40+sl5+wp80+win8+wpa81/Newtonsoft.Json.dll",
         "lib/portable-net40+sl5+wp80+win8+wpa81/Newtonsoft.Json.xml",
         "lib/portable-net45+wp80+win8+wpa81/Newtonsoft.Json.dll",

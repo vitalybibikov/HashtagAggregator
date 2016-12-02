@@ -2,10 +2,12 @@
   "version": "1.0.0-*",
 
   "dependencies": {
+    "AspNetCore.Security.OAuth.Vkontakte": "1.0.0",
     "MyStudyProject.Core.Contracts": "1.0.0-*",
     "MyStudyProject.Core.Cqrs": "1.0.0-*",
     "MyStudyProject.Core.Models": "1.0.0-*",
     "MyStudyProject.Data.Entities": "1.0.0-*",
+    "Newtonsoft.Json": "9.0.2-beta1",
     "TweetinviAPI": "1.1.1"
   },
 

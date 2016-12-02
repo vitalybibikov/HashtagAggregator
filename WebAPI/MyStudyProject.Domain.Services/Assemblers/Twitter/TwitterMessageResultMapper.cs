@@ -1,12 +1,11 @@
 ﻿using System.Collections.Generic;
 using MyStudyProject.Core.Contracts.Interface;
 using MyStudyProject.Core.Cqrs.Results;
-
 using Tweetinvi.Models;
 
-namespace MyStudyProject.Domain.Services.Assemblers
+namespace MyStudyProject.Domain.Services.Assemblers.Twitter
 {
-    public class MessageQueryResultMapper : IMapper<MessageQueryResult, ITweet>
+    public class TwitterMessageResultMapper : IMapper<MessageQueryResult, ITweet>
     {
         public MessageQueryResult Map(ITweet tweet, string hashtag)
         {
@@ -14,7 +13,7 @@ namespace MyStudyProject.Domain.Services.Assemblers
             {
                 Body = tweet.Text,
                 HashTag = hashtag,
-                Id = -1
+                Id = tweet.Id
             };
             return message;
         }

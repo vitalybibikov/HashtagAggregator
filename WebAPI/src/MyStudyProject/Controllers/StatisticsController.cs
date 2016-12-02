@@ -30,7 +30,7 @@ namespace MyStudyProject.Controllers
                 hashtag = "#" + hashtag;
             }
 
-            var messages = await service.GetAll(hashtag);
+            var messages = await service.GetAllAsync(hashtag);
             var models = Mapper.Map<IEnumerable<MessageViewModel>>(messages);
             return models;
         }
@@ -43,7 +43,7 @@ namespace MyStudyProject.Controllers
                 hashtag = "#" + hashtag;
             }
 
-            var messages = await service.GetSinceLastId(id, hashtag);
+            var messages = await service.GetSinceLastIdAsync(id, hashtag);
             var models = Mapper.Map<IEnumerable<MessageViewModel>>(messages);
             return models;
         }

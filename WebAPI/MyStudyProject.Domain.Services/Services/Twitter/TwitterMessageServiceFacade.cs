@@ -1,17 +1,16 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Options;
-
 using MyStudyProject.Core.Contracts.Interface.ServiceFacades;
 using MyStudyProject.Core.Cqrs.Results;
 using MyStudyProject.Domain.Services.Assemblers;
+using MyStudyProject.Domain.Services.Assemblers.Twitter;
 using MyStudyProject.Shared.Common.Settings;
-
 using Tweetinvi;
 using Tweetinvi.Models;
 using Tweetinvi.Parameters;
 
-namespace MyStudyProject.Domain.Services.Services
+namespace MyStudyProject.Domain.Services.Services.Twitter
 {
     public class TwitterMessageServiceFacade : IMessageServiceFacade<MessageQueryResult>
     {
@@ -28,14 +27,14 @@ namespace MyStudyProject.Domain.Services.Services
             this.settings = settings;
         }
 
-        public async Task<IEnumerable<MessageQueryResult>> GetAll(string hashtag)
+        public async Task<IEnumerable<MessageQueryResult>> GetAllAsync(string hashtag)
         {
             IEnumerable<ITweet> tweets = await SearchAsync.SearchTweets(hashtag);
-            MessageQueryResultMapper mapper = new MessageQueryResultMapper();
+            TwitterMessageResultMapper mapper = new TwitterMessageResultMapper();
             return mapper.MapBunch(tweets, hashtag);
         }
 
-        public async Task<IEnumerable<MessageQueryResult>> GetNumber(int number, string hashtag)
+        public async Task<IEnumerable<MessageQueryResult>> GetNumberAsync(int number, string hashtag)
         {
             var searchParameter = new SearchTweetsParameters(hashtag)
             {
@@ -43,11 +42,11 @@ namespace MyStudyProject.Domain.Services.Services
             };
 
             IEnumerable<ITweet> tweets = await SearchAsync.SearchTweets(searchParameter);
-            MessageQueryResultMapper mapper = new MessageQueryResultMapper();
+            TwitterMessageResultMapper mapper = new TwitterMessageResultMapper();
             return mapper.MapBunch(tweets, hashtag);
         }
 
-        public async Task<IEnumerable<MessageQueryResult>> GetSinceLastId(long id, string hashtag)
+        public async Task<IEnumerable<MessageQueryResult>> GetSinceLastIdAsync(long id, string hashtag)
         {
             var searchParameter = new SearchTweetsParameters(hashtag)
             {
@@ -55,7 +54,7 @@ namespace MyStudyProject.Domain.Services.Services
             };
 
             IEnumerable<ITweet> tweets = await SearchAsync.SearchTweets(searchParameter);
-            MessageQueryResultMapper mapper = new MessageQueryResultMapper();
+            TwitterMessageResultMapper mapper = new TwitterMessageResultMapper();
             return mapper.MapBunch(tweets, hashtag);
         }
     }

@@ -9,6 +9,8 @@ using MyStudyProject.Core.Contracts.Interface;
 using MyStudyProject.Core.Contracts.Interface.ServiceFacades;
 using MyStudyProject.Core.Cqrs.Results;
 using MyStudyProject.Domain.Services.Services;
+using MyStudyProject.Domain.Services.Services.Twitter;
+using MyStudyProject.Domain.Services.Services.Vk;
 using Module = Autofac.Module;
 
 namespace MyStudyProject.DependencyInjection
@@ -17,7 +19,8 @@ namespace MyStudyProject.DependencyInjection
     {
         protected override void Load(ContainerBuilder builder)
         {
-            
+            //builder.RegisterType<TwitterMessageServiceFacade>().As<IMessageServiceFacade<MessageQueryResult>>();
+            builder.RegisterType<VkMessageServiceFacade>().As<IMessageServiceFacade<MessageQueryResult>>();
         }
     }
 }

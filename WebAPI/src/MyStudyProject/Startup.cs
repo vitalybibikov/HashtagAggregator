@@ -35,9 +35,7 @@ namespace MyStudyProject
         }
 
         private MapperConfiguration mapperConfiguration;
-
         public IMapper Mapper { get; set; }
-
         public IConfigurationRoot Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
@@ -45,6 +43,7 @@ namespace MyStudyProject
         {
             services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
             services.Configure<TwitterSettings>(Configuration.GetSection("TwitterSettings"));
+            services.Configure<VkSettings>(Configuration.GetSection("VkSettings"));
 
             // Add framework services.
             services.AddMvc();

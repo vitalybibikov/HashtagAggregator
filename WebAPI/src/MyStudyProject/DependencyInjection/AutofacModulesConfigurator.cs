@@ -7,6 +7,7 @@ using MyStudyProject.Core.Contracts.Interface.Cqrs;
 using MyStudyProject.Core.Contracts.Interface.ServiceFacades;
 using MyStudyProject.Core.Cqrs.Results;
 using MyStudyProject.Domain.Services.Services;
+using MyStudyProject.Domain.Services.Services.Twitter;
 
 namespace MyStudyProject.DependencyInjection
 {
@@ -17,7 +18,7 @@ namespace MyStudyProject.DependencyInjection
             var builder = new ContainerBuilder();
             builder.RegisterModule<ConfigurationModule>();
             builder.RegisterModule<ServicesModule>();
-            builder.RegisterType<TwitterMessageServiceFacade>().As<IMessageServiceFacade<MessageQueryResult>>();
+            
             builder.Populate(services);
 
             IContainer container = builder.Build();

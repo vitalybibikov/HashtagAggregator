@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using AutoMapper;
 
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
-using MyStudyProject.Core.Contracts.Interface.ServiceFacades;
-using MyStudyProject.Core.Cqrs.Results;
+
+using MyStudyProject.Domain.Services.Services;
 using MyStudyProject.ViewModels;
 
 namespace MyStudyProject.Controllers
@@ -12,10 +12,10 @@ namespace MyStudyProject.Controllers
     [Route("api/[controller]")]
     public class StatisticsController : Controller
     {
-        private readonly IMessageServiceFacade<MessageQueryResult> service;
+        private readonly IMessageService service;
         private IMapper Mapper { get; }
 
-        public StatisticsController(IMapper mapper, IMessageServiceFacade<MessageQueryResult> service)
+        public StatisticsController(IMapper mapper, IMessageService service)
         {
             this.service = service;
             this.Mapper = mapper;

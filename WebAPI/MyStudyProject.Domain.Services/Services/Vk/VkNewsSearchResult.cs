@@ -15,7 +15,7 @@ namespace MyStudyProject.Domain.Services.Services.Vk
         public long FromId { get; set; }
 
         [JsonProperty(PropertyName = "date")]
-        public string Date { get; set; }
+        public long UnixTimeStamp { get; set; }
 
         [JsonProperty(PropertyName = "text")]
         public string Text { get; set; }

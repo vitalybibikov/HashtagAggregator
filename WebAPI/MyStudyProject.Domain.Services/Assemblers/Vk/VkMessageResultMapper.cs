@@ -4,19 +4,23 @@ using System.Collections.Generic;
 using MyStudyProject.Core.Contracts.Interface;
 using MyStudyProject.Core.Cqrs.Results;
 using MyStudyProject.Domain.Services.Services.Vk;
+using MyStudyProject.Shared.Contracts.Enums;
 
 namespace MyStudyProject.Domain.Services.Assemblers.Vk
 {
     public class VkMessageResultMapper : IMapper<MessageQueryResult, VkNewsSearchResult>
     {
-        public MessageQueryResult Map(VkNewsSearchResult entity, string hashtag)
+        public MessageQueryResult Map(VkNewsSearchResult post, string hashtag)
         {
             MessageQueryResult message = new MessageQueryResult
             {
-                Body = entity.Text,
+                Body = post.Text,
                 HashTag = hashtag,
-                Id = entity.Id
+                Id = post.Id,
+                Media = SocialMediaType.Twitter,
+                PostDate = DateTimeOffset.FromUnixTimeSeconds(post.UnixTimeStamp).DateTime
             };
+
             return message;
         }
 
@@ -29,7 +33,9 @@ namespace MyStudyProject.Domain.Services.Assemblers.Vk
                 {
                     Body = post.Text,
                     HashTag = hashtag,
-                    Id = post.Id
+                    Id = post.Id,
+                    Media = SocialMediaType.VK,
+                    PostDate = DateTimeOffset.FromUnixTimeSeconds(post.UnixTimeStamp).DateTime
                 };
                 results.Add(message);
             }

@@ -1,21 +1,21 @@
-﻿using MyStudyProject.Core.Contracts.Interface.ServiceFacades;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Options;
+
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+
 using MyStudyProject.Core.Cqrs.Results;
 using MyStudyProject.Domain.Services.Assemblers.Vk;
 using MyStudyProject.Domain.Services.Services.Vk.Models;
 using MyStudyProject.Shared.Common.Helpers;
 using MyStudyProject.Shared.Common.Settings;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 
 namespace MyStudyProject.Domain.Services.Services.Vk
 {
-    public class VkMessageServiceFacade : IMessageServiceFacade<MessageQueryResult>
+    public class VkMessageServiceFacade : IVkServiceFacade
     {
         private readonly IOptions<VkSettings> settings;
 
@@ -35,8 +35,7 @@ namespace MyStudyProject.Domain.Services.Services.Vk
                         Query = hashtag
                     };
 
-                var response = await request.LoadDataAsync(HttpMethod.Get, query.ToString());
-                var json = await response.Content.ReadAsStringAsync();
+                var json = await request.LoadJsonAsync(HttpMethod.Get, query.ToString());
                 var jObject = JObject.Parse(json).SelectToken("response");
                 var feed = JsonConvert.DeserializeObject<VkNewsFeed>(jObject.ToString());
                 VkMessageResultMapper mapper = new VkMessageResultMapper();

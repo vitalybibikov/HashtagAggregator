@@ -20,7 +20,7 @@ namespace MyStudyProject.Shared.Common.Helpers
 
         public HttpClient Client => new HttpClient();
 
-        public async Task<HttpResponseMessage> LoadDataAsync(HttpMethod method, string url)
+        public async Task<string> LoadJsonAsync(HttpMethod method, string url)
         {
             HttpRequestMessage message = new HttpRequestMessage();
             try
@@ -32,7 +32,8 @@ namespace MyStudyProject.Shared.Common.Helpers
                     .Accept
                         .Add(new MediaTypeWithQualityHeaderValue(contentType));
                 Client.Timeout = TimeSpan.FromMilliseconds(timeout);
-                return await Client.SendAsync(message);
+                var response = await Client.SendAsync(message);
+                return await response.Content.ReadAsStringAsync();
             }
             finally
             {

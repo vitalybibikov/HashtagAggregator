@@ -1,18 +1,19 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Options;
+
 using MyStudyProject.Core.Contracts.Interface.ServiceFacades;
 using MyStudyProject.Core.Cqrs.Results;
-using MyStudyProject.Domain.Services.Assemblers;
 using MyStudyProject.Domain.Services.Assemblers.Twitter;
 using MyStudyProject.Shared.Common.Settings;
+
 using Tweetinvi;
 using Tweetinvi.Models;
 using Tweetinvi.Parameters;
 
 namespace MyStudyProject.Domain.Services.Services.Twitter
 {
-    public class TwitterMessageServiceFacade : IMessageServiceFacade<MessageQueryResult>
+    public class TwitterMessageServiceFacade : ITwitterServiceFacade
     {
         private readonly IOptions<TwitterSettings> settings;
 

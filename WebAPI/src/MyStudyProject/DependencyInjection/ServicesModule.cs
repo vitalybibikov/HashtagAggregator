@@ -19,8 +19,9 @@ namespace MyStudyProject.DependencyInjection
     {
         protected override void Load(ContainerBuilder builder)
         {
-            //builder.RegisterType<TwitterMessageServiceFacade>().As<IMessageServiceFacade<MessageQueryResult>>();
-            builder.RegisterType<VkMessageServiceFacade>().As<IMessageServiceFacade<MessageQueryResult>>();
+            builder.RegisterType<TwitterMessageServiceFacade>().As<ITwitterServiceFacade>();
+            builder.RegisterType<VkMessageServiceFacade>().As<IVkServiceFacade>();
+            builder.RegisterType<MessageService>().As<IMessageService>();
         }
     }
 }

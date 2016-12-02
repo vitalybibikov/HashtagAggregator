@@ -1,6 +1,7 @@
 ﻿using System;
 
 using MyStudyProject.Core.Contracts.Interface.Cqrs;
+using MyStudyProject.Shared.Contracts.Enums;
 
 namespace MyStudyProject.Core.Cqrs.Results
 {
@@ -11,5 +12,9 @@ namespace MyStudyProject.Core.Cqrs.Results
         public string Body { get; set; }
 
         public string HashTag { get; set; }
+
+        public SocialMediaType Media { get; set; }
+
+        public DateTime? PostDate { get; set; }
     }
 }

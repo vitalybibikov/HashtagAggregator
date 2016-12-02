@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using MyStudyProject.Core.Contracts.Interface;
 using MyStudyProject.Core.Cqrs.Results;
+using MyStudyProject.Shared.Contracts.Enums;
 using Tweetinvi.Models;
 
 namespace MyStudyProject.Domain.Services.Assemblers.Twitter
@@ -13,7 +14,9 @@ namespace MyStudyProject.Domain.Services.Assemblers.Twitter
             {
                 Body = tweet.Text,
                 HashTag = hashtag,
-                Id = tweet.Id
+                Id = tweet.Id,
+                PostDate = tweet.TweetLocalCreationDate,
+                Media = SocialMediaType.Twitter
             };
             return message;
         }
@@ -27,7 +30,9 @@ namespace MyStudyProject.Domain.Services.Assemblers.Twitter
                 {
                     Body = tweet.Text,
                     HashTag = hashtag,
-                    Id = tweet.Id
+                    Id = tweet.Id,
+                    PostDate = tweet.TweetLocalCreationDate,
+                    Media =  SocialMediaType.Twitter
                 };
                 results.Add(message);
             }

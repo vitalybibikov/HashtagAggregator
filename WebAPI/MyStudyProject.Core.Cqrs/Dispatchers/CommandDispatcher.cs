@@ -1,8 +1,8 @@
 ﻿using System.Threading.Tasks;
 using Autofac;
 
-using MyStudyProject.Core.Contracts.Interface;
 using MyStudyProject.Core.Contracts.Interface.Cqrs;
+using MyStudyProject.Core.Contracts.Interface.Cqrs.Command;
 
 namespace MyStudyProject.Core.Cqrs.Dispatchers
 {

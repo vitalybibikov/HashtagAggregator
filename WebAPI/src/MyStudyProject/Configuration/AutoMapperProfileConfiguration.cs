@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using AutoMapper;
-using MyStudyProject.Core.Cqrs.Results;
-using MyStudyProject.Core.Models.Queries;
+
+using MyStudyProject.Core.Models.Results.Query;
 using MyStudyProject.ViewModels;
-using Tweetinvi;
-using Tweetinvi.Models;
 
 namespace MyStudyProject.Configuration
 {

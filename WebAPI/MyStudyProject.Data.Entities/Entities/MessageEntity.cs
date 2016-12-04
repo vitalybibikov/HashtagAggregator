@@ -14,6 +14,6 @@ namespace MyStudyProject.Data.Entities.Entities
 
         public SocialMediaType MediaType { get; set; }
 
-        public UserEntity User { get; set; }
+        public long NetworkId { get; set; }
     }
 }

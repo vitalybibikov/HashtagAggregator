@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using MyStudyProject.Core.Contracts.Interface;
-using MyStudyProject.Core.Cqrs.Results;
+
+using MyStudyProject.Core.Models.Results.Query;
 using MyStudyProject.Shared.Contracts.Enums;
 using Tweetinvi.Models;
 

@@ -1,16 +1,25 @@
 ﻿using System;
 using System.Threading.Tasks;
+
 using MyStudyProject.Core.Contracts.Interface.Cqrs;
+using MyStudyProject.Core.Contracts.Interface.Cqrs.Query;
 
 namespace MyStudyProject.Core.Contracts.Abstract
 {
-    public abstract class QueryHandler<TParameter, TResult> : IQueryHandler<TParameter, TResult>
+    public abstract class QueryHandler<TParameter, TResult> : ICompositeQueryHandler<TParameter, TResult>
          where TResult : IQueryResult
          where TParameter : IQuery
     {
-        public virtual Task<TResult> Get(TParameter query)
+        public abstract Task<TResult> GetAsync(TParameter query);
+
+        public virtual void Add(IQueryHandler<TParameter, TResult> queryHandler)
         {
-            throw new NotImplementedException();
+            throw new InvalidOperationException();
+        }
+
+        public virtual bool Remove(IQueryHandler<TParameter, TResult> queryHandler)
+        {
+            throw new InvalidOperationException();
         }
     }
 }

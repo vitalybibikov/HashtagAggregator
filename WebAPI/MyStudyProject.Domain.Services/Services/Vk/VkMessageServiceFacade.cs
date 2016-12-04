@@ -7,7 +7,7 @@ using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
-using MyStudyProject.Core.Cqrs.Results;
+using MyStudyProject.Core.Models.Results.Query;
 using MyStudyProject.Domain.Services.Assemblers.Vk;
 using MyStudyProject.Domain.Services.Services.Vk.Models;
 using MyStudyProject.Shared.Common.Helpers;

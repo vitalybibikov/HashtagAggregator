@@ -4,7 +4,10 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 
-using MyStudyProject.Domain.Services.Services;
+using MyStudyProject.Core.Contracts.Interface.Cqrs.Command;
+using MyStudyProject.Core.Contracts.Interface.Cqrs.Query;
+using MyStudyProject.Core.Models.Queries;
+using MyStudyProject.Core.Models.Results.Query;
 using MyStudyProject.ViewModels;
 
 namespace MyStudyProject.Controllers
@@ -12,12 +15,15 @@ namespace MyStudyProject.Controllers
     [Route("api/[controller]")]
     public class StatisticsController : Controller
     {
-        private readonly IMessageService service;
+        private readonly IQueryDispatcher queryDispatcher;
+        private readonly ICommandDispatcher commandDispatcher;
+
         private IMapper Mapper { get; }
 
-        public StatisticsController(IMapper mapper, IMessageService service)
+        public StatisticsController(IMapper mapper, IQueryDispatcher queryDispatcher, ICommandDispatcher commandDispatcher)
         {
-            this.service = service;
+            this.queryDispatcher = queryDispatcher;
+            this.commandDispatcher = commandDispatcher;
             this.Mapper = mapper;
         }
 
@@ -29,9 +35,9 @@ namespace MyStudyProject.Controllers
             {
                 hashtag = "#" + hashtag;
             }
-
-            var messages = await service.GetAllAsync(hashtag);
-            var models = Mapper.Map<IEnumerable<MessageViewModel>>(messages);
+            MessageGetQuery query  = new MessageGetQuery();
+            var result = queryDispatcher.Dispatch<MessageGetQuery, MessagesQueryResult>(query);
+            var models = Mapper.Map<IEnumerable<MessageViewModel>>(result);
             return models;
         }
 
@@ -42,9 +48,9 @@ namespace MyStudyProject.Controllers
             {
                 hashtag = "#" + hashtag;
             }
-
-            var messages = await service.GetSinceLastIdAsync(id, hashtag);
-            var models = Mapper.Map<IEnumerable<MessageViewModel>>(messages);
+            MessageGetQuery query = new MessageGetQuery();
+            var result = queryDispatcher.Dispatch<MessageGetQuery, MessagesQueryResult>(query);
+            var models = Mapper.Map<IEnumerable<MessageViewModel>>(result);
             return models;
         }
     }

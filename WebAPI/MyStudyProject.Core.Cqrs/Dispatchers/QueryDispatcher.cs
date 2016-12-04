@@ -1,9 +1,10 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+
 using Autofac;
-using Autofac.Core;
-using Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal;
+
 using MyStudyProject.Core.Contracts.Interface.Cqrs;
+using MyStudyProject.Core.Contracts.Interface.Cqrs.Query;
 
 namespace MyStudyProject.Core.Cqrs.Dispatchers
 {
@@ -17,11 +18,21 @@ namespace MyStudyProject.Core.Cqrs.Dispatchers
         }
 
         public Task<TResult> Dispatch<TParameter, TResult>(TParameter query)
-            where TParameter : IQuery where TResult : IQueryResult
+            where TParameter : IQuery
+            where TResult : IQueryResult
         {
-            var results = container.ComponentRegistry.Registrations.SelectMany(x => x.Services).Select(x => x.Description);
-            var handler = container.Resolve<IQueryHandler<TParameter, TResult>>();
-            return handler.Get(query);
+            //var results = container.ComponentRegistry.Registrations.SelectMany(x => x.Services);
+            var compositeHandler = container.Resolve<ICompositeQueryHandler<TParameter, TResult>>();
+            var handlers = container.Resolve<IList<IQueryHandler<TParameter, TResult>>>();
+
+            foreach (var handler in handlers)
+            {
+                if (handler.GetType() != compositeHandler.GetType())
+                {
+                    compositeHandler.Add(handler);
+                }
+            }
+            return compositeHandler.GetAsync(query);
         }
     }
 }

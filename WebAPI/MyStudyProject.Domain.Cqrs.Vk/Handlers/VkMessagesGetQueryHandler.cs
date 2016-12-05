@@ -9,7 +9,7 @@ using MyStudyProject.Core.Models.Results.Query;
 
 namespace MyStudyProject.Domain.Cqrs.Vk.Handlers
 {
-    public class VkMessagesGetQueryHandler : QueryHandler<MessagesGetQuery, MessagesQueryResult>, IQueryHandler<MessagesGetQuery, MessagesQueryResult>
+    public class VkMessagesGetQueryHandler : QueryHandler<MessagesGetQuery, MessagesQueryResult>
     {
         private readonly IVkMessageFacade<MessagesQueryResult> facade;
 

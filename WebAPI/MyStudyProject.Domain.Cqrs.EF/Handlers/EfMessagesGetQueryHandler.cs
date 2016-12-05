@@ -11,7 +11,7 @@ using MyStudyProject.Domain.Cqrs.EF.Assemblers;
 
 namespace MyStudyProject.Domain.Cqrs.EF.Handlers
 {
-    public class EfMessagesGetQueryHandler : QueryHandler<MessagesGetQuery, MessagesQueryResult>, IQueryHandler<MessagesGetQuery, MessagesQueryResult>
+    public class EfMessagesGetQueryHandler : QueryHandler<MessagesGetQuery, MessagesQueryResult>
     {
         private readonly SqlApplicationDbContext context;
 

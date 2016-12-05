@@ -9,7 +9,7 @@ using MyStudyProject.Core.Models.Results.Query;
 
 namespace MyStudyProject.Domain.Cqrs.Twitter.Handlers
 {
-    public class TwitterMessagesGetQueryHandler : QueryHandler<MessagesGetQuery, MessagesQueryResult>, IQueryHandler<MessagesGetQuery, MessagesQueryResult>
+    public class TwitterMessagesGetQueryHandler : QueryHandler<MessagesGetQuery, MessagesQueryResult>
     {
         private readonly ITwitterMessageFacade<MessagesQueryResult> facade;
 

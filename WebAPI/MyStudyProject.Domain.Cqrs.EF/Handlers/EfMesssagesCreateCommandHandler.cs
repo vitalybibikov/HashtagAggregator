@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 
 using MyStudyProject.Core.Contracts.Abstract;
 using MyStudyProject.Core.Contracts.Interface.Cqrs;
-using MyStudyProject.Core.Contracts.Interface.Cqrs.Command;
 using MyStudyProject.Core.Models.Commands;
 using MyStudyProject.Core.Models.Results.Command;
 using MyStudyProject.Data.DataAccess.Context;
@@ -13,7 +12,7 @@ using MyStudyProject.Domain.Cqrs.EF.Assemblers;
 
 namespace MyStudyProject.Domain.Cqrs.EF.Handlers
 {
-    public class EfMesssagesCreateCommandHandler : CommandHandler<MessagesCreateCommand>, ICommandHandler<MessagesCreateCommand>
+    public class EfMesssagesCreateCommandHandler : CommandHandler<MessagesCreateCommand>
     {
         private readonly SqlApplicationDbContext context;
 

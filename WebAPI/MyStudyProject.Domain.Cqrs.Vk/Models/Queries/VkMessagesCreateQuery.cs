@@ -2,7 +2,7 @@
 
 namespace MyStudyProject.Domain.Cqrs.Vk.Models.Queries
 {
-    public class VkMessageCreateQuery : MessageGetQuery
+    public class VkMessagesCreateQuery : MessagesGetQuery
     {
     }
 }

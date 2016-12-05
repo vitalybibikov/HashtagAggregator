@@ -8,17 +8,9 @@ using MyStudyProject.Core.Models.Results.Query;
 
 namespace MyStudyProject.Core.Cqrs.Handlers.CompositeQueryHandlers
 {
-    public class MessagesGetQueryHandler : CompositeQueryHandler<MessageGetQuery, MessagesQueryResult> , ICompositeQueryHandler<MessageGetQuery, MessagesQueryResult>
+    public class MessagesGetQueryHandler : CompositeQueryHandler<MessagesGetQuery, MessagesQueryResult> , ICompositeQueryHandler<MessagesGetQuery, MessagesQueryResult>
     {
-        public MessagesGetQueryHandler()
-        {         
-        }
-
-        public MessagesGetQueryHandler(List<IQueryHandler<MessageGetQuery, MessagesQueryResult>> handlersList) : base(handlersList)
-        {
-        }
-
-        public override async Task<MessagesQueryResult> GetAsync(MessageGetQuery query)
+        public override async Task<MessagesQueryResult> GetAsync(MessagesGetQuery query)
         {
             MessagesQueryResult result = new MessagesQueryResult();
             foreach (var handler in Handlers)

@@ -19,7 +19,7 @@ namespace MyStudyProject.DependencyInjection
     {
         protected override void Load(ContainerBuilder builder)
         {
-            var modelAssembly = typeof(MessageGetQuery).GetTypeInfo().Assembly;
+            var modelAssembly = typeof(MessagesGetQuery).GetTypeInfo().Assembly;
 
             var dataAssembly = typeof(MessagesGetQueryHandler).GetTypeInfo().Assembly;
             var vkAssembly = typeof(VkMessagesGetQueryHandler).GetTypeInfo().Assembly;
@@ -30,17 +30,17 @@ namespace MyStudyProject.DependencyInjection
             builder.RegisterAssemblyTypes(modelAssembly).AssignableTo<ICommand>();
 
             builder.RegisterAssemblyTypes(dataAssembly)
-                .AssignableTo(typeof(ICompositeCommandHandler<ICommand>))
+                .AsClosedTypesOf(typeof(ICompositeCommandHandler<>))
                 .AsImplementedInterfaces();
             builder.RegisterAssemblyTypes(vkAssembly, twitterAssembly, efAssembly)
-                .AssignableTo(typeof(ICommandHandler<ICommand>))
+                .AsClosedTypesOf(typeof(ICommandHandler<>))
                 .AsImplementedInterfaces();
 
-            builder.RegisterAssemblyTypes(vkAssembly, twitterAssembly, efAssembly)
-                .AsClosedTypesOf(typeof(IQueryHandler<,>))
-                .AsImplementedInterfaces();
             builder.RegisterAssemblyTypes(dataAssembly)
                 .AsClosedTypesOf(typeof(ICompositeQueryHandler<,>))
+                .AsImplementedInterfaces();
+            builder.RegisterAssemblyTypes(vkAssembly, twitterAssembly, efAssembly)
+                .AsClosedTypesOf(typeof(IQueryHandler<,>))
                 .AsImplementedInterfaces();
 
             builder.RegisterType<QueryDispatcher>().As<IQueryDispatcher>();

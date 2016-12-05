@@ -8,7 +8,7 @@ using MyStudyProject.Shared.Contracts.Enums;
 
 namespace MyStudyProject.Data.Internet.Assemblers.Vk
 {
-    public class VkMessageResultMapper : IMapper<MessagesQueryResult, VkNewsSearchResult>
+    public class VkMessageResultMapper : IMapper<VkNewsSearchResult, MessagesQueryResult>
     {
         public MessagesQueryResult MapBunch(IEnumerable<VkNewsSearchResult> messages, string hashtag)
         {

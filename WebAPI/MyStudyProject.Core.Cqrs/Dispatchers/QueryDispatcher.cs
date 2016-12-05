@@ -1,8 +1,9 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 using Autofac;
-
+using MyStudyProject.Core.Contracts.Abstract;
 using MyStudyProject.Core.Contracts.Interface.Cqrs;
 using MyStudyProject.Core.Contracts.Interface.Cqrs.Query;
 
@@ -21,8 +22,8 @@ namespace MyStudyProject.Core.Cqrs.Dispatchers
             where TParameter : IQuery
             where TResult : IQueryResult
         {
-            //var results = container.ComponentRegistry.Registrations.SelectMany(x => x.Services);
-            var compositeHandler = container.Resolve<ICompositeQueryHandler<TParameter, TResult>>();
+            var results = container.ComponentRegistry.Registrations.SelectMany(x => x.Services);
+            var compositeHandler = container.Resolve<CompositeQueryHandler<TParameter, TResult>>();
             var handlers = container.Resolve<IList<IQueryHandler<TParameter, TResult>>>();
 
             foreach (var handler in handlers)

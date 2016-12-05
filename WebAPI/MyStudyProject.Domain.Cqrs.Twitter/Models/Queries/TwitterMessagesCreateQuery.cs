@@ -2,7 +2,7 @@
 
 namespace MyStudyProject.Domain.Cqrs.Twitter.Models.Queries
 {
-    public class TwitterMessageCreateQuery : MessageGetQuery
+    public class TwitterMessagesCreateQuery : MessagesGetQuery
     {
     }
 }

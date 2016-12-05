@@ -9,7 +9,7 @@ using MyStudyProject.Core.Models.Results.Query;
 
 namespace MyStudyProject.Domain.Cqrs.Twitter.Handlers
 {
-    public class TwitterMessagesGetQueryHandler : QueryHandler<MessageGetQuery, MessagesQueryResult>, IQueryHandler<MessageGetQuery, MessagesQueryResult>
+    public class TwitterMessagesGetQueryHandler : QueryHandler<MessagesGetQuery, MessagesQueryResult>, IQueryHandler<MessagesGetQuery, MessagesQueryResult>
     {
         private readonly ITwitterMessageFacade<MessagesQueryResult> facade;
 
@@ -18,7 +18,7 @@ namespace MyStudyProject.Domain.Cqrs.Twitter.Handlers
             this.facade = facade;
         }
 
-        public override Task<MessagesQueryResult> GetAsync(MessageGetQuery query)
+        public override Task<MessagesQueryResult> GetAsync(MessagesGetQuery query)
         {
             return facade.GetAllAsync(query.HashTag);
         }

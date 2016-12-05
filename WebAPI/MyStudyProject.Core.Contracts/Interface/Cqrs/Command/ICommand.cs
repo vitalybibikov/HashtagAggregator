@@ -5,6 +5,5 @@
     /// </summary>
     public interface ICommand
     {
-        long Id { get; set; }
     }
 }

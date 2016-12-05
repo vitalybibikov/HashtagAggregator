@@ -9,7 +9,7 @@ using MyStudyProject.Core.Models.Results.Query;
 
 namespace MyStudyProject.Domain.Cqrs.Vk.Handlers
 {
-    public class VkMessagesGetQueryHandler : QueryHandler<MessageGetQuery, MessagesQueryResult>, IQueryHandler<MessageGetQuery, MessagesQueryResult>
+    public class VkMessagesGetQueryHandler : QueryHandler<MessagesGetQuery, MessagesQueryResult>, IQueryHandler<MessagesGetQuery, MessagesQueryResult>
     {
         private readonly IVkMessageFacade<MessagesQueryResult> facade;
 
@@ -18,7 +18,7 @@ namespace MyStudyProject.Domain.Cqrs.Vk.Handlers
             this.facade = facade;
         }
 
-        public override Task<MessagesQueryResult> GetAsync(MessageGetQuery query)
+        public override Task<MessagesQueryResult> GetAsync(MessagesGetQuery query)
         {
             return facade.GetAllAsync(query.HashTag);
         }

@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 using MyStudyProject.Core.Contracts.Interface.Cqrs.Command;
 using MyStudyProject.Core.Contracts.Interface.Cqrs.Query;
+using MyStudyProject.Core.Models.Commands;
 using MyStudyProject.Core.Models.Queries;
 using MyStudyProject.Core.Models.Results.Query;
 using MyStudyProject.ViewModels;
@@ -35,9 +36,17 @@ namespace MyStudyProject.Controllers
             {
                 hashtag = "#" + hashtag;
             }
-            MessageGetQuery query  = new MessageGetQuery();
-            query.HashTag = hashtag;
-            var result = await queryDispatcher.DispatchAsync<MessageGetQuery, MessagesQueryResult>(query);
+            var query = new MessagesGetQuery { HashTag = hashtag };
+            MessagesQueryResult result = await queryDispatcher.DispatchAsync<MessagesGetQuery, MessagesQueryResult>(query);
+
+            MessagesCreateCommand command = Mapper.Map<MessagesCreateCommand>(result);
+            await commandDispatcher.DispatchAsync(command);
+
+
+            //MessagesQueryResult result = await queryDispatcher.DispatchAsync<MessagesGetQuery, MessagesQueryResult>(query);
+            //List<MessageCreateCommand> messages = Mapper.Map<List<MessageCreateCommand>>(result.Messages);
+            //await commandDispatcher.DispatchAsync(new MessagesCreateCommand() { Messages = messages });
+
             var models = Mapper.Map<IEnumerable<MessageViewModel>>(result.Messages);
             return models;
         }
@@ -49,9 +58,9 @@ namespace MyStudyProject.Controllers
             {
                 hashtag = "#" + hashtag;
             }
-            MessageGetQuery query = new MessageGetQuery();
+            MessagesGetQuery query = new MessagesGetQuery();
             query.HashTag = hashtag;
-            var result = await queryDispatcher.DispatchAsync<MessageGetQuery, MessagesQueryResult>(query);
+            var result = await queryDispatcher.DispatchAsync<MessagesGetQuery, MessagesQueryResult>(query);
             var models = Mapper.Map<IEnumerable<MessageViewModel>>(result);
             return models;
         }

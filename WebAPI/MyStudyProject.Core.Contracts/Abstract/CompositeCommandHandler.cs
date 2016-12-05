@@ -10,6 +10,8 @@ namespace MyStudyProject.Core.Contracts.Abstract
     {
         private readonly List<ICommandHandler<TParameter>> handlers;
 
+        public List<ICommandHandler<TParameter>> Handlers => handlers;
+
         protected CompositeCommandHandler()
         {
             handlers = new List<ICommandHandler<TParameter>>();

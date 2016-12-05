@@ -1,10 +1,13 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace MyStudyProject.Core.Contracts.Interface.Cqrs.Command
 {
-    public interface ICommandHandler<in TParameter> 
+    public interface ICommandHandler<TParameter> 
         where TParameter : ICommand
     {
-        Task<ICommandResult> Execute(TParameter command);
+        Task<ICommandResult> ExecuteAsync(TParameter command);
+
+        Task<ICommandResult> ExecuteAsync(List<TParameter> command);
     }
 }

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+
 using MyStudyProject.Core.Contracts.Interface;
 using MyStudyProject.Core.Models.Results.Query;
 using MyStudyProject.Data.Entities.Entities;
@@ -9,7 +8,7 @@ using MyStudyProject.Shared.Contracts.Enums;
 
 namespace MyStudyProject.Domain.Cqrs.EF.Assemblers
 {
-    public class MessagesEntityResultMapper : IMapper<MessagesQueryResult, MessageEntity>
+    public class EntityToMessagesResultMapper : IMapper<MessageEntity, MessagesQueryResult>
     {
         public MessagesQueryResult MapBunch(IEnumerable<MessageEntity> messages, string hashtag)
         {

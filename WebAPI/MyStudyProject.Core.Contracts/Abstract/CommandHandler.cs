@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 using MyStudyProject.Core.Contracts.Interface.Cqrs;
@@ -15,14 +16,19 @@ namespace MyStudyProject.Core.Contracts.Abstract
             {
                 throw new ArgumentNullException();
             }
+        }
 
-            if (command.Id == 0)
+        public virtual void Validates(List<ICommand> commands)
+        {
+            foreach (var command in commands)
             {
-                throw new ArgumentException("Argument id should not be zero", nameof(command));
+                Validate(command);
             }
         }
 
-        public abstract Task<ICommandResult> Execute(TParameter command);
+        public abstract Task<ICommandResult> ExecuteAsync(TParameter command);
+        public abstract Task<ICommandResult> ExecuteAsync(List<TParameter> command);
+
 
         public virtual void Add(ICommandHandler<TParameter> queryHandler)
         {

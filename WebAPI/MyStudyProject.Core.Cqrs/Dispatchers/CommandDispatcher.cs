@@ -1,6 +1,9 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using System.Linq;
 using Autofac;
-
+using MyStudyProject.Core.Contracts.Abstract;
 using MyStudyProject.Core.Contracts.Interface.Cqrs;
 using MyStudyProject.Core.Contracts.Interface.Cqrs.Command;
 
@@ -15,10 +18,35 @@ namespace MyStudyProject.Core.Cqrs.Dispatchers
             this.container = container;
         }
 
-        public Task<ICommandResult> Dispatch<T>(T command) where T : ICommand
+        public async Task<ICommandResult> DispatchAsync<T>(T command) where T : ICommand
         {
-            var handler = container.Resolve<ICommandHandler<T>>();
-            return handler.Execute(command);
+            var results = container.ComponentRegistry.Registrations.SelectMany(x => x.Services);
+            var compositeHandler = container.Resolve<CompositeCommandHandler<T>>();
+            var handlers = container.Resolve<IList<ICommandHandler<T>>>();
+
+            foreach (var handler in handlers)
+            {
+                if (handler.GetType() != compositeHandler.GetType())
+                {
+                    compositeHandler.Add(handler);
+                }
+            }
+            return await compositeHandler.ExecuteAsync(command);
+        }
+
+        public async Task<ICommandResult> DispatchMultipleAsync<T>(List<T> commands) where T : ICommand
+        {
+            var compositeHandler = container.Resolve<CompositeCommandHandler<T>>();
+            var handlers = container.Resolve<IList<ICommandHandler<T>>>();
+
+            foreach (var handler in handlers)
+            {
+                if (handler.GetType() != compositeHandler.GetType())
+                {
+                    compositeHandler.Add(handler);
+                }
+            }
+            return await compositeHandler.ExecuteAsync(commands);
         }
     }
 }

@@ -2,8 +2,8 @@
 
 namespace MyStudyProject.Core.Contracts.Interface
 {
-    public interface IMapper<out TModel, in TEntity>
+    public interface IMapper<TModel, TEntity>
     {
-        TModel MapBunch(IEnumerable<TEntity> messages, string hashtag);
+        TEntity MapBunch(IEnumerable<TModel> messages, string hashtag);
     }
 }

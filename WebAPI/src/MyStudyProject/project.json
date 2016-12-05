@@ -21,7 +21,8 @@
     "Microsoft.AspNetCore.Diagnostics": "1.1.0",
     "MyStudyProject.Domain.Cqrs.Twitter": "1.0.0-*",
     "MyStudyProject.Domain.Cqrs.Vk": "1.0.0-*",
-    "MyStudyProject.Data.Internet": "1.0.0-*"
+    "MyStudyProject.Data.Internet": "1.0.0-*",
+    "MyStudyProject.Domain.Cqrs.EF": "1.0.0-*"
   },
 
   "tools": {

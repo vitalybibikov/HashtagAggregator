@@ -16,5 +16,8 @@ namespace MyStudyProject.Core.Models.Results.Query
         public SocialMediaType Media { get; set; }
 
         public DateTime? PostDate { get; set; }
+
+        public string NetworkId { get; set; }
+
     }
 }

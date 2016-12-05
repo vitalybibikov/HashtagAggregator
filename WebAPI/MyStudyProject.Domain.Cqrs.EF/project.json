@@ -1,12 +1,12 @@
-{
+﻿{
   "version": "1.0.0-*",
 
   "dependencies": {
     "MyStudyProject.Core.Contracts": "1.0.0-*",
-    "MyStudyProject.Data.Contracts": "1.0.0-*",
+    "MyStudyProject.Core.Cqrs": "1.0.0-*",
+    "MyStudyProject.Core.Models": "1.0.0-*",
     "MyStudyProject.Shared.Contracts": "1.0.0-*"
   },
-
 
   "frameworks": {
     "netcoreapp1.1": {

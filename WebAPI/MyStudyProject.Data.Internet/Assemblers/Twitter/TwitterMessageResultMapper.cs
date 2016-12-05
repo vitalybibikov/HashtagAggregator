@@ -8,18 +8,6 @@ namespace MyStudyProject.Data.Internet.Assemblers.Twitter
 {
     public class TwitterMessageResultMapper : IMapper<MessagesQueryResult, ITweet>
     {
-        public MessageQueryResult Map(ITweet tweet, string hashtag)
-        {
-            MessageQueryResult message = new MessageQueryResult
-            {
-                Body = tweet.Text,
-                HashTag = hashtag,
-                Id = tweet.Id,
-                PostDate = tweet.TweetLocalCreationDate,
-                Media = SocialMediaType.Twitter
-            };
-            return message;
-        }
 
         public MessagesQueryResult MapBunch(IEnumerable<ITweet> messages, string hashtag)
         {
@@ -30,9 +18,9 @@ namespace MyStudyProject.Data.Internet.Assemblers.Twitter
                 {
                     Body = tweet.Text,
                     HashTag = hashtag,
-                    Id = tweet.Id,
                     PostDate = tweet.TweetLocalCreationDate,
-                    Media =  SocialMediaType.Twitter
+                    Media =  SocialMediaType.Twitter,
+                    NetworkId = tweet.Id.ToString()
                 };
                 results.Messages.Add(message);
             }

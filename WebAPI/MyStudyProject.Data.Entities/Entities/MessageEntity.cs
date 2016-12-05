@@ -1,16 +1,16 @@
-﻿using MyStudyProject.Shared.Contracts.Enums;
+﻿using System;
+using MyStudyProject.Data.Contracts.Abstract;
+using MyStudyProject.Shared.Contracts.Enums;
 
 namespace MyStudyProject.Data.Entities.Entities
 {
-    public class MessageEntity
+    public class MessageEntity : Entity
     {
-        public long Id { get; set; }
-
         public string Body { get; set; }
 
         public string HashTag { get; set; }
 
-        public string PosedDate { get; set; }
+        public DateTime? PosedDate { get; set; }
 
         public SocialMediaType MediaType { get; set; }
 

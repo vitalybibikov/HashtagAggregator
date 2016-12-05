@@ -7,6 +7,21 @@ namespace MyStudyProject.Data.Contracts.Interface
 {
     public interface IEntity
     {
+        long Id
+        {
+            get;
+            set;
+        }
 
+        bool IsNew
+        {
+            get;
+        }
+
+        bool IsDeleted
+        {
+            get;
+            set;
+        }
     }
 }

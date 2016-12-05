@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+
 using MyStudyProject.Core.Contracts.Interface;
 using MyStudyProject.Core.Models.Results.Query;
 using MyStudyProject.Data.Internet.Services.Vk;
@@ -18,9 +19,9 @@ namespace MyStudyProject.Data.Internet.Assemblers.Vk
                 {
                     Body = post.Text,
                     HashTag = hashtag,
-                    Id = post.Id,
                     Media = SocialMediaType.VK,
-                    PostDate = DateTimeOffset.FromUnixTimeSeconds(post.UnixTimeStamp).DateTime
+                    PostDate = DateTimeOffset.FromUnixTimeSeconds(post.UnixTimeStamp).DateTime,
+                    NetworkId = post.Id.ToString()
                 };
                 results.Messages.Add(message);
             }

@@ -47,6 +47,8 @@ namespace MyStudyProject
 
             // Add framework services.
             services.AddMvc();
+
+            // Adds EF Context per request
             services.AddEntityFrameworkSqlServer()
                 .AddDbContext<SqlApplicationDbContext>();
 

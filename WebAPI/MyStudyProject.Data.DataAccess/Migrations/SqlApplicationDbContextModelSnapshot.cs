@@ -36,6 +36,9 @@ namespace MyStudyProject.Data.DataAccess.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("NetworkId")
+                        .IsUnique();
+
                     b.ToTable("Messages");
                 });
         }

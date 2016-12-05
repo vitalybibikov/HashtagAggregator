@@ -11,6 +11,11 @@ namespace MyStudyProject.Data.DataAccess.Context
     {
         public DbSet<MessageEntity> Messages { get; set; }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<MessageEntity>().HasIndex(i => new {i.NetworkId}).IsUnique();
+        }
+
         public SqlApplicationDbContext(IOptions<AppSettings> appSettings)
         {
             ConnectionString = appSettings.Value.ConnectionString;

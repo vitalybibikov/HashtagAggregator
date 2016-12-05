@@ -9,7 +9,7 @@ using MyStudyProject.Shared.Contracts.Enums;
 namespace MyStudyProject.Data.DataAccess.Migrations
 {
     [DbContext(typeof(SqlApplicationDbContext))]
-    [Migration("20161205131707_Initial")]
+    [Migration("20161205182802_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -31,11 +31,14 @@ namespace MyStudyProject.Data.DataAccess.Migrations
 
                     b.Property<int>("MediaType");
 
-                    b.Property<long>("NetworkId");
+                    b.Property<string>("NetworkId");
 
                     b.Property<DateTime?>("PosedDate");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("NetworkId")
+                        .IsUnique();
 
                     b.ToTable("Messages");
                 });

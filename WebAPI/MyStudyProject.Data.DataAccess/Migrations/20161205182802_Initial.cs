@@ -19,13 +19,19 @@ namespace MyStudyProject.Data.DataAccess.Migrations
                     HashTag = table.Column<string>(nullable: true),
                     IsDeleted = table.Column<bool>(nullable: false),
                     MediaType = table.Column<int>(nullable: false),
-                    NetworkId = table.Column<long>(nullable: false),
+                    NetworkId = table.Column<string>(nullable: true),
                     PosedDate = table.Column<DateTime>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Messages", x => x.Id);
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Messages_NetworkId",
+                table: "Messages",
+                column: "NetworkId",
+                unique: true);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

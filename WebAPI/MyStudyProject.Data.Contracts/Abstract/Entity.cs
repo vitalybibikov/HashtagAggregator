@@ -28,15 +28,6 @@ namespace MyStudyProject.Data.Contracts.Abstract
         public bool IsNew => Id <= 0;
 
         /// <summary>
-        ///   Gets a value indicating whether entity is deleted
-        /// </summary>
-        public bool IsDeleted
-        {
-            get;
-            set;
-        }
-
-        /// <summary>
         ///   Overrides base equals.
         /// </summary>
         public override bool Equals(object obj)

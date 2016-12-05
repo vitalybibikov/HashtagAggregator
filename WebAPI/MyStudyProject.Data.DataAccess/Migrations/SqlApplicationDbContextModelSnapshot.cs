@@ -26,17 +26,17 @@ namespace MyStudyProject.Data.DataAccess.Migrations
 
                     b.Property<string>("HashTag");
 
-                    b.Property<bool>("IsDeleted");
-
                     b.Property<int>("MediaType");
 
                     b.Property<string>("NetworkId");
 
                     b.Property<DateTime?>("PosedDate");
 
+                    b.Property<string>("UserId");
+
                     b.HasKey("Id");
 
-                    b.HasIndex("NetworkId")
+                    b.HasIndex("NetworkId", "UserId")
                         .IsUnique();
 
                     b.ToTable("Messages");

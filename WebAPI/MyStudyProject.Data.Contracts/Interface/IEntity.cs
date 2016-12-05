@@ -17,11 +17,5 @@ namespace MyStudyProject.Data.Contracts.Interface
         {
             get;
         }
-
-        bool IsDeleted
-        {
-            get;
-            set;
-        }
     }
 }

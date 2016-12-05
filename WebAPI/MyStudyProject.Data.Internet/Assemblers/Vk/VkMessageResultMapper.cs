@@ -21,7 +21,8 @@ namespace MyStudyProject.Data.Internet.Assemblers.Vk
                     HashTag = hashtag,
                     Media = SocialMediaType.VK,
                     PostDate = DateTimeOffset.FromUnixTimeSeconds(post.UnixTimeStamp).DateTime,
-                    NetworkId = post.Id.ToString()
+                    NetworkId = post.Id.ToString(),
+                    UserId = post.FromId.ToString()
                 };
                 results.Messages.Add(message);
             }

@@ -13,7 +13,7 @@ namespace MyStudyProject.Data.DataAccess.Context
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<MessageEntity>().HasIndex(i => new {i.NetworkId}).IsUnique();
+            modelBuilder.Entity<MessageEntity>().HasIndex(i => new {i.NetworkId, i.UserId}).IsUnique();
         }
 
         public SqlApplicationDbContext(IOptions<AppSettings> appSettings)

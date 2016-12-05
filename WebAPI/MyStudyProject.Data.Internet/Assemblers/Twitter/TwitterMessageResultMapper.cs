@@ -20,7 +20,8 @@ namespace MyStudyProject.Data.Internet.Assemblers.Twitter
                     HashTag = hashtag,
                     PostDate = tweet.TweetLocalCreationDate,
                     Media =  SocialMediaType.Twitter,
-                    NetworkId = tweet.Id.ToString()
+                    NetworkId = tweet.IdStr,
+                    UserId = tweet.CreatedBy.IdStr
                 };
                 results.Messages.Add(message);
             }

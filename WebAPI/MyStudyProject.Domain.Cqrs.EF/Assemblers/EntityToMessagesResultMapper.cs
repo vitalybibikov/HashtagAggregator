@@ -22,7 +22,8 @@ namespace MyStudyProject.Domain.Cqrs.EF.Assemblers
                     Id = entity.Id,
                     PostDate = entity.PosedDate,
                     Media = SocialMediaType.Twitter,
-                    NetworkId = entity.NetworkId.ToString(),
+                    NetworkId = entity.NetworkId,
+                    UserId = entity.UserId
                 };
                 results.Messages.Add(message);
             }

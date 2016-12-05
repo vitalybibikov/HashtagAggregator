@@ -9,8 +9,8 @@ using MyStudyProject.Shared.Contracts.Enums;
 namespace MyStudyProject.Data.DataAccess.Migrations
 {
     [DbContext(typeof(SqlApplicationDbContext))]
-    [Migration("20161205182802_Initial")]
-    partial class Initial
+    [Migration("20161205194618_First")]
+    partial class First
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -27,17 +27,17 @@ namespace MyStudyProject.Data.DataAccess.Migrations
 
                     b.Property<string>("HashTag");
 
-                    b.Property<bool>("IsDeleted");
-
                     b.Property<int>("MediaType");
 
                     b.Property<string>("NetworkId");
 
                     b.Property<DateTime?>("PosedDate");
 
+                    b.Property<string>("UserId");
+
                     b.HasKey("Id");
 
-                    b.HasIndex("NetworkId")
+                    b.HasIndex("NetworkId", "UserId")
                         .IsUnique();
 
                     b.ToTable("Messages");

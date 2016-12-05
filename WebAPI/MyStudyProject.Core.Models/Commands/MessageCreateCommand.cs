@@ -18,5 +18,7 @@ namespace MyStudyProject.Core.Models.Commands
         public DateTime? PostDate { get; set; }
 
         public string NetworkId { get; set; }
+
+        public string UserId { get; set; }
     }
 }

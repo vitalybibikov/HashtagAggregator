@@ -19,5 +19,6 @@ namespace MyStudyProject.Core.Models.Results.Query
 
         public string NetworkId { get; set; }
 
+        public string UserId { get; set; }
     }
 }

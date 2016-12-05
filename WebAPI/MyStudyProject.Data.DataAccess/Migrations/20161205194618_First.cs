@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace MyStudyProject.Data.DataAccess.Migrations
 {
-    public partial class Initial : Migration
+    public partial class First : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -17,10 +17,10 @@ namespace MyStudyProject.Data.DataAccess.Migrations
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Body = table.Column<string>(nullable: true),
                     HashTag = table.Column<string>(nullable: true),
-                    IsDeleted = table.Column<bool>(nullable: false),
                     MediaType = table.Column<int>(nullable: false),
                     NetworkId = table.Column<string>(nullable: true),
-                    PosedDate = table.Column<DateTime>(nullable: true)
+                    PosedDate = table.Column<DateTime>(nullable: true),
+                    UserId = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -28,9 +28,9 @@ namespace MyStudyProject.Data.DataAccess.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Messages_NetworkId",
+                name: "IX_Messages_NetworkId_UserId",
                 table: "Messages",
-                column: "NetworkId",
+                columns: new[] { "NetworkId", "UserId" },
                 unique: true);
         }
 

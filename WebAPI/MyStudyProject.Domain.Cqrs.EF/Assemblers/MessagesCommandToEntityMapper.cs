@@ -1,11 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using MyStudyProject.Core.Contracts.Interface;
 using MyStudyProject.Core.Models.Commands;
 using MyStudyProject.Data.Entities.Entities;
-using MyStudyProject.Shared.Contracts.Enums;
 
 namespace MyStudyProject.Domain.Cqrs.EF.Assemblers
 {
@@ -22,8 +18,8 @@ namespace MyStudyProject.Domain.Cqrs.EF.Assemblers
                     HashTag = message.HashTag,
                     MediaType = message.Media,
                     NetworkId = message.NetworkId,
-                    PosedDate = message.PostDate
-
+                    PosedDate = message.PostDate,
+                    UserId =  message.UserId
                 };
                 results.Add(entity);
             }

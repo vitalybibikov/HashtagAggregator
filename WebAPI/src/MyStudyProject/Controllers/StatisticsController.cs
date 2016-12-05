@@ -36,8 +36,9 @@ namespace MyStudyProject.Controllers
                 hashtag = "#" + hashtag;
             }
             MessageGetQuery query  = new MessageGetQuery();
-            var result = queryDispatcher.Dispatch<MessageGetQuery, MessagesQueryResult>(query);
-            var models = Mapper.Map<IEnumerable<MessageViewModel>>(result);
+            query.HashTag = hashtag;
+            var result = await queryDispatcher.DispatchAsync<MessageGetQuery, MessagesQueryResult>(query);
+            var models = Mapper.Map<IEnumerable<MessageViewModel>>(result.Messages);
             return models;
         }
 
@@ -49,7 +50,8 @@ namespace MyStudyProject.Controllers
                 hashtag = "#" + hashtag;
             }
             MessageGetQuery query = new MessageGetQuery();
-            var result = queryDispatcher.Dispatch<MessageGetQuery, MessagesQueryResult>(query);
+            query.HashTag = hashtag;
+            var result = await queryDispatcher.DispatchAsync<MessageGetQuery, MessagesQueryResult>(query);
             var models = Mapper.Map<IEnumerable<MessageViewModel>>(result);
             return models;
         }

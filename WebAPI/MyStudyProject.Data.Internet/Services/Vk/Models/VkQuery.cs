@@ -2,7 +2,7 @@
 using System.Text;
 using System.Text.Encodings.Web;
 
-namespace MyStudyProject.Domain.Services.Services.Vk.Models
+namespace MyStudyProject.Data.Internet.Services.Vk.Models
 {
     public abstract class VkQuery
     {

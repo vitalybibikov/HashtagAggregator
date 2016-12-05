@@ -2,20 +2,22 @@
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
+
 using Microsoft.Extensions.Options;
+
+using MyStudyProject.Core.Contracts.Interface.ServiceFacades;
+using MyStudyProject.Core.Models.Results.Query;
+using MyStudyProject.Data.Internet.Assemblers.Vk;
+using MyStudyProject.Data.Internet.Services.Vk.Models;
+using MyStudyProject.Shared.Common.Helpers;
+using MyStudyProject.Shared.Common.Settings;
 
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
-using MyStudyProject.Core.Models.Results.Query;
-using MyStudyProject.Domain.Services.Assemblers.Vk;
-using MyStudyProject.Domain.Services.Services.Vk.Models;
-using MyStudyProject.Shared.Common.Helpers;
-using MyStudyProject.Shared.Common.Settings;
-
-namespace MyStudyProject.Domain.Services.Services.Vk
+namespace MyStudyProject.Data.Internet.Services.Vk
 {
-    public class VkMessageServiceFacade : IVkServiceFacade
+    public class VkMessageServiceFacade : IVkMessageFacade<MessagesQueryResult>
     {
         private readonly IOptions<VkSettings> settings;
 
@@ -24,7 +26,7 @@ namespace MyStudyProject.Domain.Services.Services.Vk
             this.settings = settings;
         }
 
-        public async Task<IEnumerable<MessageQueryResult>> GetAllAsync(string hashtag)
+        public async Task<MessagesQueryResult> GetAllAsync(string hashtag)
         {
             using (WebRequestWrapper request = new WebRequestWrapper())
             {
@@ -43,12 +45,12 @@ namespace MyStudyProject.Domain.Services.Services.Vk
             }
         }
 
-        public async Task<IEnumerable<MessageQueryResult>> GetNumberAsync(int number, string hashtag)
+        public async Task<MessagesQueryResult> GetNumberAsync(int number, string hashtag)
         {
             throw new NotImplementedException();
         }
 
-        public async Task<IEnumerable<MessageQueryResult>> GetSinceLastIdAsync(long lastId, string hashtag)
+        public async Task<MessagesQueryResult> GetSinceLastIdAsync(long lastId, string hashtag)
         {
             throw new NotImplementedException();
         }

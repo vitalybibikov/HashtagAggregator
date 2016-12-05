@@ -17,7 +17,7 @@ namespace MyStudyProject.Core.Cqrs.Dispatchers
             this.container = container;
         }
 
-        public Task<TResult> Dispatch<TParameter, TResult>(TParameter query)
+        public async Task<TResult> DispatchAsync<TParameter, TResult>(TParameter query)
             where TParameter : IQuery
             where TResult : IQueryResult
         {
@@ -32,7 +32,7 @@ namespace MyStudyProject.Core.Cqrs.Dispatchers
                     compositeHandler.Add(handler);
                 }
             }
-            return compositeHandler.GetAsync(query);
+            return await compositeHandler.GetAsync(query);
         }
     }
 }

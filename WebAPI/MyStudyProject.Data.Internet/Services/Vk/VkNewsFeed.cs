@@ -1,8 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+
 using Newtonsoft.Json;
 
-namespace MyStudyProject.Domain.Services.Services.Vk
+namespace MyStudyProject.Data.Internet.Services.Vk
 {
     public class VkNewsFeed
     {

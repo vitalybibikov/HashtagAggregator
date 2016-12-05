@@ -18,10 +18,10 @@
     "Autofac.Extensions.DependencyInjection": "4.0.0",
     "MyStudyProject.Core.Cqrs": "1.0.0-*",
     "MyStudyProject.Core.Models": "1.0.0-*",
-    "MyStudyProject.Domain.Services": "1.0.0-*",
     "Microsoft.AspNetCore.Diagnostics": "1.1.0",
     "MyStudyProject.Domain.Cqrs.Twitter": "1.0.0-*",
-    "MyStudyProject.Domain.Cqrs.Vk": "1.0.0-*"
+    "MyStudyProject.Domain.Cqrs.Vk": "1.0.0-*",
+    "MyStudyProject.Data.Internet": "1.0.0-*"
   },
 
   "tools": {

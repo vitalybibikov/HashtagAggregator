@@ -1,7 +1,6 @@
-﻿using System;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 
-namespace MyStudyProject.Domain.Services.Services.Vk
+namespace MyStudyProject.Data.Internet.Services.Vk
 {
     public class VkNewsSearchResult
     {

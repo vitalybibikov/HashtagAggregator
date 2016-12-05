@@ -1,7 +1,6 @@
-﻿using System;
-using System.Text;
+﻿using System.Text;
 
-namespace MyStudyProject.Domain.Services.Services.Vk.Models
+namespace MyStudyProject.Data.Internet.Services.Vk.Models
 {
     public class VkMessageQuery : VkQuery
     {

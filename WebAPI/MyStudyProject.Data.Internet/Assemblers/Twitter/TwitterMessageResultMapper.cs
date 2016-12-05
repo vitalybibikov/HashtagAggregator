@@ -1,13 +1,12 @@
 ﻿using System.Collections.Generic;
 using MyStudyProject.Core.Contracts.Interface;
-
 using MyStudyProject.Core.Models.Results.Query;
 using MyStudyProject.Shared.Contracts.Enums;
 using Tweetinvi.Models;
 
-namespace MyStudyProject.Domain.Services.Assemblers.Twitter
+namespace MyStudyProject.Data.Internet.Assemblers.Twitter
 {
-    public class TwitterMessageResultMapper : IMapper<MessageQueryResult, ITweet>
+    public class TwitterMessageResultMapper : IMapper<MessagesQueryResult, ITweet>
     {
         public MessageQueryResult Map(ITweet tweet, string hashtag)
         {
@@ -22,9 +21,9 @@ namespace MyStudyProject.Domain.Services.Assemblers.Twitter
             return message;
         }
 
-        public IEnumerable<MessageQueryResult> MapBunch(IEnumerable<ITweet> messages, string hashtag)
+        public MessagesQueryResult MapBunch(IEnumerable<ITweet> messages, string hashtag)
         {
-            var results = new List<MessageQueryResult>();
+            var results = new MessagesQueryResult();
             foreach (var tweet in messages)
             {
                 MessageQueryResult message = new MessageQueryResult()
@@ -35,7 +34,7 @@ namespace MyStudyProject.Domain.Services.Assemblers.Twitter
                     PostDate = tweet.TweetLocalCreationDate,
                     Media =  SocialMediaType.Twitter
                 };
-                results.Add(message);
+                results.Messages.Add(message);
             }
             return results;
         }

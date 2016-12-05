@@ -1,18 +1,20 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+
 using Microsoft.Extensions.Options;
 
+using MyStudyProject.Core.Contracts.Interface.ServiceFacades;
 using MyStudyProject.Core.Models.Results.Query;
-using MyStudyProject.Domain.Services.Assemblers.Twitter;
+using MyStudyProject.Data.Internet.Assemblers.Twitter;
 using MyStudyProject.Shared.Common.Settings;
 
 using Tweetinvi;
 using Tweetinvi.Models;
 using Tweetinvi.Parameters;
 
-namespace MyStudyProject.Domain.Services.Services.Twitter
+namespace MyStudyProject.Data.Internet.Services.Twitter
 {
-    public class TwitterMessageServiceFacade : ITwitterServiceFacade
+    public class TwitterMessageServiceFacade : ITwitterMessageFacade<MessagesQueryResult>
     {
         private readonly IOptions<TwitterSettings> settings;
 
@@ -27,14 +29,14 @@ namespace MyStudyProject.Domain.Services.Services.Twitter
             this.settings = settings;
         }
 
-        public async Task<IEnumerable<MessageQueryResult>> GetAllAsync(string hashtag)
+        public async Task<MessagesQueryResult> GetAllAsync(string hashtag)
         {
             IEnumerable<ITweet> tweets = await SearchAsync.SearchTweets(hashtag);
             TwitterMessageResultMapper mapper = new TwitterMessageResultMapper();
             return mapper.MapBunch(tweets, hashtag);
         }
 
-        public async Task<IEnumerable<MessageQueryResult>> GetNumberAsync(int number, string hashtag)
+        public async Task<MessagesQueryResult> GetNumberAsync(int number, string hashtag)
         {
             var searchParameter = new SearchTweetsParameters(hashtag)
             {
@@ -46,7 +48,7 @@ namespace MyStudyProject.Domain.Services.Services.Twitter
             return mapper.MapBunch(tweets, hashtag);
         }
 
-        public async Task<IEnumerable<MessageQueryResult>> GetSinceLastIdAsync(long id, string hashtag)
+        public async Task<MessagesQueryResult> GetSinceLastIdAsync(long id, string hashtag)
         {
             var searchParameter = new SearchTweetsParameters(hashtag)
             {

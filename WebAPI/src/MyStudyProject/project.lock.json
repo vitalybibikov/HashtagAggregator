@@ -3951,6 +3951,27 @@
           "netcoreapp1.1/MyStudyProject.Data.Entities.dll": {}
         }
       },
+      "MyStudyProject.Data.Internet/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v1.1",
+        "dependencies": {
+          "AspNetCore.Security.OAuth.Vkontakte": "1.0.0",
+          "Microsoft.NETCore.App": "1.1.0",
+          "MyStudyProject.Core.Contracts": "1.0.0",
+          "MyStudyProject.Core.Cqrs": "1.0.0",
+          "MyStudyProject.Core.Models": "1.0.0",
+          "MyStudyProject.Data.Entities": "1.0.0",
+          "MyStudyProject.Shared.Common": "1.0.0",
+          "Newtonsoft.Json": "9.0.2-beta1",
+          "TweetinviAPI": "1.1.1"
+        },
+        "compile": {
+          "netcoreapp1.1/MyStudyProject.Data.Internet.dll": {}
+        },
+        "runtime": {
+          "netcoreapp1.1/MyStudyProject.Data.Internet.dll": {}
+        }
+      },
       "MyStudyProject.Domain.Cqrs.Twitter/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v1.1",
@@ -3983,27 +4004,6 @@
         },
         "runtime": {
           "netcoreapp1.1/MyStudyProject.Domain.Cqrs.Vk.dll": {}
-        }
-      },
-      "MyStudyProject.Domain.Services/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v1.1",
-        "dependencies": {
-          "AspNetCore.Security.OAuth.Vkontakte": "1.0.0",
-          "Microsoft.NETCore.App": "1.1.0",
-          "MyStudyProject.Core.Contracts": "1.0.0",
-          "MyStudyProject.Core.Cqrs": "1.0.0",
-          "MyStudyProject.Core.Models": "1.0.0",
-          "MyStudyProject.Data.Entities": "1.0.0",
-          "MyStudyProject.Shared.Common": "1.0.0",
-          "Newtonsoft.Json": "9.0.2-beta1",
-          "TweetinviAPI": "1.1.1"
-        },
-        "compile": {
-          "netcoreapp1.1/MyStudyProject.Domain.Services.dll": {}
-        },
-        "runtime": {
-          "netcoreapp1.1/MyStudyProject.Domain.Services.dll": {}
         }
       },
       "MyStudyProject.Shared.Common/1.0.0": {
@@ -10519,6 +10519,11 @@
       "path": "../../MyStudyProject.Data.Entities/project.json",
       "msbuildProject": "../../MyStudyProject.Data.Entities/MyStudyProject.Data.Entities.xproj"
     },
+    "MyStudyProject.Data.Internet/1.0.0": {
+      "type": "project",
+      "path": "../../MyStudyProject.Data.Internet/project.json",
+      "msbuildProject": "../../MyStudyProject.Data.Internet/MyStudyProject.Data.Internet.xproj"
+    },
     "MyStudyProject.Domain.Cqrs.Twitter/1.0.0": {
       "type": "project",
       "path": "../../MyStudyProject.Domain.Cqrs.Twitter/project.json",
@@ -10528,11 +10533,6 @@
       "type": "project",
       "path": "../../MyStudyProject.Domain.Cqrs.Vk/project.json",
       "msbuildProject": "../../MyStudyProject.Domain.Cqrs.Vk/MyStudyProject.Domain.Cqrs.Vk.xproj"
-    },
-    "MyStudyProject.Domain.Services/1.0.0": {
-      "type": "project",
-      "path": "../../MyStudyProject.Domain.Services/project.json",
-      "msbuildProject": "../../MyStudyProject.Domain.Services/MyStudyProject.Domain.Services.xproj"
     },
     "MyStudyProject.Shared.Common/1.0.0": {
       "type": "project",
@@ -10565,9 +10565,9 @@
       "MyStudyProject.Core.Models >= 1.0.0-*",
       "MyStudyProject.Data.Contracts >= 1.0.0-*",
       "MyStudyProject.Data.DataAccess >= 1.0.0-*",
+      "MyStudyProject.Data.Internet >= 1.0.0-*",
       "MyStudyProject.Domain.Cqrs.Twitter >= 1.0.0-*",
       "MyStudyProject.Domain.Cqrs.Vk >= 1.0.0-*",
-      "MyStudyProject.Domain.Services >= 1.0.0-*",
       "MyStudyProject.Shared.Common >= 1.0.0-*"
     ],
     ".NETCoreApp,Version=v1.1": [

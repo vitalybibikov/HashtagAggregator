@@ -1,15 +1,13 @@
 ﻿using System.Reflection;
 
+using Autofac;
+
 using MyStudyProject.Core.Contracts.Interface.Cqrs;
 using MyStudyProject.Core.Cqrs.Dispatchers;
 using MyStudyProject.Core.Models.Queries;
-
-using Autofac;
 using MyStudyProject.Core.Contracts.Interface.Cqrs.Command;
 using MyStudyProject.Core.Contracts.Interface.Cqrs.Query;
-using MyStudyProject.Core.Cqrs.Handlers.CompositeCommandHandlers;
 using MyStudyProject.Core.Cqrs.Handlers.CompositeQueryHandlers;
-using MyStudyProject.Core.Models.Results.Query;
 using MyStudyProject.Domain.Cqrs.Twitter.Handlers;
 using MyStudyProject.Domain.Cqrs.Vk.Handlers;
 using Module = Autofac.Module;

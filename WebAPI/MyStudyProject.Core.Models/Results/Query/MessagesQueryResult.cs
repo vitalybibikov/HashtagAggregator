@@ -8,6 +8,11 @@ namespace MyStudyProject.Core.Models.Results.Query
 {
     public class MessagesQueryResult : IQueryResult
     {
-        public List<MessageQueryResult> Messages { get; set; }
+        public MessagesQueryResult()
+        {
+            Messages = new List<MessageQueryResult>();
+        }
+
+        public List<MessageQueryResult> Messages { get; }
     }
 }

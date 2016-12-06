@@ -44,6 +44,8 @@ namespace MyStudyProject
             services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
             services.Configure<TwitterSettings>(Configuration.GetSection("TwitterSettings"));
             services.Configure<VkSettings>(Configuration.GetSection("VkSettings"));
+            services.Configure<InternetUpdateSettings>(Configuration.GetSection("InternetUpdateSettings"));
+           
 
             // Add framework services.
             services.AddMvc();

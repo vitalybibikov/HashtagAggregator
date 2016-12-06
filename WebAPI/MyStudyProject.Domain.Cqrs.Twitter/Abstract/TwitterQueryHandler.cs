@@ -13,8 +13,7 @@ namespace MyStudyProject.Domain.Cqrs.Twitter.Abstract
 
         protected TwitterQueryHandler(ITwitterMessageFacade<MessagesQueryResult> facade)
         {
-            this.Facade = facade;
+            Facade = facade;
         }
-
     }
 }

@@ -9,10 +9,6 @@ namespace MyStudyProject.Core.Cqrs.Handlers.CompositeQueryHandlers
 {
     public class MessagesGetQueryHandler : CompositeQueryHandler<MessagesGetQuery, MessagesQueryResult>
     {
-        public MessagesGetQueryHandler(IUpdateStrategy strategy) : base(strategy)
-        {
-        }
-
         protected override async Task<MessagesQueryResult> GetDataAsync(MessagesGetQuery query)
         {
             MessagesQueryResult result = new MessagesQueryResult();

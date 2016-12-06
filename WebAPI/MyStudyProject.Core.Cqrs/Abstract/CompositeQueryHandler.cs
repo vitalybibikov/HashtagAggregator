@@ -14,7 +14,7 @@ namespace MyStudyProject.Core.Cqrs.Abstract
 
         public List<IQueryHandler<TParameter, TResult>> Handlers => handlers;
 
-        protected CompositeQueryHandler(IUpdateStrategy strategy)
+        protected CompositeQueryHandler()
         {
             handlers = new List<IQueryHandler<TParameter, TResult>>();
         }

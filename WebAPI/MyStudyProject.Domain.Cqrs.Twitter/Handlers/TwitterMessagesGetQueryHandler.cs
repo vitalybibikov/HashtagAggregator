@@ -13,7 +13,6 @@ namespace MyStudyProject.Domain.Cqrs.Twitter.Handlers
     {
         public TwitterMessagesGetQueryHandler(ITwitterMessageFacade<MessagesQueryResult> facade) : base(facade)
         {
-
         }
 
         protected override async Task<MessagesQueryResult> GetDataAsync(MessagesGetQuery query)

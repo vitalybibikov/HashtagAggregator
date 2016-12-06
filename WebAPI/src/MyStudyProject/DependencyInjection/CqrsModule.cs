@@ -46,7 +46,6 @@ namespace MyStudyProject.DependencyInjection
 
             builder.RegisterType<QueryDispatcher>().As<IQueryDispatcher>().InstancePerLifetimeScope();
             builder.RegisterType<CommandDispatcher>().As<ICommandDispatcher>().InstancePerLifetimeScope();
-            builder.RegisterType<DefaultUpdateStrategy>().As<IUpdateStrategy>().SingleInstance();
         }
     }
 }

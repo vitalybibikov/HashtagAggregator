@@ -11,9 +11,9 @@ namespace MyStudyProject.Core.Cqrs.Dispatchers
 {
     public class CommandDispatcher : ICommandDispatcher
     {
-        private readonly IComponentContext container;
+        private readonly ILifetimeScope container;
 
-        public CommandDispatcher(IComponentContext container)
+        public CommandDispatcher(ILifetimeScope container)
         {
             this.container = container;
         }

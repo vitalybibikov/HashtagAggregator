@@ -1,9 +1,7 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 using Autofac;
-using MyStudyProject.Core.Contracts.Interface.Cqrs;
 using MyStudyProject.Core.Contracts.Interface.Cqrs.Query;
 using MyStudyProject.Core.Cqrs.Abstract;
 
@@ -11,7 +9,7 @@ namespace MyStudyProject.Core.Cqrs.Dispatchers
 {
     public class QueryDispatcher : IQueryDispatcher
     {
-        private readonly IComponentContext container;
+        private readonly ILifetimeScope container;
 
         public QueryDispatcher(ILifetimeScope container)
         {

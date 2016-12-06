@@ -50,8 +50,7 @@ namespace MyStudyProject.Controllers
             {
                 hashtag = "#" + hashtag;
             }
-            MessagesGetQuery query = new MessagesGetQuery();
-            query.HashTag = hashtag;
+            MessagesGetQuery query = new MessagesGetQuery {HashTag = hashtag};
             var result = await queryDispatcher.DispatchAsync<MessagesGetQuery, MessagesQueryResult>(query);
             var models = Mapper.Map<IEnumerable<MessageViewModel>>(result);
             return models;

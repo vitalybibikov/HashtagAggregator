@@ -12,7 +12,7 @@ namespace MyStudyProject.DependencyInjection
         public IServiceProvider Configure(IServiceCollection services)
         {
             var builder = new ContainerBuilder();
-            builder.RegisterModule<ConfigurationModule>();
+            builder.RegisterModule<CqrsModule>();
             builder.RegisterModule<ServicesModule>();
             builder.Populate(services);
 

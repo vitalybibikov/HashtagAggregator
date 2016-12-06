@@ -3,7 +3,7 @@
 using MyStudyProject.Core.Cqrs.Abstract;
 using MyStudyProject.Core.Models.Queries;
 using MyStudyProject.Core.Models.Results.Query;
-using MyStudyProject.Shared.Common;
+using MyStudyProject.Shared.Common.UpdateStrategies;
 
 namespace MyStudyProject.Core.Cqrs.Handlers.CompositeQueryHandlers
 {
@@ -13,7 +13,7 @@ namespace MyStudyProject.Core.Cqrs.Handlers.CompositeQueryHandlers
         {
         }
 
-        protected override async Task<MessagesQueryResult> GetAsyncOperation(MessagesGetQuery query)
+        protected override async Task<MessagesQueryResult> GetDataAsync(MessagesGetQuery query)
         {
             MessagesQueryResult result = new MessagesQueryResult();
             foreach (var handler in Handlers)

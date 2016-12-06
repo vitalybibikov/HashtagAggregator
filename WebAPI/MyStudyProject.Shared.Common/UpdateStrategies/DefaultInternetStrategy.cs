@@ -5,7 +5,11 @@ using System.Threading.Tasks;
 
 namespace MyStudyProject.Shared.Common.UpdateStrategies
 {
-    public class DefaultInternetStrategy
+    public class DefaultInternetStrategy : IUpdateStrategy
     {
+        public bool IsOperationAllowed()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

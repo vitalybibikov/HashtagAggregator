@@ -2,7 +2,6 @@
 
 using Autofac;
 
-using MyStudyProject.Core.Contracts.Interface.Cqrs;
 using MyStudyProject.Core.Cqrs.Dispatchers;
 using MyStudyProject.Core.Models.Queries;
 using MyStudyProject.Core.Contracts.Interface.Cqrs.Command;
@@ -11,13 +10,13 @@ using MyStudyProject.Core.Cqrs.Handlers.CompositeQueryHandlers;
 using MyStudyProject.Domain.Cqrs.EF.Handlers;
 using MyStudyProject.Domain.Cqrs.Twitter.Handlers;
 using MyStudyProject.Domain.Cqrs.Vk.Handlers;
-using MyStudyProject.Shared.Common;
+
 using MyStudyProject.Shared.Common.UpdateStrategies;
 using Module = Autofac.Module;
 
 namespace MyStudyProject.DependencyInjection
 {
-    public class ConfigurationModule : Module
+    public class CqrsModule : Module
     {
         protected override void Load(ContainerBuilder builder)
         {
@@ -45,9 +44,9 @@ namespace MyStudyProject.DependencyInjection
                 .AsClosedTypesOf(typeof(IQueryHandler<,>))
                 .AsImplementedInterfaces();
 
-            builder.RegisterType<QueryDispatcher>().As<IQueryDispatcher>();
-            builder.RegisterType<CommandDispatcher>().As<ICommandDispatcher>();
-            builder.RegisterType<DefaultUpdateStrategy>().As<IUpdateStrategy>();
+            builder.RegisterType<QueryDispatcher>().As<IQueryDispatcher>().InstancePerLifetimeScope();
+            builder.RegisterType<CommandDispatcher>().As<ICommandDispatcher>().InstancePerLifetimeScope();
+            builder.RegisterType<DefaultUpdateStrategy>().As<IUpdateStrategy>().SingleInstance();
         }
     }
 }

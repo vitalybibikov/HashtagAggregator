@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace MyStudyProject.Shared.Common.UpdateStrategies
 {
-    public class DefaultTwitterStrategy
+    public class TwitterUpdateStrategy : DefaultInternetStrategy
     {
     }
 }

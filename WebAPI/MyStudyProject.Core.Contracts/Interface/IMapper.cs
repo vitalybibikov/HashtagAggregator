@@ -2,7 +2,7 @@
 
 namespace MyStudyProject.Core.Contracts.Interface
 {
-    public interface IMapper<TModel, TEntity>
+    public interface IMapper<in TModel, out TEntity>
     {
         TEntity MapBunch(IEnumerable<TModel> messages, string hashtag);
     }

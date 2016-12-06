@@ -3,9 +3,9 @@ using System.Linq;
 using System.Threading.Tasks;
 
 using Autofac;
-using MyStudyProject.Core.Contracts.Abstract;
 using MyStudyProject.Core.Contracts.Interface.Cqrs;
 using MyStudyProject.Core.Contracts.Interface.Cqrs.Query;
+using MyStudyProject.Core.Cqrs.Abstract;
 
 namespace MyStudyProject.Core.Cqrs.Dispatchers
 {
@@ -13,16 +13,15 @@ namespace MyStudyProject.Core.Cqrs.Dispatchers
     {
         private readonly IComponentContext container;
 
-        public QueryDispatcher(IComponentContext container)
+        public QueryDispatcher(ILifetimeScope container)
         {
             this.container = container;
         }
 
         public async Task<TResult> DispatchAsync<TParameter, TResult>(TParameter query)
             where TParameter : IQuery
-            where TResult : IQueryResult
+            where TResult : IQueryResult, new()
         {
-            var results = container.ComponentRegistry.Registrations.SelectMany(x => x.Services);
             var compositeHandler = container.Resolve<CompositeQueryHandler<TParameter, TResult>>();
             var handlers = container.Resolve<IList<IQueryHandler<TParameter, TResult>>>();
 

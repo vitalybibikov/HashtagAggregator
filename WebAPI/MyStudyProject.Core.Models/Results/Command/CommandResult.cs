@@ -1,4 +1,5 @@
 ﻿using MyStudyProject.Core.Contracts.Interface.Cqrs;
+using MyStudyProject.Core.Contracts.Interface.Cqrs.Command;
 
 namespace MyStudyProject.Core.Models.Results.Command
 {

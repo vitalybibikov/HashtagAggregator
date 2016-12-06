@@ -38,15 +38,7 @@ namespace MyStudyProject.Controllers
             }
             var query = new MessagesGetQuery { HashTag = hashtag };
             MessagesQueryResult result = await queryDispatcher.DispatchAsync<MessagesGetQuery, MessagesQueryResult>(query);
-
-            MessagesCreateCommand command = Mapper.Map<MessagesCreateCommand>(result);
-            await commandDispatcher.DispatchAsync(command);
-
-
-            //MessagesQueryResult result = await queryDispatcher.DispatchAsync<MessagesGetQuery, MessagesQueryResult>(query);
-            //List<MessageCreateCommand> messages = Mapper.Map<List<MessageCreateCommand>>(result.Messages);
-            //await commandDispatcher.DispatchAsync(new MessagesCreateCommand() { Messages = messages });
-
+            await commandDispatcher.DispatchAsync(Mapper.Map<MessagesCreateCommand>(result));
             var models = Mapper.Map<IEnumerable<MessageViewModel>>(result.Messages);
             return models;
         }

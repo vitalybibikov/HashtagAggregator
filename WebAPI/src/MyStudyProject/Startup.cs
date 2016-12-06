@@ -52,7 +52,7 @@ namespace MyStudyProject
             services.AddEntityFrameworkSqlServer()
                 .AddDbContext<SqlApplicationDbContext>();
 
-            services.AddSingleton(sp => mapperConfiguration.CreateMapper());
+            services.AddScoped(sp => mapperConfiguration.CreateMapper());
             services.AddSingleton<IConfiguration>(Configuration);
             mapperConfiguration.AssertConfigurationIsValid();
 

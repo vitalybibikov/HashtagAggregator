@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-
-using MyStudyProject.Core.Contracts.Abstract;
 using MyStudyProject.Core.Contracts.Interface.Cqrs;
+using MyStudyProject.Core.Contracts.Interface.Cqrs.Command;
+using MyStudyProject.Core.Cqrs.Abstract;
 using MyStudyProject.Core.Models.Commands;
 using MyStudyProject.Core.Models.Results.Command;
 using MyStudyProject.Data.DataAccess.Context;

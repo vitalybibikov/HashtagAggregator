@@ -1,4 +1,4 @@
-﻿namespace MyStudyProject.Core.Contracts.Interface.Cqrs
+﻿namespace MyStudyProject.Core.Contracts.Interface.Cqrs.Query
 {
     /// <summary>
     /// Marker interface to mark a query

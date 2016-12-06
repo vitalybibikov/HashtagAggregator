@@ -2,33 +2,16 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-using MyStudyProject.Core.Contracts.Interface.Cqrs;
 using MyStudyProject.Core.Contracts.Interface.Cqrs.Command;
 
-namespace MyStudyProject.Core.Contracts.Abstract
+namespace MyStudyProject.Core.Cqrs.Abstract
 {
     public abstract class CommandHandler<TParameter> : ICompositeCommandHandler<TParameter> 
-        where TParameter : ICommand
+        where TParameter : ICommand, new()
     {
-        public virtual void Validate(ICommand command)
-        {
-            if (command == null)
-            {
-                throw new ArgumentNullException();
-            }
-        }
+        public abstract  Task<ICommandResult> ExecuteAsync(TParameter command);
 
-        public virtual void Validates(List<ICommand> commands)
-        {
-            foreach (var command in commands)
-            {
-                Validate(command);
-            }
-        }
-
-        public abstract Task<ICommandResult> ExecuteAsync(TParameter command);
         public abstract Task<ICommandResult> ExecuteAsync(List<TParameter> command);
-
 
         public virtual void Add(ICommandHandler<TParameter> queryHandler)
         {

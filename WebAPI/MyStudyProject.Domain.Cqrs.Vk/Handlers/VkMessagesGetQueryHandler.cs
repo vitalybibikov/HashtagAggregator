@@ -2,25 +2,21 @@
 using System.Threading.Tasks;
 
 using MyStudyProject.Core.Contracts.Interface.ServiceFacades;
-using MyStudyProject.Core.Contracts.Abstract;
-using MyStudyProject.Core.Contracts.Interface.Cqrs.Query;
 using MyStudyProject.Core.Models.Queries;
 using MyStudyProject.Core.Models.Results.Query;
+using MyStudyProject.Domain.Cqrs.Vk.Abstract;
 
 namespace MyStudyProject.Domain.Cqrs.Vk.Handlers
 {
-    public class VkMessagesGetQueryHandler : QueryHandler<MessagesGetQuery, MessagesQueryResult>
+    public class VkMessagesGetQueryHandler : VkQueryHandler<MessagesGetQuery, MessagesQueryResult>
     {
-        private readonly IVkMessageFacade<MessagesQueryResult> facade;
-
-        public VkMessagesGetQueryHandler(IVkMessageFacade<MessagesQueryResult> facade)
+        public VkMessagesGetQueryHandler(IVkMessageFacade<MessagesQueryResult> facade) : base(facade)
         {
-            this.facade = facade;
         }
 
-        public override Task<MessagesQueryResult> GetAsync(MessagesGetQuery query)
+        protected override async Task<MessagesQueryResult> GetDataAsync(MessagesGetQuery query)
         {
-            return facade.GetAllAsync(query.HashTag);
+            return await Facade.GetAllAsync(query.HashTag);
         }
     }
 }

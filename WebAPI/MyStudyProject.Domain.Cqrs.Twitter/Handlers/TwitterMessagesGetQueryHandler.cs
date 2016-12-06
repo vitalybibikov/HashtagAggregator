@@ -1,26 +1,24 @@
 ﻿using System;
 using System.Threading.Tasks;
 
-using MyStudyProject.Core.Contracts.Abstract;
-using MyStudyProject.Core.Contracts.Interface.Cqrs.Query;
 using MyStudyProject.Core.Contracts.Interface.ServiceFacades;
 using MyStudyProject.Core.Models.Queries;
 using MyStudyProject.Core.Models.Results.Query;
+using MyStudyProject.Domain.Cqrs.Twitter.Abstract;
+
 
 namespace MyStudyProject.Domain.Cqrs.Twitter.Handlers
 {
-    public class TwitterMessagesGetQueryHandler : QueryHandler<MessagesGetQuery, MessagesQueryResult>
+    public class TwitterMessagesGetQueryHandler : TwitterQueryHandler<MessagesGetQuery, MessagesQueryResult>
     {
-        private readonly ITwitterMessageFacade<MessagesQueryResult> facade;
-
-        public TwitterMessagesGetQueryHandler(ITwitterMessageFacade<MessagesQueryResult> facade)
+        public TwitterMessagesGetQueryHandler(ITwitterMessageFacade<MessagesQueryResult> facade) : base(facade)
         {
-            this.facade = facade;
+
         }
 
-        public override Task<MessagesQueryResult> GetAsync(MessagesGetQuery query)
+        protected override async Task<MessagesQueryResult> GetDataAsync(MessagesGetQuery query)
         {
-            return facade.GetAllAsync(query.HashTag);
+            return await Facade.GetAllAsync(query.HashTag);
         }
     }
 }

@@ -2127,7 +2127,8 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v1.1",
         "dependencies": {
-          "Microsoft.NETCore.App": "1.1.0"
+          "Microsoft.NETCore.App": "1.1.0",
+          "MyStudyProject.Shared.Common": "1.0.0"
         },
         "compile": {
           "netcoreapp1.1/MyStudyProject.Core.Contracts.dll": {}
@@ -2147,6 +2148,19 @@
         },
         "runtime": {
           "netcoreapp1.1/MyStudyProject.Data.Contracts.dll": {}
+        }
+      },
+      "MyStudyProject.Shared.Common/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v1.1",
+        "dependencies": {
+          "Microsoft.NETCore.App": "1.1.0"
+        },
+        "compile": {
+          "netcoreapp1.1/MyStudyProject.Shared.Common.dll": {}
+        },
+        "runtime": {
+          "netcoreapp1.1/MyStudyProject.Shared.Common.dll": {}
         }
       },
       "MyStudyProject.Shared.Contracts/1.0.0": {
@@ -6974,6 +6988,11 @@
       "type": "project",
       "path": "../MyStudyProject.Data.Contracts/project.json",
       "msbuildProject": "../MyStudyProject.Data.Contracts/MyStudyProject.Data.Contracts.xproj"
+    },
+    "MyStudyProject.Shared.Common/1.0.0": {
+      "type": "project",
+      "path": "../MyStudyProject.Shared.Common/project.json",
+      "msbuildProject": "../MyStudyProject.Shared.Common/MyStudyProject.Shared.Common.xproj"
     },
     "MyStudyProject.Shared.Contracts/1.0.0": {
       "type": "project",

@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 namespace MyStudyProject.Core.Contracts.Interface.Cqrs.Command
 {
     public interface ICommandHandler<TParameter> 
-        where TParameter : ICommand
+        where TParameter : ICommand, new()
     {
         Task<ICommandResult> ExecuteAsync(TParameter command);
 

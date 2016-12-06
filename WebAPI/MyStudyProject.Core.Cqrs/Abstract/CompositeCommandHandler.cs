@@ -1,29 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-
+﻿using System.Collections.Generic;
 using MyStudyProject.Core.Contracts.Interface.Cqrs.Command;
 
-namespace MyStudyProject.Core.Contracts.Abstract
+namespace MyStudyProject.Core.Cqrs.Abstract
 {
     public abstract class CompositeCommandHandler<TParameter> : CommandHandler<TParameter>
-        where TParameter : ICommand
+        where TParameter : ICommand, new()
     {
         private readonly List<ICommandHandler<TParameter>> handlers;
-
         public List<ICommandHandler<TParameter>> Handlers => handlers;
 
         protected CompositeCommandHandler()
         {
             handlers = new List<ICommandHandler<TParameter>>();
-        }
-
-        protected CompositeCommandHandler(List<ICommandHandler<TParameter>> handlersList)
-        {
-            handlers = new List<ICommandHandler<TParameter>>();
-            if (handlersList != null)
-            {
-                handlers.AddRange(handlersList);
-            }
         }
 
         public override void Add(ICommandHandler<TParameter> queryHandler)

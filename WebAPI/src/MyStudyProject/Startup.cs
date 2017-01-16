@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -45,17 +46,21 @@ namespace MyStudyProject
             services.Configure<TwitterSettings>(Configuration.GetSection("TwitterSettings"));
             services.Configure<VkSettings>(Configuration.GetSection("VkSettings"));
             services.Configure<InternetUpdateSettings>(Configuration.GetSection("InternetUpdateSettings"));
-           
+            services.AddMemoryCache();
+            services.AddMvc(options =>
+            {
+                options.CacheProfiles.Add("Default",
+                    new CacheProfile()
+                    {
+                        Duration = 60
+                    });
+            });
 
-            // Add framework services.
-            services.AddMvc();
-
-            // Adds EF Context per request
-            services.AddEntityFrameworkSqlServer()
-                .AddDbContext<SqlApplicationDbContext>();
+            services.AddEntityFrameworkSqlServer().AddDbContext<SqlApplicationDbContext>();
 
             services.AddScoped(sp => mapperConfiguration.CreateMapper());
             services.AddSingleton<IConfiguration>(Configuration);
+
             mapperConfiguration.AssertConfigurationIsValid();
 
             var builder = new AutofacModulesConfigurator();
@@ -67,7 +72,7 @@ namespace MyStudyProject
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
-
+            
             app.UseExceptionHandler(options =>
             {
                 options.Run(
@@ -83,6 +88,7 @@ namespace MyStudyProject
                     });
             });
 
+            app.UseStatusCodePages();
             app.UseMvc();
         }
     }

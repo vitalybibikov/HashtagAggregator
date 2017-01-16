@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using MyStudyProject.Core.Contracts.Interface.Cqrs;
+
 using MyStudyProject.Core.Contracts.Interface.Cqrs.Command;
 using MyStudyProject.Core.Cqrs.Abstract;
 using MyStudyProject.Core.Models.Commands;
@@ -32,7 +32,7 @@ namespace MyStudyProject.Domain.Cqrs.EF.Handlers
 
             await context.Messages.AddRangeAsync(unique);
             context.SaveChanges();
-            return new CommandResult {Success = true};
+            return new CommandResult { Success = true };
         }
 
         public override Task<ICommandResult> ExecuteAsync(List<MessagesCreateCommand> command)

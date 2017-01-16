@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+
 using MyStudyProject.Core.Contracts.Interface.Cqrs.Command;
 
 namespace MyStudyProject.Core.Cqrs.Abstract

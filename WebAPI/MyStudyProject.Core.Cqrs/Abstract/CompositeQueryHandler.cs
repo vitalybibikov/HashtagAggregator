@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using MyStudyProject.Core.Contracts.Interface.Cqrs;
 using MyStudyProject.Core.Contracts.Interface.Cqrs.Query;
+using MyStudyProject.Core.Models.Queries;
 using MyStudyProject.Shared.Common;
 using MyStudyProject.Shared.Common.UpdateStrategies;
 

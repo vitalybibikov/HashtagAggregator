@@ -3,7 +3,6 @@
 using MyStudyProject.Core.Cqrs.Abstract;
 using MyStudyProject.Core.Models.Queries;
 using MyStudyProject.Core.Models.Results.Query;
-using MyStudyProject.Shared.Common.UpdateStrategies;
 
 namespace MyStudyProject.Core.Cqrs.Handlers.CompositeQueryHandlers
 {

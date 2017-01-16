@@ -1,8 +1,9 @@
 ﻿using System.Reflection;
 
 using Autofac;
-
+using MyStudyProject.Core.Contracts.Interface;
 using MyStudyProject.Core.Contracts.Interface.ServiceFacades;
+using MyStudyProject.Core.Cqrs.RequestFilter;
 using MyStudyProject.Core.Models.Results.Query;
 using MyStudyProject.Data.Internet.Services.Twitter;
 using MyStudyProject.Data.Internet.Services.Vk;
@@ -16,6 +17,7 @@ namespace MyStudyProject.DependencyInjection
         {
             builder.RegisterType<VkMessageServiceFacade>().As<IVkMessageFacade<MessagesQueryResult>>();
             builder.RegisterType<TwitterMessageServiceFacade>().As<ITwitterMessageFacade<MessagesQueryResult>>();
+            builder.RegisterType<RequestQueryFilter>().As<IRequestFilter>();
         }
     }
 }

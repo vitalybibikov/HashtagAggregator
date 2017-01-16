@@ -2221,13 +2221,27 @@
         "framework": ".NETCoreApp,Version=v1.1",
         "dependencies": {
           "Microsoft.Extensions.Options": "1.1.0",
-          "Microsoft.NETCore.App": "1.1.0"
+          "Microsoft.NETCore.App": "1.1.0",
+          "MyStudyProject.Shared.Contracts": "1.0.0"
         },
         "compile": {
           "netcoreapp1.1/MyStudyProject.Shared.Common.dll": {}
         },
         "runtime": {
           "netcoreapp1.1/MyStudyProject.Shared.Common.dll": {}
+        }
+      },
+      "MyStudyProject.Shared.Contracts/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v1.1",
+        "dependencies": {
+          "Microsoft.NETCore.App": "1.1.0"
+        },
+        "compile": {
+          "netcoreapp1.1/MyStudyProject.Shared.Contracts.dll": {}
+        },
+        "runtime": {
+          "netcoreapp1.1/MyStudyProject.Shared.Contracts.dll": {}
         }
       }
     }
@@ -2252,7 +2266,7 @@
       ]
     },
     "Microsoft.CodeAnalysis.Analyzers/1.1.0": {
-      "sha512": "KkwS4L0Lq3KHeBHURyIQ5umGfEYDD1p2JpXdtcLRmrbaaux9+UsYwdPF7m/Hs4+vs6FMloRygDYUwj59Bf5juA==",
+      "sha512": "BKw3KUB/5IFjWuoORNXHRvMeiFkBBPljcV0yu4X16x8Y14AKjzxJcISgSyXgGc6kfu37NS2x3n1jTDFB6XZgBQ==",
       "type": "package",
       "path": "Microsoft.CodeAnalysis.Analyzers/1.1.0",
       "files": [
@@ -2268,7 +2282,7 @@
       ]
     },
     "Microsoft.CodeAnalysis.Common/1.3.0": {
-      "sha512": "hf5kitCiGc3QaZ5c6LLmVfj0H0DR0Wq+mfivWmOLbw6KwrPrrf3huu8iejl7INe3dGDLQoVLTSpJYZUn5xl+EQ==",
+      "sha512": "sLefn1cXIN+pXDDDoedotGQFt3ySwzGfWjADI2VtUMJlS8PLNz1mP58B0H4OPh+Lwg5i/G1yPFQ5ApfD0RBu4w==",
       "type": "package",
       "path": "Microsoft.CodeAnalysis.Common/1.3.0",
       "files": [
@@ -2284,7 +2298,7 @@
       ]
     },
     "Microsoft.CodeAnalysis.CSharp/1.3.0": {
-      "sha512": "xn2OcdmZNRsbkr4U66nsCiIvYGxELqAPZhQ72bLXvRRpxv30N8cPro2qUzTr0tg4Ssbnvu5vpqazPcplbZXiDQ==",
+      "sha512": "YC6MmAPbIV96n++sFemoFii1+P7h1sw/E/s6U7nVieYK5uRwFVjBrjKt9P2koqRY3sV4EPRC/CPig9N6JNqe/w==",
       "type": "package",
       "path": "Microsoft.CodeAnalysis.CSharp/1.3.0",
       "files": [
@@ -2300,7 +2314,7 @@
       ]
     },
     "Microsoft.CodeAnalysis.VisualBasic/1.3.0": {
-      "sha512": "u4s4m6LKmewXyXYv4N4kqURq47RZ0n4vBbEEqyW3Qvg/MnmocRbSqhVs9BUlgwB5HgZVH72Ysp2kq0WCKy6q6A==",
+      "sha512": "6AFb9deo3+iFRn6B7KFjU7oVZ3Cfi0hHX3eQwFK16dH62DpO5rpyGGe9KJakwNbnigVRZO8AU2NrKfJ6tMPtbg==",
       "type": "package",
       "path": "Microsoft.CodeAnalysis.VisualBasic/1.3.0",
       "files": [
@@ -2520,7 +2534,7 @@
       ]
     },
     "Microsoft.NETCore.Windows.ApiSets/1.0.1": {
-      "sha512": "vtMOXcsBKK6EGjn6J11eRmv/nGrvx/C/QqOff7vjcUoT/2sYz7vSZNVxPgmS/DkhRYLXjxSf0pOMr88tsBFKEg==",
+      "sha512": "gkG9EBUjvOFSX8E1pC2ATict6psFHMADoRKN3lGUtRyJ8ZSxqkDm4S8Aj6HxATsaa5VUpcQZUPWNTfv5hVYPiA==",
       "type": "package",
       "path": "Microsoft.NETCore.Windows.ApiSets/1.0.1",
       "files": [
@@ -3327,7 +3341,7 @@
       ]
     },
     "System.Diagnostics.FileVersionInfo/4.0.0": {
-      "sha512": "O8Y2b3pKH2flefmfY/Vb4frQVgodxg3TVxvTCXatsWyp7tNbRwJIxO1x4p5gYsku9ttrR8NECpTKmWpbSZdBYw==",
+      "sha512": "Z5OqQJFPBQo2DZf7RQGTYgzB1l7ieKGQgNO3xC1ybsBviCs/i2QZ/WAth4ccF5gY+HH9NICepWIo5DIWkrdQrA==",
       "type": "package",
       "path": "System.Diagnostics.FileVersionInfo/4.0.0",
       "files": [
@@ -3422,7 +3436,7 @@
       ]
     },
     "System.Diagnostics.StackTrace/4.0.1": {
-      "sha512": "nTaJnhJqwtxn7ua6HkcVpoP6j82UuW23nRv8ZQ50txzS0VDzjlpY4g1xlyywzu7+QHu4K1J2u984GDZZXvb6Dw==",
+      "sha512": "ik1HmLwAKDyXfFrZ/ZyKrifgDJLF9JXabfDUAdDP4QuFDCnGWCRZiZfW8c8FGRR22I54hKOexx2gxmRTAuIreg==",
       "type": "package",
       "path": "System.Diagnostics.StackTrace/4.0.1",
       "files": [
@@ -6267,7 +6281,7 @@
       ]
     },
     "System.Text.Encoding.CodePages/4.0.1": {
-      "sha512": "C5G0eM61W/5Rz+NlxPvY7fC1GptUQww4DtAl2gaCsKq4tueA85mL2gKI53uAd5nhI5LZYkjiteHm7IoRNU2Qyw==",
+      "sha512": "gC9aePVwqGNUAmlibQqgR3tyhlJFzXiPAj4BCA83CbZCHqFB/RGqqmSNglKrDpKcRh9gbyPZ8hRiL6fCcxTvUw==",
       "type": "package",
       "path": "System.Text.Encoding.CodePages/4.0.1",
       "files": [
@@ -6969,7 +6983,7 @@
       ]
     },
     "System.Xml.XmlDocument/4.0.1": {
-      "sha512": "9wLGraZ3BfmKWX/I0+GZWYS+JHUPv8xHyf63O8fLcZ8zX3llbwKjYfl0NBV4Q2gYToN37Ltn4YJLKfhOh73g5w==",
+      "sha512": "tLP5p8uBU0L0xrqkg8umwV64ST/DYbBtRk2cryA3TCpfMFlo2oeTtQW55GyshHXXW9NKkU3Oa2OVwe4mO+SA8g==",
       "type": "package",
       "path": "System.Xml.XmlDocument/4.0.1",
       "files": [
@@ -7006,7 +7020,7 @@
       ]
     },
     "System.Xml.XPath/4.0.1": {
-      "sha512": "8zRXPiud79HzXa/uMuoggbCa8jmLyNijPmhKxW0bGvCgQRAYfc6w/0Gdvf4nLGTuRT7vFBxY0WYijKSUb+wTXA==",
+      "sha512": "OR4CW5NJgWRUrxGc9LmLQfK2yBAAXPgUSBmFtj9iwTDfjlWdphRpc8o1Gq7ExO6HJeeV8UYrgZ/ymYKB8fPZ0A==",
       "type": "package",
       "path": "System.Xml.XPath/4.0.1",
       "files": [
@@ -7043,7 +7057,7 @@
       ]
     },
     "System.Xml.XPath.XDocument/4.0.1": {
-      "sha512": "sJwW1K+sUAYah33A4tSvpC3VOMO2A1HB3IIqbLotKQbWhor/GM6uxNjhnL9WGRjJl2crl+fOcHeaH915pXcwGQ==",
+      "sha512": "jrHBPaVmwfVE5SQqQhKoaUWhtYPu1oR3YMB8jUOhRfc3UlxNFTTgEwVV7waKBEWrjY3oZ3uEwBdrSX1jiolfuA==",
       "type": "package",
       "path": "System.Xml.XPath.XDocument/4.0.1",
       "files": [
@@ -7083,6 +7097,11 @@
       "type": "project",
       "path": "../MyStudyProject.Shared.Common/project.json",
       "msbuildProject": "../MyStudyProject.Shared.Common/MyStudyProject.Shared.Common.xproj"
+    },
+    "MyStudyProject.Shared.Contracts/1.0.0": {
+      "type": "project",
+      "path": "../MyStudyProject.Shared.Contracts/project.json",
+      "msbuildProject": "../MyStudyProject.Shared.Contracts/MyStudyProject.Shared.Contracts.xproj"
     }
   },
   "projectFileDependencyGroups": {

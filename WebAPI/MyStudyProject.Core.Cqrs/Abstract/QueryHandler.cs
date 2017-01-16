@@ -9,20 +9,24 @@ namespace MyStudyProject.Core.Cqrs.Abstract
          where TResult : IQueryResult, new()
          where TParameter : IQuery
     {
+        public async Task<TResult> GetAsync(TParameter query)
+        {
+            TResult data = await GetDataAsync(query);
+            return await FilterQuery(data);
+        }
+
+        protected abstract Task<TResult> GetDataAsync(TParameter query);
+
+        protected virtual Task<TResult> FilterQuery(TResult query)
+        {
+            var src = new TaskCompletionSource<TResult>();
+            src.SetResult(query);
+            return src.Task;
+        }
+
         public virtual void Add(IQueryHandler<TParameter, TResult> queryHandler)
         {
             throw new InvalidOperationException();
-        }
-
-        public async Task<TResult> GetAsync(TParameter query)
-        {
-            return await FilterStrategy(GetDataAsync(query));
-        }
-        protected abstract Task<TResult> GetDataAsync(TParameter query);
-
-        protected Task<TResult> FilterStrategy(Task<TResult> query)
-        {
-            return query;
         }
 
         public virtual bool Remove(IQueryHandler<TParameter, TResult> queryHandler)

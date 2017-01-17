@@ -11,6 +11,11 @@ namespace MyStudyProject.Data.DataAccess.Context
     {
         public DbSet<MessageEntity> Messages { get; set; }
 
+        public SqlApplicationDbContext(DbContextOptions<SqlApplicationDbContext> options) 
+            : base(options)
+        {
+        }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<MessageEntity>().HasIndex(i => new {i.NetworkId, i.UserId}).IsUnique();
@@ -26,8 +31,8 @@ namespace MyStudyProject.Data.DataAccess.Context
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(ConnectionString);
-            base.OnConfiguring(optionsBuilder);
+            //optionsBuilder.UseSqlServer(ConnectionString);
+            //base.OnConfiguring(optionsBuilder);
         }
     }
 }

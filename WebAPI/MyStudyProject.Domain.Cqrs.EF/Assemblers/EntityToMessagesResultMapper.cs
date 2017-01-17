@@ -15,16 +15,14 @@ namespace MyStudyProject.Domain.Cqrs.EF.Assemblers
             var results = new MessagesQueryResult();
             foreach (var entity in messages)
             {
-                MessageQueryResult message = new MessageQueryResult
-                {
-                    Body = entity.Body,
-                    HashTag = hashtag,
-                    Id = entity.Id,
-                    PostDate = entity.PosedDate,
-                    Media = SocialMediaType.Twitter,
-                    NetworkId = entity.NetworkId,
-                    UserId = entity.UserId
-                };
+                MessageQueryResult message = new MessageQueryResult(
+                    entity.Id,
+                    entity.Body,
+                    hashtag,
+                    SocialMediaType.Twitter,
+                    entity.PosedDate,
+                    entity.NetworkId,
+                    entity.UserId);
                 results.Messages.Add(message);
             }
             return results;

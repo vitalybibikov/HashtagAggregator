@@ -14,15 +14,12 @@ namespace MyStudyProject.Data.Internet.Assemblers.Twitter
             var results = new MessagesQueryResult();
             foreach (var tweet in messages)
             {
-                MessageQueryResult message = new MessageQueryResult()
-                {
-                    Body = tweet.Text,
-                    HashTag = hashtag,
-                    PostDate = tweet.TweetLocalCreationDate,
-                    Media =  SocialMediaType.Twitter,
-                    NetworkId = tweet.IdStr,
-                    UserId = tweet.CreatedBy.IdStr
-                };
+                MessageQueryResult message = new MessageQueryResult(0,
+                    tweet.Text,
+                    hashtag,
+                    SocialMediaType.Twitter,
+                    tweet.TweetLocalCreationDate, tweet.IdStr,
+                    tweet.CreatedBy.IdStr);
                 results.Messages.Add(message);
             }
             return results;

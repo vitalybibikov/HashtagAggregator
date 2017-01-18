@@ -10,7 +10,7 @@ namespace MyStudyProject.Data.Entities.Entities
 
         public string HashTag { get; set; }
 
-        public DateTime? PosedDate { get; set; }
+        public DateTime? PostDate { get; set; }
 
         public SocialMediaType MediaType { get; set; }
 

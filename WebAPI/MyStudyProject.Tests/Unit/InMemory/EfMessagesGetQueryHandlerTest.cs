@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using MyStudyProject.Core.Models.Queries;
@@ -74,7 +75,7 @@ namespace MyStudyProject.Tests.Unit.InMemory
                 MediaType = SocialMediaType.Twitter,
                 Body = "TestBody",
                 UserId = "1",
-                PosedDate = DateTime.Now,
+                PostDate = DateTime.Now,
                 HashTag = hashtag,
                 NetworkId = "2"
             };

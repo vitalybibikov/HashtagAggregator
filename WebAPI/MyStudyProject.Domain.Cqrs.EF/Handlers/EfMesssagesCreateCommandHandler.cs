@@ -24,7 +24,7 @@ namespace MyStudyProject.Domain.Cqrs.EF.Handlers
         public override async Task<ICommandResult> ExecuteAsync(MessagesCreateCommand command)
         {
             MessagesCommandToEntityMapper mapper = new MessagesCommandToEntityMapper();
-            var items = mapper.MapBunch(command.Messages.Where(m => m.Id <= 0));
+            var items = mapper.MapBunch(command.Messages);
             var unique = items.Where(x => !context.Messages.Any(
                 z => z.NetworkId == x.NetworkId && 
                 z.UserId == x.UserId))

@@ -20,7 +20,7 @@ namespace MyStudyProject.Domain.Cqrs.EF.Assemblers
                     entity.Body,
                     hashtag,
                     SocialMediaType.Twitter,
-                    entity.PosedDate,
+                    entity.PostDate,
                     entity.NetworkId,
                     entity.UserId);
                 results.Messages.Add(message);

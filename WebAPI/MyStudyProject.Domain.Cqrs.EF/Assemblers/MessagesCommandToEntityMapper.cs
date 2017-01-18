@@ -16,10 +16,11 @@ namespace MyStudyProject.Domain.Cqrs.EF.Assemblers
                 {
                     Body = message.Body,
                     HashTag = message.HashTag,
-                    MediaType = message.Media,
+                    MediaType = message.MediaType,
                     NetworkId = message.NetworkId,
-                    PosedDate = message.PostDate,
-                    UserId =  message.UserId
+                    PostDate = message.PostDate,
+                    UserId =  message.UserId,
+                    Id = message.Id
                 };
                 results.Add(entity);
             }

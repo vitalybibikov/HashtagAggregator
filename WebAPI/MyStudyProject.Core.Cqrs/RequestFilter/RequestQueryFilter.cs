@@ -9,15 +9,16 @@ using MyStudyProject.Core.Contracts.Interface;
 using MyStudyProject.Shared.Common.Attributes;
 using MyStudyProject.Shared.Common.Settings;
 using MyStudyProject.Shared.Contracts.Enums;
+using MyStudyProject.Shared.Contracts.Interfaces;
 
 namespace MyStudyProject.Core.Cqrs.RequestFilter
 {
     public class RequestQueryFilter : IRequestFilter
     {
-        private IMemoryCache memoryCache;
+        private IMemoryCacheWrapper memoryCache;
         private readonly IOptions<InternetUpdateSettings> updateSettings;
 
-        public RequestQueryFilter(IMemoryCache memoryCache, IOptions<InternetUpdateSettings> updateSettings)
+        public RequestQueryFilter(IMemoryCacheWrapper memoryCache, IOptions<InternetUpdateSettings> updateSettings)
         {
             this.memoryCache = memoryCache;
             this.updateSettings = updateSettings;
@@ -46,10 +47,10 @@ namespace MyStudyProject.Core.Cqrs.RequestFilter
 
         private void AddToCache(DataSourceTypeAttribute attribute)
         {
-            var cacheEntryOptions = new MemoryCacheEntryOptions()
-                .SetAbsoluteExpiration(TimeSpan.FromMilliseconds(updateSettings.Value.UpdatePeriod));
-            memoryCache.Set(attribute.MediaType, attribute.MediaType, cacheEntryOptions);
+            var expiration = TimeSpan.FromMilliseconds(updateSettings.Value.UpdatePeriod);
+            memoryCache.Set(attribute.MediaType, attribute.MediaType, expiration);
         }
+
         private bool IsObjectInCache(DataSourceTypeAttribute attribute)
         {
             SocialMediaType media;

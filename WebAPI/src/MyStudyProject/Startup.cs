@@ -14,7 +14,9 @@ using Microsoft.Extensions.Logging;
 using MyStudyProject.Configuration;
 using MyStudyProject.Data.DataAccess.Context;
 using MyStudyProject.DependencyInjection;
+using MyStudyProject.Shared.Common.Helpers;
 using MyStudyProject.Shared.Common.Settings;
+using MyStudyProject.Shared.Contracts.Interfaces;
 
 namespace MyStudyProject
 {
@@ -60,7 +62,7 @@ namespace MyStudyProject
 
             services.AddScoped(sp => mapperConfiguration.CreateMapper());
             services.AddSingleton<IConfiguration>(Configuration);
-
+            services.AddSingleton<IMemoryCacheWrapper, MemoryCacheMock>();
             mapperConfiguration.AssertConfigurationIsValid();
 
             var builder = new AutofacModulesConfigurator();

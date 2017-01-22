@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -48,17 +49,19 @@ namespace MyStudyProject
             services.Configure<TwitterSettings>(Configuration.GetSection("TwitterSettings"));
             services.Configure<VkSettings>(Configuration.GetSection("VkSettings"));
             services.Configure<InternetUpdateSettings>(Configuration.GetSection("InternetUpdateSettings"));
+
             services.AddMemoryCache();
             services.AddMvc(options =>
             {
                 options.CacheProfiles.Add("Default",
-                    new CacheProfile()
+                    new CacheProfile
                     {
                         Duration = 60
                     });
             });
 
-            services.AddEntityFrameworkSqlServer().AddDbContext<SqlApplicationDbContext>();
+            services.AddEntityFrameworkSqlServer()
+                .AddDbContext<SqlApplicationDbContext>(options => options.UseSqlServer(Configuration.GetSection("AppSettings:ConnectionString").Value));
 
             services.AddScoped(sp => mapperConfiguration.CreateMapper());
             services.AddSingleton<IConfiguration>(Configuration);

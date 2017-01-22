@@ -11,7 +11,8 @@ namespace MyStudyProject.ViewModels
         public string Body { get; set; }
 
         public string HashTag { get; set; }
-        public SocialMediaType Media { get; set; }
+
+        public SocialMediaType MediaType { get; set; }
 
         public DateTime? PostDate { get; set; }
     }

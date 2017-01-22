@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace MyStudyProject.Data.DataAccess.Migrations
 {
-    public partial class First : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -19,7 +19,7 @@ namespace MyStudyProject.Data.DataAccess.Migrations
                     HashTag = table.Column<string>(nullable: true),
                     MediaType = table.Column<int>(nullable: false),
                     NetworkId = table.Column<string>(nullable: true),
-                    PosedDate = table.Column<DateTime>(nullable: true),
+                    PostDate = table.Column<DateTime>(nullable: true),
                     UserId = table.Column<string>(nullable: true)
                 },
                 constraints: table =>

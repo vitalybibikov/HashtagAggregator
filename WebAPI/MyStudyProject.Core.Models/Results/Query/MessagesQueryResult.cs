@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+
 using MyStudyProject.Core.Contracts.Interface.Cqrs.Query;
 
 namespace MyStudyProject.Core.Models.Results.Query
@@ -12,7 +10,6 @@ namespace MyStudyProject.Core.Models.Results.Query
         {
             Messages = new List<MessageQueryResult>();
         }
-
         public List<MessageQueryResult> Messages { get; }
     }
 }

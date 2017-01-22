@@ -36,7 +36,7 @@ namespace MyStudyProject.Tests.Unit.Mappers
             Assert.Equal(command.Body, result.Body);
             Assert.Equal(command.HashTag, result.HashTag);
             Assert.Equal(command.Id, result.Id);
-            Assert.Equal(command.MediaType, result.Media);
+            Assert.Equal(command.MediaType, result.MediaType);
             Assert.Equal(command.NetworkId, result.NetworkId);
             Assert.Equal(command.PostDate, result.PostDate);
         }

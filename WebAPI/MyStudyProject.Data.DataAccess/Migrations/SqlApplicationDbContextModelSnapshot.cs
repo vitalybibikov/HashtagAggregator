@@ -30,7 +30,7 @@ namespace MyStudyProject.Data.DataAccess.Migrations
 
                     b.Property<string>("NetworkId");
 
-                    b.Property<DateTime?>("PosedDate");
+                    b.Property<DateTime?>("PostDate");
 
                     b.Property<string>("UserId");
 

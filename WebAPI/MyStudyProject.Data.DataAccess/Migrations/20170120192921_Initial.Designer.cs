@@ -9,8 +9,8 @@ using MyStudyProject.Shared.Contracts.Enums;
 namespace MyStudyProject.Data.DataAccess.Migrations
 {
     [DbContext(typeof(SqlApplicationDbContext))]
-    [Migration("20161205194618_First")]
-    partial class First
+    [Migration("20170120192921_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -31,7 +31,7 @@ namespace MyStudyProject.Data.DataAccess.Migrations
 
                     b.Property<string>("NetworkId");
 
-                    b.Property<DateTime?>("PosedDate");
+                    b.Property<DateTime?>("PostDate");
 
                     b.Property<string>("UserId");
 

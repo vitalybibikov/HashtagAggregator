@@ -128,6 +128,75 @@
           }
         }
       },
+      "Microsoft.Extensions.Caching.Abstractions/1.1.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Extensions.Primitives": "1.1.0",
+          "NETStandard.Library": "1.6.1"
+        },
+        "compile": {
+          "lib/netstandard1.0/Microsoft.Extensions.Caching.Abstractions.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.0/Microsoft.Extensions.Caching.Abstractions.dll": {}
+        }
+      },
+      "Microsoft.Extensions.Caching.Memory/1.1.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Extensions.Caching.Abstractions": "1.1.0",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "1.1.0",
+          "Microsoft.Extensions.Options": "1.1.0",
+          "NETStandard.Library": "1.6.1"
+        },
+        "compile": {
+          "lib/netstandard1.3/Microsoft.Extensions.Caching.Memory.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.3/Microsoft.Extensions.Caching.Memory.dll": {}
+        }
+      },
+      "Microsoft.Extensions.DependencyInjection.Abstractions/1.1.0": {
+        "type": "package",
+        "dependencies": {
+          "NETStandard.Library": "1.6.1",
+          "System.ComponentModel": "4.3.0"
+        },
+        "compile": {
+          "lib/netstandard1.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll": {}
+        }
+      },
+      "Microsoft.Extensions.Options/1.1.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "1.1.0",
+          "Microsoft.Extensions.Primitives": "1.1.0",
+          "NETStandard.Library": "1.6.1",
+          "System.ComponentModel": "4.3.0"
+        },
+        "compile": {
+          "lib/netstandard1.0/Microsoft.Extensions.Options.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.0/Microsoft.Extensions.Options.dll": {}
+        }
+      },
+      "Microsoft.Extensions.Primitives/1.1.0": {
+        "type": "package",
+        "dependencies": {
+          "NETStandard.Library": "1.6.1",
+          "System.Runtime.CompilerServices.Unsafe": "4.3.0"
+        },
+        "compile": {
+          "lib/netstandard1.0/Microsoft.Extensions.Primitives.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.0/Microsoft.Extensions.Primitives.dll": {}
+        }
+      },
       "Microsoft.NETCore.App/1.1.0": {
         "type": "package",
         "dependencies": {
@@ -339,7 +408,7 @@
       "runtime.debian.8-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.0": {
         "type": "package",
         "runtimeTargets": {
-          "runtimes/debian.8-x64/native/_._": {
+          "runtimes/debian.8-x64/native/System.Security.Cryptography.Native.OpenSsl.so": {
             "assetType": "native",
             "rid": "debian.8-x64"
           }
@@ -348,7 +417,7 @@
       "runtime.fedora.23-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.0": {
         "type": "package",
         "runtimeTargets": {
-          "runtimes/fedora.23-x64/native/_._": {
+          "runtimes/fedora.23-x64/native/System.Security.Cryptography.Native.OpenSsl.so": {
             "assetType": "native",
             "rid": "fedora.23-x64"
           }
@@ -357,7 +426,7 @@
       "runtime.fedora.24-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.0": {
         "type": "package",
         "runtimeTargets": {
-          "runtimes/fedora.24-x64/native/_._": {
+          "runtimes/fedora.24-x64/native/System.Security.Cryptography.Native.OpenSsl.so": {
             "assetType": "native",
             "rid": "fedora.24-x64"
           }
@@ -451,7 +520,7 @@
       "runtime.opensuse.13.2-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.0": {
         "type": "package",
         "runtimeTargets": {
-          "runtimes/opensuse.13.2-x64/native/_._": {
+          "runtimes/opensuse.13.2-x64/native/System.Security.Cryptography.Native.OpenSsl.so": {
             "assetType": "native",
             "rid": "opensuse.13.2-x64"
           }
@@ -460,7 +529,7 @@
       "runtime.opensuse.42.1-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.0": {
         "type": "package",
         "runtimeTargets": {
-          "runtimes/opensuse.42.1-x64/native/_._": {
+          "runtimes/opensuse.42.1-x64/native/System.Security.Cryptography.Native.OpenSsl.so": {
             "assetType": "native",
             "rid": "opensuse.42.1-x64"
           }
@@ -469,7 +538,7 @@
       "runtime.osx.10.10-x64.runtime.native.System.Security.Cryptography.Apple/4.3.0": {
         "type": "package",
         "runtimeTargets": {
-          "runtimes/osx.10.10-x64/native/_._": {
+          "runtimes/osx.10.10-x64/native/System.Security.Cryptography.Native.Apple.dylib": {
             "assetType": "native",
             "rid": "osx.10.10-x64"
           }
@@ -478,7 +547,7 @@
       "runtime.osx.10.10-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.0": {
         "type": "package",
         "runtimeTargets": {
-          "runtimes/osx.10.10-x64/native/_._": {
+          "runtimes/osx.10.10-x64/native/System.Security.Cryptography.Native.OpenSsl.dylib": {
             "assetType": "native",
             "rid": "osx.10.10-x64"
           }
@@ -487,7 +556,7 @@
       "runtime.rhel.7-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.0": {
         "type": "package",
         "runtimeTargets": {
-          "runtimes/rhel.7-x64/native/_._": {
+          "runtimes/rhel.7-x64/native/System.Security.Cryptography.Native.OpenSsl.so": {
             "assetType": "native",
             "rid": "rhel.7-x64"
           }
@@ -496,7 +565,7 @@
       "runtime.ubuntu.14.04-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.0": {
         "type": "package",
         "runtimeTargets": {
-          "runtimes/ubuntu.14.04-x64/native/_._": {
+          "runtimes/ubuntu.14.04-x64/native/System.Security.Cryptography.Native.OpenSsl.so": {
             "assetType": "native",
             "rid": "ubuntu.14.04-x64"
           }
@@ -505,7 +574,7 @@
       "runtime.ubuntu.16.04-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.0": {
         "type": "package",
         "runtimeTargets": {
-          "runtimes/ubuntu.16.04-x64/native/_._": {
+          "runtimes/ubuntu.16.04-x64/native/System.Security.Cryptography.Native.OpenSsl.so": {
             "assetType": "native",
             "rid": "ubuntu.16.04-x64"
           }
@@ -514,7 +583,7 @@
       "runtime.ubuntu.16.10-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.0": {
         "type": "package",
         "runtimeTargets": {
-          "runtimes/ubuntu.16.10-x64/native/_._": {
+          "runtimes/ubuntu.16.10-x64/native/System.Security.Cryptography.Native.OpenSsl.so": {
             "assetType": "native",
             "rid": "ubuntu.16.10-x64"
           }
@@ -529,7 +598,7 @@
           "ref/netstandard1.6/System.AppContext.dll": {}
         },
         "runtime": {
-          "lib/netstandard1.6/_._": {}
+          "lib/netstandard1.6/System.AppContext.dll": {}
         }
       },
       "System.Buffers/4.3.0": {
@@ -545,7 +614,7 @@
           "lib/netstandard1.1/System.Buffers.dll": {}
         },
         "runtime": {
-          "lib/netstandard1.1/_._": {}
+          "lib/netstandard1.1/System.Buffers.dll": {}
         }
       },
       "System.Collections/4.3.0": {
@@ -577,7 +646,7 @@
           "ref/netstandard1.3/System.Collections.Concurrent.dll": {}
         },
         "runtime": {
-          "lib/netstandard1.3/_._": {}
+          "lib/netstandard1.3/System.Collections.Concurrent.dll": {}
         }
       },
       "System.Collections.Immutable/1.3.0": {
@@ -608,7 +677,7 @@
           "ref/netstandard1.0/System.ComponentModel.dll": {}
         },
         "runtime": {
-          "lib/netstandard1.3/_._": {}
+          "lib/netstandard1.3/System.ComponentModel.dll": {}
         }
       },
       "System.ComponentModel.Annotations/4.3.0": {
@@ -670,7 +739,7 @@
           "lib/netstandard1.3/System.Diagnostics.DiagnosticSource.dll": {}
         },
         "runtime": {
-          "lib/netstandard1.3/_._": {}
+          "lib/netstandard1.3/System.Diagnostics.DiagnosticSource.dll": {}
         }
       },
       "System.Diagnostics.FileVersionInfo/4.0.0": {
@@ -832,7 +901,11 @@
           "ref/netstandard1.3/System.Globalization.Extensions.dll": {}
         },
         "runtimeTargets": {
-          "runtimes/win/lib/netstandard1.3/_._": {
+          "runtimes/unix/lib/netstandard1.3/System.Globalization.Extensions.dll": {
+            "assetType": "runtime",
+            "rid": "unix"
+          },
+          "runtimes/win/lib/netstandard1.3/System.Globalization.Extensions.dll": {
             "assetType": "runtime",
             "rid": "win"
           }
@@ -874,7 +947,11 @@
           "ref/netstandard1.3/System.IO.Compression.dll": {}
         },
         "runtimeTargets": {
-          "runtimes/win/lib/netstandard1.3/_._": {
+          "runtimes/unix/lib/netstandard1.3/System.IO.Compression.dll": {
+            "assetType": "runtime",
+            "rid": "unix"
+          },
+          "runtimes/win/lib/netstandard1.3/System.IO.Compression.dll": {
             "assetType": "runtime",
             "rid": "win"
           }
@@ -897,7 +974,7 @@
           "ref/netstandard1.3/System.IO.Compression.ZipFile.dll": {}
         },
         "runtime": {
-          "lib/netstandard1.3/_._": {}
+          "lib/netstandard1.3/System.IO.Compression.ZipFile.dll": {}
         }
       },
       "System.IO.FileSystem/4.3.0": {
@@ -925,7 +1002,7 @@
           "ref/netstandard1.3/System.IO.FileSystem.Primitives.dll": {}
         },
         "runtime": {
-          "lib/netstandard1.3/_._": {}
+          "lib/netstandard1.3/System.IO.FileSystem.Primitives.dll": {}
         }
       },
       "System.IO.FileSystem.Watcher/4.3.0": {
@@ -1018,7 +1095,7 @@
           "ref/netstandard1.6/System.Linq.dll": {}
         },
         "runtime": {
-          "lib/netstandard1.6/_._": {}
+          "lib/netstandard1.6/System.Linq.dll": {}
         }
       },
       "System.Linq.Expressions/4.3.0": {
@@ -1046,7 +1123,7 @@
           "ref/netstandard1.6/System.Linq.Expressions.dll": {}
         },
         "runtime": {
-          "lib/netstandard1.6/_._": {}
+          "lib/netstandard1.6/System.Linq.Expressions.dll": {}
         }
       },
       "System.Linq.Parallel/4.3.0": {
@@ -1123,7 +1200,11 @@
           "ref/netstandard1.3/System.Net.Http.dll": {}
         },
         "runtimeTargets": {
-          "runtimes/win/lib/netstandard1.3/_._": {
+          "runtimes/unix/lib/netstandard1.6/System.Net.Http.dll": {
+            "assetType": "runtime",
+            "rid": "unix"
+          },
+          "runtimes/win/lib/netstandard1.3/System.Net.Http.dll": {
             "assetType": "runtime",
             "rid": "win"
           }
@@ -1295,7 +1376,7 @@
           "ref/netstandard1.3/System.ObjectModel.dll": {}
         },
         "runtime": {
-          "lib/netstandard1.3/_._": {}
+          "lib/netstandard1.3/System.ObjectModel.dll": {}
         }
       },
       "System.Reflection/4.3.0": {
@@ -1345,7 +1426,7 @@
           "ref/netstandard1.1/_._": {}
         },
         "runtime": {
-          "lib/netstandard1.3/_._": {}
+          "lib/netstandard1.3/System.Reflection.Emit.dll": {}
         }
       },
       "System.Reflection.Emit.ILGeneration/4.3.0": {
@@ -1359,7 +1440,7 @@
           "ref/netstandard1.0/_._": {}
         },
         "runtime": {
-          "lib/netstandard1.3/_._": {}
+          "lib/netstandard1.3/System.Reflection.Emit.ILGeneration.dll": {}
         }
       },
       "System.Reflection.Emit.Lightweight/4.3.0": {
@@ -1374,7 +1455,7 @@
           "ref/netstandard1.0/_._": {}
         },
         "runtime": {
-          "lib/netstandard1.3/_._": {}
+          "lib/netstandard1.3/System.Reflection.Emit.Lightweight.dll": {}
         }
       },
       "System.Reflection.Extensions/4.3.0": {
@@ -1437,7 +1518,7 @@
           "ref/netstandard1.5/System.Reflection.TypeExtensions.dll": {}
         },
         "runtime": {
-          "lib/netstandard1.5/_._": {}
+          "lib/netstandard1.5/System.Reflection.TypeExtensions.dll": {}
         }
       },
       "System.Resources.Reader/4.3.0": {
@@ -1477,6 +1558,18 @@
         },
         "compile": {
           "ref/netstandard1.5/System.Runtime.dll": {}
+        }
+      },
+      "System.Runtime.CompilerServices.Unsafe/4.3.0": {
+        "type": "package",
+        "dependencies": {
+          "System.Runtime": "4.3.0"
+        },
+        "compile": {
+          "lib/netstandard1.0/System.Runtime.CompilerServices.Unsafe.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.0/System.Runtime.CompilerServices.Unsafe.dll": {}
         }
       },
       "System.Runtime.Extensions/4.3.0": {
@@ -1530,10 +1623,14 @@
           "ref/netstandard1.1/System.Runtime.InteropServices.RuntimeInformation.dll": {}
         },
         "runtime": {
-          "lib/netstandard1.1/_._": {}
+          "lib/netstandard1.1/System.Runtime.InteropServices.RuntimeInformation.dll": {}
         },
         "runtimeTargets": {
-          "runtimes/win/lib/netstandard1.1/_._": {
+          "runtimes/unix/lib/netstandard1.1/System.Runtime.InteropServices.RuntimeInformation.dll": {
+            "assetType": "runtime",
+            "rid": "unix"
+          },
+          "runtimes/win/lib/netstandard1.1/System.Runtime.InteropServices.RuntimeInformation.dll": {
             "assetType": "runtime",
             "rid": "win"
           }
@@ -1565,7 +1662,7 @@
           "ref/netstandard1.1/System.Runtime.Numerics.dll": {}
         },
         "runtime": {
-          "lib/netstandard1.3/_._": {}
+          "lib/netstandard1.3/System.Runtime.Numerics.dll": {}
         }
       },
       "System.Security.Claims/4.3.0": {
@@ -1608,9 +1705,17 @@
           "ref/netstandard1.6/System.Security.Cryptography.Algorithms.dll": {}
         },
         "runtimeTargets": {
-          "runtimes/osx/lib/netstandard1.6/_._": {
+          "runtimes/osx/lib/netstandard1.6/System.Security.Cryptography.Algorithms.dll": {
             "assetType": "runtime",
             "rid": "osx"
+          },
+          "runtimes/unix/lib/netstandard1.6/System.Security.Cryptography.Algorithms.dll": {
+            "assetType": "runtime",
+            "rid": "unix"
+          },
+          "runtimes/win/lib/netstandard1.6/System.Security.Cryptography.Algorithms.dll": {
+            "assetType": "runtime",
+            "rid": "win"
           }
         }
       },
@@ -1633,7 +1738,11 @@
           "ref/netstandard1.6/_._": {}
         },
         "runtimeTargets": {
-          "runtimes/win/lib/netstandard1.6/_._": {
+          "runtimes/unix/lib/netstandard1.6/System.Security.Cryptography.Cng.dll": {
+            "assetType": "runtime",
+            "rid": "unix"
+          },
+          "runtimes/win/lib/netstandard1.6/System.Security.Cryptography.Cng.dll": {
             "assetType": "runtime",
             "rid": "win"
           }
@@ -1660,7 +1769,11 @@
           "ref/netstandard1.3/_._": {}
         },
         "runtimeTargets": {
-          "runtimes/win/lib/netstandard1.3/_._": {
+          "runtimes/unix/lib/netstandard1.3/System.Security.Cryptography.Csp.dll": {
+            "assetType": "runtime",
+            "rid": "unix"
+          },
+          "runtimes/win/lib/netstandard1.3/System.Security.Cryptography.Csp.dll": {
             "assetType": "runtime",
             "rid": "win"
           }
@@ -1686,7 +1799,11 @@
           "ref/netstandard1.3/System.Security.Cryptography.Encoding.dll": {}
         },
         "runtimeTargets": {
-          "runtimes/win/lib/netstandard1.3/_._": {
+          "runtimes/unix/lib/netstandard1.3/System.Security.Cryptography.Encoding.dll": {
+            "assetType": "runtime",
+            "rid": "unix"
+          },
+          "runtimes/win/lib/netstandard1.3/System.Security.Cryptography.Encoding.dll": {
             "assetType": "runtime",
             "rid": "win"
           }
@@ -1713,10 +1830,10 @@
           "ref/netstandard1.6/_._": {}
         },
         "runtime": {
-          "lib/netstandard1.6/_._": {}
+          "lib/netstandard1.6/System.Security.Cryptography.OpenSsl.dll": {}
         },
         "runtimeTargets": {
-          "runtimes/unix/lib/netstandard1.6/_._": {
+          "runtimes/unix/lib/netstandard1.6/System.Security.Cryptography.OpenSsl.dll": {
             "assetType": "runtime",
             "rid": "unix"
           }
@@ -1737,7 +1854,7 @@
           "ref/netstandard1.3/System.Security.Cryptography.Primitives.dll": {}
         },
         "runtime": {
-          "lib/netstandard1.3/_._": {}
+          "lib/netstandard1.3/System.Security.Cryptography.Primitives.dll": {}
         }
       },
       "System.Security.Cryptography.X509Certificates/4.3.0": {
@@ -1773,7 +1890,11 @@
           "ref/netstandard1.4/System.Security.Cryptography.X509Certificates.dll": {}
         },
         "runtimeTargets": {
-          "runtimes/win/lib/netstandard1.6/_._": {
+          "runtimes/unix/lib/netstandard1.6/System.Security.Cryptography.X509Certificates.dll": {
+            "assetType": "runtime",
+            "rid": "unix"
+          },
+          "runtimes/win/lib/netstandard1.6/System.Security.Cryptography.X509Certificates.dll": {
             "assetType": "runtime",
             "rid": "win"
           }
@@ -1877,7 +1998,7 @@
           "ref/netcoreapp1.1/System.Text.RegularExpressions.dll": {}
         },
         "runtime": {
-          "lib/netstandard1.6/_._": {}
+          "lib/netstandard1.6/System.Text.RegularExpressions.dll": {}
         }
       },
       "System.Threading/4.3.0": {
@@ -1890,7 +2011,7 @@
           "ref/netstandard1.3/System.Threading.dll": {}
         },
         "runtime": {
-          "lib/netstandard1.3/_._": {}
+          "lib/netstandard1.3/System.Threading.dll": {}
         }
       },
       "System.Threading.Overlapped/4.3.0": {
@@ -1955,7 +2076,7 @@
           "lib/netstandard1.0/System.Threading.Tasks.Extensions.dll": {}
         },
         "runtime": {
-          "lib/netstandard1.0/_._": {}
+          "lib/netstandard1.0/System.Threading.Tasks.Extensions.dll": {}
         }
       },
       "System.Threading.Tasks.Parallel/4.3.0": {
@@ -2036,7 +2157,7 @@
           "ref/netstandard1.3/System.Xml.ReaderWriter.dll": {}
         },
         "runtime": {
-          "lib/netstandard1.3/_._": {}
+          "lib/netstandard1.3/System.Xml.ReaderWriter.dll": {}
         }
       },
       "System.Xml.XDocument/4.3.0": {
@@ -2059,7 +2180,7 @@
           "ref/netstandard1.3/System.Xml.XDocument.dll": {}
         },
         "runtime": {
-          "lib/netstandard1.3/_._": {}
+          "lib/netstandard1.3/System.Xml.XDocument.dll": {}
         }
       },
       "System.Xml.XmlDocument/4.0.1": {
@@ -2122,6 +2243,64 @@
         "runtime": {
           "lib/netstandard1.3/_._": {}
         }
+      },
+      "MyStudyProject.Core.Contracts/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v1.1",
+        "dependencies": {
+          "Microsoft.NETCore.App": "1.1.0",
+          "MyStudyProject.Shared.Common": "1.0.0"
+        },
+        "compile": {
+          "netcoreapp1.1/MyStudyProject.Core.Contracts.dll": {}
+        },
+        "runtime": {
+          "netcoreapp1.1/MyStudyProject.Core.Contracts.dll": {}
+        }
+      },
+      "MyStudyProject.Core.Models/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v1.1",
+        "dependencies": {
+          "Microsoft.NETCore.App": "1.1.0",
+          "MyStudyProject.Core.Contracts": "1.0.0",
+          "MyStudyProject.Shared.Contracts": "1.0.0"
+        },
+        "compile": {
+          "netcoreapp1.1/MyStudyProject.Core.Models.dll": {}
+        },
+        "runtime": {
+          "netcoreapp1.1/MyStudyProject.Core.Models.dll": {}
+        }
+      },
+      "MyStudyProject.Shared.Common/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v1.1",
+        "dependencies": {
+          "Microsoft.Extensions.Options": "1.1.0",
+          "Microsoft.NETCore.App": "1.1.0",
+          "MyStudyProject.Shared.Contracts": "1.0.0"
+        },
+        "compile": {
+          "netcoreapp1.1/MyStudyProject.Shared.Common.dll": {}
+        },
+        "runtime": {
+          "netcoreapp1.1/MyStudyProject.Shared.Common.dll": {}
+        }
+      },
+      "MyStudyProject.Shared.Contracts/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v1.1",
+        "dependencies": {
+          "Microsoft.Extensions.Caching.Memory": "1.1.0",
+          "Microsoft.NETCore.App": "1.1.0"
+        },
+        "compile": {
+          "netcoreapp1.1/MyStudyProject.Shared.Contracts.dll": {}
+        },
+        "runtime": {
+          "netcoreapp1.1/MyStudyProject.Shared.Contracts.dll": {}
+        }
       }
     }
   },
@@ -2145,7 +2324,7 @@
       ]
     },
     "Microsoft.CodeAnalysis.Analyzers/1.1.0": {
-      "sha512": "BKw3KUB/5IFjWuoORNXHRvMeiFkBBPljcV0yu4X16x8Y14AKjzxJcISgSyXgGc6kfu37NS2x3n1jTDFB6XZgBQ==",
+      "sha512": "KkwS4L0Lq3KHeBHURyIQ5umGfEYDD1p2JpXdtcLRmrbaaux9+UsYwdPF7m/Hs4+vs6FMloRygDYUwj59Bf5juA==",
       "type": "package",
       "path": "Microsoft.CodeAnalysis.Analyzers/1.1.0",
       "files": [
@@ -2161,7 +2340,7 @@
       ]
     },
     "Microsoft.CodeAnalysis.Common/1.3.0": {
-      "sha512": "sLefn1cXIN+pXDDDoedotGQFt3ySwzGfWjADI2VtUMJlS8PLNz1mP58B0H4OPh+Lwg5i/G1yPFQ5ApfD0RBu4w==",
+      "sha512": "hf5kitCiGc3QaZ5c6LLmVfj0H0DR0Wq+mfivWmOLbw6KwrPrrf3huu8iejl7INe3dGDLQoVLTSpJYZUn5xl+EQ==",
       "type": "package",
       "path": "Microsoft.CodeAnalysis.Common/1.3.0",
       "files": [
@@ -2177,7 +2356,7 @@
       ]
     },
     "Microsoft.CodeAnalysis.CSharp/1.3.0": {
-      "sha512": "YC6MmAPbIV96n++sFemoFii1+P7h1sw/E/s6U7nVieYK5uRwFVjBrjKt9P2koqRY3sV4EPRC/CPig9N6JNqe/w==",
+      "sha512": "xn2OcdmZNRsbkr4U66nsCiIvYGxELqAPZhQ72bLXvRRpxv30N8cPro2qUzTr0tg4Ssbnvu5vpqazPcplbZXiDQ==",
       "type": "package",
       "path": "Microsoft.CodeAnalysis.CSharp/1.3.0",
       "files": [
@@ -2193,7 +2372,7 @@
       ]
     },
     "Microsoft.CodeAnalysis.VisualBasic/1.3.0": {
-      "sha512": "6AFb9deo3+iFRn6B7KFjU7oVZ3Cfi0hHX3eQwFK16dH62DpO5rpyGGe9KJakwNbnigVRZO8AU2NrKfJ6tMPtbg==",
+      "sha512": "u4s4m6LKmewXyXYv4N4kqURq47RZ0n4vBbEEqyW3Qvg/MnmocRbSqhVs9BUlgwB5HgZVH72Ysp2kq0WCKy6q6A==",
       "type": "package",
       "path": "Microsoft.CodeAnalysis.VisualBasic/1.3.0",
       "files": [
@@ -2279,6 +2458,63 @@
         "runtimes/win/native/Microsoft.DiaSymReader.Native.arm.dll",
         "runtimes/win/native/Microsoft.DiaSymReader.Native.x86.dll",
         "runtimes/win8-arm/native/Microsoft.DiaSymReader.Native.arm.dll"
+      ]
+    },
+    "Microsoft.Extensions.Caching.Abstractions/1.1.0": {
+      "sha512": "uMbUDz/lNoO9LGc+DSjKMLWJk+y4qX6syDRcmQC0w6LSQzizkRqmo5Y8jO0ePtZRjF2lSGgO5URt4YgB6STDBQ==",
+      "type": "package",
+      "path": "Microsoft.Extensions.Caching.Abstractions/1.1.0",
+      "files": [
+        "Microsoft.Extensions.Caching.Abstractions.1.1.0.nupkg.sha512",
+        "Microsoft.Extensions.Caching.Abstractions.nuspec",
+        "lib/netstandard1.0/Microsoft.Extensions.Caching.Abstractions.dll",
+        "lib/netstandard1.0/Microsoft.Extensions.Caching.Abstractions.xml"
+      ]
+    },
+    "Microsoft.Extensions.Caching.Memory/1.1.0": {
+      "sha512": "ihFzFRKf/LrXHIvn0wDDt6oLxaAjsCPfrIzV9CLrTURD7qT+HujJ0TaRfC91e6tB8OAgkzY4AsHRBNq8KzrQQQ==",
+      "type": "package",
+      "path": "Microsoft.Extensions.Caching.Memory/1.1.0",
+      "files": [
+        "Microsoft.Extensions.Caching.Memory.1.1.0.nupkg.sha512",
+        "Microsoft.Extensions.Caching.Memory.nuspec",
+        "lib/net451/Microsoft.Extensions.Caching.Memory.dll",
+        "lib/net451/Microsoft.Extensions.Caching.Memory.xml",
+        "lib/netstandard1.3/Microsoft.Extensions.Caching.Memory.dll",
+        "lib/netstandard1.3/Microsoft.Extensions.Caching.Memory.xml"
+      ]
+    },
+    "Microsoft.Extensions.DependencyInjection.Abstractions/1.1.0": {
+      "sha512": "2luhjVaWZd8Wmr2KUJcLNAN+iZgezTyfamLG6Lo5FVYY1LYaS7UFOmNtApHGVIytWWtuXSk4ea0t2Vx0HgF5fg==",
+      "type": "package",
+      "path": "Microsoft.Extensions.DependencyInjection.Abstractions/1.1.0",
+      "files": [
+        "Microsoft.Extensions.DependencyInjection.Abstractions.1.1.0.nupkg.sha512",
+        "Microsoft.Extensions.DependencyInjection.Abstractions.nuspec",
+        "lib/netstandard1.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll",
+        "lib/netstandard1.0/Microsoft.Extensions.DependencyInjection.Abstractions.xml"
+      ]
+    },
+    "Microsoft.Extensions.Options/1.1.0": {
+      "sha512": "NZlEcVm+SPPeNAkYuwiZdqnMrs/Lne/cDAWiBal1EL//m/KjDgOC6jKg5m9rt/cvqb7Obql5e0JtkNmdP1fGQA==",
+      "type": "package",
+      "path": "Microsoft.Extensions.Options/1.1.0",
+      "files": [
+        "Microsoft.Extensions.Options.1.1.0.nupkg.sha512",
+        "Microsoft.Extensions.Options.nuspec",
+        "lib/netstandard1.0/Microsoft.Extensions.Options.dll",
+        "lib/netstandard1.0/Microsoft.Extensions.Options.xml"
+      ]
+    },
+    "Microsoft.Extensions.Primitives/1.1.0": {
+      "sha512": "GhQG5CBUR9/czBLTblt1giKBkfvHVDeppWd6KIgPyexrspECqzzSW5IXe0STTTs2NlUp9vIFwjSWG8O9c74R9g==",
+      "type": "package",
+      "path": "Microsoft.Extensions.Primitives/1.1.0",
+      "files": [
+        "Microsoft.Extensions.Primitives.1.1.0.nupkg.sha512",
+        "Microsoft.Extensions.Primitives.nuspec",
+        "lib/netstandard1.0/Microsoft.Extensions.Primitives.dll",
+        "lib/netstandard1.0/Microsoft.Extensions.Primitives.xml"
       ]
     },
     "Microsoft.NETCore.App/1.1.0": {
@@ -2380,7 +2616,7 @@
       ]
     },
     "Microsoft.NETCore.Windows.ApiSets/1.0.1": {
-      "sha512": "gkG9EBUjvOFSX8E1pC2ATict6psFHMADoRKN3lGUtRyJ8ZSxqkDm4S8Aj6HxATsaa5VUpcQZUPWNTfv5hVYPiA==",
+      "sha512": "vtMOXcsBKK6EGjn6J11eRmv/nGrvx/C/QqOff7vjcUoT/2sYz7vSZNVxPgmS/DkhRYLXjxSf0pOMr88tsBFKEg==",
       "type": "package",
       "path": "Microsoft.NETCore.Windows.ApiSets/1.0.1",
       "files": [
@@ -3187,7 +3423,7 @@
       ]
     },
     "System.Diagnostics.FileVersionInfo/4.0.0": {
-      "sha512": "Z5OqQJFPBQo2DZf7RQGTYgzB1l7ieKGQgNO3xC1ybsBviCs/i2QZ/WAth4ccF5gY+HH9NICepWIo5DIWkrdQrA==",
+      "sha512": "O8Y2b3pKH2flefmfY/Vb4frQVgodxg3TVxvTCXatsWyp7tNbRwJIxO1x4p5gYsku9ttrR8NECpTKmWpbSZdBYw==",
       "type": "package",
       "path": "System.Diagnostics.FileVersionInfo/4.0.0",
       "files": [
@@ -3282,7 +3518,7 @@
       ]
     },
     "System.Diagnostics.StackTrace/4.0.1": {
-      "sha512": "ik1HmLwAKDyXfFrZ/ZyKrifgDJLF9JXabfDUAdDP4QuFDCnGWCRZiZfW8c8FGRR22I54hKOexx2gxmRTAuIreg==",
+      "sha512": "nTaJnhJqwtxn7ua6HkcVpoP6j82UuW23nRv8ZQ50txzS0VDzjlpY4g1xlyywzu7+QHu4K1J2u984GDZZXvb6Dw==",
       "type": "package",
       "path": "System.Diagnostics.StackTrace/4.0.1",
       "files": [
@@ -5373,6 +5609,19 @@
         "ref/xamarinwatchos10/_._"
       ]
     },
+    "System.Runtime.CompilerServices.Unsafe/4.3.0": {
+      "sha512": "rcnXA1U9W3QUtMSGoyoNHH6w4V5Rxa/EKXmzpORUYlDAlDB34hIQoU57ATXl8xHa83VvzRm6PcElEizgUd7U5w==",
+      "type": "package",
+      "path": "System.Runtime.CompilerServices.Unsafe/4.3.0",
+      "files": [
+        "System.Runtime.CompilerServices.Unsafe.4.3.0.nupkg.sha512",
+        "System.Runtime.CompilerServices.Unsafe.nuspec",
+        "ThirdPartyNotices.txt",
+        "dotnet_library_license.txt",
+        "lib/netstandard1.0/System.Runtime.CompilerServices.Unsafe.dll",
+        "lib/netstandard1.0/System.Runtime.CompilerServices.Unsafe.xml"
+      ]
+    },
     "System.Runtime.Extensions/4.3.0": {
       "sha512": "guW0uK0fn5fcJJ1tJVXYd7/1h5F+pea1r7FLSOz/f8vPEqbR2ZAknuRDvTQ8PzAilDveOxNjSfr0CHfIQfFk8g==",
       "type": "package",
@@ -6114,7 +6363,7 @@
       ]
     },
     "System.Text.Encoding.CodePages/4.0.1": {
-      "sha512": "gC9aePVwqGNUAmlibQqgR3tyhlJFzXiPAj4BCA83CbZCHqFB/RGqqmSNglKrDpKcRh9gbyPZ8hRiL6fCcxTvUw==",
+      "sha512": "C5G0eM61W/5Rz+NlxPvY7fC1GptUQww4DtAl2gaCsKq4tueA85mL2gKI53uAd5nhI5LZYkjiteHm7IoRNU2Qyw==",
       "type": "package",
       "path": "System.Text.Encoding.CodePages/4.0.1",
       "files": [
@@ -6816,7 +7065,7 @@
       ]
     },
     "System.Xml.XmlDocument/4.0.1": {
-      "sha512": "tLP5p8uBU0L0xrqkg8umwV64ST/DYbBtRk2cryA3TCpfMFlo2oeTtQW55GyshHXXW9NKkU3Oa2OVwe4mO+SA8g==",
+      "sha512": "9wLGraZ3BfmKWX/I0+GZWYS+JHUPv8xHyf63O8fLcZ8zX3llbwKjYfl0NBV4Q2gYToN37Ltn4YJLKfhOh73g5w==",
       "type": "package",
       "path": "System.Xml.XmlDocument/4.0.1",
       "files": [
@@ -6853,7 +7102,7 @@
       ]
     },
     "System.Xml.XPath/4.0.1": {
-      "sha512": "OR4CW5NJgWRUrxGc9LmLQfK2yBAAXPgUSBmFtj9iwTDfjlWdphRpc8o1Gq7ExO6HJeeV8UYrgZ/ymYKB8fPZ0A==",
+      "sha512": "8zRXPiud79HzXa/uMuoggbCa8jmLyNijPmhKxW0bGvCgQRAYfc6w/0Gdvf4nLGTuRT7vFBxY0WYijKSUb+wTXA==",
       "type": "package",
       "path": "System.Xml.XPath/4.0.1",
       "files": [
@@ -6890,7 +7139,7 @@
       ]
     },
     "System.Xml.XPath.XDocument/4.0.1": {
-      "sha512": "jrHBPaVmwfVE5SQqQhKoaUWhtYPu1oR3YMB8jUOhRfc3UlxNFTTgEwVV7waKBEWrjY3oZ3uEwBdrSX1jiolfuA==",
+      "sha512": "sJwW1K+sUAYah33A4tSvpC3VOMO2A1HB3IIqbLotKQbWhor/GM6uxNjhnL9WGRjJl2crl+fOcHeaH915pXcwGQ==",
       "type": "package",
       "path": "System.Xml.XPath.XDocument/4.0.1",
       "files": [
@@ -6925,10 +7174,32 @@
         "ref/xamarintvos10/_._",
         "ref/xamarinwatchos10/_._"
       ]
+    },
+    "MyStudyProject.Core.Contracts/1.0.0": {
+      "type": "project",
+      "path": "../MyStudyProject.Core.Contracts/project.json",
+      "msbuildProject": "../MyStudyProject.Core.Contracts/MyStudyProject.Core.Contracts.xproj"
+    },
+    "MyStudyProject.Core.Models/1.0.0": {
+      "type": "project",
+      "path": "../MyStudyProject.Core.Models/project.json",
+      "msbuildProject": "../MyStudyProject.Core.Models/MyStudyProject.Core.Models.xproj"
+    },
+    "MyStudyProject.Shared.Common/1.0.0": {
+      "type": "project",
+      "path": "../MyStudyProject.Shared.Common/project.json",
+      "msbuildProject": "../MyStudyProject.Shared.Common/MyStudyProject.Shared.Common.xproj"
+    },
+    "MyStudyProject.Shared.Contracts/1.0.0": {
+      "type": "project",
+      "path": "../MyStudyProject.Shared.Contracts/project.json",
+      "msbuildProject": "../MyStudyProject.Shared.Contracts/MyStudyProject.Shared.Contracts.xproj"
     }
   },
   "projectFileDependencyGroups": {
-    "": [],
+    "": [
+      "MyStudyProject.Core.Models >= 1.0.0-*"
+    ],
     ".NETCoreApp,Version=v1.1": [
       "Microsoft.NETCore.App >= 1.1.0"
     ]

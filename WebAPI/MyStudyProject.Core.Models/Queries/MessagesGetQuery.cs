@@ -5,6 +5,20 @@ namespace MyStudyProject.Core.Models.Queries
 {
     public class MessagesGetQuery : IQuery
     {
-        public string HashTag { get; set; }
+        private const string HashTagSymbol = "#";
+        private string hashTag;
+
+        public string HashTag
+        {
+            get { return hashTag; }
+            set
+            {
+                if (!value.StartsWith(HashTagSymbol))
+                {
+                    value = "#" + value;
+                }
+                hashTag = value;
+            }
+        }
     }
 }

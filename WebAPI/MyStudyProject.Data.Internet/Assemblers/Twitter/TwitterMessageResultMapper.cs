@@ -8,7 +8,6 @@ namespace MyStudyProject.Data.Internet.Assemblers.Twitter
 {
     public class TwitterMessageResultMapper : IMapper<ITweet, MessagesQueryResult>
     {
-
         public MessagesQueryResult MapBunch(IEnumerable<ITweet> messages, string hashtag)
         {
             var results = new MessagesQueryResult();

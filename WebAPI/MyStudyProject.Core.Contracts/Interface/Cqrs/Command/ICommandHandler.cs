@@ -7,7 +7,5 @@ namespace MyStudyProject.Core.Contracts.Interface.Cqrs.Command
         where TParameter : ICommand, new()
     {
         Task<ICommandResult> ExecuteAsync(TParameter command);
-
-        Task<ICommandResult> ExecuteAsync(List<TParameter> command);
     }
 }

@@ -2,9 +2,8 @@
 using System.Threading.Tasks;
 
 using Microsoft.Extensions.Options;
-
-using MyStudyProject.Core.Contracts.Interface.ServiceFacades;
 using MyStudyProject.Core.Models.Results.Query;
+using MyStudyProject.Data.Contracts.ServiceFacades;
 using MyStudyProject.Data.Internet.Assemblers.Twitter;
 using MyStudyProject.Shared.Common.Settings;
 
@@ -14,7 +13,7 @@ using Tweetinvi.Parameters;
 
 namespace MyStudyProject.Data.Internet.Services.Twitter
 {
-    public class TwitterMessageServiceFacade : ITwitterMessageFacade<MessagesQueryResult>
+    public class TwitterMessageServiceFacade : ITwitterMessageFacade
     {
         private readonly IOptions<TwitterSettings> settings;
 

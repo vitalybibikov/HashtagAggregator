@@ -34,10 +34,5 @@ namespace MyStudyProject.Domain.Cqrs.EF.Handlers
             context.SaveChanges();
             return new CommandResult { Success = true };
         }
-
-        public override Task<ICommandResult> ExecuteAsync(List<MessagesCreateCommand> command)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

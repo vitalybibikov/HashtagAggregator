@@ -6,6 +6,7 @@
     "MyStudyProject.Core.Contracts": "1.0.0-*",
     "MyStudyProject.Core.Cqrs": "1.0.0-*",
     "MyStudyProject.Core.Models": "1.0.0-*",
+    "MyStudyProject.Data.Contracts": "1.0.0-*",
     "MyStudyProject.Data.Entities": "1.0.0-*",
     "MyStudyProject.Shared.Common": "1.0.0-*",
     "Newtonsoft.Json": "9.0.2-beta1",

@@ -3,10 +3,9 @@ using System.Reflection;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Moq;
-
-using MyStudyProject.Core.Contracts.Interface.ServiceFacades;
 using MyStudyProject.Core.Cqrs.RequestFilter;
 using MyStudyProject.Core.Models.Results.Query;
+using MyStudyProject.Data.Contracts.ServiceFacades;
 using MyStudyProject.Data.DataAccess.Context;
 using MyStudyProject.Domain.Cqrs.EF.Handlers;
 using MyStudyProject.Domain.Cqrs.Twitter.Handlers;
@@ -25,7 +24,7 @@ namespace MyStudyProject.Tests.Unit.Handlers
         public void RequestVkQueryFilterAllowanceTest()
         {
             //Arrange          
-            var vkFacadeMock = Mock.Of<IVkMessageFacade<MessagesQueryResult>>();
+            var vkFacadeMock = Mock.Of<IVkMessageFacade>();
             var vkHandler = new VkMessagesGetQueryHandler(vkFacadeMock);
             var vkAttribute = vkHandler.GetType().GetTypeInfo().GetCustomAttribute<DataSourceTypeAttribute>();
   
@@ -51,7 +50,7 @@ namespace MyStudyProject.Tests.Unit.Handlers
         public void RequestVkQueryFilterNotAllowanceTest()
         {
             //Arrange          
-            var vkFacadeMock = Mock.Of<IVkMessageFacade<MessagesQueryResult>>();
+            var vkFacadeMock = Mock.Of<IVkMessageFacade>();
             var vkHandler = new VkMessagesGetQueryHandler(vkFacadeMock);
             var vkAttribute = vkHandler.GetType().GetTypeInfo().GetCustomAttribute<DataSourceTypeAttribute>();
 
@@ -77,7 +76,7 @@ namespace MyStudyProject.Tests.Unit.Handlers
         public void RequestTwitterQueryFilterAllowanceTest()
         {
             //Arrange          
-            var twitterFacadeMock = Mock.Of<ITwitterMessageFacade<MessagesQueryResult>>();
+            var twitterFacadeMock = Mock.Of<ITwitterMessageFacade>();
             var twiHandler = new TwitterMessagesGetQueryHandler(twitterFacadeMock);
             var twiAttribute = twiHandler.GetType().GetTypeInfo().GetCustomAttribute<DataSourceTypeAttribute>();
 
@@ -104,7 +103,7 @@ namespace MyStudyProject.Tests.Unit.Handlers
         {
             //Arrange          
 
-            var twitterFacadeMock = Mock.Of<ITwitterMessageFacade<MessagesQueryResult>>();
+            var twitterFacadeMock = Mock.Of<ITwitterMessageFacade>();
             var twiHandler = new TwitterMessagesGetQueryHandler(twitterFacadeMock);
             var twiAttribute = twiHandler.GetType().GetTypeInfo().GetCustomAttribute<DataSourceTypeAttribute>();
 

@@ -13,5 +13,6 @@ namespace MyStudyProject.Shared.Common.Attributes
         }
 
         public SocialMediaType MediaType { get; }
+
     }
 }

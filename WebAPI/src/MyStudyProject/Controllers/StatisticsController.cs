@@ -33,31 +33,10 @@ namespace MyStudyProject.Controllers
         [ResponseCache(CacheProfileName = "Default")]
         public async Task<IEnumerable<MessageViewModel>> Get(string hashtag)
         {
-            if (!hashtag.StartsWith("#"))
-            {
-                hashtag = "#" + hashtag;
-            }
-            var query = new MessagesGetQuery { HashTag = hashtag };
-            MessagesQueryResult result = await queryDispatcher.DispatchAsync<MessagesGetQuery, MessagesQueryResult>(query);
-
-            MessagesCreateCommand messageCommands = Mapper.Map<MessagesCreateCommand>(result);
-            await commandDispatcher.DispatchAsync(messageCommands);
-            var models = Mapper.Map<IEnumerable<MessageViewModel>>(result.Messages);
-            return models;
+            var query = new MessagesGetQuery {HashTag = hashtag};
+            var result = await queryDispatcher.DispatchAsync<MessagesGetQuery, MessagesQueryResult>(query);
+            await commandDispatcher.DispatchAsync(Mapper.Map<MessagesCreateCommand>(result));
+            return Mapper.Map<IEnumerable<MessageViewModel>>(result.Messages);
         }
-
-        //// GET: api/statistics/
-        //[HttpGet("{hashtag:required/id:required}")]
-        //public async Task<IEnumerable<MessageViewModel>> Get(string hashtag, long id)
-        //{
-        //    if (!hashtag.StartsWith("#"))
-        //    {
-        //        hashtag = "#" + hashtag;
-        //    }
-        //    MessagesGetQuery query = new MessagesGetQuery {HashTag = hashtag};
-        //    var result = await queryDispatcher.DispatchAsync<MessagesGetQuery, MessagesQueryResult>(query);
-        //    var models = Mapper.Map<IEnumerable<MessageViewModel>>(result);
-        //    return models;
-        //}
     }
 }

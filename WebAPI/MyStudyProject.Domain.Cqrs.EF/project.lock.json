@@ -2777,7 +2777,8 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v1.1",
         "dependencies": {
-          "Microsoft.NETCore.App": "1.1.0"
+          "Microsoft.NETCore.App": "1.1.0",
+          "MyStudyProject.Core.Models": "1.0.0"
         },
         "compile": {
           "netcoreapp1.1/MyStudyProject.Data.Contracts.dll": {}

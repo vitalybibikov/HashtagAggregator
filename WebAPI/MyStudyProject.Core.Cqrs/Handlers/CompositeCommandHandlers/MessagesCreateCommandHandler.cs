@@ -10,28 +10,20 @@ using MyStudyProject.Shared.Common;
 
 namespace MyStudyProject.Core.Cqrs.Handlers.CompositeCommandHandlers
 {
-    public class  MessagesCreateCommandHandler : CompositeCommandHandler<MessagesCreateCommand>
+    public class MessagesCreateCommandHandler : CompositeCommandHandler<MessagesCreateCommand>
     {
-        public override async  Task<ICommandResult> ExecuteAsync(MessagesCreateCommand command)
+        public override async Task<ICommandResult> ExecuteAsync(MessagesCreateCommand command)
         {
             foreach (var handler in Handlers)
             {
-                await handler.ExecuteAsync(command);
-            }
-            return new CommandResult { Success = true };
-        }
-
-        public override async Task<ICommandResult> ExecuteAsync(List<MessagesCreateCommand> commands)
-        {
-            foreach (var handler in Handlers)
-            {
-                var argument = handler.GetType().GenericTypeArguments[0];
-                foreach (var command in commands)
+                try
                 {
-                    if (command.GetType() == argument)
-                    {
-                        await handler.ExecuteAsync(command);
-                    }
+                    await handler.ExecuteAsync(command);
+                }
+                catch (Exception ex)
+                {
+                   //Todo: implement logging
+                   Console.WriteLine("Exception: " + ex);
                 }
             }
             return new CommandResult { Success = true };

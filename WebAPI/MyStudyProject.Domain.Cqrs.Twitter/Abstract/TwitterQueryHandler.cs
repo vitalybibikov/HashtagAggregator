@@ -1,7 +1,6 @@
 ﻿using MyStudyProject.Core.Contracts.Interface.Cqrs.Query;
-using MyStudyProject.Core.Contracts.Interface.ServiceFacades;
 using MyStudyProject.Core.Cqrs.Abstract;
-using MyStudyProject.Core.Models.Results.Query;
+using MyStudyProject.Data.Contracts.ServiceFacades;
 
 namespace MyStudyProject.Domain.Cqrs.Twitter.Abstract
 {
@@ -9,9 +8,9 @@ namespace MyStudyProject.Domain.Cqrs.Twitter.Abstract
          where TResult : IQueryResult, new()
          where TParameter : IQuery
     {
-        protected ITwitterMessageFacade<MessagesQueryResult> Facade { get; }
+        protected ITwitterMessageFacade Facade { get; }
 
-        protected TwitterQueryHandler(ITwitterMessageFacade<MessagesQueryResult> facade)
+        protected TwitterQueryHandler(ITwitterMessageFacade facade)
         {
             Facade = facade;
         }

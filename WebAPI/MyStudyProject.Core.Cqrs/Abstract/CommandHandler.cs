@@ -11,8 +11,6 @@ namespace MyStudyProject.Core.Cqrs.Abstract
     {
         public abstract  Task<ICommandResult> ExecuteAsync(TParameter command);
 
-        public abstract Task<ICommandResult> ExecuteAsync(List<TParameter> command);
-
         public virtual void Add(ICommandHandler<TParameter> queryHandler)
         {
             throw new InvalidOperationException();

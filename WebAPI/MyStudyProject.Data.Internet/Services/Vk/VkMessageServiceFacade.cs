@@ -3,9 +3,8 @@ using System.Net.Http;
 using System.Threading.Tasks;
 
 using Microsoft.Extensions.Options;
-
-using MyStudyProject.Core.Contracts.Interface.ServiceFacades;
 using MyStudyProject.Core.Models.Results.Query;
+using MyStudyProject.Data.Contracts.ServiceFacades;
 using MyStudyProject.Data.Internet.Assemblers.Vk;
 using MyStudyProject.Data.Internet.Services.Vk.Models;
 using MyStudyProject.Shared.Common.Helpers;
@@ -16,7 +15,7 @@ using Newtonsoft.Json.Linq;
 
 namespace MyStudyProject.Data.Internet.Services.Vk
 {
-    public class VkMessageServiceFacade : IVkMessageFacade<MessagesQueryResult>
+    public class VkMessageServiceFacade : IVkMessageFacade
     {
         private readonly IOptions<VkSettings> settings;
 

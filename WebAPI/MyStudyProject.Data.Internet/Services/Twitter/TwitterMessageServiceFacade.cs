@@ -1,7 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
-
 using Microsoft.Extensions.Options;
+
 using MyStudyProject.Core.Contracts.Interface.Cqrs.Command;
 using MyStudyProject.Core.Models.Commands;
 using MyStudyProject.Core.Models.Results.Command;
@@ -13,6 +14,8 @@ using MyStudyProject.Shared.Common.Settings;
 using Tweetinvi;
 using Tweetinvi.Models;
 using Tweetinvi.Parameters;
+using Hangfire;
+using MyStudyProject.Data.Contracts.Interface;
 
 namespace MyStudyProject.Data.Internet.Services.Twitter
 {
@@ -20,15 +23,9 @@ namespace MyStudyProject.Data.Internet.Services.Twitter
     {
         private readonly IOptions<TwitterSettings> settings;
 
-        public TwitterMessageServiceFacade(IOptions<TwitterSettings> settings)
+        public TwitterMessageServiceFacade(IOptions<TwitterSettings> settings, ITwitterAuth auth)
         {
-            var appCredentials = new TwitterCredentials(settings.Value.ConsumerKey, settings.Value.ConsumerSecret);
-            Auth.SetUserCredentials(
-                settings.Value.ConsumerKey,
-                settings.Value.ConsumerSecret,
-                settings.Value.AccessToken,
-                settings.Value.TokenSecret);
-            AuthFlow.InitAuthentication(appCredentials);
+            auth.Authenticate();
             this.settings = settings;
         }
 
@@ -41,21 +38,25 @@ namespace MyStudyProject.Data.Internet.Services.Twitter
 
         public async Task<ICommandResult> Save(IEnumerable<MessageCreateCommand> filtered)
         {
-            foreach (var command in filtered)
-            {   //timeout: 10 000ms
-                ITweet tweet = await TweetAsync.PublishTweet(command.Body);
-                var fail = ExceptionHandler.GetLastException().TwitterDescription;
-               
-                if (fail != null)
+            //todo: refactor
+            try
+            {
+                var seconds = 1;
+                foreach (var command in filtered)
                 {
-                    //todo: logging
+                    BackgroundJob.Schedule<ITwitterBackgroundJob<MessageCreateCommand>>(
+                        x => x.PublishTweet(command),
+                        TimeSpan.FromSeconds(seconds));
+                    seconds += settings.Value.TwitterMessagePublishDelay;
                 }
             }
-            ICommandResult result = new CommandResult()
+            catch (Exception ex)
             {
-                Success = true
-            };
-            return result;
+                Console.WriteLine(ex);
+                //todo: logging here
+                throw;
+            }
+            return new CommandResult { Success = true }; ;
         }
 
         public async Task<MessagesQueryResult> GetNumberAsync(int number, string hashtag)

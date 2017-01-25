@@ -6,5 +6,6 @@
         public string ConsumerSecret { get; set; }
         public string AccessToken { get; set; }
         public string TokenSecret { get; set; }
+        public int TwitterMessagePublishDelay { get; set; }
     }
 }

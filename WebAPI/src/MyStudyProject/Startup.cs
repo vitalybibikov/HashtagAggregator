@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Net;
+using Autofac;
+using Autofac.Core;
 using AutoMapper;
-
+using Hangfire;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Hosting;
@@ -59,17 +61,26 @@ namespace MyStudyProject
                         Duration = 60
                     });
             });
-
+            var connectionString = Configuration.GetSection("AppSettings:ConnectionString").Value;
             services.AddEntityFrameworkSqlServer()
-                .AddDbContext<SqlApplicationDbContext>(options => options.UseSqlServer(Configuration.GetSection("AppSettings:ConnectionString").Value));
+                .AddDbContext<SqlApplicationDbContext>(
+                options => options.UseSqlServer(connectionString));
 
             services.AddScoped(sp => mapperConfiguration.CreateMapper());
             services.AddSingleton<IConfiguration>(Configuration);
             services.AddSingleton<IMemoryCacheWrapper, MemoryCacheMock>();
+
             mapperConfiguration.AssertConfigurationIsValid();
 
-            var builder = new AutofacModulesConfigurator();
-            return builder.Configure(services);
+            //hangfire
+            services.AddHangfire(config => config.UseSqlServerStorage(connectionString));
+            services.AddCors(options => options.AddPolicy("AllowAll", p => p.AllowAnyOrigin()));
+
+            var configurator = new AutofacModulesConfigurator();
+            IContainer container = configurator.Configure(services);
+            GlobalConfiguration.Configuration.UseActivator(new AutofacContainerJobActivator(container));
+
+            return container.Resolve<IServiceProvider>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -77,7 +88,7 @@ namespace MyStudyProject
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
-            
+
             app.UseExceptionHandler(options =>
             {
                 options.Run(
@@ -94,6 +105,8 @@ namespace MyStudyProject
             });
 
             app.UseStatusCodePages();
+            app.UseHangfireDashboard();
+            app.UseHangfireServer();
             app.UseMvc();
         }
     }

@@ -3,6 +3,7 @@
 
   "dependencies": {
     "AspNetCore.Security.OAuth.Vkontakte": "1.0.0",
+    "Hangfire.Core": "1.6.8",
     "MyStudyProject.Core.Contracts": "1.0.0-*",
     "MyStudyProject.Core.Cqrs": "1.0.0-*",
     "MyStudyProject.Core.Models": "1.0.0-*",

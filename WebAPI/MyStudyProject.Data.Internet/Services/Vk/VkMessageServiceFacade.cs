@@ -1,8 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
 
 using Microsoft.Extensions.Options;
+using MyStudyProject.Core.Contracts.Interface.Cqrs.Command;
+using MyStudyProject.Core.Models.Commands;
 using MyStudyProject.Core.Models.Results.Query;
 using MyStudyProject.Data.Contracts.ServiceFacades;
 using MyStudyProject.Data.Internet.Assemblers.Vk;
@@ -41,6 +44,11 @@ namespace MyStudyProject.Data.Internet.Services.Vk
                 VkMessageResultMapper mapper = new VkMessageResultMapper();
                 return mapper.MapBunch(feed.Feed, hashtag);
             }
+        }
+
+        public Task<ICommandResult> Save(IEnumerable<MessageCreateCommand> filtered)
+        {
+            throw new NotImplementedException();
         }
 
         public async Task<MessagesQueryResult> GetNumberAsync(int number, string hashtag)

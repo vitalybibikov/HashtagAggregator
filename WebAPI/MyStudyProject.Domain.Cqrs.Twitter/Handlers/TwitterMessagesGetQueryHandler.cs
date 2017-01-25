@@ -15,6 +15,7 @@ namespace MyStudyProject.Domain.Cqrs.Twitter.Handlers
     {
         public TwitterMessagesGetQueryHandler(ITwitterMessageFacade facade) : base(facade)
         {
+
         }
 
         protected override async Task<MessagesQueryResult> GetDataAsync(MessagesGetQuery query)

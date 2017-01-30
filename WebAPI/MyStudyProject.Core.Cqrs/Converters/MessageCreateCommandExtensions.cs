@@ -8,10 +8,7 @@ namespace MyStudyProject.Core.Cqrs.Converters
     {
         public static MessageCreateCommand BodyConvert(this MessageCreateCommand command, int maxLength)
         {
-            if (!String.IsNullOrWhiteSpace(command.Body) && command.Body.Length > maxLength)
-            {
-                command.Body = command.Body.Substring(0, maxLength);
-            }
+            command.Body = new MessageConverter().ConvertBody(command.Body, maxLength);
             return command;
         }
     }

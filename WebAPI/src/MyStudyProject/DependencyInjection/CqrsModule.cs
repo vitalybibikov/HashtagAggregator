@@ -11,7 +11,6 @@ using MyStudyProject.Domain.Cqrs.EF.Handlers;
 using MyStudyProject.Domain.Cqrs.Twitter.Handlers;
 using MyStudyProject.Domain.Cqrs.Vk.Handlers;
 
-using MyStudyProject.Shared.Common.UpdateStrategies;
 using Module = Autofac.Module;
 
 namespace MyStudyProject.DependencyInjection

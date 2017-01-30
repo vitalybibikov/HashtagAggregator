@@ -26,9 +26,16 @@ namespace MyStudyProject.Core.Cqrs.RequestFilter
 
         public Task<bool> IsRequestAllowed(object handler)
         {
-            bool isAllowed = true;
-            DataSourceTypeAttribute attribute =
+            DataSourceTypeAttribute attribute = 
                 handler?.GetType().GetTypeInfo().GetCustomAttribute<DataSourceTypeAttribute>();
+            TaskCompletionSource<bool> src = new TaskCompletionSource<bool>();
+            src.SetResult(IsRequestAllowed(attribute));
+            return src.Task;
+        }
+
+        private bool IsRequestAllowed(DataSourceTypeAttribute attribute)
+        {
+            bool isAllowed = true;
             if (attribute != null)
             {
                 if (IsObjectInCache(attribute))
@@ -40,9 +47,7 @@ namespace MyStudyProject.Core.Cqrs.RequestFilter
                     AddToCache(attribute);
                 }
             }
-            TaskCompletionSource<bool> src = new TaskCompletionSource<bool>();
-            src.SetResult(isAllowed);
-            return src.Task;
+            return isAllowed;
         }
 
         private void AddToCache(DataSourceTypeAttribute attribute)

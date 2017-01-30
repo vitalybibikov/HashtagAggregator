@@ -1,7 +1,8 @@
 ﻿using MyStudyProject.Core.Models.Commands;
 using MyStudyProject.Data.Contracts.Interface;
-
+using MyStudyProject.Data.Contracts.Interface.JobObjects;
 using Tweetinvi;
+using Tweetinvi.Models;
 
 namespace MyStudyProject.Data.Internet.Services.Twitter
 {
@@ -12,9 +13,10 @@ namespace MyStudyProject.Data.Internet.Services.Twitter
             auth.Authenticate();
         }
 
-        public void PublishTweet(MessageCreateCommand command)
+        public void Publish(MessageCreateCommand command)
         {
             //todo: check body on null
+
             var result = Tweet.PublishTweet(command.Body);
             var fail = ExceptionHandler.GetLastException().TwitterDescription;
             //todo: logging here

@@ -1,7 +1,7 @@
 ﻿namespace MyStudyProject.Core.Contracts.Interface.Cqrs.Command
 {
     /// <summary>
-    /// Marker interface to mark a command
+    /// Marker interface
     /// </summary>
     public interface ICommand
     {

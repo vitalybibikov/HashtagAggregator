@@ -1,7 +1,9 @@
 ﻿using System.Collections.Generic;
+
 using MyStudyProject.Core.Contracts.Interface;
 using MyStudyProject.Core.Models.Results.Query;
 using MyStudyProject.Shared.Contracts.Enums;
+
 using Tweetinvi.Models;
 
 namespace MyStudyProject.Data.Internet.Assemblers.Twitter

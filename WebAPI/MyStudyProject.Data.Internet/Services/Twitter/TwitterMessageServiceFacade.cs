@@ -10,20 +10,23 @@ using MyStudyProject.Core.Models.Results.Query;
 using MyStudyProject.Data.Contracts.ServiceFacades;
 using MyStudyProject.Data.Internet.Assemblers.Twitter;
 using MyStudyProject.Shared.Common.Settings;
+using MyStudyProject.Data.Contracts.Interface;
 
 using Tweetinvi;
 using Tweetinvi.Models;
 using Tweetinvi.Parameters;
+
 using Hangfire;
-using MyStudyProject.Data.Contracts.Interface;
+using MyStudyProject.Core.Cqrs.Converters;
+using MyStudyProject.Data.Contracts.Interface.JobObjects;
 
 namespace MyStudyProject.Data.Internet.Services.Twitter
 {
     public class TwitterMessageServiceFacade : ITwitterMessageFacade
     {
-        private readonly IOptions<TwitterSettings> settings;
+        private readonly IOptions<TwitterApiSettings> settings;
 
-        public TwitterMessageServiceFacade(IOptions<TwitterSettings> settings, ITwitterAuth auth)
+        public TwitterMessageServiceFacade(IOptions<TwitterApiSettings> settings, ITwitterAuth auth)
         {
             auth.Authenticate();
             this.settings = settings;
@@ -42,10 +45,11 @@ namespace MyStudyProject.Data.Internet.Services.Twitter
             try
             {
                 var seconds = 1;
-                foreach (var command in filtered)
+                foreach (MessageCreateCommand command in filtered)
                 {
+                    var converted = command.BodyConvert(settings.Value.MaxBodyLength);
                     BackgroundJob.Schedule<ITwitterBackgroundJob<MessageCreateCommand>>(
-                        x => x.PublishTweet(command),
+                        x => x.Publish(converted),
                         TimeSpan.FromSeconds(seconds));
                     seconds += settings.Value.TwitterMessagePublishDelay;
                 }
@@ -56,7 +60,7 @@ namespace MyStudyProject.Data.Internet.Services.Twitter
                 //todo: logging here
                 throw;
             }
-            return new CommandResult { Success = true }; ;
+            return new CommandResult { Success = true };
         }
 
         public async Task<MessagesQueryResult> GetNumberAsync(int number, string hashtag)

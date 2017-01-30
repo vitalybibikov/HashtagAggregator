@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Net;
 using Autofac;
-using Autofac.Core;
 using AutoMapper;
 using Hangfire;
 using Microsoft.AspNetCore.Builder;
@@ -48,10 +47,11 @@ namespace MyStudyProject
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
             services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
-            services.Configure<TwitterSettings>(Configuration.GetSection("TwitterSettings"));
+            services.Configure<TwitterAuthSettings>(Configuration.GetSection("TwitterSettings"));
             services.Configure<VkSettings>(Configuration.GetSection("VkSettings"));
             services.Configure<InternetUpdateSettings>(Configuration.GetSection("InternetUpdateSettings"));
-
+            services.Configure<TwitterApiSettings>(Configuration.GetSection("TwitterApiSettings"));
+            
             services.AddMemoryCache();
             services.AddMvc(options =>
             {
@@ -66,10 +66,9 @@ namespace MyStudyProject
                 .AddDbContext<SqlApplicationDbContext>(
                 options => options.UseSqlServer(connectionString));
 
-            services.AddScoped(sp => mapperConfiguration.CreateMapper());
             services.AddSingleton<IConfiguration>(Configuration);
             services.AddSingleton<IMemoryCacheWrapper, MemoryCacheMock>();
-
+            services.AddScoped(sp => mapperConfiguration.CreateMapper());
             mapperConfiguration.AssertConfigurationIsValid();
 
             //hangfire

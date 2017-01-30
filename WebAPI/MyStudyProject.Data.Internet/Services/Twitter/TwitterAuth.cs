@@ -10,9 +10,9 @@ namespace MyStudyProject.Data.Internet.Services.Twitter
 {
     public class TwitterAuth : ITwitterAuth
     {
-        private IOptions<TwitterSettings> settings;
+        private IOptions<TwitterAuthSettings> settings;
 
-        public TwitterAuth(IOptions<TwitterSettings> settings)
+        public TwitterAuth(IOptions<TwitterAuthSettings> settings)
         {
             this.settings = settings;
         }

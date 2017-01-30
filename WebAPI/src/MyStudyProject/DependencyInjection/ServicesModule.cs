@@ -3,6 +3,7 @@ using MyStudyProject.Core.Contracts.Interface;
 using MyStudyProject.Core.Cqrs.RequestFilter;
 using MyStudyProject.Core.Models.Commands;
 using MyStudyProject.Data.Contracts.Interface;
+using MyStudyProject.Data.Contracts.Interface.JobObjects;
 using MyStudyProject.Data.Contracts.ServiceFacades;
 using MyStudyProject.Data.Internet.Services.Twitter;
 using MyStudyProject.Data.Internet.Services.Vk;
@@ -18,6 +19,7 @@ namespace MyStudyProject.DependencyInjection
             builder.RegisterType<TwitterMessageServiceFacade>().As<ITwitterMessageFacade>();
             builder.RegisterType<RequestQueryFilter>().As<IRequestFilter>();
             builder.RegisterType<TwitterBackgroundJob>().As<ITwitterBackgroundJob<MessageCreateCommand>>();
+            builder.RegisterType<VkBackgroundJob>().As<IVkBackgroundJob<MessageCreateCommand>>();
             builder.RegisterType<TwitterAuth>().As<ITwitterAuth>(); 
         }
     }

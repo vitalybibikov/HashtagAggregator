@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
-
+using Hangfire;
 using Microsoft.Extensions.Options;
 using MyStudyProject.Core.Contracts.Interface.Cqrs.Command;
 using MyStudyProject.Core.Models.Commands;
+using MyStudyProject.Core.Models.Results.Command;
 using MyStudyProject.Core.Models.Results.Query;
+using MyStudyProject.Data.Contracts.Interface;
 using MyStudyProject.Data.Contracts.ServiceFacades;
 using MyStudyProject.Data.Internet.Assemblers.Vk;
 using MyStudyProject.Data.Internet.Services.Vk.Models;
@@ -46,9 +48,28 @@ namespace MyStudyProject.Data.Internet.Services.Vk
             }
         }
 
-        public Task<ICommandResult> Save(IEnumerable<MessageCreateCommand> filtered)
+        public async Task<ICommandResult> Save(IEnumerable<MessageCreateCommand> filtered)
         {
+            //todo: refactor
             throw new NotImplementedException();
+            //try
+            //{
+            //    var seconds = 1;
+            //    foreach (var command in filtered)
+            //    {
+            //        BackgroundJob.Schedule<IVkBackgroundJob<MessageCreateCommand>>(
+            //            x => x.Publish(command),
+            //            TimeSpan.FromSeconds(seconds));
+            //        seconds += settings.Value.VkMessagePublishDelay;
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    Console.WriteLine(ex);
+            //    //todo: logging here
+            //    throw;
+            //}
+            //return new CommandResult { Success = true };
         }
 
         public async Task<MessagesQueryResult> GetNumberAsync(int number, string hashtag)

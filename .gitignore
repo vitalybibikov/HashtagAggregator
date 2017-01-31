@@ -93,14 +93,12 @@ agentSettings.config
 #########################
 # Angular 2 #
 #########################
-.idea
+system-config.js*
+**/wwwroot/app/**/*.map
+**/wwwroot/app/**/*.js
 node_modules
 jspm_packages
-npm-debug.*
-link-checker-results.txt
-app/**/*.js
-*.js.map
-e2e/**/*.js
-e2e/**/*.js.map
-_test-output
-_temp
+bower_components
+aot/*
+dist/*
+yarn.lock

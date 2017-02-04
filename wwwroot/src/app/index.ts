@@ -1,5 +1,5 @@
 // App
-import { APP_ROUTER_PROVIDERS } from "../platform/providers";
+import { APP_ROUTER_PROVIDERS } from '../platform/providers';
 export * from './app.module';
 
 

@@ -33,7 +33,7 @@ namespace MyStudyProject.Controllers
         [ResponseCache(CacheProfileName = "Default")]
         public async Task<IEnumerable<MessageViewModel>> Get(string hashtag)
         {
-            var query = new MessagesGetQuery {HashTag = hashtag};
+            var query = new MessagesGetQuery { HashTag = hashtag };
             var result = await queryDispatcher.DispatchAsync<MessagesGetQuery, MessagesQueryResult>(query);
             await commandDispatcher.DispatchAsync(Mapper.Map<MessagesCreateCommand>(result));
             return Mapper.Map<IEnumerable<MessageViewModel>>(result.Messages);

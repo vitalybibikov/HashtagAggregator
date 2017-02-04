@@ -73,8 +73,7 @@ namespace MyStudyProject
 
             //hangfire
             services.AddHangfire(config => config.UseSqlServerStorage(connectionString));
-            services.AddCors(options => options.AddPolicy("AllowAll", p => p.AllowAnyOrigin()));
-
+            services.AddCors();
             var configurator = new AutofacModulesConfigurator();
             IContainer container = configurator.Configure(services);
             GlobalConfiguration.Configuration.UseActivator(new AutofacContainerJobActivator(container));

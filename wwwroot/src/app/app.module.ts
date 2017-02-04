@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import {HomeModule } from './home/home.module'
+import { HomeModule } from './home/home.module'
 import {
   NgModule,
   ApplicationRef
@@ -52,10 +52,9 @@ type StoreType = {
     RouterModule.forRoot(APP_ROUTES, { useHash: true, preloadingStrategy: PreloadAllModules })
   ],
   providers: [
-    //...PROVIDERS,
+    ...PROVIDERS,
     ...ENV_PROVIDERS,
-    //...APP_PROVIDERS,
-   // APP_RESOLVER_PROVIDERS,
+    APP_RESOLVER_PROVIDERS,
     AppState
   ]
 })

@@ -5,6 +5,7 @@ import {
 
 import { AppState } from '../../app.service';
 import { MessageService } from '../shared/message.service';
+import { Message } from '../shared/models/message';
 
 @Component({
     selector: 'messages-list',
@@ -14,11 +15,18 @@ import { MessageService } from '../shared/message.service';
 })
 
 export class MessagesListComponent implements OnInit {
+
+    private messages: Message[];
+
     constructor(public appState: AppState, public messageService: MessageService) {
 
     }
 
     public ngOnInit() {
-        // this.title.getData().subscribe(data => this.data = data);
+        this.messageService
+            .getData()
+            .subscribe(
+                messages => this.messages = messages
+            );
     }
 }

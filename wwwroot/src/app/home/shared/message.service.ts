@@ -23,10 +23,7 @@ export class MessageService {
 
     private getMappedMessage(message: any): Message[] {
         let messages = <Message[]>message.json();
-        messages.forEach(element => {
-            console.log(element.mediaType);
-        });
-        messages.sort((first, second) => first.postDate > second.postDate ? 1 : -1);
+        messages.sort((first, second) => first.postDate < second.postDate ? 1 : -1);
         return messages;
     }
 }

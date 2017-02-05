@@ -1,7 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { HomeModule } from './home/home.module'
+import { HomeModule } from './home/home.module';
+import { SharedModule } from "./shared/shared.module";
 import {
   NgModule,
   ApplicationRef
@@ -49,6 +50,7 @@ type StoreType = {
     BrowserModule,
     FormsModule,
     HttpModule,
+    SharedModule,
     RouterModule.forRoot(APP_ROUTES, { useHash: true, preloadingStrategy: PreloadAllModules })
   ],
   providers: [

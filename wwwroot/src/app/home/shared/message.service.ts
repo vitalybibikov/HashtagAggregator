@@ -17,7 +17,16 @@ export class MessageService {
 
     public getData(): Observable<Message[]> {
         return this.http.get(this.config.apiEndpoint + 'statistics/microsoft')
-            .map(x => x.json())
+            .map(messages => this.getMappedMessage(messages))
             .share();
+    }
+
+    private getMappedMessage(message: any): Message[] {
+        let messages = <Message[]>message.json();
+        messages.forEach(element => {
+            console.log(element.mediaType);
+        });
+        messages.sort((first, second) => first.postDate > second.postDate ? 1 : -1);
+        return messages;
     }
 }

@@ -1,4 +1,4 @@
-export enum SocialMedia {
-    Vk,
-    Twitter
+export enum MediaType {
+    VK = 0,
+    Twitter = 1
 }

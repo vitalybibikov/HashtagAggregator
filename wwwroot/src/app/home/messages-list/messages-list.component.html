@@ -1,3 +1,3 @@
-<li *ngFor="let message of messages">
-    <span> {{message.body}} </span>
-</li>
+<ul class="list-group">
+    <message [message]='message' *ngFor="let message of messages"></message>
+</ul>

@@ -1,11 +1,13 @@
 import {
     Component,
-    OnInit
+    OnInit,
+    OnDestroy
 } from '@angular/core';
 
 import { AppState } from '../../app.service';
 import { MessageService } from '../shared/message.service';
 import { Message } from '../shared/models/message';
+import { Subscription } from "rxjs";
 
 @Component({
     selector: 'messages-list',
@@ -14,19 +16,24 @@ import { Message } from '../shared/models/message';
     styleUrls: ['messages-list.component.scss']
 })
 
-export class MessagesListComponent implements OnInit {
+export class MessagesListComponent implements OnInit, OnDestroy {
 
     private messages: Message[];
+    private messageSubscription: Subscription;
 
     constructor(public appState: AppState, public messageService: MessageService) {
 
     }
 
     public ngOnInit() {
-        this.messageService
+        this.messageSubscription = this.messageService
             .getData()
             .subscribe(
-                messages => this.messages = messages
+            messages => this.messages = messages
             );
+    }
+
+    public ngOnDestroy(): any {
+        this.messageSubscription.unsubscribe();
     }
 }

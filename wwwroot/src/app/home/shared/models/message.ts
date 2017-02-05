@@ -1,9 +1,9 @@
-import { SocialMedia } from '../enums/social-media.enum'
+import { MediaType } from '../enums/social-media.enum'
 
 export class Message {
     id : number;
     body : string;
-    hashtag : string;
-    socialMedia : SocialMedia;
+    hashTag : string;
+    mediaType : number;
     postDate : Date
 }

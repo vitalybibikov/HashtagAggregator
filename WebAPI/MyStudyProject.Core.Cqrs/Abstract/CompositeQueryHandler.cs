@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+
+using Microsoft.Extensions.Logging;
 using MyStudyProject.Core.Contracts.Interface.Cqrs.Query;
+using MyStudyProject.Shared.Logging;
 
 namespace MyStudyProject.Core.Cqrs.Abstract
 {
@@ -9,12 +12,14 @@ namespace MyStudyProject.Core.Cqrs.Abstract
         where TResult : IQueryResult, new()
         where TParameter : IQuery
     {
+        private readonly ILogger logger;
         private readonly List<IQueryHandler<TParameter, TResult>> handlers;
 
         public List<IQueryHandler<TParameter, TResult>> Handlers => handlers;
 
-        protected CompositeQueryHandler()
+        protected CompositeQueryHandler(ILogger logger)
         {
+            this.logger = logger;
             handlers = new List<IQueryHandler<TParameter, TResult>>();
         }
 
@@ -33,8 +38,12 @@ namespace MyStudyProject.Core.Cqrs.Abstract
                     }
                     catch (Exception ex)
                     {
-                        //Todo: Add logging
-                        Console.WriteLine("Exception: " + ex);
+                        logger.LogCritical(
+                            LoggingEvents.EXCEPTION_EXECUTE_QUERY,
+                            ex,
+                            "Failed to execute {@query} with {@handler} ",
+                            query,
+                            handler);
                     }
                 }
             }

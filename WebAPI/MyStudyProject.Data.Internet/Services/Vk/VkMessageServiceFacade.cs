@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Hangfire;
+using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using MyStudyProject.Core.Contracts.Interface.Cqrs.Command;
 using MyStudyProject.Core.Models.Commands;
@@ -23,10 +24,12 @@ namespace MyStudyProject.Data.Internet.Services.Vk
     public class VkMessageServiceFacade : IVkMessageFacade
     {
         private readonly IOptions<VkSettings> settings;
+        private readonly ILogger<VkMessageServiceFacade> logger;
 
-        public VkMessageServiceFacade(IOptions<VkSettings> settings)
+        public VkMessageServiceFacade(IOptions<VkSettings> settings, ILogger<VkMessageServiceFacade> logger)
         {
             this.settings = settings;
+            this.logger = logger;
         }
 
         public async Task<MessagesQueryResult> GetAllAsync(string hashtag)
@@ -66,8 +69,6 @@ namespace MyStudyProject.Data.Internet.Services.Vk
             //catch (Exception ex)
             //{
             //    Console.WriteLine(ex);
-            //    //todo: logging here
-            //    throw;
             //}
             //return new CommandResult { Success = true };
         }

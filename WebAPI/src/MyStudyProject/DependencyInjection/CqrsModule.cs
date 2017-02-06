@@ -1,7 +1,5 @@
 ﻿using System.Reflection;
 
-using Autofac;
-
 using MyStudyProject.Core.Cqrs.Dispatchers;
 using MyStudyProject.Core.Models.Queries;
 using MyStudyProject.Core.Contracts.Interface.Cqrs.Command;
@@ -11,6 +9,7 @@ using MyStudyProject.Domain.Cqrs.EF.Handlers;
 using MyStudyProject.Domain.Cqrs.Twitter.Handlers;
 using MyStudyProject.Domain.Cqrs.Vk.Handlers;
 
+using Autofac;
 using Module = Autofac.Module;
 
 namespace MyStudyProject.DependencyInjection
@@ -20,7 +19,6 @@ namespace MyStudyProject.DependencyInjection
         protected override void Load(ContainerBuilder builder)
         {
             var modelAssembly = typeof(MessagesGetQuery).GetTypeInfo().Assembly;
-
             var dataAssembly = typeof(MessagesGetQueryHandler).GetTypeInfo().Assembly;
             var vkAssembly = typeof(VkMessagesGetQueryHandler).GetTypeInfo().Assembly;
             var twitterAssembly = typeof(TwitterMessagesGetQueryHandler).GetTypeInfo().Assembly;

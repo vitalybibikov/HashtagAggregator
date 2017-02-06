@@ -3,6 +3,7 @@ using System.Net;
 using Autofac;
 using AutoMapper;
 using Hangfire;
+
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Hosting;
@@ -19,6 +20,8 @@ using MyStudyProject.DependencyInjection;
 using MyStudyProject.Shared.Common.Helpers;
 using MyStudyProject.Shared.Common.Settings;
 using MyStudyProject.Shared.Contracts.Interfaces;
+using Serilog;
+
 
 namespace MyStudyProject
 {
@@ -32,6 +35,12 @@ namespace MyStudyProject
                 .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
                 .AddEnvironmentVariables();
             Configuration = builder.Build();
+            
+            //Configure Serilog
+            Log.Logger = new LoggerConfiguration()
+                .ReadFrom
+                .Configuration(Configuration)
+                .CreateLogger();
 
             mapperConfiguration = new MapperConfiguration(cfg =>
             {
@@ -47,7 +56,7 @@ namespace MyStudyProject
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
             services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
-            services.Configure<TwitterAuthSettings>(Configuration.GetSection("TwitterSettings"));
+            services.Configure<TwitterAuthSettings>(Configuration.GetSection("TwitterAuthSettings"));
             services.Configure<VkSettings>(Configuration.GetSection("VkSettings"));
             services.Configure<InternetUpdateSettings>(Configuration.GetSection("InternetUpdateSettings"));
             services.Configure<TwitterApiSettings>(Configuration.GetSection("TwitterApiSettings"));
@@ -74,8 +83,8 @@ namespace MyStudyProject
             //hangfire
             services.AddHangfire(config => config.UseSqlServerStorage(connectionString));
             services.AddCors();
-            var configurator = new AutofacModulesConfigurator();
-            IContainer container = configurator.Configure(services);
+
+            IContainer container = new AutofacModulesConfigurator().Configure(services);
             GlobalConfiguration.Configuration.UseActivator(new AutofacContainerJobActivator(container));
 
             return container.Resolve<IServiceProvider>();
@@ -84,8 +93,8 @@ namespace MyStudyProject
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
-            loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
+            loggerFactory.AddSerilog();
 
             app.UseExceptionHandler(options =>
             {

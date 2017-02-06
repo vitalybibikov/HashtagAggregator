@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
+using Microsoft.Extensions.Logging;
 using MyStudyProject.Core.Contracts.Interface.Cqrs.Command;
 using MyStudyProject.Core.Models.Results.Command;
+using MyStudyProject.Shared.Logging;
 
 namespace MyStudyProject.Core.Cqrs.Abstract
 {
@@ -11,10 +13,12 @@ namespace MyStudyProject.Core.Cqrs.Abstract
         where TParameter : ICommand, new()
     {
         private readonly List<ICommandHandler<TParameter>> handlers;
+        private ILogger logger;
         public List<ICommandHandler<TParameter>> Handlers => handlers;
 
-        protected CompositeCommandHandler()
+        protected CompositeCommandHandler(ILogger logger)
         {
+            this.logger = logger;
             handlers = new List<ICommandHandler<TParameter>>();
         }
 
@@ -28,8 +32,12 @@ namespace MyStudyProject.Core.Cqrs.Abstract
                 }
                 catch (Exception ex)
                 {
-                    //Todo: implement logging
-                    Console.WriteLine("Exception: " + ex);
+                    logger.LogCritical(
+                        LoggingEvents.EXCEPTION_EXECUTE_COMMAND, 
+                        ex, 
+                        "Failed to execute {@command} with {@handler}", 
+                        command, 
+                        handler);
                 }
             }
             return new CommandResult { Success = true };

@@ -1167,6 +1167,41 @@
           }
         }
       },
+      "Serilog/2.3.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.CSharp": "4.0.1",
+          "System.Collections": "4.0.11",
+          "System.Dynamic.Runtime": "4.0.11",
+          "System.Globalization": "4.0.11",
+          "System.Linq": "4.1.0",
+          "System.Reflection": "4.1.0",
+          "System.Reflection.Extensions": "4.0.1",
+          "System.Runtime": "4.1.0",
+          "System.Runtime.Extensions": "4.1.0",
+          "System.Text.RegularExpressions": "4.1.0",
+          "System.Threading": "4.0.11"
+        },
+        "compile": {
+          "lib/netstandard1.3/Serilog.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.3/Serilog.dll": {}
+        }
+      },
+      "Serilog.Extensions.Logging/1.4.0-dev-10138": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Extensions.Logging.Abstractions": "1.1.0",
+          "Serilog": "2.3.0"
+        },
+        "compile": {
+          "lib/netstandard1.3/Serilog.Extensions.Logging.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.3/Serilog.Extensions.Logging.dll": {}
+        }
+      },
       "System.AppContext/4.3.0": {
         "type": "package",
         "dependencies": {
@@ -3099,7 +3134,9 @@
           "MyStudyProject.Core.Contracts": "1.0.0",
           "MyStudyProject.Core.Models": "1.0.0",
           "MyStudyProject.Data.DataAccess": "1.0.0",
-          "MyStudyProject.Shared.Contracts": "1.0.0"
+          "MyStudyProject.Shared.Contracts": "1.0.0",
+          "MyStudyProject.Shared.Logging": "1.0.0",
+          "Serilog.Extensions.Logging": "1.4.0-dev-10138"
         },
         "compile": {
           "netcoreapp1.1/MyStudyProject.Core.Cqrs.dll": {}
@@ -3128,7 +3165,8 @@
         "framework": ".NETCoreApp,Version=v1.1",
         "dependencies": {
           "Microsoft.NETCore.App": "1.1.0",
-          "MyStudyProject.Core.Models": "1.0.0"
+          "MyStudyProject.Core.Models": "1.0.0",
+          "TweetinviAPI": "1.2.0.1"
         },
         "compile": {
           "netcoreapp1.1/MyStudyProject.Data.Contracts.dll": {}
@@ -3199,6 +3237,19 @@
         },
         "runtime": {
           "netcoreapp1.1/MyStudyProject.Shared.Contracts.dll": {}
+        }
+      },
+      "MyStudyProject.Shared.Logging/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v1.1",
+        "dependencies": {
+          "Microsoft.NETCore.App": "1.1.0"
+        },
+        "compile": {
+          "netcoreapp1.1/MyStudyProject.Shared.Logging.dll": {}
+        },
+        "runtime": {
+          "netcoreapp1.1/MyStudyProject.Shared.Logging.dll": {}
         }
       }
     }
@@ -4390,6 +4441,38 @@
         "runtime.win7-x86.runtime.native.System.Data.SqlClient.sni.4.3.0.nupkg.sha512",
         "runtime.win7-x86.runtime.native.System.Data.SqlClient.sni.nuspec",
         "runtimes/win7-x86/native/sni.dll"
+      ]
+    },
+    "Serilog/2.3.0": {
+      "sha512": "JJMEqTUGe/bA4OEMefGd8W6si9oStSa3CF47dIHzkRKJHqFWFOW8D2aZTOW6VIgNLY2hzruQXhvp2tX0NVkgsw==",
+      "type": "package",
+      "path": "Serilog/2.3.0",
+      "files": [
+        "Serilog.2.3.0.nupkg.sha512",
+        "Serilog.nuspec",
+        "lib/net45/Serilog.dll",
+        "lib/net45/Serilog.xml",
+        "lib/net46/Serilog.dll",
+        "lib/net46/Serilog.xml",
+        "lib/netstandard1.0/Serilog.dll",
+        "lib/netstandard1.0/Serilog.xml",
+        "lib/netstandard1.3/Serilog.dll",
+        "lib/netstandard1.3/Serilog.xml"
+      ]
+    },
+    "Serilog.Extensions.Logging/1.4.0-dev-10138": {
+      "sha512": "jIbloA1WlNacVHVOPgRK2YHQSY5FX2nNj83wzKDg7kREwrlJlUGfRSbElByxcJcsf7bEOtwfoe0FEmENpowDzw==",
+      "type": "package",
+      "path": "Serilog.Extensions.Logging/1.4.0-dev-10138",
+      "files": [
+        "lib/net45/Serilog.Extensions.Logging.dll",
+        "lib/net45/Serilog.Extensions.Logging.xml",
+        "lib/net46/Serilog.Extensions.Logging.dll",
+        "lib/net46/Serilog.Extensions.Logging.xml",
+        "lib/netstandard1.3/Serilog.Extensions.Logging.dll",
+        "lib/netstandard1.3/Serilog.Extensions.Logging.xml",
+        "serilog.extensions.logging.1.4.0-dev-10138.nupkg.sha512",
+        "serilog.extensions.logging.nuspec"
       ]
     },
     "System.AppContext/4.3.0": {
@@ -9043,6 +9126,11 @@
       "type": "project",
       "path": "../MyStudyProject.Shared.Contracts/project.json",
       "msbuildProject": "../MyStudyProject.Shared.Contracts/MyStudyProject.Shared.Contracts.xproj"
+    },
+    "MyStudyProject.Shared.Logging/1.0.0": {
+      "type": "project",
+      "path": "../MyStudyProject.Shared.Logging/project.json",
+      "msbuildProject": "../MyStudyProject.Shared.Logging/MyStudyProject.Shared.Logging.xproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -9055,6 +9143,7 @@
       "MyStudyProject.Data.Contracts >= 1.0.0-*",
       "MyStudyProject.Data.Entities >= 1.0.0-*",
       "MyStudyProject.Shared.Common >= 1.0.0-*",
+      "MyStudyProject.Shared.Logging >= 1.0.0-*",
       "Newtonsoft.Json >= 9.0.2-beta1",
       "TweetinviAPI >= 1.2.0"
     ],

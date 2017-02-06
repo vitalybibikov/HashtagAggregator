@@ -17,15 +17,17 @@ namespace MyStudyProject.Data.Internet.Services.Twitter
             this.settings = settings;
         }
 
-        public void Authenticate()
+        public IAuthenticationContext Authenticate()
         {
+            //todo: test settings
             var appCredentials = new TwitterCredentials(settings.Value.ConsumerKey, settings.Value.ConsumerSecret);
             Auth.SetUserCredentials(
                 settings.Value.ConsumerKey,
                 settings.Value.ConsumerSecret,
                 settings.Value.AccessToken,
                 settings.Value.TokenSecret);
-            AuthFlow.InitAuthentication(appCredentials);
+
+            return AuthFlow.InitAuthentication(appCredentials);
         }
     }
 }

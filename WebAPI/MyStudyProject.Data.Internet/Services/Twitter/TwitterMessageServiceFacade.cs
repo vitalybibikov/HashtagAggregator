@@ -17,48 +17,63 @@ using Tweetinvi.Models;
 using Tweetinvi.Parameters;
 
 using Hangfire;
+using Microsoft.Extensions.Logging;
 using MyStudyProject.Core.Cqrs.Converters;
 using MyStudyProject.Data.Contracts.Interface.JobObjects;
+using MyStudyProject.Shared.Logging;
 
 namespace MyStudyProject.Data.Internet.Services.Twitter
 {
     public class TwitterMessageServiceFacade : ITwitterMessageFacade
     {
         private readonly IOptions<TwitterApiSettings> settings;
+        private readonly ILogger<TwitterMessageServiceFacade> logger;
 
-        public TwitterMessageServiceFacade(IOptions<TwitterApiSettings> settings, ITwitterAuth auth)
+        public TwitterMessageServiceFacade(IOptions<TwitterApiSettings> settings, ITwitterAuth auth, ILogger<TwitterMessageServiceFacade> logger)
         {
             auth.Authenticate();
             this.settings = settings;
+            this.logger = logger;
         }
 
         public async Task<MessagesQueryResult> GetAllAsync(string hashtag)
         {
             IEnumerable<ITweet> tweets = await SearchAsync.SearchTweets(hashtag);
+            var fail = ExceptionHandler.GetLastException()?.TwitterDescription;
+            if (!String.IsNullOrEmpty(fail))
+            {
+                logger.LogError(
+                    LoggingEvents.EXCEPTION_GET_TWITTER_MESSAGE, 
+                    "Failed to get messages by {hashtag} with {error}", 
+                    hashtag, 
+                    fail);
+            }
             TwitterMessageResultMapper mapper = new TwitterMessageResultMapper();
             return mapper.MapBunch(tweets, hashtag);
         }
 
         public async Task<ICommandResult> Save(IEnumerable<MessageCreateCommand> filtered)
         {
-            //todo: refactor
-            try
+            var publishIntervalInSec = 1;
+            foreach (MessageCreateCommand command in filtered)
             {
-                var seconds = 1;
-                foreach (MessageCreateCommand command in filtered)
+                MessageCreateCommand converted = null;
+                try
                 {
-                    var converted = command.BodyConvert(settings.Value.MaxBodyLength);
+                    converted = command.BodyConvert(settings.Value.MaxBodyLength);
                     BackgroundJob.Schedule<ITwitterBackgroundJob<MessageCreateCommand>>(
                         x => x.Publish(converted),
-                        TimeSpan.FromSeconds(seconds));
-                    seconds += settings.Value.TwitterMessagePublishDelay;
+                        TimeSpan.FromSeconds(publishIntervalInSec));
+                    publishIntervalInSec += settings.Value.TwitterMessagePublishDelay;
                 }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex);
-                //todo: logging here
-                throw;
+                catch (Exception ex)
+                {
+                    logger.LogError(
+                        LoggingEvents.EXCEPTION_SAVE_TWITTER_MESSAGE,
+                        ex,
+                        "Failed to save {@message} to twitter.",
+                        converted);
+                }
             }
             return new CommandResult { Success = true };
         }

@@ -1,8 +1,11 @@
-﻿using MyStudyProject.Core.Models.Commands;
+﻿using System;
+using MyStudyProject.Core.Contracts.Interface.Cqrs.Command;
+using MyStudyProject.Core.Models.Commands;
+using MyStudyProject.Core.Models.Results.Command;
 using MyStudyProject.Data.Contracts.Interface;
 using MyStudyProject.Data.Contracts.Interface.JobObjects;
+
 using Tweetinvi;
-using Tweetinvi.Models;
 
 namespace MyStudyProject.Data.Internet.Services.Twitter
 {
@@ -13,13 +16,18 @@ namespace MyStudyProject.Data.Internet.Services.Twitter
             auth.Authenticate();
         }
 
-        public void Publish(MessageCreateCommand command)
+        public ICommandResult Publish(MessageCreateCommand command)
         {
-            //todo: check body on null
-
-            var result = Tweet.PublishTweet(command.Body);
-            var fail = ExceptionHandler.GetLastException().TwitterDescription;
-            //todo: logging here
+            CommandResult result = new CommandResult
+            {
+                Message = ExceptionHandler.GetLastException().TwitterDescription,
+                Data = Tweet.PublishTweet(command.Body)
+            };
+            if (String.IsNullOrEmpty(result.Message))
+            {
+                result.Success = true;
+            }
+            return result;
         }
     }
 }

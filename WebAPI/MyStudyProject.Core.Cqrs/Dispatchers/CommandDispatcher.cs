@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Autofac;
-
+using Microsoft.Extensions.Logging;
 using MyStudyProject.Core.Contracts.Interface.Cqrs.Command;
 using MyStudyProject.Core.Cqrs.Abstract;
 
@@ -10,17 +10,20 @@ namespace MyStudyProject.Core.Cqrs.Dispatchers
     public class CommandDispatcher : ICommandDispatcher
     {
         private readonly ILifetimeScope container;
+        private readonly ILogger logger;
 
-        public CommandDispatcher(ILifetimeScope container)
+        public CommandDispatcher(ILifetimeScope container, ILogger<CommandDispatcher> logger)
         {
             this.container = container;
+            this.logger = logger;
         }
 
         public async Task<ICommandResult> DispatchAsync<T>(T command)
             where T : ICommand, new()
         {
-            var compositeHandler = container.Resolve<CompositeCommandHandler<T>>();
-            var handlers = container.Resolve<IList<ICommandHandler<T>>>();
+            var typedParameter = new TypedParameter(typeof(ILogger), logger);
+            var compositeHandler = container.Resolve<CompositeCommandHandler<T>>(typedParameter);
+            var handlers = container.Resolve<IList<ICommandHandler<T>>>(typedParameter);
 
             foreach (var handler in handlers)
             {

@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 
 using Autofac;
-
+using Microsoft.Extensions.Logging;
 using MyStudyProject.Core.Contracts.Interface;
 using MyStudyProject.Core.Contracts.Interface.Cqrs.Query;
 using MyStudyProject.Core.Cqrs.Abstract;
@@ -13,19 +13,23 @@ namespace MyStudyProject.Core.Cqrs.Dispatchers
     {
         private readonly ILifetimeScope container;
         private IRequestFilter requestFilter;
+        private readonly ILogger logger;
 
-        public QueryDispatcher(ILifetimeScope container, IRequestFilter requestFilter)
+        public QueryDispatcher(ILifetimeScope container, IRequestFilter requestFilter, ILogger<QueryDispatcher> logger)
         {
             this.container = container;
             this.requestFilter = requestFilter;
+            this.logger = logger;
         }
 
         public async Task<TResult> DispatchAsync<TParameter, TResult>(TParameter query)
             where TParameter : IQuery
             where TResult : IQueryResult, new()
         {
-            var compositeHandler = container.Resolve<CompositeQueryHandler<TParameter, TResult>>();
-            var handlers = container.Resolve<IList<IQueryHandler<TParameter, TResult>>>();
+            var typedParameter = new TypedParameter(typeof(ILogger), logger);
+
+            var compositeHandler = container.Resolve<CompositeQueryHandler<TParameter, TResult>>(typedParameter);
+            var handlers = container.Resolve<IList<IQueryHandler<TParameter, TResult>>>(typedParameter);
 
             foreach (IQueryHandler<TParameter, TResult> handler in handlers)
             {

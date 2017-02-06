@@ -1,7 +1,8 @@
 {
   "version": "1.0.0-*",
   "dependencies": {
-    "MyStudyProject.Core.Models": "1.0.0-*"
+    "MyStudyProject.Core.Models": "1.0.0-*",
+    "TweetinviAPI": "1.2.0.1"
   },
   "frameworks": {
     "netcoreapp1.1": {

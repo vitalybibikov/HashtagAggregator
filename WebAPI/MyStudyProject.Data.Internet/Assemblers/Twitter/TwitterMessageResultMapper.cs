@@ -13,15 +13,18 @@ namespace MyStudyProject.Data.Internet.Assemblers.Twitter
         public MessagesQueryResult MapBunch(IEnumerable<ITweet> messages, string hashtag)
         {
             var results = new MessagesQueryResult();
-            foreach (var tweet in messages)
+            if (messages != null)
             {
-                MessageQueryResult message = new MessageQueryResult(0,
-                    tweet.Text,
-                    hashtag,
-                    SocialMediaType.Twitter,
-                    tweet.TweetLocalCreationDate, tweet.IdStr,
-                    tweet.CreatedBy.IdStr);
-                results.Messages.Add(message);
+                foreach (var tweet in messages)
+                {
+                    MessageQueryResult message = new MessageQueryResult(0,
+                        tweet.Text,
+                        hashtag,
+                        SocialMediaType.Twitter,
+                        tweet.TweetLocalCreationDate, tweet.IdStr,
+                        tweet.CreatedBy.IdStr);
+                    results.Messages.Add(message);
+                }
             }
             return results;
         }

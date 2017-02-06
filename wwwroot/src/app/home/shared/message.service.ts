@@ -1,7 +1,6 @@
 import { Inject } from "@angular/core";
 import { Injectable } from "@angular/core";
 import { Http } from '@angular/http';
-import { Response, ResponseContentType } from "@angular/http";
 import { AppConfig, APP_CONFIG_TOKEN } from "../../../platform/configuration";
 import { Message } from "./models/message"
 import "rxjs/add/operator/map";
@@ -16,7 +15,7 @@ export class MessageService {
     }
 
     public getData(): Observable<Message[]> {
-        return this.http.get(this.config.apiEndpoint + 'statistics/microsoft')
+        return this.http.get(this.config.apiEndpoint + 'statistics/skiexhangetestmessage1')
             .map(messages => this.getMappedMessage(messages))
             .share();
     }

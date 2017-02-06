@@ -1,9 +1,9 @@
-﻿using System;
-
-using Autofac;
+﻿using Autofac;
 using Autofac.Extensions.DependencyInjection;
+using AutofacSerilogIntegration;
 
 using Microsoft.Extensions.DependencyInjection;
+using Serilog;
 
 namespace MyStudyProject.DependencyInjection
 {
@@ -12,10 +12,11 @@ namespace MyStudyProject.DependencyInjection
         public IContainer Configure(IServiceCollection services)
         {
             var builder = new ContainerBuilder();
+            builder.RegisterLogger();
             builder.RegisterModule<CqrsModule>();
             builder.RegisterModule<ServicesModule>();
             builder.Populate(services);
-
+            
             return builder.Build();
         }
     }

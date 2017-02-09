@@ -22,7 +22,7 @@ namespace MyStudyProject.Data.Internet.Services.Twitter
             CommandResult result = new CommandResult
             {
                 Message = ExceptionHandler.GetLastException()?.TwitterDescription,
-                Data = Tweet.PublishTweet(command.Body)
+                Data = Tweet.PublishTweet(command.MessageText)
             };
             if (String.IsNullOrEmpty(result.Message))
             {

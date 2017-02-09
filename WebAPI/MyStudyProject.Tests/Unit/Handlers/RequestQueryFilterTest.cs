@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Reflection;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Moq;
+
 using MyStudyProject.Core.Cqrs.RequestFilter;
-using MyStudyProject.Core.Models.Results.Query;
 using MyStudyProject.Data.Contracts.ServiceFacades;
 using MyStudyProject.Data.DataAccess.Context;
 using MyStudyProject.Domain.Cqrs.EF.Handlers;
@@ -27,7 +28,7 @@ namespace MyStudyProject.Tests.Unit.Handlers
             var vkFacadeMock = Mock.Of<IVkMessageFacade>();
             var vkHandler = new VkMessagesGetQueryHandler(vkFacadeMock);
             var vkAttribute = vkHandler.GetType().GetTypeInfo().GetCustomAttribute<DataSourceTypeAttribute>();
-  
+            ILogger<RequestQueryFilter> logger = Mock.Of<ILogger<RequestQueryFilter>>();
             var memoryCache = new Mock<IMemoryCacheWrapper>();
             memoryCache.Setup(m => m.Set(It.IsAny<string>(), It.IsAny<SocialMediaType>(), It.IsAny<TimeSpan>())).Returns(vkAttribute.MediaType);
 
@@ -37,7 +38,7 @@ namespace MyStudyProject.Tests.Unit.Handlers
             var settings = Options.Create(new InternetUpdateSettings());
             settings.Value.UpdatePeriod = 30000;
             
-            var filter = new RequestQueryFilter(memoryCache.Object, settings, null);
+            var filter = new RequestQueryFilter(memoryCache.Object, settings, logger);
 
             //Act
             var vkAllowed = filter.IsRequestAllowed(vkHandler).Result;
@@ -56,7 +57,7 @@ namespace MyStudyProject.Tests.Unit.Handlers
 
             var memoryCache = new Mock<IMemoryCacheWrapper>();
             memoryCache.Setup(m => m.Set(It.IsAny<string>(), It.IsAny<SocialMediaType>(), It.IsAny<TimeSpan>())).Returns(vkAttribute.MediaType);
-
+            ILogger<RequestQueryFilter> logger = Mock.Of<ILogger<RequestQueryFilter>>();
             object o = SocialMediaType.VK;
             memoryCache.Setup(m => m.TryGetValue(It.IsAny<SocialMediaType>(), out o)).Returns(false);
 
@@ -64,7 +65,7 @@ namespace MyStudyProject.Tests.Unit.Handlers
             settings.Value.UpdatePeriod = 30000;
 
             memoryCache.Setup(m => m.TryGetValue(It.IsAny<SocialMediaType>(), out o)).Returns(true);
-            var filter = new RequestQueryFilter(memoryCache.Object, settings, null);
+            var filter = new RequestQueryFilter(memoryCache.Object, settings, logger);
 
             //Act
             var vkAllowed = filter.IsRequestAllowed(vkHandler).Result;
@@ -82,14 +83,14 @@ namespace MyStudyProject.Tests.Unit.Handlers
 
             var memoryCache = new Mock<IMemoryCacheWrapper>();
             memoryCache.Setup(m => m.Set(It.IsAny<string>(), It.IsAny<SocialMediaType>(), It.IsAny<TimeSpan>())).Returns(twiAttribute.MediaType);
-
+            ILogger<RequestQueryFilter> logger = Mock.Of<ILogger<RequestQueryFilter>>();
             object o = SocialMediaType.Twitter;
             memoryCache.Setup(m => m.TryGetValue(It.IsAny<SocialMediaType>(), out o)).Returns(false);
 
             var settings = Options.Create(new InternetUpdateSettings());
             settings.Value.UpdatePeriod = 30000;
 
-            var filter = new RequestQueryFilter(memoryCache.Object, settings, null);
+            var filter = new RequestQueryFilter(memoryCache.Object, settings, logger);
 
             //Act
             var twiAllowed = filter.IsRequestAllowed(twiHandler).Result;
@@ -109,14 +110,14 @@ namespace MyStudyProject.Tests.Unit.Handlers
 
             var memoryCache = new Mock<IMemoryCacheWrapper>();
             memoryCache.Setup(m => m.Set(It.IsAny<string>(), It.IsAny<SocialMediaType>(), It.IsAny<TimeSpan>())).Returns(twiAttribute.MediaType);
-
+            ILogger<RequestQueryFilter> logger = Mock.Of<ILogger<RequestQueryFilter>>();
             object o = SocialMediaType.Twitter;
             memoryCache.Setup(m => m.TryGetValue(It.IsAny<SocialMediaType>(), out o)).Returns(true);
 
             var settings = Options.Create(new InternetUpdateSettings());
             settings.Value.UpdatePeriod = 30000;
 
-            var filter = new RequestQueryFilter(memoryCache.Object, settings, null);
+            var filter = new RequestQueryFilter(memoryCache.Object, settings, logger);
 
             //Act
             var twiAllowed = filter.IsRequestAllowed(twiHandler).Result;

@@ -14,81 +14,115 @@ namespace MyStudyProject.Tests.Unit.InMemory
 {
     public class EfMesssagesCreateCommandHandlerTest
     {
+        [Fact]
+        public void MessageCommandCountLinesInDatabaseTest()
+        {
+            var options = new DbContextOptionsBuilder<SqlApplicationDbContext>()
+                .UseInMemoryDatabase(databaseName: "MessageCommandCountLinesInDatabaseTest")
+                .Options;
 
-        //[Fact]
-        //public void MessageCommandCountLinesInDatabaseTest()
-        //{
-        //    var options = new DbContextOptionsBuilder<SqlApplicationDbContext>()
-        //        .UseInMemoryDatabase(databaseName: "MessageCommandCountLinesInDatabaseTest")
-        //        .Options;
+            using (SqlApplicationDbContext context = new SqlApplicationDbContext(options))
+            {
+                //Arrange
+                string hashtag = "#microsoft";
+                var handler = new EfMesssagesCreateCommandHandler(context);
 
-        //    using (SqlApplicationDbContext context = new SqlApplicationDbContext(options))
-        //    {
-        //        //Arrange
-        //        string hashtag = "#microsoft";
-        //        var handler = new EfMesssagesCreateCommandHandler(context);
+                var command = GetCommands(hashtag, GetUser());
+                MessagesCreateCommand commands = new MessagesCreateCommand();
+                commands.Messages.Add(command);
 
-        //        var command = GetCommands(hashtag);
-        //        MessagesCreateCommand commands = new MessagesCreateCommand();
-        //        commands.Messages.Add(command);
+                //Act
+                var response = handler.ExecuteAsync(commands);
+                var result = context.Messages.Count();
 
-        //        //Act
-        //        var response = handler.ExecuteAsync(commands);
-        //        var result = context.Messages.Count();
+                //Assert
+                Assert.Equal(commands.Messages.Count(), result);
+            }
+        }
 
-        //        //Assert
-        //        Assert.Equal(commands.Messages.Count(), result);
-        //    }
-        //}
+        [Fact]
+        public void MessagesCommandCreateTest()
+        {
+            var options = new DbContextOptionsBuilder<SqlApplicationDbContext>()
+                .UseInMemoryDatabase(databaseName: "MessagesCommandCompareTest")
+                .Options;
 
-        //[Fact]
-        //public void MessagesCommandCompareTest()
-        //{
-        //    var options = new DbContextOptionsBuilder<SqlApplicationDbContext>()
-        //        .UseInMemoryDatabase(databaseName: "MessagesCommandCompareTest")
-        //        .Options;
+            using (SqlApplicationDbContext context = new SqlApplicationDbContext(options))
+            {
+                //Arrange
+                string hashtag = "#microsoft";
+                var handler = new EfMesssagesCreateCommandHandler(context);
 
-        //    using (SqlApplicationDbContext context = new SqlApplicationDbContext(options))
-        //    {
-        //        //Arrange
-        //        string hashtag = "#microsoft";
-        //        var handler = new EfMesssagesCreateCommandHandler(context);
+                MessageCreateCommand command = GetCommands(hashtag, GetUser());
+                MessagesCreateCommand commands = new MessagesCreateCommand();
+                commands.Messages.Add(command);
 
-        //        var command = GetCommands(hashtag);
-        //        MessagesCreateCommand commands = new MessagesCreateCommand();
-        //        commands.Messages.Add(command);
+                //Act
+                var response = handler.ExecuteAsync(commands);
 
-        //        //Act
-        //        var response = handler.ExecuteAsync(commands);
+                //Assert
+                var result = context.Messages.FirstOrDefault(message => message.NetworkId == command.NetworkId);
+                Assert.Equal(command.MessageText, result.MessageText);
+                Assert.Equal(command.HashTag, result.HashTag);
+                Assert.Equal(command.Id, result.Id);
+                Assert.Equal(command.MediaType, result.MediaType);
+                Assert.Equal(command.NetworkId, result.NetworkId);
+                Assert.Equal(command.PostDate, result.PostDate);
+            }
+        }
 
-        //        //Assert
-        //        var result =
-        //            context.Messages.First(message => message.NetworkId == command.NetworkId
-        //                           && message.UserId == command.UserId);
+        [Fact]
+        public void MessageWithNullUserNotCreatedTest()
+        {
+            var options = new DbContextOptionsBuilder<SqlApplicationDbContext>()
+                .UseInMemoryDatabase(databaseName: "MessagesCommandCompareTest")
+                .Options;
 
-        //        Assert.Equal(command.UserId, result.UserId);
-        //        Assert.Equal(command.Body, result.MessageText);
-        //        Assert.Equal(command.HashTag, result.HashTag);
-        //        Assert.Equal(command.Id, result.Id);
-        //        Assert.Equal(command.MediaType, result.MediaType);
-        //        Assert.Equal(command.NetworkId, result.NetworkId);
-        //        Assert.Equal(command.PostDate, result.PostDate);
-        //    }
-        //}
+            using (SqlApplicationDbContext context = new SqlApplicationDbContext(options))
+            {
+                //Arrange
+                string hashtag = "#microsoft";
+                var handler = new EfMesssagesCreateCommandHandler(context);
 
-        //private MessageCreateCommand GetCommands(string hashtag)
-        //{
-        //    MessageCreateCommand command = new MessageCreateCommand
-        //    {
-        //        MediaType = SocialMediaType.Twitter,
-        //        Body = "TestBody",
-        //        UserId = "1",
-        //        PostDate = DateTime.Now,
-        //        HashTag = hashtag,
-        //        NetworkId = "2",
-        //        Id = 1
-        //    };
-        //    return command;
-        //}
+                MessageCreateCommand command = GetCommands(hashtag, null);
+                MessagesCreateCommand commands = new MessagesCreateCommand();
+                commands.Messages.Add(command);
+
+                //Act
+                var response = handler.ExecuteAsync(commands);
+
+                //Assert
+                var result = context.Messages.FirstOrDefault(message => message.NetworkId == command.NetworkId);
+                Assert.Null(result);
+            }
+        }
+
+        private MessageCreateCommand GetCommands(string hashtag, UserCreateCommand user)
+        {
+            MessageCreateCommand command = new MessageCreateCommand
+            {
+                MediaType = SocialMediaType.Twitter,
+                MessageText = "TestBody",
+                PostDate = DateTime.Now,
+                HashTag = hashtag,
+                NetworkId = "2",
+                Id = 1,
+                User = user
+            };
+            return command;
+        }
+
+        private UserCreateCommand GetUser()
+        {
+            UserCreateCommand user = new UserCreateCommand()
+            {
+                Id = 0,
+                NetworkId = "1",
+                ProfileId = "1",
+                Url = "http://sdf.com",
+                UserName = "Name"
+            };
+            return user;
+        }
     }
 }

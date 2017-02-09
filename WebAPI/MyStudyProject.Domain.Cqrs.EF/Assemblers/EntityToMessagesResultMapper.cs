@@ -14,6 +14,7 @@ namespace MyStudyProject.Domain.Cqrs.EF.Assemblers
             var results = new MessagesQueryResult();
             foreach (var entity in messages)
             {
+
                 EntityToUserResultMapper mapper = new EntityToUserResultMapper();
                 MessageQueryResult message = new MessageQueryResult(
                     entity.Id,

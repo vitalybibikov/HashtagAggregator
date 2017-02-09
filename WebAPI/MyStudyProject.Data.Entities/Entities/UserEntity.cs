@@ -12,7 +12,7 @@ namespace MyStudyProject.Data.Entities.Entities
 
         public string ProfileId { get; set; }
 
-        public string ProfileUrl { get; set; }
+        public string Url { get; set; }
 
         public List<MessageEntity> Messages { get; set; }
     }

@@ -9,7 +9,7 @@ namespace MyStudyProject.Core.Models.Commands
     {
         public long Id { get; set; }
 
-        public string Body { get; set; }
+        public string MessageText { get; set; }
 
         public string HashTag { get; set; }
 
@@ -20,7 +20,5 @@ namespace MyStudyProject.Core.Models.Commands
         public UserCreateCommand User { get; set; }
 
         public string NetworkId { get; set; }
-
-        public long UserId { get; set; }
     }
 }

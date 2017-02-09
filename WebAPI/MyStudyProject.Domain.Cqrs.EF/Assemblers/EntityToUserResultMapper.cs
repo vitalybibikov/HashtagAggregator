@@ -8,11 +8,14 @@ namespace MyStudyProject.Domain.Cqrs.EF.Assemblers
         public UserQueryResult MapSingle(UserEntity item)
         {
             UserQueryResult query = new UserQueryResult();
-            query.Id = item.Id;
-            query.NetworkId = item.NetworkId;
-            query.UserName = item.UserName;
-            query.ProfileId = item.ProfileId;
-            query.Url = item.ProfileUrl;
+            if (item != null)
+            {
+                query.Id = item.Id;
+                query.NetworkId = item.NetworkId;
+                query.UserName = item.UserName;
+                query.ProfileId = item.ProfileId;
+                query.Url = item.Url;
+            }
             return query;
         }
     }

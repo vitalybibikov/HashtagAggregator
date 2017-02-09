@@ -15,13 +15,12 @@ namespace MyStudyProject.Domain.Cqrs.EF.Assemblers
             {
                 MessageEntity entity = new MessageEntity
                 {
-                    MessageText = message.Body,
+                    MessageText = message.MessageText,
                     HashTag = message.HashTag,
                     MediaType = message.MediaType,
                     User = mapper.MapSingle(message.User),
                     PostDate = message.PostDate,
                     Id = message.Id,
-                    UserId = message.UserId,
                     NetworkId =  message.NetworkId
                 };
                 results.Add(entity);

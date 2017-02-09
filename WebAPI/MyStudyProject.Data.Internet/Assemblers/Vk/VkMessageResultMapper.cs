@@ -47,11 +47,11 @@ namespace MyStudyProject.Data.Internet.Assemblers.Vk
         private UserQueryResult FillUser(VkNewsSearchResult post, List<VkNewsProfile> profiles)
         {
             var id = post.FromId.ToString();
-            var profile = profiles.First(x => x.Id.ToString() == id);
+            var profile = profiles.FirstOrDefault(x => x.Id.ToString() == id);
             UserQueryResult user = new UserQueryResult
             {
                 NetworkId = post.FromId.ToString(),
-                UserName = profile?.FirstName + profile?.LastName,
+                UserName = $"{profile.FirstName} {profile.LastName}",
                 ProfileId = profile?.UserName
             };
             return user;

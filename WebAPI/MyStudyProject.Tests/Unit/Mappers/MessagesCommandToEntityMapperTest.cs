@@ -18,7 +18,7 @@ namespace MyStudyProject.Tests.Unit.Mappers
         {
             //Arrange
             var mapper = new MessagesCommandToEntityMapper();
-            var command = GetMessageEntity("nicrosoft", null);
+            var command = GetMessageCommand("nicrosoft", null);
             //Act
             var result = mapper.MapBunch(new List<MessageCreateCommand> {command}).First();
 
@@ -33,11 +33,11 @@ namespace MyStudyProject.Tests.Unit.Mappers
         }
 
         [Fact]
-        public void CompareMappedObjectsWithTest()
+        public void CompareMappedObjectsTest()
         {
             //Arrange
             var mapper = new MessagesCommandToEntityMapper();
-            var command = GetMessageEntity("nicrosoft", GetUserEntity());
+            var command = GetMessageCommand("nicrosoft", GetUserCommand());
             //Act
             var result = mapper.MapBunch(new List<MessageCreateCommand> { command }).First();
 
@@ -51,7 +51,7 @@ namespace MyStudyProject.Tests.Unit.Mappers
             Assert.NotNull(result.User);
         }
 
-        private MessageCreateCommand GetMessageEntity(string hash, UserCreateCommand user)
+        private MessageCreateCommand GetMessageCommand(string hash, UserCreateCommand user)
         {
             var command = new MessageCreateCommand
             {
@@ -66,7 +66,7 @@ namespace MyStudyProject.Tests.Unit.Mappers
             return command;
         }
 
-        private UserCreateCommand GetUserEntity()
+        private UserCreateCommand GetUserCommand()
         {
             var user = new UserCreateCommand
             {

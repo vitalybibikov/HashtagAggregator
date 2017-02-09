@@ -48,7 +48,7 @@ namespace MyStudyProject.Data.Internet.Services.Twitter
                     hashtag, 
                     fail);
             }
-            TwitterMessageResultMapper mapper = new TwitterMessageResultMapper();
+            var mapper = new TwitterMessageResultMapper();
             return mapper.MapBunch(tweets, hashtag);
         }
 

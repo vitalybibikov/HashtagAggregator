@@ -8,7 +8,7 @@ namespace MyStudyProject.Core.Models.Results.Query
     public class MessageQueryResult : IQueryResult
     {
         public MessageQueryResult(long id,
-            string body,
+            string text,
             string hashtag,
             SocialMediaType mediaType,
             DateTime? postDate,
@@ -16,16 +16,12 @@ namespace MyStudyProject.Core.Models.Results.Query
             UserQueryResult user)
         {
             Id = id;
-            Body = body;
+            Text = text;
             HashTag = hashtag;
             MediaType = mediaType;
             PostDate = postDate;
             NetworkId = networkId;
             User = user;
-            if (user != null)
-            {
-                UserId = user.Id;
-            }
         }
 
         public MessageQueryResult()
@@ -34,7 +30,7 @@ namespace MyStudyProject.Core.Models.Results.Query
 
         public long Id { get; set; }
 
-        public string Body { get; set; }
+        public string Text { get; set; }
 
         public string HashTag { get; set; }
 
@@ -46,8 +42,6 @@ namespace MyStudyProject.Core.Models.Results.Query
 
         public UserQueryResult User { get; set; }
 
-        public long UserId { get; set; }
-
         public override bool Equals(object obj)
         {
             var query = obj as MessageQueryResult;
@@ -56,24 +50,22 @@ namespace MyStudyProject.Core.Models.Results.Query
                 return false;
             }
             return Id == query.Id
-                   && Body.Equals(query.Body)
+                   && Text.Equals(query.Text)
                    && HashTag.Equals(query.HashTag)
                    && MediaType == query.MediaType
                    && PostDate.Equals(query.PostDate)
-                   && NetworkId.Equals(query.NetworkId)
-                   && UserId.Equals(query.UserId);
+                   && NetworkId.Equals(query.NetworkId);
         }
 
         public override int GetHashCode()
         {
             int hashCode = 17;
             hashCode = (hashCode * 23) + Id.GetHashCode();
-            hashCode = (hashCode * 23) + Body.GetHashCode();
+            hashCode = (hashCode * 23) + Text.GetHashCode();
             hashCode = (hashCode * 23) + HashTag.GetHashCode();
             hashCode = (hashCode * 23) + MediaType.GetHashCode();
             hashCode = (hashCode * 23) + PostDate.GetHashCode();
             hashCode = (hashCode * 23) + NetworkId.GetHashCode();
-            hashCode = (hashCode * 23) + UserId.GetHashCode();
             return hashCode;
         }
     }

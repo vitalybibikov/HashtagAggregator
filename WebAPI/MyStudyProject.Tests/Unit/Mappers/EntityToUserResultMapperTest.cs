@@ -1,17 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-
+using System.Threading.Tasks;
 using MyStudyProject.Data.Entities.Entities;
 using MyStudyProject.Domain.Cqrs.EF.Assemblers;
 using MyStudyProject.Shared.Contracts.Enums;
-
 using Xunit;
 
 namespace MyStudyProject.Tests.Unit.Mappers
 {
-    public class EntityToMessagesResultMapperTest
+    public class EntityToUserResultMapperTest
     {
+            
         [Fact]
         public void CompareMappedObjectsWithNullUserTest()
         {
@@ -19,7 +19,7 @@ namespace MyStudyProject.Tests.Unit.Mappers
             var mapper = new EntityToMessagesResultMapper();
             var hash = "HashTag";
             var command = GetMessageEntity(hash, null);
-      
+
             //Act
             var result = mapper.MapBunch(new List<MessageEntity> { command }, hash).Messages.First();
 

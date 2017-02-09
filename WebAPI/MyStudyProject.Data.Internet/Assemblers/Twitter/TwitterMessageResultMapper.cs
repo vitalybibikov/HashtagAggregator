@@ -17,20 +17,28 @@ namespace MyStudyProject.Data.Internet.Assemblers.Twitter
             {
                 foreach (var tweet in messages)
                 {
-                    UserQueryResult user = new UserQueryResult();
-                    user.NetworkId = tweet.CreatedBy.IdStr;
-                    user.Url = tweet.Url;
-
-                    MessageQueryResult message = new MessageQueryResult(0,
-                        tweet.Text,
-                        hashtag,
-                        SocialMediaType.Twitter,
-                        tweet.TweetLocalCreationDate, tweet.IdStr,
-                        user);
+                    var message = MapSingle(tweet, hashtag);
                     results.Messages.Add(message);
                 }
             }
             return results;
+        }
+
+        public MessageQueryResult MapSingle(ITweet tweet, string hashtag)
+        {
+            UserQueryResult user = new UserQueryResult
+            {
+                NetworkId = tweet.CreatedBy.IdStr,
+                Url = tweet.Url
+            };
+
+            MessageQueryResult message = new MessageQueryResult(0,
+                tweet.Text,
+                hashtag,
+                SocialMediaType.Twitter,
+                tweet.TweetLocalCreationDate, tweet.IdStr,
+                user);
+            return message;
         }
     }
 }

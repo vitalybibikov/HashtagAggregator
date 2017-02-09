@@ -27,11 +27,13 @@ namespace MyStudyProject.Domain.Cqrs.EF.Handlers
             var items = mapper.MapBunch(command.Messages);
             var unique = items.Where(x => !context.Messages.Any(
                 z => z.NetworkId == x.NetworkId && 
-                z.UserId == x.UserId))
+                z.User.NetworkId == x.User.NetworkId))
                 .ToList();
-
+            var users = unique.Select(x => x.User);
             await context.Messages.AddRangeAsync(unique);
+            await context.Users.AddRangeAsync(users);
             context.SaveChanges();
+            //await context.Messages.
             return new CommandResult { Success = true };
         }
     }

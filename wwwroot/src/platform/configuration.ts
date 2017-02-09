@@ -9,12 +9,18 @@ export interface AppConfig {
     i18nPath: string;
     apiEndpoint: string;
     i18nResourceFileFormat: string;
+    vkMessageUri : string;
+    twitterMessageUri: string;
+    hashtag: string
 }
 
 export const CONFIG: AppConfig = {
     apiEndpoint: "",
     i18nPath: "/assets/i18n",
-    i18nResourceFileFormat: ".json"
+    i18nResourceFileFormat: ".json",
+    vkMessageUri : "https://vk.com/{user}?w=wall{userId}_{networkId}%2Fall",
+    twitterMessageUri : "https://twitter.com/{user}/status/{networkId}",
+    hashtag: "somesmallmessage09022017"
 };
 
 if ("production" === ENV) {

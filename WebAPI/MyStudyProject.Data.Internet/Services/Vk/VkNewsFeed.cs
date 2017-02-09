@@ -8,5 +8,8 @@ namespace MyStudyProject.Data.Internet.Services.Vk
     {
         [JsonProperty("items")]
         public List<VkNewsSearchResult> Feed { get; set; }
+
+        [JsonProperty("profiles")]
+        public List<VkNewsProfile> Profiles { get; set; }
     }
 }

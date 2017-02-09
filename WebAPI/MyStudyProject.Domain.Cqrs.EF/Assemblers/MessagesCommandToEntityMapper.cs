@@ -10,17 +10,19 @@ namespace MyStudyProject.Domain.Cqrs.EF.Assemblers
         public List<MessageEntity> MapBunch(IEnumerable<MessageCreateCommand> messages)
         {
             var results = new List<MessageEntity>();
+            UserCommandToEntityMapper mapper = new UserCommandToEntityMapper();
             foreach (var message in messages)
             {
                 MessageEntity entity = new MessageEntity
                 {
-                    Body = message.Body,
+                    MessageText = message.Body,
                     HashTag = message.HashTag,
                     MediaType = message.MediaType,
-                    NetworkId = message.NetworkId,
+                    User = mapper.MapSingle(message.User),
                     PostDate = message.PostDate,
-                    UserId =  message.UserId,
-                    Id = message.Id
+                    Id = message.Id,
+                    UserId = message.UserId,
+                    NetworkId =  message.NetworkId
                 };
                 results.Add(entity);
             }

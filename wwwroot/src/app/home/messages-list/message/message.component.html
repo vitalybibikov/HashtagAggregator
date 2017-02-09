@@ -9,8 +9,8 @@
             <p class="mb-1">{{message.body}}</p>
         </div>
         <div class="d-flex w-100 align-middle justify-content-between vcenter">
-            <span>Vitaly Bibikov</span>
-            <a class="btn btn-social-icon" [ngClass]="{'btn-twitter': message.mediaType === 1, 'btn-vk': message.mediaType === 0}">
+            <span>{{message.user.userName}}</span>
+            <a [attr.href]="getMessageLink(message)" class="btn btn-social-icon" [ngClass]="{'btn-twitter': message.mediaType === 1, 'btn-vk': message.mediaType === 0}">
                 <span class="fa" [ngClass]="{'fa-twitter': message.mediaType === 1, 'fa-vk': message.mediaType === 0}"></span>
             </a>
         </div>

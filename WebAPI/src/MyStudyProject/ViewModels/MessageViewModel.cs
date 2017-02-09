@@ -1,5 +1,5 @@
 ﻿using System;
-
+using MyStudyProject.Core.Models.Results.Query;
 using MyStudyProject.Shared.Contracts.Enums;
 
 namespace MyStudyProject.ViewModels
@@ -15,5 +15,9 @@ namespace MyStudyProject.ViewModels
         public SocialMediaType MediaType { get; set; }
 
         public DateTime? PostDate { get; set; }
+
+        public UserViewModel User { get; set; }
+
+        public string NetworkId { get; set; }
     }
 }

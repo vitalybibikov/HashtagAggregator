@@ -45,9 +45,9 @@ namespace MyStudyProject.Data.Internet.Services.Vk
 
                 var json = await request.LoadJsonAsync(HttpMethod.Get, query.ToString());
                 var jObject = JObject.Parse(json).SelectToken("response");
-                var feed = JsonConvert.DeserializeObject<VkNewsFeed>(jObject.ToString());
+                VkNewsFeed feed = JsonConvert.DeserializeObject<VkNewsFeed>(jObject.ToString());
                 VkMessageResultMapper mapper = new VkMessageResultMapper();
-                return mapper.MapBunch(feed.Feed, hashtag);
+                return mapper.MapSingle(feed, hashtag);
             }
         }
 

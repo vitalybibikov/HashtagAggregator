@@ -6,7 +6,9 @@ namespace MyStudyProject.Data.Entities.Entities
 {
     public class MessageEntity : Entity
     {
-        public string Body { get; set; }
+        public string NetworkId { get; set; }
+
+        public string MessageText { get; set; }
 
         public string HashTag { get; set; }
 
@@ -14,8 +16,8 @@ namespace MyStudyProject.Data.Entities.Entities
 
         public SocialMediaType MediaType { get; set; }
 
-        public string NetworkId { get; set; }
+        public UserEntity User { get; set; }
 
-        public string UserId { get; set; }
+        public long UserId { get; set; }
     }
 }

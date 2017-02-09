@@ -6,7 +6,10 @@ import {
 
 import { AppState } from '../../../app.service';
 import { Message } from '../../shared/models/message';
-import { MediaType } from '../enums/social-media.enum'
+import { AppConfigService } from '../../../shared/services/app-config.service';
+import {MediaType} from "../../shared/enums/social-media.enum";
+import {User} from "../../shared/models/user";
+
 
 @Component({
     selector: 'message',
@@ -18,10 +21,27 @@ export class MessageComponent implements OnInit {
 
     @Input() message: Message;
 
-    constructor(public appState: AppState) {
+    constructor(public appState: AppState, private  configService: AppConfigService) {
 
     }
 
     public ngOnInit() {
+    }
+
+    public getMessageLink(message : Message): string{
+      let uri:string = null;
+      console.log(message);
+      if(message.mediaType == MediaType.VK){
+        uri = this.configService.get<string>("vkMessageUri");
+        uri = uri.replace("{user}", message.user.profileId)
+                  .replace("{userId}", message.user.networkId)
+                  .replace("{networkId}", message.networkId);
+      }
+      else{
+        uri = this.configService.get<string>("twitterMessageUri");
+        uri =  message.user.url;
+      }
+      console.log(uri);
+      return uri;
     }
 }

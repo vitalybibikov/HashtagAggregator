@@ -32,6 +32,7 @@ namespace MyStudyProject.Core.Cqrs.Abstract
                 }
                 catch (Exception ex)
                 {
+                    todo: //catch DbUpdateException
                     logger.LogCritical(
                         LoggingEvents.EXCEPTION_EXECUTE_COMMAND, 
                         ex, 

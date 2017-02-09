@@ -8,7 +8,7 @@ using Tweetinvi.Models;
 
 namespace MyStudyProject.Data.Internet.Assemblers.Twitter
 {
-    public class TwitterMessageResultMapper : IMapper<ITweet, MessagesQueryResult>
+    public class TwitterMessageResultMapper
     {
         public MessagesQueryResult MapBunch(IEnumerable<ITweet> messages, string hashtag)
         {
@@ -17,12 +17,16 @@ namespace MyStudyProject.Data.Internet.Assemblers.Twitter
             {
                 foreach (var tweet in messages)
                 {
+                    UserQueryResult user = new UserQueryResult();
+                    user.NetworkId = tweet.CreatedBy.IdStr;
+                    user.Url = tweet.Url;
+
                     MessageQueryResult message = new MessageQueryResult(0,
                         tweet.Text,
                         hashtag,
                         SocialMediaType.Twitter,
                         tweet.TweetLocalCreationDate, tweet.IdStr,
-                        tweet.CreatedBy.IdStr);
+                        user);
                     results.Messages.Add(message);
                 }
             }

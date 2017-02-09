@@ -61,10 +61,10 @@ namespace MyStudyProject.Data.Internet.Services.Twitter
                 try
                 {
                     converted = command.BodyConvert(settings.Value.MaxBodyLength);
-                    BackgroundJob.Schedule<ITwitterBackgroundJob<MessageCreateCommand>>(
-                        x => x.Publish(converted),
-                        TimeSpan.FromSeconds(publishIntervalInSec));
-                    publishIntervalInSec += settings.Value.TwitterMessagePublishDelay;
+                    //BackgroundJob.Schedule<ITwitterBackgroundJob<MessageCreateCommand>>(
+                    //    x => x.Publish(converted),
+                    //    TimeSpan.FromSeconds(publishIntervalInSec));
+                    //publishIntervalInSec += settings.Value.TwitterMessagePublishDelay;
                 }
                 catch (Exception ex)
                 {

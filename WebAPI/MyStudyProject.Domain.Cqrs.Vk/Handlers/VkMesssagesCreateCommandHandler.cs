@@ -19,7 +19,7 @@ namespace MyStudyProject.Domain.Cqrs.Vk.Handlers
 
         public override Task<ICommandResult> ExecuteAsync(MessagesCreateCommand command)
         {
-            throw new NotImplementedException();
+            throw new NotSupportedException();
             //var filtered = command.Messages.Where(x => x.MediaType != SocialMediaType.VK && x.Id <= 0);
             //return facade.Save(filtered);
         }

@@ -6,16 +6,20 @@ import { Message } from "./models/message"
 import "rxjs/add/operator/map";
 import "rxjs/add/operator/share";
 import { Observable } from "rxjs";
+import { AppConfigService } from "../../shared/services/app-config.service";
 
 @Injectable()
 export class MessageService {
 
-    constructor(private http: Http, @Inject(APP_CONFIG_TOKEN) private config: AppConfig) {
+    constructor(private http: Http, @Inject(APP_CONFIG_TOKEN) private config: AppConfig,  private  configService: AppConfigService) {
 
     }
 
     public getData(): Observable<Message[]> {
-        return this.http.get(this.config.apiEndpoint + 'statistics/skiexhangetestmessage1')
+        let hashtag  = this.configService.get<string>("hashtag");
+        let uri = this.config.apiEndpoint + 'statistics/' + hashtag;
+        console.log(uri);
+        return this.http.get(uri)
             .map(messages => this.getMappedMessage(messages))
             .share();
     }

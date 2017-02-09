@@ -13,7 +13,7 @@ namespace MyStudyProject.Core.Models.Results.Query
             SocialMediaType mediaType,
             DateTime? postDate,
             string networkId,
-            string userId)
+            UserQueryResult user)
         {
             Id = id;
             Body = body;
@@ -21,11 +21,15 @@ namespace MyStudyProject.Core.Models.Results.Query
             MediaType = mediaType;
             PostDate = postDate;
             NetworkId = networkId;
-            UserId = userId;
+            User = user;
+            if (user != null)
+            {
+                UserId = user.Id;
+            }
         }
 
         public MessageQueryResult()
-        {  
+        {
         }
 
         public long Id { get; set; }
@@ -40,8 +44,9 @@ namespace MyStudyProject.Core.Models.Results.Query
 
         public string NetworkId { get; set; }
 
-        public string UserId { get; set; }
+        public UserQueryResult User { get; set; }
 
+        public long UserId { get; set; }
 
         public override bool Equals(object obj)
         {

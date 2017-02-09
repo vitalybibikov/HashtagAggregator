@@ -11,8 +11,10 @@ namespace MyStudyProject.Configuration
         protected override void Configure()
         {
             CreateMap<MessageQueryResult, MessageViewModel>();
-            CreateMap<MessagesQueryResult, MessagesCreateCommand>();
             CreateMap<MessageQueryResult, MessageCreateCommand>();
+            CreateMap<MessagesQueryResult, MessagesCreateCommand>();
+            CreateMap<UserQueryResult, UserCreateCommand>();
+            CreateMap<UserQueryResult, UserViewModel>();
         }
     }
 }

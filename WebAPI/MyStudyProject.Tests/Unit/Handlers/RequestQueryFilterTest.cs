@@ -37,7 +37,7 @@ namespace MyStudyProject.Tests.Unit.Handlers
             var settings = Options.Create(new InternetUpdateSettings());
             settings.Value.UpdatePeriod = 30000;
             
-            var filter = new RequestQueryFilter(memoryCache.Object, settings);
+            var filter = new RequestQueryFilter(memoryCache.Object, settings, null);
 
             //Act
             var vkAllowed = filter.IsRequestAllowed(vkHandler).Result;
@@ -64,7 +64,7 @@ namespace MyStudyProject.Tests.Unit.Handlers
             settings.Value.UpdatePeriod = 30000;
 
             memoryCache.Setup(m => m.TryGetValue(It.IsAny<SocialMediaType>(), out o)).Returns(true);
-            var filter = new RequestQueryFilter(memoryCache.Object, settings);
+            var filter = new RequestQueryFilter(memoryCache.Object, settings, null);
 
             //Act
             var vkAllowed = filter.IsRequestAllowed(vkHandler).Result;
@@ -89,7 +89,7 @@ namespace MyStudyProject.Tests.Unit.Handlers
             var settings = Options.Create(new InternetUpdateSettings());
             settings.Value.UpdatePeriod = 30000;
 
-            var filter = new RequestQueryFilter(memoryCache.Object, settings);
+            var filter = new RequestQueryFilter(memoryCache.Object, settings, null);
 
             //Act
             var twiAllowed = filter.IsRequestAllowed(twiHandler).Result;
@@ -116,7 +116,7 @@ namespace MyStudyProject.Tests.Unit.Handlers
             var settings = Options.Create(new InternetUpdateSettings());
             settings.Value.UpdatePeriod = 30000;
 
-            var filter = new RequestQueryFilter(memoryCache.Object, settings);
+            var filter = new RequestQueryFilter(memoryCache.Object, settings, null);
 
             //Act
             var twiAllowed = filter.IsRequestAllowed(twiHandler).Result;
@@ -143,7 +143,7 @@ namespace MyStudyProject.Tests.Unit.Handlers
             var settings = Options.Create(new InternetUpdateSettings());
             settings.Value.UpdatePeriod = 30000;
 
-            var filter = new RequestQueryFilter(memoryCache.Object, settings);
+            var filter = new RequestQueryFilter(memoryCache.Object, settings, null);
 
             //Act
             var efAllowed = filter.IsRequestAllowed(efHandler).Result;
@@ -170,7 +170,7 @@ namespace MyStudyProject.Tests.Unit.Handlers
             var settings = Options.Create(new InternetUpdateSettings());
             settings.Value.UpdatePeriod = 30000;
 
-            var filter = new RequestQueryFilter(memoryCache.Object, settings);
+            var filter = new RequestQueryFilter(memoryCache.Object, settings, null);
 
             //Act
             var efAllowed = filter.IsRequestAllowed(efHandler).Result;

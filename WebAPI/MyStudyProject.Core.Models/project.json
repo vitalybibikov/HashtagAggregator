@@ -2,7 +2,6 @@
   "version": "1.0.0-*",
 
   "dependencies": {
-    "MyStudyProject.Core.Contracts": "1.0.0-*",
     "MyStudyProject.Shared.Contracts": "1.0.0-*"
   },
 

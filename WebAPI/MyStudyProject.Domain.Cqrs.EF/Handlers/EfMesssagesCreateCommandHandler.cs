@@ -2,11 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-
-using MyStudyProject.Core.Contracts.Interface.Cqrs.Command;
 using MyStudyProject.Core.Cqrs.Abstract;
 using MyStudyProject.Core.Models.Commands;
-using MyStudyProject.Core.Models.Results.Command;
+using MyStudyProject.Core.Models.Interface.Cqrs.Command;
+using MyStudyProject.Core.Models.Queries;
 using MyStudyProject.Data.DataAccess.Context;
 using MyStudyProject.Domain.Cqrs.EF.Assemblers;
 
@@ -29,6 +28,7 @@ namespace MyStudyProject.Domain.Cqrs.EF.Handlers
                 z => z.NetworkId == x.NetworkId && z.User != null && x.User != null
                 && z.User.NetworkId == x.User.NetworkId))
                 .ToList();
+
             var users = unique.Select(x => x.User);
             await context.Messages.AddRangeAsync(unique);
             await context.Users.AddRangeAsync(users);

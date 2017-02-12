@@ -1,5 +1,5 @@
-﻿using MyStudyProject.Core.Contracts.Interface.Cqrs.Query;
-using MyStudyProject.Core.Cqrs.Abstract;
+﻿using MyStudyProject.Core.Cqrs.Abstract;
+using MyStudyProject.Core.Models.Interface.Cqrs.Query;
 using MyStudyProject.Data.DataAccess.Context;
 
 namespace MyStudyProject.Domain.Cqrs.EF.Abstract

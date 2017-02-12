@@ -1,6 +1,7 @@
 ﻿using MyStudyProject.Core.Contracts.Interface.Cqrs.Query;
+using MyStudyProject.Core.Contracts.Interface.DataSources;
 using MyStudyProject.Core.Cqrs.Abstract;
-using MyStudyProject.Data.Contracts.ServiceFacades;
+using MyStudyProject.Core.Models.Interface.Cqrs.Query;
 
 namespace MyStudyProject.Domain.Cqrs.Vk.Abstract
 {

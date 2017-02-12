@@ -4,12 +4,14 @@ using MyStudyProject.Core.Cqrs.Dispatchers;
 using MyStudyProject.Core.Models.Queries;
 using MyStudyProject.Core.Contracts.Interface.Cqrs.Command;
 using MyStudyProject.Core.Contracts.Interface.Cqrs.Query;
-using MyStudyProject.Core.Cqrs.Handlers.CompositeQueryHandlers;
 using MyStudyProject.Domain.Cqrs.EF.Handlers;
 using MyStudyProject.Domain.Cqrs.Twitter.Handlers;
 using MyStudyProject.Domain.Cqrs.Vk.Handlers;
 
 using Autofac;
+using MyStudyProject.Core.Models.Interface.Cqrs.Command;
+using MyStudyProject.Core.Models.Interface.Cqrs.Query;
+using MyStudyProject.Domain.Cqrs.Common.Handlers.CompositeQueryHandlers;
 using Module = Autofac.Module;
 
 namespace MyStudyProject.DependencyInjection

@@ -2,10 +2,15 @@
   "version": "1.0.0-*",
 
   "dependencies": {
+    "Microsoft.EntityFrameworkCore": "1.1.0",
     "MyStudyProject.Core.Contracts": "1.0.0-*",
     "MyStudyProject.Core.Cqrs": "1.0.0-*",
+    "MyStudyProject.Core.Entities": "1.0.0-*",
     "MyStudyProject.Core.Models": "1.0.0-*",
-    "MyStudyProject.Shared.Contracts": "1.0.0-*"
+    "MyStudyProject.Data.DataAccess": "1.0.0-*",
+    "MyStudyProject.Domain.Cqrs.Common": "1.0.0-*",
+    "MyStudyProject.Shared.Contracts": "1.0.0-*",
+    "Newtonsoft.Json": "9.0.2-beta2"
   },
 
   "frameworks": {

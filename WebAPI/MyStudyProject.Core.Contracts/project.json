@@ -2,6 +2,7 @@
   "version": "1.0.0-*",
 
   "dependencies": {
+    "MyStudyProject.Core.Models": "1.0.0-*",
     "MyStudyProject.Shared.Common": "1.0.0-*"
   },
 

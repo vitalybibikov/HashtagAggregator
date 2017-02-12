@@ -2,9 +2,10 @@
 using System.Threading.Tasks;
 
 using MyStudyProject.Core.Contracts.Interface.Cqrs.Command;
+using MyStudyProject.Core.Contracts.Interface.DataSources;
 using MyStudyProject.Core.Cqrs.Abstract;
 using MyStudyProject.Core.Models.Commands;
-using MyStudyProject.Data.Contracts.ServiceFacades;
+using MyStudyProject.Core.Models.Interface.Cqrs.Command;
 
 namespace MyStudyProject.Domain.Cqrs.Vk.Handlers
 {

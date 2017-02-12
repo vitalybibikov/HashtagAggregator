@@ -1,6 +1,6 @@
 ﻿using System;
 using Moq;
-using MyStudyProject.Data.Internet.Assemblers.Twitter;
+using MyStudyProject.Data.Internet.Assemblers;
 using MyStudyProject.Shared.Contracts.Enums;
 using Tweetinvi.Models;
 using Xunit;

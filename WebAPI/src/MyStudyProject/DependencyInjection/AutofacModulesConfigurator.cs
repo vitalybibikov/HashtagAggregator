@@ -3,7 +3,6 @@ using Autofac.Extensions.DependencyInjection;
 using AutofacSerilogIntegration;
 
 using Microsoft.Extensions.DependencyInjection;
-using Serilog;
 
 namespace MyStudyProject.DependencyInjection
 {
@@ -14,7 +13,10 @@ namespace MyStudyProject.DependencyInjection
             var builder = new ContainerBuilder();
             builder.RegisterLogger();
             builder.RegisterModule<CqrsModule>();
-            builder.RegisterModule<ServicesModule>();
+            builder.RegisterModule<VkModule>();
+            builder.RegisterModule<TwitterModule>();
+            builder.RegisterModule<EFModule>();
+            builder.RegisterModule<CommonModule>();
             builder.Populate(services);
             
             return builder.Build();

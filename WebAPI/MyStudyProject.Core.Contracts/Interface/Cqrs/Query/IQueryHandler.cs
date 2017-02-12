@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using MyStudyProject.Core.Models.Interface.Cqrs.Query;
 using MyStudyProject.Shared.Common;
 
 namespace MyStudyProject.Core.Contracts.Interface.Cqrs.Query

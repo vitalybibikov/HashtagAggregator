@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using MyStudyProject.Core.Models.Interface.Cqrs.Command;
 
 namespace MyStudyProject.Core.Contracts.Interface.Cqrs.Command
 {

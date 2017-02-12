@@ -1,6 +1,6 @@
 ﻿using System;
 
-using MyStudyProject.Core.Contracts.Interface.Cqrs.Query;
+using MyStudyProject.Core.Models.Interface.Cqrs.Query;
 
 namespace MyStudyProject.Core.Models.Results.Query
 {

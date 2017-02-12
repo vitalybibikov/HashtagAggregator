@@ -1,7 +1,5 @@
-﻿using System;
-
+﻿using MyStudyProject.Core.Entities.EF;
 using MyStudyProject.Core.Models.Commands;
-using MyStudyProject.Data.Entities.Entities;
 
 namespace MyStudyProject.Domain.Cqrs.EF.Assemblers
 {

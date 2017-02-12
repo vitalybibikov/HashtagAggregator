@@ -1,4 +1,6 @@
-﻿namespace MyStudyProject.Core.Contracts.Interface.Cqrs.Query
+﻿using MyStudyProject.Core.Models.Interface.Cqrs.Query;
+
+namespace MyStudyProject.Core.Contracts.Interface.Cqrs.Query
 {
     public interface ICompositeQueryHandler<TParameter, TResult> : IQueryHandler<TParameter, TResult>
         where TResult : IQueryResult, new()

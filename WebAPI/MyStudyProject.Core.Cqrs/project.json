@@ -5,7 +5,6 @@
     "Autofac": "4.2.1",
     "MyStudyProject.Core.Contracts": "1.0.0-*",
     "MyStudyProject.Core.Models": "1.0.0-*",
-    "MyStudyProject.Data.DataAccess": "1.0.0-*",
     "MyStudyProject.Shared.Contracts": "1.0.0-*",
     "MyStudyProject.Shared.Logging": "1.0.0-*",
     "Serilog.Extensions.Logging": "1.4.0-dev-10138"

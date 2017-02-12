@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 
 using Microsoft.EntityFrameworkCore;
+using MyStudyProject.Core.Entities.EF;
 using MyStudyProject.Core.Models.Queries;
 using MyStudyProject.Core.Models.Results.Query;
 using MyStudyProject.Data.DataAccess.Context;
-using MyStudyProject.Data.Entities.Entities;
 using MyStudyProject.Domain.Cqrs.EF.Assemblers;
 using MyStudyProject.Domain.Cqrs.EF.Handlers;
 using MyStudyProject.Shared.Contracts.Enums;

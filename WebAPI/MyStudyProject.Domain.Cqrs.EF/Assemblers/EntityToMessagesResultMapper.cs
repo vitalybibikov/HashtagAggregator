@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-
+﻿using System.Collections.Generic;
+using MyStudyProject.Core.Entities.EF;
 using MyStudyProject.Core.Models.Results.Query;
-using MyStudyProject.Data.Entities.Entities;
 using MyStudyProject.Shared.Contracts.Enums;
 
 namespace MyStudyProject.Domain.Cqrs.EF.Assemblers

@@ -1,11 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
-
-using MyStudyProject.Data.Contracts.Interface;
-using MyStudyProject.Data.Entities.Entities;
+using MyStudyProject.Core.Entities.EF;
 
 namespace MyStudyProject.Data.DataAccess.Context
 {
-    public class SqlApplicationDbContext : DbContext, IApplicationContext
+    public class SqlApplicationDbContext : DbContext
     {
         public DbSet<MessageEntity> Messages { get; set; }
 

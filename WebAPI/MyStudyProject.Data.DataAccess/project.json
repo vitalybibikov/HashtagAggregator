@@ -4,8 +4,8 @@
     "Microsoft.EntityFrameworkCore.Design": "1.1.0",
     "Microsoft.EntityFrameworkCore.SqlServer": "1.1.0",
     "Microsoft.EntityFrameworkCore.Tools": "1.1.0-preview4-final",
+    "MyStudyProject.Core.Entities": "1.0.0-*",
     "MyStudyProject.Data.Contracts": "1.0.0-*",
-    "MyStudyProject.Data.Entities": "1.0.0-*",
     "MyStudyProject.Shared.Common": "1.0.0-*"
   },
 

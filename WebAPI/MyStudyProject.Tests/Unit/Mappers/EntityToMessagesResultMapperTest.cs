@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-
-using MyStudyProject.Data.Entities.Entities;
+using MyStudyProject.Core.Entities.EF;
 using MyStudyProject.Domain.Cqrs.EF.Assemblers;
 using MyStudyProject.Shared.Contracts.Enums;
-
 using Xunit;
 
 namespace MyStudyProject.Tests.Unit.Mappers

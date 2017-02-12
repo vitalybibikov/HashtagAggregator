@@ -1,5 +1,5 @@
-﻿using MyStudyProject.Core.Models.Results.Query;
-using MyStudyProject.Data.Entities.Entities;
+﻿using MyStudyProject.Core.Entities.EF;
+using MyStudyProject.Core.Models.Results.Query;
 
 namespace MyStudyProject.Domain.Cqrs.EF.Assemblers
 {

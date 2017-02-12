@@ -1,13 +1,11 @@
-﻿using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
-
+﻿using System.Threading.Tasks;
+using System.Linq;
 using MyStudyProject.Core.Models.Queries;
 using MyStudyProject.Core.Models.Results.Query;
 using MyStudyProject.Data.DataAccess.Context;
 using MyStudyProject.Domain.Cqrs.EF.Abstract;
 using MyStudyProject.Domain.Cqrs.EF.Assemblers;
-
+using Microsoft.EntityFrameworkCore;
 
 namespace MyStudyProject.Domain.Cqrs.EF.Handlers
 {

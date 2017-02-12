@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-
 using Microsoft.Extensions.Logging;
+
 using MyStudyProject.Core.Contracts.Interface.Cqrs.Command;
-using MyStudyProject.Core.Models.Results.Command;
+using MyStudyProject.Core.Models.Interface.Cqrs.Command;
+using MyStudyProject.Core.Models.Queries;
 using MyStudyProject.Shared.Logging;
 
 namespace MyStudyProject.Core.Cqrs.Abstract
@@ -32,12 +33,11 @@ namespace MyStudyProject.Core.Cqrs.Abstract
                 }
                 catch (Exception ex)
                 {
-                    todo: //catch DbUpdateException
                     logger.LogCritical(
-                        LoggingEvents.EXCEPTION_EXECUTE_COMMAND, 
-                        ex, 
-                        "Failed to execute {@command} with {@handler}", 
-                        command, 
+                        LoggingEvents.EXCEPTION_EXECUTE_COMMAND,
+                        ex,
+                        "Failed to execute {@command} with {@handler}",
+                        command,
                         handler);
                 }
             }

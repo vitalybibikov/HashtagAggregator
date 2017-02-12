@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-
+using MyStudyProject.Core.Entities.VkEntities;
 using MyStudyProject.Core.Models.Results.Query;
-using MyStudyProject.Data.Internet.Assemblers.Vk;
-using MyStudyProject.Data.Internet.Services.Vk;
+using MyStudyProject.Data.Internet.Assemblers;
 using MyStudyProject.Shared.Contracts.Enums;
 using MyStudyProject.Tests.TestHelpers;
 using Xunit;
@@ -25,8 +24,8 @@ namespace MyStudyProject.Tests.Unit.Mappers
                 Feed = new List<VkNewsSearchResult> { search },
                 Profiles = new List<VkNewsProfile> { profile }
             };
-
             var mapper = new VkMessageResultMapper();
+
             //Act
             var result = mapper.MapSingle(feed, hash);
             
@@ -41,7 +40,7 @@ namespace MyStudyProject.Tests.Unit.Mappers
                 Assert.Equal($"{profile.FirstName} {profile.LastName}", message.User.UserName);
                 Assert.Equal(profile.UserName, message.User.ProfileId);
                 Assert.Equal(profile.Id.ToString(), message.User.NetworkId);
-            };
+            }
         }
 
         private static VkNewsSearchResult GetSearch()

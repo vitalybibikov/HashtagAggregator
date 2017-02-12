@@ -4,6 +4,7 @@ using Autofac;
 using Microsoft.Extensions.Logging;
 using MyStudyProject.Core.Contracts.Interface.Cqrs.Command;
 using MyStudyProject.Core.Cqrs.Abstract;
+using MyStudyProject.Core.Models.Interface.Cqrs.Command;
 
 namespace MyStudyProject.Core.Cqrs.Dispatchers
 {

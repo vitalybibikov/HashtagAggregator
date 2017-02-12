@@ -1,5 +1,5 @@
 ﻿using System;
-using MyStudyProject.Core.Contracts.Interface.Cqrs.Command;
+using MyStudyProject.Core.Models.Interface.Cqrs.Command;
 
 namespace MyStudyProject.Data.Contracts.Interface.JobObjects
 {

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 
 using MyStudyProject.Core.Models.Commands;
-using MyStudyProject.Data.Entities.Entities;
 using MyStudyProject.Domain.Cqrs.EF.Assemblers;
 using MyStudyProject.Shared.Contracts.Enums;
 

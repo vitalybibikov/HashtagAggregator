@@ -1,7 +1,7 @@
 ﻿using System;
-
-using MyStudyProject.Core.Contracts.Interface.Cqrs.Command;
+using MyStudyProject.Core.Models.Interface.Cqrs.Command;
 using MyStudyProject.Shared.Contracts.Enums;
+
 
 namespace MyStudyProject.Core.Models.Commands
 {

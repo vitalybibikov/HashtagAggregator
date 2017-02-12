@@ -5,9 +5,9 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Moq;
 
-using MyStudyProject.Core.Cqrs.RequestFilter;
-using MyStudyProject.Data.Contracts.ServiceFacades;
+using MyStudyProject.Core.Contracts.Interface.DataSources;
 using MyStudyProject.Data.DataAccess.Context;
+using MyStudyProject.Domain.Cqrs.Common.RequestFilter;
 using MyStudyProject.Domain.Cqrs.EF.Handlers;
 using MyStudyProject.Domain.Cqrs.Twitter.Handlers;
 using MyStudyProject.Domain.Cqrs.Vk.Handlers;
@@ -156,11 +156,11 @@ namespace MyStudyProject.Tests.Unit.Handlers
         [Fact]
         public void RequestEfQueryFilterSecondAllowanceTest()
         {
-            //Arrange          
+            //Arrange
+
             var dbSettings = new DbContextOptions<SqlApplicationDbContext>();
             var sqlContext = new SqlApplicationDbContext(dbSettings);
             var efHandler = new EfMessagesGetQueryHandler(sqlContext);
-            var efAttribute = efHandler.GetType().GetTypeInfo().GetCustomAttribute<DataSourceTypeAttribute>();
 
             var memoryCache = new Mock<IMemoryCacheWrapper>();
             memoryCache.Setup(m => m.Set(It.IsAny<string>(), It.IsAny<SocialMediaType>(), It.IsAny<TimeSpan>())).Returns(null);

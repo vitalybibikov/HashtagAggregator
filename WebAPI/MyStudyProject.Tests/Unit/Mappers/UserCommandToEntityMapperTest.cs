@@ -1,6 +1,5 @@
 ﻿using MyStudyProject.Core.Models.Commands;
 using MyStudyProject.Domain.Cqrs.EF.Assemblers;
-
 using Xunit;
 
 namespace MyStudyProject.Tests.Unit.Mappers

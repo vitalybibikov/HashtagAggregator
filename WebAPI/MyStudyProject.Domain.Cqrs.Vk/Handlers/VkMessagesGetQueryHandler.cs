@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Threading.Tasks;
+using MyStudyProject.Core.Contracts.Interface.DataSources;
 using MyStudyProject.Core.Models.Queries;
 using MyStudyProject.Core.Models.Results.Query;
-using MyStudyProject.Data.Contracts.ServiceFacades;
 using MyStudyProject.Domain.Cqrs.Vk.Abstract;
 using MyStudyProject.Shared.Common.Attributes;
 using MyStudyProject.Shared.Contracts.Enums;

@@ -1,4 +1,6 @@
-﻿namespace MyStudyProject.Core.Contracts.Interface.Cqrs.Command
+﻿using MyStudyProject.Core.Models.Interface.Cqrs.Command;
+
+namespace MyStudyProject.Core.Contracts.Interface.Cqrs.Command
 {
     public interface ICompositeCommandHandler<TParameter> : ICommandHandler<TParameter>
         where TParameter : ICommand, new()

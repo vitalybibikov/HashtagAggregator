@@ -8,7 +8,7 @@ namespace MyStudyProject.Core.Models.Results.Query
     public class MessageQueryResult : IQueryResult
     {
         public MessageQueryResult(long id,
-            string text,
+            string messageText,
             string hashtag,
             SocialMediaType mediaType,
             DateTime? postDate,
@@ -16,7 +16,7 @@ namespace MyStudyProject.Core.Models.Results.Query
             UserQueryResult user)
         {
             Id = id;
-            Text = text;
+            MessageText = messageText;
             HashTag = hashtag;
             MediaType = mediaType;
             PostDate = postDate;
@@ -30,7 +30,7 @@ namespace MyStudyProject.Core.Models.Results.Query
 
         public long Id { get; set; }
 
-        public string Text { get; set; }
+        public string MessageText { get; set; }
 
         public string HashTag { get; set; }
 
@@ -50,7 +50,7 @@ namespace MyStudyProject.Core.Models.Results.Query
                 return false;
             }
             return Id == query.Id
-                   && Text.Equals(query.Text)
+                   && MessageText.Equals(query.MessageText)
                    && HashTag.Equals(query.HashTag)
                    && MediaType == query.MediaType
                    && PostDate.Equals(query.PostDate)
@@ -61,7 +61,7 @@ namespace MyStudyProject.Core.Models.Results.Query
         {
             int hashCode = 17;
             hashCode = (hashCode * 23) + Id.GetHashCode();
-            hashCode = (hashCode * 23) + Text.GetHashCode();
+            hashCode = (hashCode * 23) + MessageText.GetHashCode();
             hashCode = (hashCode * 23) + HashTag.GetHashCode();
             hashCode = (hashCode * 23) + MediaType.GetHashCode();
             hashCode = (hashCode * 23) + PostDate.GetHashCode();

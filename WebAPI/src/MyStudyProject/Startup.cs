@@ -82,7 +82,12 @@ namespace MyStudyProject
 
             //hangfire
             services.AddHangfire(config => config.UseSqlServerStorage(connectionString));
-            services.AddCors();
+
+            services.AddCors(options => options.AddPolicy("CorsPolicy",
+            builder => builder.AllowAnyOrigin()
+            .AllowAnyMethod()
+            .AllowAnyHeader()
+            .AllowCredentials()));
 
             IContainer container = new AutofacModulesConfigurator().Configure(services);
             GlobalConfiguration.Configuration.UseActivator(new AutofacContainerJobActivator(container));
@@ -110,7 +115,7 @@ namespace MyStudyProject
                         }
                     });
             });
-
+            app.UseCors("CorsPolicy");
             app.UseStatusCodePages();
             app.UseHangfireDashboard();
             app.UseHangfireServer();

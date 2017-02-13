@@ -1,7 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
+
 using MyStudyProject.Core.Cqrs.Abstract;
 using MyStudyProject.Core.Models.Commands;
 using MyStudyProject.Core.Models.Interface.Cqrs.Command;
@@ -33,7 +32,6 @@ namespace MyStudyProject.Domain.Cqrs.EF.Handlers
             await context.Messages.AddRangeAsync(unique);
             await context.Users.AddRangeAsync(users);
             context.SaveChanges();
-            //await context.Messages.
             return new CommandResult { Success = true };
         }
     }

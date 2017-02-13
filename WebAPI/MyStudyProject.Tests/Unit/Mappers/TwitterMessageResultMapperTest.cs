@@ -28,7 +28,7 @@ namespace MyStudyProject.Tests.Unit.Mappers
 
             //Assert
             Assert.Equal(tweet.Url, result.User.Url);
-            Assert.Equal(tweet.Text, result.Text);
+            Assert.Equal(tweet.Text, result.MessageText);
             Assert.Equal(hash, result.HashTag);
             Assert.Equal(tweet.IdStr, result.NetworkId);
             Assert.Equal(SocialMediaType.Twitter, result.MediaType);

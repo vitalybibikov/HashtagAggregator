@@ -24,7 +24,7 @@ namespace MyStudyProject.Tests.Unit.Mappers
             var result = mapper.MapBunch(new List<MessageEntity> { command }, hash).Messages.First();
 
             //Assert
-            Assert.Equal(command.MessageText, result.Text);
+            Assert.Equal(command.MessageText, result.MessageText);
             Assert.Equal(command.HashTag, result.HashTag);
             Assert.Equal(command.Id, result.Id);
             Assert.Equal(command.MediaType, result.MediaType);
@@ -45,7 +45,7 @@ namespace MyStudyProject.Tests.Unit.Mappers
             var result = mapper.MapBunch(new List<MessageEntity> { command }, hash).Messages.First();
 
             //Assert
-            Assert.Equal(command.MessageText, result.Text);
+            Assert.Equal(command.MessageText, result.MessageText);
             Assert.Equal(command.HashTag, result.HashTag);
             Assert.Equal(command.Id, result.Id);
             Assert.Equal(command.MediaType, result.MediaType);

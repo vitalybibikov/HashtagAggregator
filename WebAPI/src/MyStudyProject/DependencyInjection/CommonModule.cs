@@ -1,7 +1,9 @@
 ﻿using Autofac;
-using MyStudyProject.Core.Contracts.Interface;
-using MyStudyProject.Domain.Cqrs.Common.RequestFilter;
 using Module = Autofac.Module;
+
+using MyStudyProject.Core.Contracts.Interface;
+using MyStudyProject.Core.Models.Results.Query;
+using MyStudyProject.Domain.Cqrs.Common.Filters;
 
 namespace MyStudyProject.DependencyInjection
 {
@@ -10,6 +12,7 @@ namespace MyStudyProject.DependencyInjection
         protected override void Load(ContainerBuilder builder)
         {
             builder.RegisterType<RequestQueryFilter>().As<IRequestFilter>();
+            builder.RegisterType<MessageFilter>().As<IMessageFilter<MessagesQueryResult>>();
         }
     }
 }

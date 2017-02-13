@@ -11,7 +11,7 @@ using MyStudyProject.Shared.Contracts.Enums;
 using MyStudyProject.Shared.Contracts.Interfaces;
 using MyStudyProject.Shared.Logging;
 
-namespace MyStudyProject.Domain.Cqrs.Common.RequestFilter
+namespace MyStudyProject.Domain.Cqrs.Common.Filters
 {
     public class RequestQueryFilter : IRequestFilter
     {

@@ -7,7 +7,7 @@ using Moq;
 
 using MyStudyProject.Core.Contracts.Interface.DataSources;
 using MyStudyProject.Data.DataAccess.Context;
-using MyStudyProject.Domain.Cqrs.Common.RequestFilter;
+using MyStudyProject.Domain.Cqrs.Common.Filters;
 using MyStudyProject.Domain.Cqrs.EF.Handlers;
 using MyStudyProject.Domain.Cqrs.Twitter.Handlers;
 using MyStudyProject.Domain.Cqrs.Vk.Handlers;

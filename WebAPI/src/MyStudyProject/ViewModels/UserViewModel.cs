@@ -1,5 +1,5 @@
 ﻿using System;
-
+using MyStudyProject.Shared.Contracts.Enums;
 using Newtonsoft.Json;
 
 namespace MyStudyProject.ViewModels

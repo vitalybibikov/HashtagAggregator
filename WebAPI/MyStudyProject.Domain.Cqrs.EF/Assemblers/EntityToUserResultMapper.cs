@@ -14,6 +14,7 @@ namespace MyStudyProject.Domain.Cqrs.EF.Assemblers
                 query.NetworkId = item.NetworkId;
                 query.UserName = item.UserName;
                 query.ProfileId = item.ProfileId;
+                query.MediaType = item.MediaType;
                 query.Url = item.Url;
             }
             return query;

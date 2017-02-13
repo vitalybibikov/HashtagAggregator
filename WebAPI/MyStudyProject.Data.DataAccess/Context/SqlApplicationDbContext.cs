@@ -18,6 +18,8 @@ namespace MyStudyProject.Data.DataAccess.Context
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<MessageEntity>().HasIndex(i => new { i.NetworkId, i.UserId }).IsUnique();
+
+            modelBuilder.Entity<UserEntity>().HasIndex(i => new { i.NetworkId, i.MediaType }).IsUnique();
             modelBuilder.Entity<MessageEntity>()
                 .HasOne(m => m.User)
                 .WithMany(u => u.Messages)

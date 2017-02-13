@@ -30,6 +30,7 @@ namespace MyStudyProject.Tests.Unit.Mappers
             Assert.Equal(command.MediaType, result.MediaType);
             Assert.Equal(command.NetworkId, result.NetworkId);
             Assert.Equal(command.PostDate, result.PostDate);
+            Assert.Equal(command.MediaType, result.MediaType);
         }
 
         [Fact]
@@ -51,6 +52,7 @@ namespace MyStudyProject.Tests.Unit.Mappers
             Assert.Equal(command.MediaType, result.MediaType);
             Assert.Equal(command.NetworkId, result.NetworkId);
             Assert.Equal(command.PostDate, result.PostDate);
+            Assert.Equal(command.MediaType, result.MediaType);
         }
 
         private MessageEntity GetMessageEntity(string hash, UserEntity user)
@@ -76,7 +78,8 @@ namespace MyStudyProject.Tests.Unit.Mappers
                 NetworkId = "value",
                 ProfileId = "id",
                 Url = "url",
-                Id = 3
+                Id = 3,
+                MediaType = SocialMediaType.VK
             };
             return user;
         }

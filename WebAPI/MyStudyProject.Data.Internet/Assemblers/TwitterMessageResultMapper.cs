@@ -26,7 +26,8 @@ namespace MyStudyProject.Data.Internet.Assemblers
             UserQueryResult user = new UserQueryResult
             {
                 NetworkId = tweet.CreatedBy.IdStr,
-                Url = tweet.Url
+                Url = tweet.Url,
+                UserName = tweet.CreatedBy.Name
             };
 
             MessageQueryResult message = new MessageQueryResult(0,

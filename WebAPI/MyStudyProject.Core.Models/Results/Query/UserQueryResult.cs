@@ -1,6 +1,7 @@
 ﻿using System;
 
 using MyStudyProject.Core.Models.Interface.Cqrs.Query;
+using MyStudyProject.Shared.Contracts.Enums;
 
 namespace MyStudyProject.Core.Models.Results.Query
 {
@@ -13,6 +14,8 @@ namespace MyStudyProject.Core.Models.Results.Query
         public string UserName { get; set; }
 
         public string ProfileId { get; set; }
+
+        public SocialMediaType MediaType { get; set; }
 
         public string Url { get; set; }
     }

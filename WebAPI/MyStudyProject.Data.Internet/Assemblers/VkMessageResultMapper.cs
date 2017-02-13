@@ -51,7 +51,7 @@ namespace MyStudyProject.Data.Internet.Assemblers
             {
                 NetworkId = post.FromId.ToString(),
                 UserName = $"{profile.FirstName} {profile.LastName}",
-                ProfileId = profile?.UserName
+                ProfileId = profile.UserName
             };
             return user;
         }

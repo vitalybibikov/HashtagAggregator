@@ -1,5 +1,6 @@
 ﻿using MyStudyProject.Core.Models.Commands;
 using MyStudyProject.Domain.Cqrs.EF.Assemblers;
+using MyStudyProject.Shared.Contracts.Enums;
 using Xunit;
 
 namespace MyStudyProject.Tests.Unit.Mappers
@@ -12,6 +13,7 @@ namespace MyStudyProject.Tests.Unit.Mappers
             //Arrange
             var mapper = new UserCommandToEntityMapper();
             var command = GetUserCommand();
+
             //Act
             var result = mapper.MapSingle(command);
 
@@ -21,6 +23,7 @@ namespace MyStudyProject.Tests.Unit.Mappers
             Assert.Equal(command.ProfileId, result.ProfileId);
             Assert.Equal(command.Url, result.Url);
             Assert.Equal(command.UserName, result.UserName);
+            Assert.Equal(command.MediaType, result.MediaType);
         }
 
         private UserCreateCommand GetUserCommand()
@@ -30,7 +33,8 @@ namespace MyStudyProject.Tests.Unit.Mappers
                 UserName = null,
                 NetworkId = "value",
                 ProfileId = "id",
-                Url = "url"
+                Url = "url",
+                MediaType = SocialMediaType.Twitter
             };
             return user;
         }

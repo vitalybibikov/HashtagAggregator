@@ -10,12 +10,15 @@ namespace MyStudyProject.Domain.Cqrs.EF.Assemblers
             UserEntity query = null;
             if (item != null)
             {
-                query = new UserEntity();
-                query.Id = item.Id;
-                query.NetworkId = item.NetworkId;
-                query.UserName = item.UserName;
-                query.ProfileId = item.ProfileId;
-                query.Url = item.Url;
+                query = new UserEntity
+                {
+                    Id = item.Id,
+                    NetworkId = item.NetworkId,
+                    UserName = item.UserName,
+                    ProfileId = item.ProfileId,
+                    MediaType =  item.MediaType,
+                    Url = item.Url
+                };
             }
             return query;
         }

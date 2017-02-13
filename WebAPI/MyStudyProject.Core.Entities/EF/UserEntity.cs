@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using MyStudyProject.Shared.Contracts.Enums;
 
 namespace MyStudyProject.Core.Entities.EF
 {
@@ -11,6 +12,8 @@ namespace MyStudyProject.Core.Entities.EF
         public string ProfileId { get; set; }
 
         public string Url { get; set; }
+
+        public SocialMediaType  MediaType { get; set; }
 
         public List<MessageEntity> Messages { get; set; }
     }

@@ -20,17 +20,16 @@ import {
 
 import { ENV_PROVIDERS } from '../platform/environment';
 import { PROVIDERS } from "../platform/providers";
-import { APP_PROVIDERS } from "./index";
 import { APP_ROUTES } from './app.routes';
 
 import { AppComponent } from './app.component';
 import { APP_RESOLVER_PROVIDERS } from './app.resolver';
 import { AppState, InternalStateType } from './app.service';
-import { HomeComponent } from './home';
 import { NoContentComponent } from './no-content';
 
 import '../styles/styles.scss';
 import '../styles/headings.css';
+import {AuthModule} from "./shared/auth.module";
 
 type StoreType = {
   state: InternalStateType,
@@ -51,6 +50,7 @@ type StoreType = {
     FormsModule,
     HttpModule,
     SharedModule,
+    AuthModule,
     RouterModule.forRoot(APP_ROUTES, { useHash: true, preloadingStrategy: PreloadAllModules })
   ],
   providers: [

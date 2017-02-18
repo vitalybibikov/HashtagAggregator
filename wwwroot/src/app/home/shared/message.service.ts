@@ -7,11 +7,13 @@ import "rxjs/add/operator/map";
 import "rxjs/add/operator/share";
 import { Observable } from "rxjs";
 import { AppConfigService } from "../../shared/services/app-config.service";
+import { AuthHttp, AuthConfig, AUTH_PROVIDERS } from 'angular2-jwt';
 
 @Injectable()
 export class MessageService {
 
-    constructor(private http: Http, @Inject(APP_CONFIG_TOKEN) private config: AppConfig,  private  configService: AppConfigService) {
+    constructor(public authHttp: AuthHttp, @Inject(APP_CONFIG_TOKEN) private config: AppConfig,
+                private  configService: AppConfigService) {
 
     }
 
@@ -19,7 +21,7 @@ export class MessageService {
         let hashtag  = this.configService.get<string>("hashtag");
         let uri = this.config.apiEndpoint + 'statistics/' + hashtag;
         console.log(uri);
-        return this.http.get(uri)
+        return this.authHttp.get(uri)
             .map(messages => this.getMappedMessage(messages))
             .share();
     }

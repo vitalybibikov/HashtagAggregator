@@ -20,7 +20,7 @@ export const CONFIG: AppConfig = {
     i18nResourceFileFormat: ".json",
     vkMessageUri : "https://vk.com/{user}?w=wall{userId}_{networkId}%2Fall",
     twitterMessageUri : "https://twitter.com/{user}/status/{networkId}",
-    hashtag: "somesmallmessage09022017"
+    hashtag: "somesmallmessagefortest"
 };
 
 if ("production" === ENV) {

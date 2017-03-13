@@ -28,9 +28,11 @@ namespace MyStudyProject.Domain.Cqrs.Common.Handlers.CompositeQueryHandlers
             return filter.Filter(list);
         }
 
-        protected override async Task<MessagesQueryResult> RunHandler(IQueryHandler<MessagesGetQuery, MessagesQueryResult> handler, MessagesGetQuery query)
+        protected override async Task<MessagesQueryResult> RunHandler(
+            IQueryHandler<MessagesGetQuery, MessagesQueryResult> handler, MessagesGetQuery query)
         {
             MessagesQueryResult messages = await handler.GetAsync(query);
             return messages;
         }
+    }
 }

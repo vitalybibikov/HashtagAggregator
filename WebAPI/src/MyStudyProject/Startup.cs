@@ -115,8 +115,13 @@ namespace MyStudyProject
                         }
                     });
             });
+
             app.UseCors("CorsPolicy");
+
             app.UseStatusCodePages();
+            app.UseStaticFiles();
+            app.UseDefaultFiles();
+
             app.UseHangfireDashboard();
             app.UseHangfireServer();
             app.UseMvc();

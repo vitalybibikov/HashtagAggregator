@@ -1,0 +1,26 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp1.1</TargetFramework>
+    <AssemblyName>MyStudyProject.Core.Cqrs</AssemblyName>
+    <PackageId>MyStudyProject.Core.Cqrs</PackageId>
+    <PackageTargetFallback>$(PackageTargetFallback);dnxcore50</PackageTargetFallback>
+    <RuntimeFrameworkVersion>1.1.1</RuntimeFrameworkVersion>
+    <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
+    <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
+    <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MyStudyProject.Core.Contracts\MyStudyProject.Core.Contracts.csproj" />
+    <ProjectReference Include="..\MyStudyProject.Core.Models\MyStudyProject.Core.Models.csproj" />
+    <ProjectReference Include="..\MyStudyProject.Shared.Contracts\MyStudyProject.Shared.Contracts.csproj" />
+    <ProjectReference Include="..\MyStudyProject.Shared.Logging\MyStudyProject.Shared.Logging.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Autofac" Version="4.4.0" />
+    <PackageReference Include="Serilog.Extensions.Logging" Version="1.4.1-dev-10147" />
+  </ItemGroup>
+
+</Project>

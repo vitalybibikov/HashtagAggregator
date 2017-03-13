@@ -1,26 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 
+using MyStudyProject.Core.Contracts.Interface.DataSources;
+using MyStudyProject.Core.Models;
 using MyStudyProject.Core.Models.Commands;
+using MyStudyProject.Core.Models.Interface.Cqrs.Command;
+using MyStudyProject.Core.Models.Queries;
 using MyStudyProject.Core.Models.Results.Query;
-using MyStudyProject.Shared.Common.Settings;
 using MyStudyProject.Data.Contracts.Interface;
+using MyStudyProject.Data.Internet.Assemblers;
+using MyStudyProject.Shared.Common.Settings;
+using MyStudyProject.Shared.Logging;
 
 using Tweetinvi;
 using Tweetinvi.Models;
 using Tweetinvi.Parameters;
 
-using Microsoft.Extensions.Logging;
-using MyStudyProject.Core.Contracts.Interface.DataSources;
-using MyStudyProject.Core.Models.Queries;
-using MyStudyProject.Shared.Logging;
-using MyStudyProject.Core.Models.Interface.Cqrs.Command;
-using MyStudyProject.Data.Internet.Assemblers;
-using MyStudyProject.Core.Models;
-
-namespace MyStudyProject.Data.Internet.Services.Twitter
+namespace MyStudyProject.Data.Internet.DataSources.Twitter
 {
     public class TwitterMessageServiceFacade : ITwitterMessageFacade
     {

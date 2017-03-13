@@ -1,0 +1,57 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp1.1</TargetFramework>
+    <PreserveCompilationContext>true</PreserveCompilationContext>
+    <AssemblyName>MyStudyProject</AssemblyName>
+    <OutputType>Exe</OutputType>
+    <PackageId>MyStudyProject</PackageId>
+    <PackageTargetFallback>$(PackageTargetFallback);dnxcore50</PackageTargetFallback>
+    <RuntimeFrameworkVersion>1.1.1</RuntimeFrameworkVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Update="wwwroot\**\*">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\MyStudyProject.Shared.Common\MyStudyProject.Shared.Common.csproj" />
+    <ProjectReference Include="..\..\MyStudyProject.Data.DataAccess\MyStudyProject.Data.DataAccess.csproj" />
+    <ProjectReference Include="..\..\MyStudyProject.Data.Contracts\MyStudyProject.Data.Contracts.csproj" />
+    <ProjectReference Include="..\..\MyStudyProject.Core.Cqrs\MyStudyProject.Core.Cqrs.csproj" />
+    <ProjectReference Include="..\..\MyStudyProject.Core.Models\MyStudyProject.Core.Models.csproj" />
+    <ProjectReference Include="..\..\MyStudyProject.Domain.Cqrs.Twitter\MyStudyProject.Domain.Cqrs.Twitter.csproj" />
+    <ProjectReference Include="..\..\MyStudyProject.Domain.Cqrs.Vk\MyStudyProject.Domain.Cqrs.Vk.csproj" />
+    <ProjectReference Include="..\..\MyStudyProject.Data.Internet\MyStudyProject.Data.Internet.csproj" />
+    <ProjectReference Include="..\..\MyStudyProject.Domain.Cqrs.EF\MyStudyProject.Domain.Cqrs.EF.csproj" />
+    <ProjectReference Include="..\..\MyStudyProject.Shared.Logging\MyStudyProject.Shared.Logging.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="1.1.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Routing" Version="1.1.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Server.IISIntegration" Version="1.1.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Server.Kestrel" Version="1.1.1" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.EnvironmentVariables" Version="1.1.1" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.FileExtensions" Version="1.1.1" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="1.1.1" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="1.1.1" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="1.1.1" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="1.1.1" />
+    <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="1.1.1" />
+    <PackageReference Include="AutoMapper" Version="5.2.0" />
+    <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="4.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Diagnostics" Version="1.1.1" />
+    <PackageReference Include="Hangfire.Core" Version="1.6.9" />
+    <PackageReference Include="Hangfire" Version="1.6.9" />
+    <PackageReference Include="Serilog.Sinks.File" Version="3.2.0" />
+    <PackageReference Include="Serilog.Settings.Configuration" Version="2.3.0-dev-00044" />
+    <PackageReference Include="AutofacSerilogIntegration" Version="2.0.0-dev-00019" />
+    <PackageReference Include="Serilog.Sinks.Literate" Version="2.1.0" />
+    <PackageReference Include="Serilog.Extensions.Logging" Version="1.4.1-dev-10147" />
+    <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="1.1.1" />
+  </ItemGroup>
+
+</Project>

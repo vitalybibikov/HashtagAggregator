@@ -1,0 +1,76 @@
+{
+  "dependencies": {
+    "Microsoft.AspNetCore.Mvc": "1.1.0",
+    "Microsoft.AspNetCore.Routing": "1.1.0",
+    "Microsoft.AspNetCore.Server.IISIntegration": "1.1.0",
+    "Microsoft.AspNetCore.Server.Kestrel": "1.1.0",
+    "Microsoft.Extensions.Configuration.EnvironmentVariables": "1.1.0",
+    "Microsoft.Extensions.Configuration.FileExtensions": "1.1.0",
+    "Microsoft.Extensions.Configuration.Json": "1.1.0",
+    "Microsoft.Extensions.Configuration": "1.1.0",
+    "Microsoft.Extensions.Logging.Console": "1.1.0",
+    "Microsoft.Extensions.Logging.Debug": "1.1.0",
+    "Microsoft.Extensions.Options.ConfigurationExtensions": "1.1.0",
+    "MyStudyProject.Shared.Common": "1.0.0-*",
+    "MyStudyProject.Data.DataAccess": "1.0.0-*",
+    "MyStudyProject.Data.Contracts": "1.0.0-*",
+    "AutoMapper": "5.2.0",
+    "Autofac.Extensions.DependencyInjection": "4.0.0",
+    "MyStudyProject.Core.Cqrs": "1.0.0-*",
+    "MyStudyProject.Core.Models": "1.0.0-*",
+    "Microsoft.AspNetCore.Diagnostics": "1.1.0",
+    "MyStudyProject.Domain.Cqrs.Twitter": "1.0.0-*",
+    "MyStudyProject.Domain.Cqrs.Vk": "1.0.0-*",
+    "MyStudyProject.Data.Internet": "1.0.0-*",
+    "MyStudyProject.Domain.Cqrs.EF": "1.0.0-*",
+    "Hangfire.Core": "1.6.8",
+    "Hangfire": "1.6.8",
+    "MyStudyProject.Shared.Logging": "1.0.0-*",
+    "Serilog.Sinks.File": "3.2.0",
+    "Serilog.Settings.Configuration": "2.3.0-dev-00042",
+    "AutofacSerilogIntegration": "2.0.0-dev-00019",
+    "Serilog.Sinks.Literate": "2.1.0-dev-00034",
+    "Serilog.Extensions.Logging": "1.4.1-dev-10147",
+    "Microsoft.AspNetCore.StaticFiles": "1.1.0"
+  },
+
+  "tools": {
+    "Microsoft.AspNetCore.Server.IISIntegration.Tools": "1.1.0-preview4-final"
+  },
+
+  "frameworks": {
+    "netcoreapp1.1": {
+      "dependencies": {
+        "Microsoft.NETCore.App": {
+          "type": "platform",
+          "version": "1.1.0"
+        }
+      },
+      "imports": "dnxcore50"
+    }
+  },
+
+  "buildOptions": {
+    "emitEntryPoint": true,
+    "preserveCompilationContext": true
+  },
+
+  "runtimeOptions": {
+    "configProperties": {
+      "System.GC.Server": true
+    }
+  },
+
+  "publishOptions": {
+    "include": [
+      "wwwroot",
+      "**/*.cshtml",
+      "appsettings.json",
+      "web.config"
+    ]
+  },
+
+  "scripts": {
+    "postpublish": [ "dotnet publish-iis --publish-folder %publish:OutputPath% --framework %publish:FullTargetFramework%" ]
+  }
+}

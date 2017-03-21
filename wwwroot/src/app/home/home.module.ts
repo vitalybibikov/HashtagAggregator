@@ -15,7 +15,6 @@ import { HomeComponent } from './home.component';
         CommonModule
     ],
     providers: [
-        // AgentResolver
     ]
 })
 export class HomeModule {

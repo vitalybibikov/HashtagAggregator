@@ -8,11 +8,11 @@ import { MessageService } from './shared/message.service';
 
 @Component({
   selector: 'home',
+  styleUrls: ['./home.component.scss'],
+  templateUrl: './home.component.html',
   providers: [
     MessageService
   ],
-  styleUrls: ['./home.component.scss'],
-  templateUrl: './home.component.html'
 })
 export class HomeComponent implements OnInit {
   public localState = { value: '' };
@@ -22,7 +22,6 @@ export class HomeComponent implements OnInit {
   }
 
   public ngOnInit() {
-    // this.title.getData().subscribe(data => this.data = data);
   }
 
   public submitState(value: string) {

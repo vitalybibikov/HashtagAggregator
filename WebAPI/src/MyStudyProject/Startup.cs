@@ -22,7 +22,6 @@ using MyStudyProject.Shared.Common.Settings;
 using MyStudyProject.Shared.Contracts.Interfaces;
 using Serilog;
 
-
 namespace MyStudyProject
 {
     public class Startup
@@ -62,14 +61,17 @@ namespace MyStudyProject
             services.Configure<TwitterApiSettings>(Configuration.GetSection("TwitterApiSettings"));
             
             services.AddMemoryCache();
-            services.AddMvc(options =>
+            services.AddMvcCore(options =>
             {
                 options.CacheProfiles.Add("Default",
                     new CacheProfile
                     {
                         Duration = 60
                     });
-            });
+            })
+            .AddAuthorization()
+            .AddJsonFormatters(); //todo: check on formatters
+
             var connectionString = Configuration.GetSection("AppSettings:ConnectionString").Value;
             services.AddEntityFrameworkSqlServer()
                 .AddDbContext<SqlApplicationDbContext>(
@@ -116,12 +118,19 @@ namespace MyStudyProject
                     });
             });
 
+            app.UseIdentityServerAuthentication(new IdentityServerAuthenticationOptions
+            {
+                AuthenticationScheme = "oidc",
+                Authority = "http://localhost:5001",
+                RequireHttpsMetadata = false, //todo: should be true when enabled https
+                ApiName = "StatisticsAPI"
+            });
+
             app.UseCors("CorsPolicy");
 
             app.UseStatusCodePages();
             app.UseStaticFiles();
             app.UseDefaultFiles();
-
             app.UseHangfireDashboard();
             app.UseHangfireServer();
             app.UseMvc();

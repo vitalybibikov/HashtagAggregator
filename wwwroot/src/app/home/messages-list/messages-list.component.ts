@@ -26,10 +26,10 @@ export class MessagesListComponent implements OnInit, OnDestroy {
     }
 
     public ngOnInit() {
-        this.messageSubscription = this.messageService.getData()
-            .subscribe(
-                messages => this.messages = messages
-            );
+      this.messageSubscription = this.messageService.getData()
+        .subscribe(
+          messages => this.messages = messages
+        );
     }
 
     public ngOnDestroy(): any {

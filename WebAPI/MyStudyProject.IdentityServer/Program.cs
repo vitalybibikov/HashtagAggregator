@@ -1,8 +1,11 @@
-﻿using System.IO;
-
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
 
-namespace MyStudyProject
+namespace MyStudyProject.IdentityServer
 {
     public class Program
     {
@@ -12,8 +15,9 @@ namespace MyStudyProject
                 .UseKestrel()
                 .UseContentRoot(Directory.GetCurrentDirectory())
                 .UseIISIntegration()
-                .UseUrls("http://localhost:5005")
+                .UseUrls("http://localhost:5001")
                 .UseStartup<Startup>()
+                .UseApplicationInsights()
                 .Build();
 
             host.Run();

@@ -12,7 +12,7 @@ import { AuthHttp, AuthConfig, AUTH_PROVIDERS } from 'angular2-jwt';
 @Injectable()
 export class MessageService {
 
-    constructor(public authHttp: AuthHttp, @Inject(APP_CONFIG_TOKEN) private config: AppConfig,
+    constructor(public http: Http, @Inject(APP_CONFIG_TOKEN) private config: AppConfig,
                 private  configService: AppConfigService) {
 
     }
@@ -21,7 +21,7 @@ export class MessageService {
         let hashtag  = this.configService.get<string>("hashtag");
         let uri = this.config.apiEndpoint + 'statistics/' + hashtag;
         console.log(uri);
-        return this.authHttp.get(uri)
+        return this.http.get(uri)
             .map(messages => this.getMappedMessage(messages))
             .share();
     }

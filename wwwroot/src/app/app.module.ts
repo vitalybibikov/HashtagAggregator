@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
+import { HttpModule, JsonpModule  } from '@angular/http';
+
 import { HomeModule } from './home/home.module';
 import { SharedModule } from "./shared/shared.module";
 import {
@@ -30,6 +31,7 @@ import { NoContentComponent } from './no-content';
 import '../styles/styles.scss';
 import '../styles/headings.css';
 import {AuthModule} from "./shared/auth.module";
+import {AuthService} from "./shared/services/auth.service";
 
 type StoreType = {
   state: InternalStateType,
@@ -51,13 +53,15 @@ type StoreType = {
     HttpModule,
     SharedModule,
     AuthModule,
+    JsonpModule,
     RouterModule.forRoot(APP_ROUTES, { useHash: true, preloadingStrategy: PreloadAllModules })
   ],
   providers: [
     ...PROVIDERS,
     ...ENV_PROVIDERS,
     APP_RESOLVER_PROVIDERS,
-    AppState
+    AppState,
+    AuthService
   ]
 })
 

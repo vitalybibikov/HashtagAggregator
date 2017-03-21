@@ -1,0 +1,7 @@
+<ul class="my-external-login-buttons list-inline">
+  <external-button
+    [externalProvider]='externalProvider'
+    [returnURL]='loginData.returnUrl'
+    *ngFor="let externalProvider of externalProviders">
+  </external-button>
+</ul>

@@ -6,6 +6,7 @@ import {
 
 import { TranslateService } from 'ng2-translate';
 import { AppState } from './app.service';
+import {Http, RequestOptionsArgs, Headers} from "@angular/http";
 
 @Component({
   selector: 'app',
@@ -15,7 +16,7 @@ import { AppState } from './app.service';
   providers: [TranslateService]
 })
 export class AppComponent implements OnInit {
-  constructor(public appState: AppState, translate: TranslateService) {
+  constructor(public appState: AppState, translate: TranslateService, private http: Http) {
     translate.setDefaultLang('en');
     translate.use('en');
   }
@@ -23,4 +24,37 @@ export class AppComponent implements OnInit {
   public ngOnInit() {
 
   }
+
+  public makeAuthCall(){
+    console.log("start");
+
+
+    let args = this.processRequestOptions(null, '296338075-QWYKwRyKLvNhW0gTcmSEUXxo8a7rZQhRMXhiST2t');
+    this.http.get('http://localhost:5005/api/identity', args).subscribe();
+
+
+     //this.http.get('http://localhost:5000/connect/userinfo').subscribe();
+    console.log("end");
+  }
+
+  private  processRequestOptions(options: RequestOptionsArgs, token: string): RequestOptionsArgs {
+
+    if (!options) {
+      options = <RequestOptionsArgs> {};
+    }
+
+    if (!options.headers) {
+      options.headers = new Headers();
+    }
+    if (options.headers.has("Authorization")) {
+      options.headers.delete("Authorization");
+    }
+
+    options.headers.append('Content-Type', 'application/json');
+    options.headers.append("Authorization", `Bearer ${token}`);
+    options.headers.append("Accept", "application/json");
+    console.log(`Options: ${options.headers}`);
+    return options;
+  }
 }
+

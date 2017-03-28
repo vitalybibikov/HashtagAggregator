@@ -10,15 +10,10 @@ import {ExternalButtonComponent} from "./external-login/external-button/external
 import {ExternalLoginButtonsComponent} from "./external-login/external-login-buttons.component";
 
 @NgModule({
-    imports: [CommonModule,
-        TranslateModule.forRoot({
-            provide: TranslateLoader,
-            useFactory: (http: Http) => new TranslateStaticLoader(http, '../../assets/i18n', '.json'),
-            deps: [Http]
-        })
+    imports: [CommonModule
     ],
     declarations: [ ExternalLoginButtonsComponent, ExternalButtonComponent],
-    exports: [TranslateModule, CommonModule, ExternalLoginButtonsComponent]
+    exports: [CommonModule, ExternalLoginButtonsComponent]
 })
 export class SharedModule {
 

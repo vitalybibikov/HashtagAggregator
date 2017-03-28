@@ -16,8 +16,7 @@ export class ExternalLoginService {
   }
 
   public getExternalLogins(): Observable<LoginData> {
-    let uri = this.config.loginApiEndpoint + 'account';
-
+    let uri = this.config.loginApiEndpoint + 'account/login';
     let params = new URLSearchParams();
     params.set('returnUrl',  this.authService.getReturnURL());
     let requestOptions = new RequestOptions();
@@ -29,18 +28,17 @@ export class ExternalLoginService {
   }
 
   public externalLogIn(returnUrl: string, scheme: string): void {
-    let uri = this.config.loginApiEndpoint + 'account/externallogin';
-
+   let uri = this.config.loginApiEndpoint + 'account/externallogin/';
     uri = uri + '?' +
       'provider='  + encodeURIComponent(scheme)+ '&' +
-      'returnUrl=' + encodeURIComponent(window.location.href);
+      'returnUrl=' +  "%2Fconnect%2Fauthorize%2Flogin%3Fclient_id%3Dstatisticsapiclient%26redirect_uri%3Dhttp%253A%252F%252Flocalhost%253A3000%26response_type%3Did_token%2520token%26scope%3Dopenid%2520profile%2520statisticsapi%26state%3D13f4c8e9e4724cb1933640490baa2b10%26nonce%3Db27c95beb64a4413bd9932395ee363b7"//encodeURIComponent(returnUrl);
+
     console.log(uri);
     window.location.href = uri;
   }
 
   private getLogins(data: any): LoginData {
     let login = <LoginData>data.json();
-    console.log(login);
     return login;
   }
 

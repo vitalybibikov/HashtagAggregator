@@ -1,9 +1,10 @@
 ﻿using System;
+using System.IdentityModel.Tokens.Jwt;
 using System.Net;
 using Autofac;
 using AutoMapper;
 using Hangfire;
-
+using IdentityModel.AspNetCore.OAuth2Introspection;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Hosting;
@@ -61,16 +62,14 @@ namespace MyStudyProject
             services.Configure<TwitterApiSettings>(Configuration.GetSection("TwitterApiSettings"));
             
             services.AddMemoryCache();
-            services.AddMvcCore(options =>
+            services.AddMvc(options =>
             {
                 options.CacheProfiles.Add("Default",
                     new CacheProfile
                     {
                         Duration = 60
                     });
-            })
-            .AddAuthorization()
-            .AddJsonFormatters(); //todo: check on formatters
+            });
 
             var connectionString = Configuration.GetSection("AppSettings:ConnectionString").Value;
             services.AddEntityFrameworkSqlServer()
@@ -118,16 +117,16 @@ namespace MyStudyProject
                     });
             });
 
-            app.UseIdentityServerAuthentication(new IdentityServerAuthenticationOptions
-            {
-                AuthenticationScheme = "oidc",
-                Authority = "http://localhost:5001",
-                RequireHttpsMetadata = false, //todo: should be true when enabled https
-                ApiName = "StatisticsAPI"
-            });
-
             app.UseCors("CorsPolicy");
 
+            app.UseIdentityServerAuthentication(new IdentityServerAuthenticationOptions
+            {
+                Authority = "http://localhost:5001",
+                RequireHttpsMetadata = false, //todo: should be true when enabled https
+                ApiName = "statisticsapi",
+            });
+
+         
             app.UseStatusCodePages();
             app.UseStaticFiles();
             app.UseDefaultFiles();

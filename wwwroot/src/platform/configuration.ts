@@ -27,8 +27,8 @@ export const CONFIG: AppConfig = {
 
 if ("production" === ENV) {
     CONFIG.apiEndpoint = `${location.origin}/api`;
-    CONFIG.loginApiEndpoint = "http://localhost:5001/api/";
+    CONFIG.loginApiEndpoint = "http://localhost:5001/";
 } else {
     CONFIG.apiEndpoint = "http://localhost:5005/api/";
-    CONFIG.loginApiEndpoint = "http://localhost:5001/api/";
+    CONFIG.loginApiEndpoint = "http://localhost:5001/";
 }

@@ -1,56 +1,45 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
-
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Http.Authentication;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 
-using IdentityModel;
-using IdentityServer4;
-using IdentityServer4.Services;
-using IdentityServer4.Stores;
-using IdentityServer4.Test;
-
+using MyStudyProject.IdentityServer.Identity;
 using MyStudyProject.IdentityServer.Services;
 using MyStudyProject.IdentityServer.ViewModels;
 
 namespace MyStudyProject.IdentityServer.Controllers
 {
     [SecurityHeaders]
-    [Route("api/[controller]")]
+   // [Route("api/[controller]")]
     public class AccountController : Controller
     {
-        private readonly TestUserStore _users;
-        private readonly IIdentityServerInteractionService interaction;
         private IAccountService service;
+        private readonly UserManager<ApplicationUser> userManager;
+        private readonly SignInManager<ApplicationUser> signInManager;
 
         public AccountController(
-            IIdentityServerInteractionService interaction,
-            IClientStore clientStore,
-            IHttpContextAccessor httpContextAccessor,
-            IAccountService service,
-            TestUserStore users = null)
+            UserManager<ApplicationUser> userManager,
+            SignInManager<ApplicationUser> signInManager,
+            IAccountService service)
         {
-            this.interaction = interaction;
+            this.userManager = userManager;
+            this.signInManager = signInManager;
             this.service = service;
-            _users = users ?? new TestUserStore(TestUsers.Users);
         }
 
-        [HttpGet("externallogin")]
+        [HttpGet]
         public IActionResult ExternalLogin(string provider, string returnUrl)
         {
-            returnUrl = Url.Action(nameof(ExternalLoginCallback), new { returnUrl });
+            returnUrl = Url.Action("ExternalLoginCallback", new { returnUrl });
 
-            var props = new AuthenticationProperties
-            {
-                RedirectUri = returnUrl,
-                Items = { { "scheme", provider } }
-            };
-            return new ChallengeResult(provider, props);
+            //returnUrl = Url.Action(nameof(ExternalLoginCallback), new { returnUrl });
+
+            //var redirectUrl = Url.Action(nameof(ExternalLoginCallback), "Account", new { ReturnUrl = returnUrl });
+            var properties = signInManager.ConfigureExternalAuthenticationProperties(provider, returnUrl);
+            return Challenge(properties, provider);
         }
 
         public async Task<LoginViewModel> Login(string returnUrl)
@@ -59,70 +48,63 @@ namespace MyStudyProject.IdentityServer.Controllers
             return vm;
         }
 
-        [HttpGet("/externallogin")]
+
+        [HttpGet]
         public async Task<IActionResult> ExternalLoginCallback(string returnUrl)
         {
-            // read external identity from the temporary cookie
-            var info = await HttpContext.Authentication.GetAuthenticateInfoAsync(IdentityServerConstants.ExternalCookieAuthenticationScheme);
-            var tempUser = info?.Principal;
-            if (tempUser == null)
+            bool result = false;
+            var info = await signInManager.GetExternalLoginInfoAsync();
+            if (info != null)
             {
-                throw new Exception("External authentication error");
+                var tempUser = info.Principal;
+                var claims = tempUser.Claims.ToList();
+   
+                var userIdClaim = claims?.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier);
+                var email = "EvilAvenger@yandex.ru"; claims?.FirstOrDefault(x => x.Type == ClaimTypes.Email);
+
+                if (userIdClaim != null)
+                {
+                    var isRegistered = await IsUserRegistered(info.LoginProvider, info.ProviderKey);
+                    if (!isRegistered && email != null)
+                    {
+                        var user = new ApplicationUser { UserName = userIdClaim.Value, Email = email };
+                        var userCreated = await userManager.CreateAsync(user);
+                        isRegistered = userCreated.Succeeded;
+
+                        if (isRegistered)
+                        {
+                            var addLoginresult = await userManager.AddLoginAsync(user, info);
+                            isRegistered = addLoginresult.Succeeded;
+                            if (isRegistered)
+                            {
+                                await signInManager.SignInAsync(user, isPersistent: false);
+                            }
+                        }
+                    }
+
+                    if (isRegistered)
+                    {
+                        var succeded = await signInManager.ExternalLoginSignInAsync(info.LoginProvider, info.ProviderKey, isPersistent: false);
+                        if (succeded.Succeeded)
+                        {
+                            IdentityResult updateResult = await signInManager.UpdateExternalAuthenticationTokensAsync(info);
+                            result = updateResult.Succeeded;
+                        }
+                    }
+                }
             }
 
-            // retrieve claims of the external user
-            var claims = tempUser.Claims.ToList();
-
-            // try to determine the unique id of the external user - the most common claim type for that are the sub claim and the NameIdentifier
-            // depending on the external provider, some other claim type might be used
-            var userIdClaim = claims.FirstOrDefault(x => x.Type == JwtClaimTypes.Subject);
-            if (userIdClaim == null)
+            if (!result)
             {
-                userIdClaim = claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier);
+                await signInManager.SignOutAsync();
             }
-            if (userIdClaim == null)
-            {
-                throw new Exception("Unknown userid");
-            }
-
-            // remove the user id claim from the claims collection and move to the userId property
-            // also set the name of the external authentication provider
-            claims.Remove(userIdClaim);
-            var provider = info.Properties.Items["scheme"];
-            var userId = userIdClaim.Value;
-
-            // check if the external user is already provisioned
-            var user = _users.FindByExternalProvider(provider, userId);
-            if (user == null)
-            {
-                // this sample simply auto-provisions new external user
-                // another common approach is to start a registrations workflow first
-                user = _users.AutoProvisionUser(provider, userId, claims);
-            }
-
-            var additionalClaims = new List<Claim>();
-
-            // if the external system sent a session id claim, copy it over
-            var sid = claims.FirstOrDefault(x => x.Type == JwtClaimTypes.SessionId);
-            if (sid != null)
-            {
-                additionalClaims.Add(new Claim(JwtClaimTypes.SessionId, sid.Value));
-            }
-
-            // if the external provider issued an id_token, we'll keep it for signout
-            AuthenticationProperties props = null;
-            var idToken = info.Properties.GetTokenValue("id_token");
-            if (idToken != null)
-            {
-                props = new AuthenticationProperties();
-                props.StoreTokens(new[] { new AuthenticationToken { Name = "id_token", Value = idToken } });
-            }
-            // issue authentication cookie for user
-            await HttpContext.Authentication.SignInAsync(user.SubjectId, user.Username, provider, props, additionalClaims.ToArray());
-            // delete temporary cookie used during external authentication
-            await HttpContext.Authentication.SignOutAsync(IdentityServerConstants.ExternalCookieAuthenticationScheme);
-
             return Redirect(returnUrl);
+        }
+
+        private async Task<bool> IsUserRegistered(string login, string key)
+        {
+            return await userManager.FindByLoginAsync(login, key) != null;
         }
     }
 }
+

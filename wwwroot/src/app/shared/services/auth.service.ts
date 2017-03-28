@@ -9,14 +9,11 @@ export class AuthService {
   }
 
   public getReturnURL() : string {
-
-    console.log('Begin authorize');
-
-    let authorizationUrl = '/connect/authorize';
-    let client_id = 'StatisticsAPI';
-    let redirect_uri = this.config.apiEndpoint + 'signin-external';
-    let response_type = 'id_token';
-    let scope = 'openid profile';
+    let authorizationUrl = 'connect/authorize';
+    let client_id = 'statisticsapiclient';
+    let redirect_uri = "http://localhost:3000/";
+    let response_type = 'id_token token';
+    let scope = 'openid profile statisticsapi';
     let nonce = 'N' + Math.random() + '' + Date.now();
     let state = Date.now() + '' + Math.random();
 

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using IdentityServer4;
 using IdentityServer4.Models;
 
 namespace MyStudyProject.IdentityServer
@@ -10,7 +11,8 @@ namespace MyStudyProject.IdentityServer
             return new List<IdentityResource>
             {
                 new IdentityResources.OpenId(),
-                new IdentityResources.Profile()
+                new IdentityResources.Profile(),
+                new IdentityResources.Email()
             };
         }
 
@@ -18,16 +20,7 @@ namespace MyStudyProject.IdentityServer
         {
             return new List<ApiResource>
             {
-                new ApiResource
-                {
-                    Name = "StatisticsAPI",
-                    DisplayName = "Statistics API",
-                    Description = "Statistics API Access",
-                    Scopes = new List<Scope>
-                    {
-                        new Scope("StatisticsAPI"),
-                    }
-                }
+                new ApiResource("statisticsapi", "My API")
             };
         }
 
@@ -37,11 +30,24 @@ namespace MyStudyProject.IdentityServer
             {
                 new Client
                 {
-                    ClientId = "StatisticsAPIСlient",
+                    ClientId = "statisticsapiclient",
                     ClientName = "Statistics API Сlient",
                     AllowedGrantTypes = GrantTypes.Implicit,
-                    RedirectUris = { "http://localhost:5005/twitter-oidc" },
-                    AllowedScopes = { "StatisticsAPI" }
+
+                    RedirectUris = { "http://localhost:3000" },
+                    PostLogoutRedirectUris = { "http://localhost:3000" },
+                    AllowedCorsOrigins = { "http://localhost:3000" },
+                    AllowedScopes =
+                    {
+                        "statisticsapi",
+                        IdentityServerConstants.StandardScopes.OpenId,
+                        IdentityServerConstants.StandardScopes.Profile,
+                        IdentityServerConstants.StandardScopes.Email
+                    },
+
+                    AllowAccessTokensViaBrowser =  true,
+                    AllowRememberConsent = false,
+                    RequireConsent = false
                 }
             };
         }

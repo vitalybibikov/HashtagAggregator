@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
-import { HttpModule, JsonpModule  } from '@angular/http';
 
 import { HomeModule } from './home/home.module';
 import { SharedModule } from "./shared/shared.module";
@@ -32,6 +31,13 @@ import '../styles/styles.scss';
 import '../styles/headings.css';
 import {AuthModule} from "./shared/auth.module";
 import {AuthService} from "./shared/services/auth.service";
+import { HttpModule, Http } from "@angular/http";
+
+import {
+  TranslateModule,
+  TranslateLoader,
+  TranslateStaticLoader
+} from "ng2-translate";
 
 type StoreType = {
   state: InternalStateType,
@@ -53,8 +59,13 @@ type StoreType = {
     HttpModule,
     SharedModule,
     AuthModule,
-    JsonpModule,
-    RouterModule.forRoot(APP_ROUTES, { useHash: true, preloadingStrategy: PreloadAllModules })
+    TranslateModule.forRoot({
+      provide: TranslateLoader,
+      useFactory: (http: Http) => new TranslateStaticLoader(http, '../../assets/i18n', '.json'),
+      deps: [Http]
+    }),
+
+    RouterModule.forRoot(APP_ROUTES, { useHash: false, preloadingStrategy: PreloadAllModules })
   ],
   providers: [
     ...PROVIDERS,

@@ -1,8 +1,14 @@
-﻿using IdentityServer4;
-
+﻿using System.IdentityModel.Tokens.Jwt;
+using IdentityServer4;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+
+using MyStudyProject.IdentityServer.Database.Context;
+using MyStudyProject.IdentityServer.Identity;
 using MyStudyProject.IdentityServer.Services;
 
 namespace MyStudyProject.IdentityServer
@@ -12,8 +18,20 @@ namespace MyStudyProject.IdentityServer
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddScoped<IAccountService, AccountService>();
+            services.AddMvc(); //Core().AddJsonFormatters();
 
-            services.AddMvcCore().AddJsonFormatters();
+            var connectionString = "Data Source=.;Initial Catalog=MyStudyDb;User ID=sa;Password=123456";
+            services.AddDbContext<SqlIdentityDbContext>(
+             options => options.UseSqlServer(connectionString));
+
+            services.AddEntityFramework()
+                    .AddDbContext<SqlIdentityDbContext>(options =>
+                        options.UseSqlServer(connectionString));
+
+            services.AddIdentity<ApplicationUser, IdentityRole>()
+                .AddEntityFrameworkStores<SqlIdentityDbContext>()
+                .AddDefaultTokenProviders();
+
             services.AddCors(options => options.AddPolicy("CorsPolicy",
                 builder => builder.AllowAnyOrigin()
                 .AllowAnyMethod()
@@ -21,10 +39,11 @@ namespace MyStudyProject.IdentityServer
                 .AllowCredentials()));
 
             services.AddIdentityServer()
+                .AddTemporarySigningCredential()
                 .AddInMemoryClients(Config.GetClients())
                 .AddInMemoryIdentityResources(Config.GetIdentityResources())
                 .AddInMemoryApiResources(Config.GetApiResources())
-                .AddTemporarySigningCredential();
+                .AddAspNetIdentity<ApplicationUser>();
         }
 
         public void Configure(IApplicationBuilder app, ILoggerFactory loggerFactory)
@@ -33,17 +52,21 @@ namespace MyStudyProject.IdentityServer
 
             app.UseCors("CorsPolicy");
 
+            app.UseIdentity();
             app.UseIdentityServer();
-            //todo secure store
+
+            //after identity before mvc
             app.UseTwitterAuthentication(new TwitterOptions
             {
-                AuthenticationScheme = "Twitter",
+                AuthenticationScheme = "Id",
                 DisplayName = "Twitter",
-                SignInScheme = IdentityServerConstants.ExternalCookieAuthenticationScheme,
+                SignInScheme = "Identity.External",
+
                 ConsumerKey = "rggmXYCWck4rlzsCQmI6QHkCG",
                 ConsumerSecret = "M3m4ye2ooJwQTicrK0yGVl9Ui3FPJznH3eXFPyZhdpVVeTusNM"
             });
-            app.UseMvc();
+        
+            app.UseMvcWithDefaultRoute();
         }
     }
 }

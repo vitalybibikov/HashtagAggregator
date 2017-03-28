@@ -9,8 +9,7 @@ export class AppConfigService {
 
   constructor(@Inject(APP_CONFIG_TOKEN) private config: AppConfig,
               @Inject(VK_CONFIG_TOKEN)  private vkConfig: VkConfig,
-               @Inject(TWI_CONFIG_TOKEN)  private twiConfig: TwiConfig
-  ){
+               @Inject(TWI_CONFIG_TOKEN)  private twiConfig: TwiConfig){
   }
 
   public getApp<T>(key: string): T {
@@ -18,7 +17,6 @@ export class AppConfigService {
   }
 
   public getVk<T>(key: string): T {
-    console.log("here");
     return <T> this.vkConfig[key];
   }
 

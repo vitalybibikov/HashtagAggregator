@@ -35,6 +35,7 @@ import { HttpModule, Http } from "@angular/http";
 
 import {TranslateModule, TranslateLoader} from '@ngx-translate/core'
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import {LoginModule} from "./login/login.module";
 
 export function HttpLoaderFactory(http: Http) {
   return new TranslateHttpLoader(http);
@@ -55,6 +56,7 @@ type StoreType = {
   ],
   imports: [
     HomeModule,
+    LoginModule,
     BrowserModule,
     FormsModule,
     HttpModule,

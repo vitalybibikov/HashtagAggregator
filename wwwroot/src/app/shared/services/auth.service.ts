@@ -1,4 +1,4 @@
-import { Injectable, Inject } from "@angular/core";
+import { Injectable } from "@angular/core";
 import {Http} from "@angular/http";
 
 @Injectable()
@@ -26,5 +26,13 @@ export class AuthService {
       'state=' + encodeURI(state);
 
     return url;
+  }
+
+  public saveToken(token : string) : void{
+     localStorage.setItem('currentUser', JSON.stringify({ token: token }));
+  }
+
+  public removeToken() : void{
+    localStorage.removeItem('currentUser');
   }
 }

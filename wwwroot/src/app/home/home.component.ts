@@ -22,12 +22,6 @@ export class HomeComponent implements OnInit {
   }
 
   public ngOnInit() {
-    console.log('###test init home ###')
-    console.log(location.href);
   }
 
-  public submitState(value: string) {
-    this.appState.set('value', value);
-    this.localState.value = '';
-  }
 }

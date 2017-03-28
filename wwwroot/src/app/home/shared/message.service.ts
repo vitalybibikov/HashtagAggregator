@@ -6,15 +6,14 @@ import { Message } from "./models/message"
 import "rxjs/add/operator/map";
 import "rxjs/add/operator/share";
 import { Observable } from "rxjs";
-import { AppConfigService } from "../../shared/services/app-config.service";
-import { AuthHttp, AuthConfig, AUTH_PROVIDERS } from 'angular2-jwt';
+import { AppConfigService } from "../../shared/services/config/app-config.service";
 
 @Injectable()
 export class MessageService {
 
-    constructor(public http: Http, @Inject(APP_CONFIG_TOKEN) private config: AppConfig,
+    constructor(public http: Http,
+                @Inject(APP_CONFIG_TOKEN) private config: AppConfig,
                 private  configService: AppConfigService) {
-
     }
 
     public getData(): Observable<Message[]> {

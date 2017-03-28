@@ -5,7 +5,7 @@ import {AppConfig, APP_CONFIG_TOKEN} from "../../../platform/configuration";
 import "rxjs/add/operator/map";
 import "rxjs/add/operator/share";
 import {Observable} from "rxjs";
-import {AppConfigService} from "../../shared/services/app-config.service";
+import {AppConfigService} from "./config/app-config.service";
 import {LoginData} from "../models/login-data";
 import {AuthService} from "./auth.service";
 
@@ -33,12 +33,11 @@ export class ExternalLoginService {
       'provider='  + encodeURIComponent(scheme)+ '&' +
       'returnUrl=' +  "%2Fconnect%2Fauthorize%2Flogin%3Fclient_id%3Dstatisticsapiclient%26redirect_uri%3Dhttp%253A%252F%252Flocalhost%253A3000%26response_type%3Did_token%2520token%26scope%3Dopenid%2520profile%2520statisticsapi%26state%3D13f4c8e9e4724cb1933640490baa2b10%26nonce%3Db27c95beb64a4413bd9932395ee363b7"//encodeURIComponent(returnUrl);
 
-    console.log(uri);
     window.location.href = uri;
   }
 
   private getLogins(data: any): LoginData {
-    let login = <LoginData>data.json();
+    let login = <LoginData> data.json();
     return login;
   }
 

@@ -2,7 +2,7 @@ import {
     CONFIG,
     APP_CONFIG_TOKEN,
 } from './configuration';
-import {AppConfigService} from '../app/shared/services/app-config.service';
+import {AppConfigService} from '../app/shared/services/config/app-config.service';
 
 export const APP_ROUTER_PROVIDERS = [
 ];

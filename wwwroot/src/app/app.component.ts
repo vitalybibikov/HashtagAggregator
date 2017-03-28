@@ -26,15 +26,10 @@ export class AppComponent implements OnInit {
   }
 
   public makeAuthCall(){
-    console.log("start");
-
 
     let args = this.processRequestOptions(null, '296338075-QWYKwRyKLvNhW0gTcmSEUXxo8a7rZQhRMXhiST2t');
     this.http.get('http://localhost:5005/api/identity', args).subscribe();
 
-
-     //this.http.get('http://localhost:5000/connect/userinfo').subscribe();
-    console.log("end");
   }
 
   private  processRequestOptions(options: RequestOptionsArgs, token: string): RequestOptionsArgs {
@@ -53,7 +48,7 @@ export class AppComponent implements OnInit {
     options.headers.append('Content-Type', 'application/json');
     options.headers.append("Authorization", `Bearer ${token}`);
     options.headers.append("Accept", "application/json");
-    console.log(`Options: ${options.headers}`);
+
     return options;
   }
 }

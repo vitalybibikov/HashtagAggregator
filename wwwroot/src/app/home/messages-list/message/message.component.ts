@@ -6,7 +6,7 @@ import {
 
 import {AppState} from '../../../app.service';
 import {Message} from '../../shared/models/message';
-import {AppConfigService} from '../../../shared/services/app-config.service';
+import {AppConfigService} from '../../../shared/services/config/app-config.service';
 import {MediaType} from "../../shared/enums/social-media.enum";
 import {User} from "../../shared/models/user";
 

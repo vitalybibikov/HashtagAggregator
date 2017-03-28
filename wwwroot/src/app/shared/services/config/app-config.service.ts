@@ -1,6 +1,5 @@
 import { Injectable, Inject } from "@angular/core";
-import { APP_CONFIG_TOKEN, AppConfig } from "../../../platform/configuration";
-
+import {APP_CONFIG_TOKEN, AppConfig} from "../../../../platform/configuration";
 
 @Injectable()
 export class AppConfigService {

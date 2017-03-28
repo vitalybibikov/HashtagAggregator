@@ -30,14 +30,15 @@ export class MessageComponent implements OnInit {
 
   public getMessageLink(message: Message): string {
     let uri: string = null;
+
     if (message.mediaType == MediaType.VK) {
-      uri = this.configService.get<string>("vkMessageUri");
+      uri = this.configService.getVk<string>("vkMessageUri");
       uri = uri.replace("{user}", message.user.profileId)
         .replace("{userId}", message.user.networkId)
         .replace("{networkId}", message.networkId);
     }
     else {
-      uri = this.configService.get<string>("twitterMessageUri");
+      uri = this.configService.getTwitter<string>("twitterMessageUri");
       uri = message.user.url;
     }
     console.log(uri);

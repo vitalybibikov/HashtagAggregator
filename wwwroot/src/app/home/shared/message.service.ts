@@ -17,7 +17,7 @@ export class MessageService {
     }
 
     public getData(): Observable<Message[]> {
-        let hashtag  = this.configService.get<string>("hashtag");
+        let hashtag  = this.configService.getApp<string>("hashtag");
         let uri = this.config.apiEndpoint + 'statistics/' + hashtag;
         console.log(uri);
         return this.http.get(uri)

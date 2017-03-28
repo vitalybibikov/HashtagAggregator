@@ -1,11 +1,10 @@
 import { Injectable, Inject } from "@angular/core";
-import { APP_CONFIG_TOKEN, AppConfig } from "../../../platform/configuration";
 import {Http} from "@angular/http";
 
 @Injectable()
 export class AuthService {
 
-  constructor(private http: Http,  @Inject(APP_CONFIG_TOKEN) private config: AppConfig) {
+  constructor(private http: Http) {
   }
 
   public getReturnURL() : string {

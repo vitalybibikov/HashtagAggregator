@@ -3,9 +3,10 @@ import {OpaqueToken, InjectionToken} from "@angular/core";
 /**
  * App configuration
  */
-export const APP_CONFIG_TOKEN = new InjectionToken("app.config");
-export const VK_CONFIG_TOKEN = new InjectionToken("vk.config");
-export const TWITTER_CONFIG_TOKEN = new InjectionToken("twitter.config");
+export const APP_CONFIG_TOKEN = new InjectionToken<AppConfig>("app.config");
+export const VK_CONFIG_TOKEN = new InjectionToken<VkConfig>("vk.config");
+export const TWI_CONFIG_TOKEN = new InjectionToken<TwiConfig>("ws.config");
+
 
 export interface AppConfig {
     i18nPath: string;
@@ -16,11 +17,11 @@ export interface AppConfig {
 }
 
 export interface VkConfig {
-   vkMessageUri : string;
+    vkMessageUri : string;
 }
 
-export interface TwitterConfig {
-  twitterMessageUri: string;
+export interface TwiConfig {
+  ws : string;
 }
 
 export const CONFIG: AppConfig = {
@@ -28,17 +29,21 @@ export const CONFIG: AppConfig = {
     apiEndpoint: "",
     loginApiEndpoint: "",
     i18nResourceFileFormat: ".json",
-  hashtag: "somesmallmessagefortest"
+    hashtag: "somesmallmessagefortest"
 };
 
 export const VK_CONFIG: VkConfig = {
-  vkMessageUri : "https://vk.com/{user}?w=wall{userId}_{networkId}%2Fall",
+    vkMessageUri : "https://vk.com/{user}?w=wall{userId}_{networkId}%2Fall"
 };
 
-export const TWITTER_CONFIG: TwitterConfig = {
-  twitterMessageUri : "https://twitter.com/{user}/status/{networkId}",
+export const TWI_CONFIG: TwiConfig = {
+  ws : "https://vk.com/{user}?w=wall{userId}_{networkId}%2Fall"
 };
 
+
+
+//"https://twitter.com/{user}/status/{networkId}"
+//twitterMessageUri
 
 if ("production" === ENV) {
     CONFIG.apiEndpoint = `${location.origin}/api`;

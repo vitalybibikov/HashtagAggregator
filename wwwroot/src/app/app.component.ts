@@ -4,7 +4,7 @@ import {
   ViewEncapsulation
 } from '@angular/core';
 
-import { TranslateService } from 'ng2-translate';
+import { TranslateService } from '@ngx-translate/core';
 import { AppState } from './app.service';
 import {Http, RequestOptionsArgs, Headers} from "@angular/http";
 
@@ -32,8 +32,7 @@ export class AppComponent implements OnInit {
 
   }
 
-  private  processRequestOptions(options: RequestOptionsArgs, token: string): RequestOptionsArgs {
-
+  private processRequestOptions(options: RequestOptionsArgs, token: string): RequestOptionsArgs {
     if (!options) {
       options = <RequestOptionsArgs> {};
     }

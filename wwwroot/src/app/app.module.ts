@@ -33,11 +33,12 @@ import {AuthModule} from "./shared/auth.module";
 import {AuthService} from "./shared/services/auth.service";
 import { HttpModule, Http } from "@angular/http";
 
-import {
-  TranslateModule,
-  TranslateLoader,
-  TranslateStaticLoader
-} from "ng2-translate";
+import {TranslateModule, TranslateLoader} from '@ngx-translate/core'
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+
+export function HttpLoaderFactory(http: Http) {
+  return new TranslateHttpLoader(http);
+}
 
 type StoreType = {
   state: InternalStateType,
@@ -60,9 +61,11 @@ type StoreType = {
     SharedModule,
     AuthModule,
     TranslateModule.forRoot({
-      provide: TranslateLoader,
-      useFactory: (http: Http) => new TranslateStaticLoader(http, '../../assets/i18n', '.json'),
-      deps: [Http]
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [Http]
+      }
     }),
 
     RouterModule.forRoot(APP_ROUTES, { useHash: false, preloadingStrategy: PreloadAllModules })

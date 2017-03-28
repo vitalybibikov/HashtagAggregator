@@ -1,6 +1,6 @@
 import {
   Component,
-  OnInit, OnDestroy, Input,
+  OnInit, Input,
 } from '@angular/core';
 
 import {AppState} from "../../../app.service";

@@ -45,7 +45,7 @@ export const TWI_CONFIG: TwiConfig = {
 };
 
 if ("production" === ENV) {
-    CONFIG.apiEndpoint = `${location.origin}/api`;
+    CONFIG.apiEndpoint = `${location.origin}/api/`;
     CONFIG.loginApiEndpoint = "http://localhost:5001/";
 } else {
     CONFIG.apiEndpoint = "http://localhost:5005/api/";

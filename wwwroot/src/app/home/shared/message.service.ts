@@ -1,7 +1,5 @@
-import { Inject } from "@angular/core";
 import { Injectable } from "@angular/core";
 import { Http } from '@angular/http';
-import { AppConfig, APP_CONFIG_TOKEN } from "../../../platform/configuration";
 import { Message } from "./models/message"
 import "rxjs/add/operator/map";
 import "rxjs/add/operator/share";
@@ -11,14 +9,13 @@ import { AppConfigService } from "../../shared/services/config/app-config.servic
 @Injectable()
 export class MessageService {
 
-    constructor(public http: Http,
-                @Inject(APP_CONFIG_TOKEN) private config: AppConfig,
-                private  configService: AppConfigService) {
+    constructor(private http: Http, private  configService: AppConfigService) {
     }
 
     public getData(): Observable<Message[]> {
         let hashtag  = this.configService.getApp<string>("hashtag");
-        let uri = this.config.apiEndpoint + `statistics/${hashtag}`;
+        let uri = this.configService.getApp<string>("apiEndpoint") + `statistics/${hashtag}`;
+
         console.log(uri);
         return this.http.get(uri)
             .map(messages => this.getMappedMessage(messages))

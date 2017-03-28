@@ -28,16 +28,15 @@ export class AuthService {
       'scope=' + encodeURIComponent(scope) + '&' +
       'state=' + encodeURIComponent(state) + '&' +
       'nonce=' + encodeURIComponent(nonce);
-
-
     return url;
   }
 
   public saveToken(token : string) : void{
-     localStorage.setItem('currentUser', JSON.stringify({ token: token }));
+     localStorage.setItem('access_token', token);
+     console.log('access_token saved');
   }
 
   public removeToken() : void{
-    localStorage.removeItem('currentUser');
+    localStorage.removeItem('access_token');
   }
 }

@@ -10,8 +10,7 @@ import {ExternalButtonComponent} from "./external-login/external-button/external
 import {ExternalLoginButtonsComponent} from "./external-login/external-login-buttons.component";
 
 @NgModule({
-    imports: [CommonModule
-    ],
+    imports: [CommonModule],
     declarations: [ ExternalLoginButtonsComponent, ExternalButtonComponent],
     exports: [CommonModule, ExternalLoginButtonsComponent]
 })

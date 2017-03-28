@@ -9,8 +9,7 @@ import {LoginCallbackComponent} from "./login-callback/login-callback.component"
   imports: [
     CommonModule
   ],
-  providers: [
-  ]
+  providers: []
 })
 export class LoginModule {
 }

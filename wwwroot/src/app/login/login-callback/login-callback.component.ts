@@ -1,46 +1,39 @@
 import {
   Component, OnInit, OnDestroy
 } from '@angular/core';
-import {ActivatedRoute, Params, Router} from "@angular/router";
-import {AppConfigService} from "../../shared/services/config/app-config.service";
-import {Subscription} from "rxjs";
+import {Router} from "@angular/router";
 import {AuthService} from "../../shared/services/auth.service";
+import {CallbackParseService} from "../callback-parse.service";
 
 @Component({
   selector: 'login-callback',
   styleUrls: ['./login-callback.component.scss'],
   templateUrl: './login-callback.component.html',
   providers: [
-    AuthService
+    AuthService,
+    CallbackParseService
   ],
 })
 
 export class LoginCallbackComponent implements  OnInit, OnDestroy{
 
-  private loginSubscription: Subscription;
-
   constructor(
     private router : Router,
-    private route: ActivatedRoute,
-    private configService: AppConfigService,
-    private authService : AuthService) {
+    private authService : AuthService,
+    private callbackParse : CallbackParseService) {
   }
 
   ngOnInit(): void {
-    this.loginSubscription = this.route.queryParams.subscribe(params => this.saveToken(params));
+    let result : string = this.callbackParse.parseUrl( window.location.hash.substr(1));
+    this.saveToken(result);
   }
 
   ngOnDestroy(): void {
-    this.loginSubscription.unsubscribe();
+    //this.loginSubscription.unsubscribe();
   }
 
-  private saveToken(params : Params): void {
-
-    let idToken = params[this.configService.getApp<string>("tokenName")];
-    let expirationTime = params["expires_in"];
-    let tokenType = params["token_type"];
-
-    this.authService.saveToken(idToken);
+  private saveToken(token : string): void {
+    this.authService.saveToken(token);
     this.router.navigate(["home"])
   }
 }

@@ -6,7 +6,6 @@ import {
 
 import { TranslateService } from '@ngx-translate/core';
 import { AppState } from './app.service';
-import {Http, RequestOptionsArgs, Headers} from "@angular/http";
 import {AuthHttp} from "angular2-jwt";
 import {AppConfigService} from "./shared/services/config/app-config.service";
 
@@ -32,8 +31,7 @@ export class AppComponent implements OnInit {
 
   public makeAuthCall(){
     let apiUri: string = this.configService.getApp<string>("apiEndpoint");
-    let link: string = "identity";
-    this.authHttp.get(`apiUri ${link}`).subscribe(
+    this.authHttp.get(`${apiUri}auth`).subscribe(
       data => console.log(data),
       err => console.log(err),
        () => console.log('Request Complete')

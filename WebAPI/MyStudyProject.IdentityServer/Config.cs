@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+
 using IdentityServer4;
 using IdentityServer4.Models;
 
@@ -34,7 +35,7 @@ namespace MyStudyProject.IdentityServer
                     ClientName = "Statistics API Сlient",
                     AllowedGrantTypes = GrantTypes.Implicit,
 
-                    RedirectUris = { "http://localhost:3000" },
+                    RedirectUris = { "http://localhost:3000/login-callback" },
                     PostLogoutRedirectUris = { "http://localhost:3000" },
                     AllowedCorsOrigins = { "http://localhost:3000" },
                     AllowedScopes =

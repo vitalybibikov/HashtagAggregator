@@ -1,8 +1,7 @@
 ﻿using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Http.Authentication;
+
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
 
@@ -13,7 +12,6 @@ using MyStudyProject.IdentityServer.ViewModels;
 namespace MyStudyProject.IdentityServer.Controllers
 {
     [SecurityHeaders]
-   // [Route("api/[controller]")]
     public class AccountController : Controller
     {
         private IAccountService service;
@@ -34,10 +32,6 @@ namespace MyStudyProject.IdentityServer.Controllers
         public IActionResult ExternalLogin(string provider, string returnUrl)
         {
             returnUrl = Url.Action("ExternalLoginCallback", new { returnUrl });
-
-            //returnUrl = Url.Action(nameof(ExternalLoginCallback), new { returnUrl });
-
-            //var redirectUrl = Url.Action(nameof(ExternalLoginCallback), "Account", new { ReturnUrl = returnUrl });
             var properties = signInManager.ConfigureExternalAuthenticationProperties(provider, returnUrl);
             return Challenge(properties, provider);
         }
@@ -47,7 +41,6 @@ namespace MyStudyProject.IdentityServer.Controllers
             LoginViewModel vm = await service.BuildLoginViewModelAsync(returnUrl);
             return vm;
         }
-
 
         [HttpGet]
         public async Task<IActionResult> ExternalLoginCallback(string returnUrl)
@@ -60,7 +53,8 @@ namespace MyStudyProject.IdentityServer.Controllers
                 var claims = tempUser.Claims.ToList();
    
                 var userIdClaim = claims?.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier);
-                var email = "EvilAvenger@yandex.ru"; claims?.FirstOrDefault(x => x.Type == ClaimTypes.Email);
+                var email = "EvilAvenger@yandex.ru";
+                //claims?.FirstOrDefault(x => x.Type == ClaimTypes.Email);
 
                 if (userIdClaim != null)
                 {

@@ -1,6 +1,4 @@
-﻿using System.IdentityModel.Tokens.Jwt;
-using IdentityServer4;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
@@ -18,9 +16,13 @@ namespace MyStudyProject.IdentityServer
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddScoped<IAccountService, AccountService>();
-            services.AddMvc(); //Core().AddJsonFormatters();
+
+            services.AddMvcCore()
+                .AddAuthorization()
+                .AddJsonFormatters();
 
             var connectionString = "Data Source=.;Initial Catalog=MyStudyDb;User ID=sa;Password=123456";
+
             services.AddDbContext<SqlIdentityDbContext>(
              options => options.UseSqlServer(connectionString));
 

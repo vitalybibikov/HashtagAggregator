@@ -21,7 +21,7 @@ export class MessageComponent implements OnInit {
 
   @Input() message: Message;
 
-  constructor(public appState: AppState, private  configService: AppConfigService) {
+  constructor(public appState: AppState, private configService: AppConfigService) {
 
   }
 

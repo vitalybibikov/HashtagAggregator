@@ -1,29 +1,34 @@
 import { Injectable } from "@angular/core";
 import {Http} from "@angular/http";
+import {AppConfigService} from "./config/app-config.service";
 
 @Injectable()
 export class AuthService {
 
-  constructor(private http: Http) {
+  constructor(private http: Http, private configService: AppConfigService) {
   }
 
   public getReturnURL() : string {
-    let authorizationUrl = 'connect/authorize';
-    let client_id = 'statisticsapiclient';
-    let redirect_uri = "http://localhost:3000/";
+    let clientId = this.configService.getApp<string>("clientId");
+    let loginApiEndpoint = this.configService.getApp<string>("loginApiEndpoint");
+
+    let redirect_uri = `${location.origin}/login-callback`;
+    let authorizationUrl = '/connect/authorize/login';
     let response_type = 'id_token token';
     let scope = 'openid profile statisticsapi';
+
     let nonce = 'N' + Math.random() + '' + Date.now();
     let state = Date.now() + '' + Math.random();
 
     let url =
       authorizationUrl + '?' +
-      'response_type=' + encodeURI(response_type) + '&' +
-      'client_id=' + encodeURI(client_id) + '&' +
-      'redirect_uri=' + encodeURI(redirect_uri) + '&' +
-      'scope=' + encodeURI(scope) + '&' +
-      'nonce=' + encodeURI(nonce) + '&' +
-      'state=' + encodeURI(state);
+      'client_id=' + encodeURIComponent(clientId) + '&' +
+      'redirect_uri=' + encodeURIComponent(redirect_uri) + '&' +
+      'response_type=' + encodeURIComponent(response_type) + '&' +
+      'scope=' + encodeURIComponent(scope) + '&' +
+      'state=' + encodeURIComponent(state) + '&' +
+      'nonce=' + encodeURIComponent(nonce);
+
 
     return url;
   }

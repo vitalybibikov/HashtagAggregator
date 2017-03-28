@@ -26,7 +26,6 @@ export class ExternalButtonComponent implements OnInit {
   }
 
   public send(returnUrl: string, scheme: string) {
-      console.log(returnUrl, scheme);
       this.loginService.externalLogIn(returnUrl, scheme);
   }
 }

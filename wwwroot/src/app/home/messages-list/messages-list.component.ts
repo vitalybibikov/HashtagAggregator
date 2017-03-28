@@ -22,7 +22,6 @@ export class MessagesListComponent implements OnInit, OnDestroy {
     private messageSubscription: Subscription;
 
     constructor(public appState: AppState, public messageService: MessageService) {
-
     }
 
     public ngOnInit() {

@@ -3,6 +3,9 @@
     <TargetFramework>netcoreapp1.1</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="GenerateSSLCert.ps1" />
+  </ItemGroup>
+  <ItemGroup>
     <Folder Include="wwwroot\" />
   </ItemGroup>
   <ItemGroup>

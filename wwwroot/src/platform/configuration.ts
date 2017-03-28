@@ -15,6 +15,7 @@ export interface AppConfig {
     i18nResourceFileFormat: string;
     hashtag: string;
     tokenName: string;
+    clientId: string;
 }
 
 export interface VkConfig {
@@ -31,7 +32,8 @@ export const CONFIG: AppConfig = {
     loginApiEndpoint: "",
     i18nResourceFileFormat: ".json",
     tokenName: "id_token",
-    hashtag: "somesmallmessagefortest"
+    hashtag: "somesmallmessagefortest",
+    clientId: "statisticsapiclient"
 };
 
 export const VK_CONFIG: VkConfig = {

@@ -2,13 +2,13 @@
 
 using IdentityServer4;
 using IdentityServer4.Models;
+using Microsoft.Extensions.Configuration;
 
 namespace MyStudyProject.IdentityServer
 {
     public class Config
     {
         private const string StatisticsApiName = "statisticsapi";
-
 
         public static IEnumerable<IdentityResource> GetIdentityResources()
         {
@@ -28,7 +28,7 @@ namespace MyStudyProject.IdentityServer
             };
         }
 
-        public static IEnumerable<Client> GetClients()
+        public static IEnumerable<Client> GetClients(IConfigurationRoot configuration)
         {
             return new List<Client>
             {
@@ -38,9 +38,10 @@ namespace MyStudyProject.IdentityServer
                     ClientName = "Statistics API Сlient",
                     AllowedGrantTypes = GrantTypes.Implicit,
 
-                    RedirectUris = { "http://localhost:3000/login-callback" },
-                    PostLogoutRedirectUris = { "http://localhost:3000" },
-                    AllowedCorsOrigins = { "http://localhost:3000" },
+                    RedirectUris = { configuration.GetSection("StatisticsApiClient:RedirectURI").Value },
+                    PostLogoutRedirectUris = { configuration.GetSection("statisticsApiClient:LogoutURI").Value },
+                    AllowedCorsOrigins = { configuration.GetSection("StatisticsApiClient:AllowedCorsOriginsURI").Value },
+
                     AllowedScopes =
                     {
                         StatisticsApiName,

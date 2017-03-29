@@ -9,8 +9,8 @@
   },
 
   "StatisticsApiClient": {
-    "RedirectURI": "http://silichyexchangeclient.azurewebsites.net/login-callback",
-    "LogoutURI": "http://silichyexchangeclient.azurewebsites.net",
-    "AllowedCorsOriginsURI": "http://silichyexchangeclient.azurewebsites.net"
+    "RedirectURI": "http://localhost:3000/login-callback",
+    "LogoutURI": "http://localhost:3000",
+    "AllowedCorsOriginsURI": "http://localhost:3000"
   }
 }

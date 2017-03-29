@@ -1,10 +1,9 @@
 ﻿using System;
-using System.IdentityModel.Tokens.Jwt;
 using System.Net;
 using Autofac;
 using AutoMapper;
 using Hangfire;
-using IdentityModel.AspNetCore.OAuth2Introspection;
+
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Hosting;
@@ -113,8 +112,6 @@ namespace MyStudyProject
                         {
                             var err = $"Error: {ex.Error.Message}{ex.Error.StackTrace}";
                             System.Diagnostics.Trace.TraceError(err);
-                            System.Diagnostics.Trace.TraceError(ex.Error.Message);
-                            System.Diagnostics.Trace.TraceError(ex.Error.StackTrace);
                             await context.Response.WriteAsync(err).ConfigureAwait(false);       
                         }
                     });
@@ -124,11 +121,10 @@ namespace MyStudyProject
 
             app.UseIdentityServerAuthentication(new IdentityServerAuthenticationOptions
             {
-                Authority = "http://localhost:5001",
+                Authority = Configuration.GetSection("EndpointSettings:AuthEndpoint").Value,
                 RequireHttpsMetadata = false, //todo: should be true when enabled https
-                ApiName = "statisticsapi",
+                ApiName = "statisticsapi"
             });
-
 
             app.UseStatusCodePages();
             app.UseStaticFiles();

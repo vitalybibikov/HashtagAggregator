@@ -56,7 +56,7 @@ namespace MyStudyProject.IdentityServer
 
             services.AddIdentityServer()
                 .AddTemporarySigningCredential()
-                .AddInMemoryClients(Config.GetClients())
+                .AddInMemoryClients(Config.GetClients(Configuration))
                 .AddInMemoryIdentityResources(Config.GetIdentityResources())
                 .AddInMemoryApiResources(Config.GetApiResources())
                 .AddAspNetIdentity<ApplicationUser>();
@@ -78,8 +78,8 @@ namespace MyStudyProject.IdentityServer
                 DisplayName = "Twitter",
                 SignInScheme = "Identity.External",
 
-                ConsumerKey = Configuration.GetSection("AppSettings:ConnectionString").Value,
-                ConsumerSecret = Configuration.GetSection("AppSettings:ConsumerSecret").Value,
+                ConsumerKey = Configuration.GetSection("TwitterAuthSettings:ConsumerKey").Value,
+                ConsumerSecret = Configuration.GetSection("TwitterAuthSettings:ConsumerSecret").Value,
                 SaveTokens = true
             });
 

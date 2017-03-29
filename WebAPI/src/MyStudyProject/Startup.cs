@@ -112,7 +112,10 @@ namespace MyStudyProject
                         if (ex != null)
                         {
                             var err = $"Error: {ex.Error.Message}{ex.Error.StackTrace}";
-                            await context.Response.WriteAsync(err).ConfigureAwait(false);
+                            System.Diagnostics.Trace.TraceError(err);
+                            System.Diagnostics.Trace.TraceError(ex.Error.Message);
+                            System.Diagnostics.Trace.TraceError(ex.Error.StackTrace);
+                            await context.Response.WriteAsync(err).ConfigureAwait(false);       
                         }
                     });
             });

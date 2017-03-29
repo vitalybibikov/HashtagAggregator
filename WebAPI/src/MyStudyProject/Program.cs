@@ -14,6 +14,7 @@ namespace MyStudyProject
                 .UseIISIntegration()
                 .UseUrls("http://localhost:5005")
                 .UseStartup<Startup>()
+                .UseApplicationInsights()
                 .Build();
 
             host.Run();

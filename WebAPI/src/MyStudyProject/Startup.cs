@@ -122,19 +122,19 @@ namespace MyStudyProject
 
             app.UseCors("CorsPolicy");
 
-            app.UseIdentityServerAuthentication(new IdentityServerAuthenticationOptions
-            {
-                Authority = "http://localhost:5001",
-                RequireHttpsMetadata = false, //todo: should be true when enabled https
-                ApiName = "statisticsapi",
-            });
+            //app.UseIdentityServerAuthentication(new IdentityServerAuthenticationOptions
+            //{
+            //    Authority = "http://localhost:5001",
+            //    RequireHttpsMetadata = false, //todo: should be true when enabled https
+            //    ApiName = "statisticsapi",
+            //});
 
          
             app.UseStatusCodePages();
-            app.UseStaticFiles();
-            app.UseDefaultFiles();
-            app.UseHangfireDashboard();
-            app.UseHangfireServer();
+            //app.UseStaticFiles();
+            //app.UseDefaultFiles();
+            //app.UseHangfireDashboard();
+            //app.UseHangfireServer();
             app.UseMvc();
         }
     }

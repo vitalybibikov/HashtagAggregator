@@ -12,7 +12,6 @@ namespace MyStudyProject
                 .UseKestrel()
                 .UseContentRoot(Directory.GetCurrentDirectory())
                 .UseIISIntegration()
-                .UseUrls("http://localhost:5005")
                 .UseStartup<Startup>()
                 .UseApplicationInsights()
                 .Build();

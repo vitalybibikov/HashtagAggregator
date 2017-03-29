@@ -12,23 +12,23 @@ namespace MyStudyProject.IdentityServer.Services
 {
     public class AccountService : IAccountService
     {
-        private readonly IClientStore _clientStore;
-        private readonly IIdentityServerInteractionService _interaction;
-        private readonly IHttpContextAccessor _httpContextAccessor;
+        private readonly IClientStore clientStore;
+        private readonly IIdentityServerInteractionService interaction;
+        private readonly IHttpContextAccessor httpContextAccessor;
 
         public AccountService(
             IIdentityServerInteractionService interaction,
             IHttpContextAccessor httpContextAccessor,
             IClientStore clientStore)
         {
-            _interaction = interaction;
-            _httpContextAccessor = httpContextAccessor;
-            _clientStore = clientStore;
+            this.interaction = interaction;
+            this.httpContextAccessor = httpContextAccessor;
+            this.clientStore = clientStore;
         }
 
         public async Task<LoginViewModel> BuildLoginViewModelAsync(string returnUrl)
         {
-            var context = await _interaction.GetAuthorizationContextAsync(returnUrl);
+            var context = await interaction.GetAuthorizationContextAsync(returnUrl);
 
             if (context?.IdP != null)
             {
@@ -42,7 +42,7 @@ namespace MyStudyProject.IdentityServer.Services
                 };
             }
 
-            var schemes = _httpContextAccessor.HttpContext.Authentication.GetAuthenticationSchemes();
+            var schemes = httpContextAccessor.HttpContext.Authentication.GetAuthenticationSchemes();
 
             var providers = schemes
                 .Where(x => x.DisplayName != null)
@@ -55,7 +55,7 @@ namespace MyStudyProject.IdentityServer.Services
             var allowLocal = true;
             if (context?.ClientId != null)
             {
-                var client = await _clientStore.FindEnabledClientByIdAsync(context.ClientId);
+                var client = await clientStore.FindEnabledClientByIdAsync(context.ClientId);
                 if (client != null)
                 {
                     allowLocal = client.EnableLocalLogin;

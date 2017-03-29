@@ -32,7 +32,7 @@ export const CONFIG: AppConfig = {
     loginApiEndpoint: "",
     i18nResourceFileFormat: ".json",
     tokenName: "id_token",
-    hashtag: "somesmallmessagefortest",
+    hashtag: "somesmallmessagefortest1",
     clientId: "statisticsapiclient"
 };
 

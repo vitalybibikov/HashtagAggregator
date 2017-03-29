@@ -23,8 +23,8 @@
 
   <ItemGroup>
     <PackageReference Include="AspNetCore.Security.OAuth.Vkontakte" Version="1.0.1" />
-    <PackageReference Include="Hangfire.Core" Version="1.6.9" />
-    <PackageReference Include="Newtonsoft.Json" Version="10.0.1-beta1" />
+    <PackageReference Include="Hangfire.Core" Version="1.6.12" />
+    <PackageReference Include="Newtonsoft.Json" Version="10.0.1" />
     <PackageReference Include="TweetinviAPI" Version="1.2.0.1" />
     <PackageReference Include="VkNet" Version="1.27.0" />
   </ItemGroup>

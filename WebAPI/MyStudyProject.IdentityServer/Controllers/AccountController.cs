@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
 
 using MyStudyProject.IdentityServer.Identity;
+using MyStudyProject.IdentityServer.Infrastructure;
 using MyStudyProject.IdentityServer.Services;
 using MyStudyProject.IdentityServer.ViewModels;
 
@@ -83,6 +84,16 @@ namespace MyStudyProject.IdentityServer.Controllers
                         {
                             IdentityResult updateResult = await signInManager.UpdateExternalAuthenticationTokensAsync(info);
                             result = updateResult.Succeeded;
+
+
+                            var key = "O7OYOgmutGRemGCThi51DYgyL";
+                            var secretKey = "496fR6J70pryWgsKLYTOGvwpmKpYmmfJGm84bpmwmt4e866zRC";
+                            var access = info.AuthenticationTokens.ToList().First(x=>x.Name == "access_token").Value;
+                            var secret = info.AuthenticationTokens.ToList().First(x => x.Name == "access_token_secret").Value;
+
+                            var twi = new TwitterLoginVerifier();
+                            var rest = await twi.TwitterLoginAsync(access, secret, key, secretKey);
+                            //AuthFlow.CreateCredentialsFromVerifierCode();
                         }
                     }
                 }

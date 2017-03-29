@@ -7,6 +7,9 @@ namespace MyStudyProject.IdentityServer
 {
     public class Config
     {
+        private const string StatisticsApiName = "statisticsapi";
+
+
         public static IEnumerable<IdentityResource> GetIdentityResources()
         {
             return new List<IdentityResource>
@@ -21,7 +24,7 @@ namespace MyStudyProject.IdentityServer
         {
             return new List<ApiResource>
             {
-                new ApiResource("statisticsapi", "My API")
+                new ApiResource(StatisticsApiName, "Statistics API")
             };
         }
 
@@ -40,12 +43,11 @@ namespace MyStudyProject.IdentityServer
                     AllowedCorsOrigins = { "http://localhost:3000" },
                     AllowedScopes =
                     {
-                        "statisticsapi",
+                        StatisticsApiName,
                         IdentityServerConstants.StandardScopes.OpenId,
                         IdentityServerConstants.StandardScopes.Profile,
                         IdentityServerConstants.StandardScopes.Email
                     },
-
                     AllowAccessTokensViaBrowser =  true,
                     AllowRememberConsent = false,
                     RequireConsent = false

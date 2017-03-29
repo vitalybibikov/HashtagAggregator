@@ -8,7 +8,7 @@ namespace MyStudyProject.Configuration
 {
     public class AutoMapperProfileConfiguration : Profile
     {
-        protected override void Configure()
+        public AutoMapperProfileConfiguration()
         {
             CreateMap<MessageQueryResult, MessageViewModel>();
             CreateMap<MessageQueryResult, MessageCreateCommand>();

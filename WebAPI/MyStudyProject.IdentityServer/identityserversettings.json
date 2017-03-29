@@ -1,0 +1,10 @@
+﻿{
+  "AppSettings": {
+    "ConnectionString": "Server=tcp:evilavengerstudyserver.database.windows.net,1433;Initial Catalog=silichyexhangedb;Persist Security Info=False;User ID=evilavenger;Password=qweqweQ1;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"
+  },
+
+  "TwitterAuthSettings": {
+    "ConsumerKey": "O7OYOgmutGRemGCThi51DYgyL",
+    "ConsumerSecret": "496fR6J70pryWgsKLYTOGvwpmKpYmmfJGm84bpmwmt4e866zRC"
+  }
+}

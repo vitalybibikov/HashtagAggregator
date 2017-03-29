@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
@@ -13,6 +15,18 @@ namespace MyStudyProject.IdentityServer
 {
     public class Startup
     {
+        public Startup(IHostingEnvironment env)
+        {
+            var builder = new ConfigurationBuilder()
+                .SetBasePath(env.ContentRootPath)
+                .AddJsonFile("identityserversettings.json", optional: true, reloadOnChange: true)
+                .AddJsonFile($"identityserversettings.{env.EnvironmentName}.json", optional: true)
+                .AddEnvironmentVariables();
+            Configuration = builder.Build();
+        }
+
+        public IConfigurationRoot Configuration { get; }
+
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddScoped<IAccountService, AccountService>();
@@ -21,7 +35,7 @@ namespace MyStudyProject.IdentityServer
                 .AddAuthorization()
                 .AddJsonFormatters();
 
-            var connectionString = "Data Source=.;Initial Catalog=MyStudyDb;User ID=sa;Password=123456";
+            var connectionString = Configuration.GetSection("AppSettings:ConnectionString").Value;
 
             services.AddDbContext<SqlIdentityDbContext>(
              options => options.UseSqlServer(connectionString));
@@ -64,12 +78,11 @@ namespace MyStudyProject.IdentityServer
                 DisplayName = "Twitter",
                 SignInScheme = "Identity.External",
 
-                ConsumerKey = "O7OYOgmutGRemGCThi51DYgyL",
-                ConsumerSecret = "496fR6J70pryWgsKLYTOGvwpmKpYmmfJGm84bpmwmt4e866zRC",
-                SaveTokens = true,
-                
+                ConsumerKey = Configuration.GetSection("AppSettings:ConnectionString").Value,
+                ConsumerSecret = Configuration.GetSection("AppSettings:ConsumerSecret").Value,
+                SaveTokens = true
             });
-        
+
             app.UseMvcWithDefaultRoute();
         }
     }

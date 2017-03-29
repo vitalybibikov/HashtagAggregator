@@ -71,10 +71,10 @@ namespace MyStudyProject
                     });
             });
 
-            //var connectionString = Configuration.GetSection("AppSettings:ConnectionString").Value;
-            //services.AddEntityFrameworkSqlServer()
-            //    .AddDbContext<SqlApplicationDbContext>(
-            //    options => options.UseSqlServer(connectionString));
+            var connectionString = Configuration.GetSection("AppSettings:ConnectionString").Value;
+            services.AddEntityFrameworkSqlServer()
+                .AddDbContext<SqlApplicationDbContext>(
+                options => options.UseSqlServer(connectionString));
 
             services.AddSingleton<IConfiguration>(Configuration);
             services.AddSingleton<IMemoryCacheWrapper, MemoryCacheMock>();
@@ -82,7 +82,7 @@ namespace MyStudyProject
             mapperConfiguration.AssertConfigurationIsValid();
 
             //hangfire
-           // services.AddHangfire(config => config.UseSqlServerStorage(connectionString));
+           services.AddHangfire(config => config.UseSqlServerStorage(connectionString));
 
             services.AddCors(options => options.AddPolicy("CorsPolicy",
             builder => builder.AllowAnyOrigin()
@@ -122,19 +122,19 @@ namespace MyStudyProject
 
             app.UseCors("CorsPolicy");
 
-            //app.UseIdentityServerAuthentication(new IdentityServerAuthenticationOptions
-            //{
-            //    Authority = "http://localhost:5001",
-            //    RequireHttpsMetadata = false, //todo: should be true when enabled https
-            //    ApiName = "statisticsapi",
-            //});
+            app.UseIdentityServerAuthentication(new IdentityServerAuthenticationOptions
+            {
+                Authority = "http://localhost:5001",
+                RequireHttpsMetadata = false, //todo: should be true when enabled https
+                ApiName = "statisticsapi",
+            });
 
-         
-           // app.UseStatusCodePages();
-            //app.UseStaticFiles();
-            //app.UseDefaultFiles();
-            //app.UseHangfireDashboard();
-            //app.UseHangfireServer();
+
+            app.UseStatusCodePages();
+            app.UseStaticFiles();
+            app.UseDefaultFiles();
+            app.UseHangfireDashboard();
+            app.UseHangfireServer();
             app.UseMvc();
         }
     }

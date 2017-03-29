@@ -71,10 +71,10 @@ namespace MyStudyProject
                     });
             });
 
-            var connectionString = Configuration.GetSection("AppSettings:ConnectionString").Value;
-            services.AddEntityFrameworkSqlServer()
-                .AddDbContext<SqlApplicationDbContext>(
-                options => options.UseSqlServer(connectionString));
+            //var connectionString = Configuration.GetSection("AppSettings:ConnectionString").Value;
+            //services.AddEntityFrameworkSqlServer()
+            //    .AddDbContext<SqlApplicationDbContext>(
+            //    options => options.UseSqlServer(connectionString));
 
             services.AddSingleton<IConfiguration>(Configuration);
             services.AddSingleton<IMemoryCacheWrapper, MemoryCacheMock>();
@@ -82,7 +82,7 @@ namespace MyStudyProject
             mapperConfiguration.AssertConfigurationIsValid();
 
             //hangfire
-            services.AddHangfire(config => config.UseSqlServerStorage(connectionString));
+           // services.AddHangfire(config => config.UseSqlServerStorage(connectionString));
 
             services.AddCors(options => options.AddPolicy("CorsPolicy",
             builder => builder.AllowAnyOrigin()
@@ -130,7 +130,7 @@ namespace MyStudyProject
             //});
 
          
-            app.UseStatusCodePages();
+           // app.UseStatusCodePages();
             //app.UseStaticFiles();
             //app.UseDefaultFiles();
             //app.UseHangfireDashboard();

@@ -64,8 +64,10 @@ namespace MyStudyProject.IdentityServer
                 DisplayName = "Twitter",
                 SignInScheme = "Identity.External",
 
-                ConsumerKey = "rggmXYCWck4rlzsCQmI6QHkCG",
-                ConsumerSecret = "M3m4ye2ooJwQTicrK0yGVl9Ui3FPJznH3eXFPyZhdpVVeTusNM"
+                ConsumerKey = "O7OYOgmutGRemGCThi51DYgyL",
+                ConsumerSecret = "496fR6J70pryWgsKLYTOGvwpmKpYmmfJGm84bpmwmt4e866zRC",
+                SaveTokens = true,
+                
             });
         
             app.UseMvcWithDefaultRoute();

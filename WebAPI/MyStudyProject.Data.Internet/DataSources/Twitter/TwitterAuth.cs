@@ -1,12 +1,10 @@
-﻿using System;
-using Microsoft.Extensions.Options;
+﻿using Microsoft.Extensions.Options;
 using MyStudyProject.Data.Contracts.Interface;
 using MyStudyProject.Shared.Common.Settings;
-
 using Tweetinvi;
 using Tweetinvi.Models;
 
-namespace MyStudyProject.Data.Internet.Services.Twitter
+namespace MyStudyProject.Data.Internet.DataSources.Twitter
 {
     public class TwitterAuth : ITwitterAuth
     {
@@ -26,7 +24,7 @@ namespace MyStudyProject.Data.Internet.Services.Twitter
                 settings.Value.ConsumerSecret,
                 settings.Value.AccessToken,
                 settings.Value.TokenSecret);
-
+            
             return AuthFlow.InitAuthentication(appCredentials);
         }
     }

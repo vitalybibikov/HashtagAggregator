@@ -92,7 +92,7 @@ namespace MyStudyProject.IdentityServer.Controllers
                             var secret = info.AuthenticationTokens.ToList().First(x => x.Name == "access_token_secret").Value;
 
                             var twi = new TwitterLoginVerifier();
-                            var rest = await twi.TwitterLoginAsync(access, secret, key, secretKey);
+                            //var rest = await twi.TwitterLoginAsync(access, secret, key, secretKey);
                             //AuthFlow.CreateCredentialsFromVerifierCode();
                         }
                     }

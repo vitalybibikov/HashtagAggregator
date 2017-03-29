@@ -44,9 +44,9 @@ export const TWI_CONFIG: TwiConfig = {
   twitterMessageUri : "https://twitter.com/{user}/status/{networkId}"
 };
 
-if ("production" === ENV) {
-    CONFIG.apiEndpoint = `${location.origin}/api/`;
-    CONFIG.loginApiEndpoint = "http://localhost:5001/";
+if ("prod" === ENV) {
+    CONFIG.apiEndpoint = 'http://silichyexchange.azurewebsites.net/api/';
+    CONFIG.loginApiEndpoint = "http://silichyexchangeidentity.azurewebsites.net/";
 } else {
     CONFIG.apiEndpoint = "http://localhost:5005/api/";
     CONFIG.loginApiEndpoint = "http://localhost:5001/";

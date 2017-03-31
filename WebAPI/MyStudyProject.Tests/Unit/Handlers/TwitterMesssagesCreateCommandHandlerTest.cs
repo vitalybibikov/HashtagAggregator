@@ -3,7 +3,6 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Moq;
 using MyStudyProject.Data.Internet.DataSources.Twitter;
-using MyStudyProject.Data.Internet.Services.Twitter;
 using MyStudyProject.Domain.Cqrs.Twitter.Handlers;
 using MyStudyProject.Shared.Common.Settings;
 

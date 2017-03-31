@@ -4,7 +4,6 @@ using MyStudyProject.Core.Models.Commands;
 using MyStudyProject.Data.Contracts.Interface;
 using MyStudyProject.Data.Contracts.Interface.JobObjects;
 using MyStudyProject.Data.Internet.DataSources.Twitter;
-using MyStudyProject.Data.Internet.Services.Twitter;
 
 namespace MyStudyProject.DependencyInjection
 {

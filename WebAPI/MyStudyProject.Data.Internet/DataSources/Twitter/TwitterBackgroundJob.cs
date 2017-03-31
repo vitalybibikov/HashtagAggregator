@@ -1,6 +1,5 @@
 ﻿using System;
 
-using MyStudyProject.Core.Contracts.Interface.Cqrs.Command;
 using MyStudyProject.Core.Models.Commands;
 using MyStudyProject.Core.Models.Interface.Cqrs.Command;
 using MyStudyProject.Core.Models.Queries;
@@ -9,7 +8,7 @@ using MyStudyProject.Data.Contracts.Interface.JobObjects;
 
 using Tweetinvi;
 
-namespace MyStudyProject.Data.Internet.Services.Twitter
+namespace MyStudyProject.Data.Internet.DataSources.Twitter
 {
     public class TwitterBackgroundJob : ITwitterBackgroundJob<MessageCreateCommand>
     {

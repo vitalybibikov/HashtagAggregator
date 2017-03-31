@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "MyStudyProject.Data.DataAccess": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "dev"
+      }
+    }
+  }
+}

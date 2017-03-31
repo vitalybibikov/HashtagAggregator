@@ -11,6 +11,10 @@
     <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
   </PropertyGroup>
 
+  <PropertyGroup>
+    <GenerateRuntimeConfigurationFiles>true</GenerateRuntimeConfigurationFiles>
+ </PropertyGroup>
+
   <ItemGroup>
     <ProjectReference Include="..\MyStudyProject.Core.Entities\MyStudyProject.Core.Entities.csproj" />
     <ProjectReference Include="..\MyStudyProject.Data.Contracts\MyStudyProject.Data.Contracts.csproj" />

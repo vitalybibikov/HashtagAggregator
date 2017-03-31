@@ -18,7 +18,7 @@ namespace MyStudyProject.Domain.Cqrs.EF.Handlers
         protected override async Task<MessagesQueryResult> GetDataAsync(MessagesGetQuery query)
         {
             EntityToMessagesResultMapper mapper = new EntityToMessagesResultMapper();
-            var result = await Context.Messages.Where(x => x.HashTag == query.HashTag).Include(blog => blog.User).ToListAsync();
+            var result = await Context.Messages.Where(x => x.HashTag == query.HashTag).Include(x => x.User).ToListAsync();
             return mapper.MapBunch(result, query.HashTag);
         }
     }

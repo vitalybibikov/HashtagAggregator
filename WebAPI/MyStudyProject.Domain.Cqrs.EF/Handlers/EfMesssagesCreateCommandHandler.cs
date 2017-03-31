@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
-
+using Microsoft.EntityFrameworkCore;
 using MyStudyProject.Core.Cqrs.Abstract;
 using MyStudyProject.Core.Models.Commands;
 using MyStudyProject.Core.Models.Interface.Cqrs.Command;
@@ -23,12 +23,27 @@ namespace MyStudyProject.Domain.Cqrs.EF.Handlers
         {
             MessagesCommandToEntityMapper mapper = new MessagesCommandToEntityMapper();
             var items = mapper.MapBunch(command.Messages);
-            var unique = items.Where(x => !context.Messages.Any(z => z.NetworkId == x.NetworkId && z.User != null && x.User != null && z.User.NetworkId == x.User.NetworkId)).ToList();
 
-            var users = unique.Select(x => x.User);
-            await context.Messages.AddRangeAsync(unique);
-            await context.Users.AddRangeAsync(users);
+            //todo: refactor. this should be slow.
+            var newMessages = items
+                .Where(x => !context.Messages.Any(z => z.NetworkId == x.NetworkId && z.User != null && x.User != null && z.User.NetworkId == x.User.NetworkId)).ToList();
+            var users = newMessages.Select(x => x.User)
+                .GroupBy(x => x.NetworkId)
+                .Select(g => g.First());
+
+            var newUsers = users
+                .Where(user => !context.Users.Any(x => x.NetworkId == user.NetworkId)).ToList();
+
+            await context.Users.AddRangeAsync(newUsers);
             context.SaveChanges();
+
+            foreach (var message in newMessages)
+            {
+                message.User = context.Users.FirstOrDefault(x => x.NetworkId == message.User.NetworkId);
+            }
+            await context.Messages.AddRangeAsync(newMessages);
+            context.SaveChanges();
+
             return new CommandResult { Success = true };
         }
     }

@@ -10,6 +10,7 @@ namespace MyStudyProject.Core.Models.Results.Query
         {
             Messages = new List<MessageQueryResult>();
         }
+
         public List<MessageQueryResult> Messages { get; }
     }
 }

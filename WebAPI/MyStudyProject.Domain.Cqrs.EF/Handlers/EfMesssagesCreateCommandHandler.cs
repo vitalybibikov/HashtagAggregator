@@ -23,10 +23,7 @@ namespace MyStudyProject.Domain.Cqrs.EF.Handlers
         {
             MessagesCommandToEntityMapper mapper = new MessagesCommandToEntityMapper();
             var items = mapper.MapBunch(command.Messages);
-            var unique = items.Where(x => !context.Messages.Any(
-                z => z.NetworkId == x.NetworkId && z.User != null && x.User != null
-                && z.User.NetworkId == x.User.NetworkId))
-                .ToList();
+            var unique = items.Where(x => !context.Messages.Any(z => z.NetworkId == x.NetworkId && z.User != null && x.User != null && z.User.NetworkId == x.User.NetworkId)).ToList();
 
             var users = unique.Select(x => x.User);
             await context.Messages.AddRangeAsync(unique);

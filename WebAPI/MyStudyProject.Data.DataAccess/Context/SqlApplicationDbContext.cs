@@ -11,8 +11,7 @@ namespace MyStudyProject.Data.DataAccess.Context
 
         public SqlApplicationDbContext(DbContextOptions<SqlApplicationDbContext> options)
             : base(options)
-        {
-          
+        {        
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

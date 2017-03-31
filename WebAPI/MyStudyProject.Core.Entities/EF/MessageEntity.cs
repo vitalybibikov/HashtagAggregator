@@ -1,4 +1,5 @@
 ﻿using System;
+
 using MyStudyProject.Shared.Contracts.Enums;
 
 namespace MyStudyProject.Core.Entities.EF
@@ -15,7 +16,7 @@ namespace MyStudyProject.Core.Entities.EF
 
         public SocialMediaType MediaType { get; set; }
 
-        public UserEntity User { get; set; }
+        public virtual UserEntity User { get; set; }
 
         public long UserId { get; set; }
     }

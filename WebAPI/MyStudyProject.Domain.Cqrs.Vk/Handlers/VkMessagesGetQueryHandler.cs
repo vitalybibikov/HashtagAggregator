@@ -1,5 +1,5 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
+
 using MyStudyProject.Core.Contracts.Interface.DataSources;
 using MyStudyProject.Core.Models.Queries;
 using MyStudyProject.Core.Models.Results.Query;

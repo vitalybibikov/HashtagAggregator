@@ -29,7 +29,7 @@ namespace MyStudyProject.Data.Internet.Assemblers
             foreach (var post in feed.Feed)
             {
                 var date = DateTimeOffset.FromUnixTimeSeconds(post.UnixTimeStamp).DateTime;
-                var user = FillUser(post, feed.Profiles);
+                var user = FillUser(post, feed);
                 MessageQueryResult message =
                   new MessageQueryResult(0,
                       post.Text,
@@ -43,16 +43,25 @@ namespace MyStudyProject.Data.Internet.Assemblers
             return results;
         }
 
-        private UserQueryResult FillUser(VkNewsSearchResult post, List<VkNewsProfile> profiles)
+        private UserQueryResult FillUser(VkNewsSearchResult post, VkNewsFeed feed)
         {
-            var id = post.FromId.ToString();
-            var profile = profiles.FirstOrDefault(x => x.Id.ToString() == id);
-            UserQueryResult user = new UserQueryResult
+            var id = post.FromId;
+            var user = new UserQueryResult();
+            if (id > 0)
             {
-                NetworkId = post.FromId.ToString(),
-                UserName = $"{profile.FirstName} {profile.LastName}",
-                ProfileId = profile.UserName
-            };
+                var profile = feed.Profiles.FirstOrDefault(x => x.Id == id);
+                user.NetworkId = id.ToString();
+                user.UserName = $"{profile.FirstName} {profile.LastName}";
+                user.ProfileId = profile.UserName;
+            }
+            else
+            {
+                id = Math.Abs(id);
+                var profile = feed.Groups.FirstOrDefault(x => x.Id == id);
+                user.NetworkId = id.ToString();
+                user.UserName = $"{profile.FirstName}";
+                user.ProfileId = profile.UserName;
+            }
             return user;
         }
     }

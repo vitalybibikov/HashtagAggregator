@@ -10,5 +10,8 @@ namespace MyStudyProject.Core.Entities.VkEntities
 
         [JsonProperty("profiles")]
         public List<VkNewsProfile> Profiles { get; set; }
+
+        [JsonProperty("groups")]
+        public List<VkNewsGroup> Groups { get; set; }
     }
 }

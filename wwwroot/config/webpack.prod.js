@@ -17,7 +17,8 @@ const NormalModuleReplacementPlugin = require('webpack/lib/NormalModuleReplaceme
 const ProvidePlugin = require('webpack/lib/ProvidePlugin');
 const UglifyJsPlugin = require('webpack/lib/optimize/UglifyJsPlugin');
 const OptimizeJsPlugin = require('optimize-js-plugin');
-
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+const path = require('path');
 /**
  * Webpack Constants
  */
@@ -88,6 +89,13 @@ module.exports = function (env) {
 
     module: {
 
+      loaders: [
+        {
+          test: /\.(config)$/,
+          loader: "file"
+        }
+      ],
+
       rules: [
 
         /*
@@ -124,6 +132,11 @@ module.exports = function (env) {
      * See: http://webpack.github.io/docs/configuration.html#plugins
      */
     plugins: [
+
+      new CopyWebpackPlugin([
+        { from: './web.config'},
+        { copyUnmodified: true }
+      ]),
 
       /**
        * Webpack plugin to optimize a JavaScript file for faster initial load
@@ -226,6 +239,8 @@ module.exports = function (env) {
         /zone\.js(\\|\/)dist(\\|\/)long-stack-trace-zone/,
         helpers.root('config/empty.js')
       ),
+
+
 
 
       // AoT

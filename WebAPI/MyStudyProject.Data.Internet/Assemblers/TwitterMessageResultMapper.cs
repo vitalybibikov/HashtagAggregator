@@ -30,7 +30,8 @@ namespace MyStudyProject.Data.Internet.Assemblers
                 NetworkId = tweet.CreatedBy.IdStr,
                 Url = tweet.Url,
                 UserName = tweet.CreatedBy.Name,
-                AvatarUrl50 = tweet.CreatedBy.ProfileImageUrl
+                AvatarUrl50 = tweet.CreatedBy.ProfileImageUrl,
+                MediaType = SocialMediaType.Twitter
             };
 
             MessageQueryResult message = new MessageQueryResult(0,

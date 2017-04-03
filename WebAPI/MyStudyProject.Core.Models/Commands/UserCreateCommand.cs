@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using MyStudyProject.Shared.Contracts.Enums;
 
 namespace MyStudyProject.Core.Models.Commands
@@ -17,6 +14,8 @@ namespace MyStudyProject.Core.Models.Commands
         public SocialMediaType MediaType { get; set; }
 
         public string ProfileId { get; set; }
+
+        public string AvatarUrl50 { get; set; }
 
         public string Url { get; set; }
     }

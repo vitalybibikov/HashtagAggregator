@@ -16,6 +16,8 @@ namespace MyStudyProject.Core.Entities.EF
 
         public SocialMediaType  MediaType { get; set; }
 
+        public string AvatarUrl50 { get; set; }
+
         public virtual List<MessageEntity> Messages { get; set; }
     }
 }

@@ -16,6 +16,7 @@ namespace MyStudyProject.Domain.Cqrs.EF.Assemblers
                 query.ProfileId = item.ProfileId;
                 query.MediaType = item.MediaType;
                 query.Url = item.Url;
+                query.AvatarUrl50 = item.AvatarUrl50;
             }
             return query;
         }

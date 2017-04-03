@@ -9,9 +9,10 @@ using MyStudyProject.Shared.Contracts.Enums;
 namespace MyStudyProject.Data.DataAccess.Migrations
 {
     [DbContext(typeof(SqlApplicationDbContext))]
-    partial class SqlApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20170403145833_{UserAvatars}")]
+    partial class UserAvatars
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.1.1")

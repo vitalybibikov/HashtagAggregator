@@ -1,5 +1,5 @@
 ﻿using System;
-using MyStudyProject.Shared.Contracts.Enums;
+
 using Newtonsoft.Json;
 
 namespace MyStudyProject.ViewModels
@@ -20,5 +20,8 @@ namespace MyStudyProject.ViewModels
 
         [JsonProperty("url")]
         public string Url { get; set; }
+
+        [JsonProperty("avatar50")]
+        public string AvatarUrl50 { get; set; }
     }
 }

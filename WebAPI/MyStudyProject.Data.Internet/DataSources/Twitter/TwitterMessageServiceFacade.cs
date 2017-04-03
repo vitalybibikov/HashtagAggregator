@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
@@ -35,7 +36,10 @@ namespace MyStudyProject.Data.Internet.DataSources.Twitter
 
         public async Task<MessagesQueryResult> GetAllAsync(string hashtag)
         {
-            IEnumerable<ITweet> tweets = await SearchAsync.SearchTweets(hashtag);
+            ISearchTweetsParameters tweetsParameters = new SearchTweetsParameters(hashtag);
+            tweetsParameters.TweetSearchType = TweetSearchType.OriginalTweetsOnly;
+            IEnumerable<ITweet> tweets = await SearchAsync.SearchTweets(tweetsParameters);
+
             var fail = ExceptionHandler.GetLastException()?.TwitterDescription;
             if (!String.IsNullOrEmpty(fail))
             {

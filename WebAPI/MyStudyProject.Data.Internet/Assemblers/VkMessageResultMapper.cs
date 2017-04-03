@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+
 using MyStudyProject.Core.Entities.VkEntities;
 using MyStudyProject.Core.Models.Results.Query;
 using MyStudyProject.Shared.Contracts.Enums;
@@ -53,14 +54,16 @@ namespace MyStudyProject.Data.Internet.Assemblers
                 user.NetworkId = id.ToString();
                 user.UserName = $"{profile.FirstName} {profile.LastName}";
                 user.ProfileId = profile.UserName;
+                user.AvatarUrl50 = profile.PhotoLink50;
             }
             else
             {
                 id = Math.Abs(id);
-                var profile = feed.Groups.FirstOrDefault(x => x.Id == id);
+                var vkGroup = feed.Groups.FirstOrDefault(x => x.Id == id);
                 user.NetworkId = id.ToString();
-                user.UserName = $"{profile.FirstName}";
-                user.ProfileId = profile.UserName;
+                user.UserName = $"{vkGroup.FirstName}";
+                user.ProfileId = vkGroup.UserName;
+                user.AvatarUrl50 = vkGroup.PhotoLink50;
             }
             return user;
         }

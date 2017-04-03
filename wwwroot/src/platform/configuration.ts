@@ -16,6 +16,7 @@ export interface AppConfig {
     hashtag: string;
     tokenName: string;
     clientId: string;
+    defaultAvatar: string;
 }
 
 export interface VkConfig {
@@ -32,8 +33,9 @@ export const CONFIG: AppConfig = {
     loginApiEndpoint: "",
     i18nResourceFileFormat: ".json",
     tokenName: "id_token",
-    hashtag: "somesmallmessagefortest1",
-    clientId: "statisticsapiclient"
+    hashtag: "microsoft",
+    clientId: "statisticsapiclient",
+    defaultAvatar: "http://abs.twimg.com/sticky/default_profile_images/default_profile_normal.png"
 };
 
 export const VK_CONFIG: VkConfig = {

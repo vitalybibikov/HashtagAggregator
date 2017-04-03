@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
+
 using MyStudyProject.Core.Models.Results.Query;
 using MyStudyProject.Shared.Contracts.Enums;
+
 using Tweetinvi.Models;
 
 namespace MyStudyProject.Data.Internet.Assemblers
@@ -27,14 +29,16 @@ namespace MyStudyProject.Data.Internet.Assemblers
             {
                 NetworkId = tweet.CreatedBy.IdStr,
                 Url = tweet.Url,
-                UserName = tweet.CreatedBy.Name
+                UserName = tweet.CreatedBy.Name,
+                AvatarUrl50 = tweet.CreatedBy.ProfileImageUrl
             };
 
             MessageQueryResult message = new MessageQueryResult(0,
                 tweet.Text,
                 hashtag,
                 SocialMediaType.Twitter,
-                tweet.TweetLocalCreationDate, tweet.IdStr,
+                tweet.TweetLocalCreationDate, 
+                tweet.IdStr,
                 user);
             return message;
         }

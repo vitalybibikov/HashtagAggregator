@@ -1,15 +1,13 @@
 import {
   Component,
   OnInit,
-  Input
+  Input, Output
 } from '@angular/core';
 
 import {AppState} from '../../../app.service';
 import {Message} from '../../shared/models/message';
 import {AppConfigService} from '../../../shared/services/config/app-config.service';
 import {MediaType} from "../../shared/enums/social-media.enum";
-import {User} from "../../shared/models/user";
-
 
 @Component({
   selector: 'message',
@@ -21,11 +19,16 @@ export class MessageComponent implements OnInit {
 
   @Input() message: Message;
 
+  private defaultImage = '';
+  private offset = 20;
+
   constructor(public appState: AppState, private configService: AppConfigService) {
 
   }
 
   public ngOnInit() {
+    let avatarLink: string = this.configService.getApp<string>("defaultAvatar");
+    this.defaultImage = avatarLink;
   }
 
   public getMessageLink(message: Message): string {

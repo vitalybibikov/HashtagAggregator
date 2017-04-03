@@ -4,4 +4,5 @@ export class User {
   profileId : string;
   url : string;
   networkId : string;
+  avatar50 : string;
 }

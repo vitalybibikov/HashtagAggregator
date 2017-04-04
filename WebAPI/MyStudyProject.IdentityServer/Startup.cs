@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using IdentityServer4.Services;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -9,6 +10,7 @@ using Microsoft.Extensions.Logging;
 
 using MyStudyProject.IdentityServer.Database.Context;
 using MyStudyProject.IdentityServer.Identity;
+using MyStudyProject.IdentityServer.Infrastructure.ResourceValidators;
 using MyStudyProject.IdentityServer.Services;
 
 namespace MyStudyProject.IdentityServer
@@ -30,6 +32,7 @@ namespace MyStudyProject.IdentityServer
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddScoped<IAccountService, AccountService>();
+            services.AddScoped<IProfileService, CustomProfileService>();
 
             services.AddMvcCore()
                 .AddAuthorization()
@@ -59,7 +62,8 @@ namespace MyStudyProject.IdentityServer
                 .AddInMemoryClients(Config.GetClients(Configuration))
                 .AddInMemoryIdentityResources(Config.GetIdentityResources())
                 .AddInMemoryApiResources(Config.GetApiResources())
-                .AddAspNetIdentity<ApplicationUser>();
+                .AddAspNetIdentity<ApplicationUser>()
+                .AddProfileService<CustomProfileService>();
         }
 
         public void Configure(IApplicationBuilder app, ILoggerFactory loggerFactory)

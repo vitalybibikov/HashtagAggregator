@@ -1,10 +1,11 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
-
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using MyStudyProject.IdentityServer.Identity;
 using MyStudyProject.IdentityServer.Infrastructure;
 using MyStudyProject.IdentityServer.Services;
@@ -50,19 +51,31 @@ namespace MyStudyProject.IdentityServer.Controllers
             var info = await signInManager.GetExternalLoginInfoAsync();
             if (info != null)
             {
-                var tempUser = info.Principal;
-                var claims = tempUser.Claims.ToList();
-   
-                var userIdClaim = claims?.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier);
+                List<Claim> claims = info.Principal.Claims.ToList();
+
+                var userName = claims?.FirstOrDefault(x => x.Type == ClaimTypes.Name);
+                var userId = claims?.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier);
                 var email = "EvilAvenger@yandex.ru";
                 //claims?.FirstOrDefault(x => x.Type == ClaimTypes.Email);
 
-                if (userIdClaim != null)
+                if (userName != null)
                 {
                     var isRegistered = await IsUserRegistered(info.LoginProvider, info.ProviderKey);
                     if (!isRegistered && email != null)
                     {
-                        var user = new ApplicationUser { UserName = userIdClaim.Value, Email = email };
+                        var user = new ApplicationUser
+                        {
+                            UserName = userName.Value,
+                            Email = email,
+                            Claims =
+                            {
+                                new IdentityUserClaim<string>
+                                    {
+                                        ClaimType = ClaimTypes.NameIdentifier,
+                                        ClaimValue = userId.Value
+                                    }
+                            }
+                        };
                         var userCreated = await userManager.CreateAsync(user);
                         isRegistered = userCreated.Succeeded;
 
@@ -85,10 +98,9 @@ namespace MyStudyProject.IdentityServer.Controllers
                             IdentityResult updateResult = await signInManager.UpdateExternalAuthenticationTokensAsync(info);
                             result = updateResult.Succeeded;
 
-
                             var key = "O7OYOgmutGRemGCThi51DYgyL";
                             var secretKey = "496fR6J70pryWgsKLYTOGvwpmKpYmmfJGm84bpmwmt4e866zRC";
-                            var access = info.AuthenticationTokens.ToList().First(x=>x.Name == "access_token").Value;
+                            var access = info.AuthenticationTokens.ToList().First(x => x.Name == "access_token").Value;
                             var secret = info.AuthenticationTokens.ToList().First(x => x.Name == "access_token_secret").Value;
 
                             var twi = new TwitterLoginVerifier();

@@ -58,8 +58,7 @@ namespace MyStudyProject.Data.Internet.Assemblers
             }
             else
             {
-                id = Math.Abs(id);
-                var vkGroup = feed.Groups.FirstOrDefault(x => x.Id == id);
+                var vkGroup = feed.Groups.FirstOrDefault(x => x.Id == Math.Abs(id));
                 user.NetworkId = id.ToString();
                 user.UserName = $"{vkGroup.FirstName}";
                 user.ProfileId = vkGroup.UserName;

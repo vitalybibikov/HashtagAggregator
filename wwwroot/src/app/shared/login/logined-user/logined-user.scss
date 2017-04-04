@@ -1,5 +1,10 @@
-.my-login-sign{
+.my-logged-user-container{
   position: absolute;
   right: 15px;
   top:15px;
+
+  .my-user-name{
+    margin-right: 5px;
+    color:white;
+  }
 }

@@ -24,7 +24,6 @@ export class StorageService {
         token = new Token();
         token.name = name;
         token.saved = false;
-        console.log("initAuth");
     }
     return token;
     //this.tokenTracker.next(token);

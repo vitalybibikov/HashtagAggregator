@@ -1,6 +1,6 @@
 ﻿{
   "AppSettings": {
-    "ConnectionString": "Server=tcp:evilavengerstudyserver.database.windows.net,1433;Initial Catalog=silichyexhangedb;Persist Security Info=False;User ID=evilavenger;Password=qweqweQ1;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"
+       "ConnectionString": "Server=.,1433;Initial Catalog=MyStudyDb;Persist Security Info=False;User ID=sa;Password=123456"
   },
 
   "TwitterAuthSettings": {

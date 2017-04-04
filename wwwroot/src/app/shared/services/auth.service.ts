@@ -16,6 +16,11 @@ export class AuthService{
     return this.storageService.tokenSaved().map(x => this.checkSaved(x));
   }
 
+  public logOut() {
+    let accessTokenName = this.configService.getApp<string>("accessTokenName");
+    return this.storageService.removeToken(accessTokenName);
+  }
+
   private checkSaved(token : Token): boolean{
     console.log(`Check: ${token}`);
     let name = this.configService.getApp<string>("accessTokenName");

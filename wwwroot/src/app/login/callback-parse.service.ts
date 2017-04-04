@@ -1,16 +1,17 @@
 import {Injectable} from "@angular/core";
 import {Http} from '@angular/http';
+import {Token} from "../shared/models/token.model";
+import {AppConfigService} from "../shared/services/config/app-config.service";
 
 @Injectable()
 export class CallbackParseService {
 
-  constructor(public http: Http) {
+  constructor(public http: Http, private configService: AppConfigService ) {
   }
 
-  public parseUrl(url : string){
+  public parseUrl(url : string) : Token[]{
 
-    let token = '';
-    let id_token = '';
+    let tokens: Token [] = null;
     let hash = window.location.hash.substr(1);
 
     let result: any = hash.split('&').reduce(function(result: any, item: string) {
@@ -23,23 +24,15 @@ export class CallbackParseService {
 
     if (!result.error) {
 
-        token = result.access_token;
-        id_token = result.id_token;
+        let accessToken = new Token();
+        accessToken.name = this.configService.getApp<string>("accessTokenName");
+        accessToken.value = result.access_token;
 
-        let dataIdToken: any = this.getDataFromToken(id_token);
-        console.log(`access_token: ${token}`);
-        console.log(`id_token: ${id_token}`);
-        console.log(dataIdToken);
+      let identityToken = new Token();
+      identityToken.name = this.configService.getApp<string>("idTokenName");
+      identityToken.value = result.id_token;
+      tokens = [ identityToken, accessToken ];
     }
-    return token;
-  }
-
-  private getDataFromToken(token: any) {
-    let data = {};
-    if (typeof token !== 'undefined') {
-      let encoded = token.split('.')[1];
-      data = JSON.parse(atob(encoded));
-    }
-    return data;
+    return tokens;
   }
 }

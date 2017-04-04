@@ -30,12 +30,13 @@ import { NoContentComponent } from './no-content';
 import '../styles/styles.scss';
 import '../styles/headings.css';
 import {AuthModule} from "./shared/auth.module";
-import {AuthService} from "./shared/services/auth.service";
+import {StorageService} from "./shared/services/storage.service";
 import { HttpModule, Http } from "@angular/http";
 
 import {TranslateModule, TranslateLoader} from '@ngx-translate/core'
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import {LoginModule} from "./login/login.module";
+import {AppConfigService} from "./shared/services/config/app-config.service";
 
 export function HttpLoaderFactory(http: Http) {
   return new TranslateHttpLoader(http);
@@ -77,7 +78,8 @@ type StoreType = {
     ...ENV_PROVIDERS,
     APP_RESOLVER_PROVIDERS,
     AppState,
-    AuthService
+    AppConfigService,
+    StorageService
   ]
 })
 

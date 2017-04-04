@@ -1,39 +1,40 @@
 import {
-  Component, OnInit, OnDestroy
+  Component, OnInit
 } from '@angular/core';
 import {Router} from "@angular/router";
-import {AuthService} from "../../shared/services/auth.service";
+import {StorageService} from "../../shared/services/storage.service";
 import {CallbackParseService} from "../callback-parse.service";
+import {AppConfigService} from "../../shared/services/config/app-config.service";
+import {Token} from "../../shared/models/token.model";
 
 @Component({
   selector: 'login-callback',
   styleUrls: ['./login-callback.component.scss'],
   templateUrl: './login-callback.component.html',
   providers: [
-    AuthService,
     CallbackParseService
   ],
 })
 
-export class LoginCallbackComponent implements  OnInit, OnDestroy{
+export class LoginCallbackComponent implements  OnInit{
 
   constructor(
     private router : Router,
-    private authService : AuthService,
-    private callbackParse : CallbackParseService) {
+    private authService : StorageService,
+    private callbackParse : CallbackParseService,
+    private appConfigService : AppConfigService) {
   }
 
   ngOnInit(): void {
-    let result : string = this.callbackParse.parseUrl( window.location.hash.substr(1));
-    this.saveToken(result);
-  }
+    let result : Token[] = this.callbackParse.parseUrl(window.location.hash.substr(1));
 
-  ngOnDestroy(): void {
-    //this.loginSubscription.unsubscribe();
-  }
-
-  private saveToken(token : string): void {
-    this.authService.saveToken(token);
+     for(let token of result){
+       this.saveToken(token);
+     }
     this.router.navigate(["home"])
+  }
+
+  private saveToken(token : Token): void {
+    this.authService.saveToken(token);
   }
 }

@@ -3,9 +3,10 @@ import {
   OnInit, Input,
 } from '@angular/core';
 
-import {AppState} from "../../../app.service";
-import {ExternalProviderData} from "../../models/external-login-provider";
+import {AppState} from "../../../../app.service";
+import {ExternalProviderData} from "../../../models/external-login-provider";
 import {ExternalLoginService} from "../../services/external-login.service";
+
 
 @Component({
   selector: 'external-button',

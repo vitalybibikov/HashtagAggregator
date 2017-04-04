@@ -1,4 +1,4 @@
-import {OpaqueToken, InjectionToken} from "@angular/core";
+import {InjectionToken} from "@angular/core";
 
 /**
  * App configuration
@@ -14,7 +14,8 @@ export interface AppConfig {
     loginApiEndpoint: string;
     i18nResourceFileFormat: string;
     hashtag: string;
-    tokenName: string;
+    idTokenName: string;
+    accessTokenName: string;
     clientId: string;
     defaultAvatar: string;
 }
@@ -32,8 +33,9 @@ export const CONFIG: AppConfig = {
     apiEndpoint: "",
     loginApiEndpoint: "",
     i18nResourceFileFormat: ".json",
-    tokenName: "id_token",
-    hashtag: "microsoft",
+    idTokenName: "id_token",
+    accessTokenName: "access_token",
+    hashtag: "somesmallmessagefortest1", //somesmallmessagefortest1
     clientId: "statisticsapiclient",
     defaultAvatar: "http://abs.twimg.com/sticky/default_profile_images/default_profile_normal.png"
 };

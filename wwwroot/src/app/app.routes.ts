@@ -5,7 +5,7 @@ import {LoginCallbackComponent} from "./login/login-callback/login-callback.comp
 
 export const APP_ROUTES: Routes = [
   { path: '',  component: HomeComponent },
-  { path: 'home', redirectTo: '',  component: HomeComponent },
+  { path: 'home', redirectTo: '',  component: HomeComponent, },
   { path: 'login-callback', component: LoginCallbackComponent },
   { path: '**',    component: NoContentComponent },
 ];

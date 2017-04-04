@@ -5,14 +5,21 @@ import {
     TranslateLoader,
     TranslateStaticLoader
 } from "ng2-translate";
-import { HttpModule, Http } from "@angular/http";
-import {ExternalButtonComponent} from "./external-login/external-button/external-button.component";
-import {ExternalLoginButtonsComponent} from "./external-login/external-login-buttons.component";
+
+import {ExternalButtonComponent} from "./login/external-login-buttons/external-button/external-button.component";
+import {ExternalLoginButtonsComponent} from "./login/external-login-buttons/external-login-buttons.component";
+import {LoginedUserComponent} from "./login/logined-user/logined-user";
+import {AuthSectionComponent} from "./login/auth-section";
 
 @NgModule({
     imports: [CommonModule],
-    declarations: [ ExternalLoginButtonsComponent, ExternalButtonComponent],
-    exports: [CommonModule, ExternalLoginButtonsComponent]
+    declarations: [
+      ExternalLoginButtonsComponent,
+      ExternalButtonComponent,
+      LoginedUserComponent,
+      AuthSectionComponent
+    ],
+    exports: [CommonModule, AuthSectionComponent]
 })
 export class SharedModule {
 

@@ -1,23 +1,22 @@
-import {Inject} from "@angular/core";
 import {Injectable} from "@angular/core";
 import {Http, URLSearchParams, Response, RequestOptions} from '@angular/http';
-import {AppConfig, APP_CONFIG_TOKEN} from "../../../platform/configuration";
 import "rxjs/add/operator/map";
 import "rxjs/add/operator/share";
 import {Observable} from "rxjs";
-import {LoginData} from "../models/login-data";
-import {AuthService} from "./auth.service";
+import {LoginData} from "../../models/login-data";
+import {AppConfigService} from "../../services/config/app-config.service";
 
 @Injectable()
 export class ExternalLoginService {
 
-  constructor(public http: Http, @Inject(APP_CONFIG_TOKEN) private config: AppConfig, private authService : AuthService) {
+  constructor(public http: Http,
+              private configService: AppConfigService) {
   }
 
   public getExternalLogins(): Observable<LoginData> {
-    let uri = this.config.loginApiEndpoint + 'account/login';
+    let uri = this.configService.getApp<string>("loginApiEndpoint") + 'account/login';
     let params = new URLSearchParams();
-    params.set('returnUrl',  this.authService.getReturnURL());
+    params.set('returnUrl',  this.getReturnURL());
     let requestOptions = new RequestOptions();
     requestOptions.search = params;
 
@@ -28,9 +27,32 @@ export class ExternalLoginService {
 
   public externalLogIn(returnUrl: string, scheme: string): void {
     let url = encodeURIComponent(returnUrl);
-    let uri = this.config.loginApiEndpoint + 'account/externallogin/';
+    let uri = this.configService.getApp<string>("loginApiEndpoint") + 'account/externallogin/';
     uri = uri + '?' + 'provider='  + encodeURIComponent(scheme)+ '&' + 'returnUrl=' + url;
     window.location.href = uri;
+  }
+
+  private getReturnURL() : string {
+    let clientId = this.configService.getApp<string>("clientId");
+    let loginApiEndpoint = this.configService.getApp<string>("loginApiEndpoint");
+
+    let redirect_uri = `${location.origin}/login-callback`;
+    let authorizationUrl = '/connect/authorize/login';
+    let response_type = 'id_token token';
+    let scope = 'openid profile statisticsapi';
+
+    let nonce = 'N' + Math.random() + '' + Date.now();
+    let state = Date.now() + '' + Math.random();
+
+    let url =
+      authorizationUrl + '?' +
+      'client_id=' + encodeURIComponent(clientId) + '&' +
+      'redirect_uri=' + encodeURIComponent(redirect_uri) + '&' +
+      'response_type=' + encodeURIComponent(response_type) + '&' +
+      'scope=' + encodeURIComponent(scope) + '&' +
+      'state=' + encodeURIComponent(state) + '&' +
+      'nonce=' + encodeURIComponent(nonce);
+    return url;
   }
 
   private getLogins(data: any): LoginData {

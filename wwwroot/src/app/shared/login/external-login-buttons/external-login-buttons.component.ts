@@ -4,11 +4,11 @@ import {
   OnDestroy,
 } from '@angular/core';
 
-import {AppState} from "../../app.service";
+import {AppState} from "../../../app.service";
 import {ExternalLoginService} from "../services/external-login.service";
-import {LoginData} from "../models/login-data";
+import {LoginData} from "../../models/login-data";
 import {Subscription} from "rxjs";
-import {ExternalProviderData} from "../models/external-login-provider";
+import {ExternalProviderData} from "../../models/external-login-provider";
 
 @Component({
   selector: 'external-login-buttons',

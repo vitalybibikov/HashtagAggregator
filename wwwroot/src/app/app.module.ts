@@ -37,7 +37,6 @@ import {TranslateModule, TranslateLoader} from '@ngx-translate/core'
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import {LoginModule} from "./login/login.module";
 import {AppConfigService} from "./shared/services/config/app-config.service";
-import {AuthService} from "./shared/services/auth.service";
 
 export function HttpLoaderFactory(http: Http) {
   return new TranslateHttpLoader(http);
@@ -80,8 +79,7 @@ type StoreType = {
     APP_RESOLVER_PROVIDERS,
     AppState,
     AppConfigService,
-    StorageService,
-    AuthService
+    StorageService
   ]
 })
 

@@ -12,8 +12,7 @@ import {AuthService} from "../../services/auth.service";
 @Component({
   selector: 'logined-user',
   styleUrls: ['logined-user.scss'],
-  templateUrl: 'logined-user.html',
-  providers: [JwtHelper]
+  templateUrl: 'logined-user.html'
 })
 
 export class LoginedUserComponent implements OnInit {
@@ -34,7 +33,6 @@ export class LoginedUserComponent implements OnInit {
     if(accessToken != null){
       let jwt = this.jwtHelper.decodeToken(accessToken.value);
       this.userName = jwt.name;
-      console.log(jwt);
     }
   }
 

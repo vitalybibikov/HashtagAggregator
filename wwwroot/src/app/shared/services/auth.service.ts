@@ -17,8 +17,26 @@ export class AuthService{
   }
 
   public logOut() {
+    let idTokenName = this.configService.getApp<string>("idTokenName");
+    let token: Token = this.storageService.getTokenValueByName(idTokenName);
+    let authorizationUrl = this.configService.getApp<string>("loginApiEndpoint") + "connect/endsession";
+
+    let url =
+      authorizationUrl + '?' +
+      'id_token_hint=' + encodeURI(token.value) + '&' +
+      'post_logout_redirect_uri=' + encodeURI(location.origin);
+    console.log(`logout url: ${url}`);
+
+    this.resetAuthData();
+    window.location.href = url;
+  }
+
+  private resetAuthData(){
     let accessTokenName = this.configService.getApp<string>("accessTokenName");
-    return this.storageService.removeToken(accessTokenName);
+    let idTokenName = this.configService.getApp<string>("idTokenName");
+
+    this.storageService.removeToken(accessTokenName);
+    this.storageService.removeToken(idTokenName);
   }
 
   private checkSaved(token : Token): boolean{

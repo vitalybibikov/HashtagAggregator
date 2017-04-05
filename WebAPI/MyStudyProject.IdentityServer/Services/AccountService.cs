@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
-
+using IdentityServer4.Models;
 using IdentityServer4.Services;
 using IdentityServer4.Stores;
 
@@ -83,6 +83,12 @@ namespace MyStudyProject.IdentityServer.Services
             vm.Username = model.Username;
             vm.RememberLogin = model.RememberLogin;
             return vm;
+        }
+
+        public async Task<string> BuildLogoutViewModelAsync(string logoutId)
+        {
+            LogoutRequest context = await interaction.GetLogoutContextAsync(logoutId);
+            return context.PostLogoutRedirectUri;
         }
     }
 }

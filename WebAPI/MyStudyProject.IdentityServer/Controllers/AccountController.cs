@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
-
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -42,6 +42,15 @@ namespace MyStudyProject.IdentityServer.Controllers
         {
             LoginViewModel vm = await service.BuildLoginViewModelAsync(returnUrl);
             return vm;
+        }
+
+        [HttpGet]
+        [AllowAnonymous]
+        public async Task<IActionResult> Logout(string logoutId)
+        {
+            var returnUrl = await service.BuildLogoutViewModelAsync(logoutId);
+            await signInManager.SignOutAsync();
+            return Redirect(returnUrl);
         }
 
         [HttpGet]

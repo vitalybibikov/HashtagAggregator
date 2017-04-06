@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using MyStudyProject.IdentityServer.Identity;
+using MyStudyProject.IdentityServer.Database.Identity;
 using MyStudyProject.IdentityServer.Infrastructure;
 using MyStudyProject.IdentityServer.Services;
 using MyStudyProject.IdentityServer.ViewModels;

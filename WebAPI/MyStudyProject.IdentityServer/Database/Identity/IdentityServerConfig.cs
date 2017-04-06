@@ -2,11 +2,12 @@
 
 using IdentityServer4;
 using IdentityServer4.Models;
+
 using Microsoft.Extensions.Configuration;
 
-namespace MyStudyProject.IdentityServer
+namespace MyStudyProject.IdentityServer.Identity
 {
-    public class Config
+    public static class IdentityServerConfig
     {
         private const string StatisticsApiName = "statisticsapi";
 

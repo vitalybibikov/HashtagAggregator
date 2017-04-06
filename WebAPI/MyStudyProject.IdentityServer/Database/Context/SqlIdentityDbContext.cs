@@ -2,13 +2,13 @@
 
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using MyStudyProject.IdentityServer.Identity;
+using MyStudyProject.IdentityServer.Database.Identity;
 
 namespace MyStudyProject.IdentityServer.Database.Context
 {
     public class SqlIdentityDbContext : IdentityDbContext<ApplicationUser>
     {
-        public SqlIdentityDbContext(DbContextOptions options) : base(options)
+        public SqlIdentityDbContext(DbContextOptions<SqlIdentityDbContext> options) : base(options)
         {
         }
     }

@@ -1,4 +1,9 @@
-﻿using IdentityServer4.Services;
+﻿using System.Linq;
+using System.Reflection;
+using IdentityServer4.EntityFramework.DbContexts;
+using IdentityServer4.EntityFramework.Mappers;
+using IdentityServer4.Services;
+
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -9,8 +14,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
 using MyStudyProject.IdentityServer.Database.Context;
-using MyStudyProject.IdentityServer.Identity;
-using MyStudyProject.IdentityServer.Infrastructure.ResourceValidators;
+using MyStudyProject.IdentityServer.Database.Identity;
 using MyStudyProject.IdentityServer.Services;
 
 namespace MyStudyProject.IdentityServer
@@ -39,6 +43,7 @@ namespace MyStudyProject.IdentityServer
                 .AddJsonFormatters();
 
             var connectionString = Configuration.GetSection("AppSettings:ConnectionString").Value;
+            var migrationsAssembly = typeof(Startup).GetTypeInfo().Assembly.GetName().Name;
 
             services.AddDbContext<SqlIdentityDbContext>(
              options => options.UseSqlServer(connectionString));
@@ -58,10 +63,13 @@ namespace MyStudyProject.IdentityServer
                 .AllowCredentials()));
 
             services.AddIdentityServer()
-                .AddTemporarySigningCredential()
-                .AddInMemoryClients(Config.GetClients(Configuration))
-                .AddInMemoryIdentityResources(Config.GetIdentityResources())
-                .AddInMemoryApiResources(Config.GetApiResources())
+               .AddTemporarySigningCredential()
+               .AddConfigurationStore(builder =>
+                    builder.UseSqlServer(connectionString, options =>
+                    options.MigrationsAssembly(migrationsAssembly)))
+                .AddOperationalStore(builder =>
+                    builder.UseSqlServer(connectionString, options =>
+                    options.MigrationsAssembly(migrationsAssembly)))
                 .AddAspNetIdentity<ApplicationUser>()
                 .AddProfileService<CustomProfileService>();
         }
@@ -69,6 +77,9 @@ namespace MyStudyProject.IdentityServer
         public void Configure(IApplicationBuilder app, ILoggerFactory loggerFactory)
         {
             loggerFactory.AddConsole(LogLevel.Debug);
+
+            var id4Initializer = new IdentityServerInitializer();
+            id4Initializer.InitializeDatabase(app, Configuration);
 
             app.UseCors("CorsPolicy");
 
@@ -86,6 +97,7 @@ namespace MyStudyProject.IdentityServer
                 ConsumerSecret = Configuration.GetSection("TwitterAuthSettings:ConsumerSecret").Value,
                 SaveTokens = true
             });
+            
 
             app.UseMvcWithDefaultRoute();
         }

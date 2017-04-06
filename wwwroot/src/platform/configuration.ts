@@ -49,7 +49,7 @@ export const TWI_CONFIG: TwiConfig = {
 };
 
 if ("prod" === ENV) {
-    CONFIG.apiEndpoint = 'http://silichyexchange.azurewebsites.net/api/';
+    CONFIG.apiEndpoint = 'http://hashtagaggregator.azurewebsites.net/api/';
     CONFIG.loginApiEndpoint = "http://silichyexchangeidentity.azurewebsites.net/";
 } else {
     CONFIG.apiEndpoint = "http://localhost:5005/api/";

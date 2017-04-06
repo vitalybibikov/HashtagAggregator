@@ -2,10 +2,14 @@
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
+
+using MyStudyProject.IdentityServer.Configuration;
 using MyStudyProject.IdentityServer.Database.Identity;
 using MyStudyProject.IdentityServer.Infrastructure;
 using MyStudyProject.IdentityServer.Services;
@@ -17,17 +21,21 @@ namespace MyStudyProject.IdentityServer.Controllers
     public class AccountController : Controller
     {
         private IAccountService service;
+        private readonly ITwitterVerifier twitterVerifier;
         private readonly UserManager<ApplicationUser> userManager;
         private readonly SignInManager<ApplicationUser> signInManager;
+
 
         public AccountController(
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
-            IAccountService service)
+            IAccountService service,
+            ITwitterVerifier twitterVerifier)
         {
             this.userManager = userManager;
             this.signInManager = signInManager;
             this.service = service;
+            this.twitterVerifier = twitterVerifier;
         }
 
         [HttpGet]
@@ -64,12 +72,12 @@ namespace MyStudyProject.IdentityServer.Controllers
 
                 var userName = claims?.FirstOrDefault(x => x.Type == ClaimTypes.Name);
                 var userId = claims?.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier);
-                var email = "EvilAvenger@yandex.ru";
-                //claims?.FirstOrDefault(x => x.Type == ClaimTypes.Email);
 
                 if (userName != null)
                 {
                     var isRegistered = await IsUserRegistered(info.LoginProvider, info.ProviderKey);
+                    var email = await twitterVerifier.GetEmailAsync(info);
+
                     if (!isRegistered && email != null)
                     {
                         var user = new ApplicationUser
@@ -106,15 +114,6 @@ namespace MyStudyProject.IdentityServer.Controllers
                         {
                             IdentityResult updateResult = await signInManager.UpdateExternalAuthenticationTokensAsync(info);
                             result = updateResult.Succeeded;
-
-                            var key = "O7OYOgmutGRemGCThi51DYgyL";
-                            var secretKey = "496fR6J70pryWgsKLYTOGvwpmKpYmmfJGm84bpmwmt4e866zRC";
-                            var access = info.AuthenticationTokens.ToList().First(x => x.Name == "access_token").Value;
-                            var secret = info.AuthenticationTokens.ToList().First(x => x.Name == "access_token_secret").Value;
-
-                            var twi = new TwitterLoginVerifier();
-                            //var rest = await twi.TwitterLoginAsync(access, secret, key, secretKey);
-                            //AuthFlow.CreateCredentialsFromVerifierCode();
                         }
                     }
                 }

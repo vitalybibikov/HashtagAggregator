@@ -1,9 +1,6 @@
-﻿using System.Linq;
-using System.Reflection;
-using IdentityServer4.EntityFramework.DbContexts;
-using IdentityServer4.EntityFramework.Mappers;
-using IdentityServer4.Services;
+﻿using System.Reflection;
 
+using IdentityServer4.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -13,8 +10,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
+using MyStudyProject.IdentityServer.Configuration;
 using MyStudyProject.IdentityServer.Database.Context;
 using MyStudyProject.IdentityServer.Database.Identity;
+using MyStudyProject.IdentityServer.Infrastructure;
 using MyStudyProject.IdentityServer.Services;
 
 namespace MyStudyProject.IdentityServer
@@ -35,11 +34,12 @@ namespace MyStudyProject.IdentityServer
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.Configure<TwitterAuthSettings>(Configuration.GetSection("TwitterAuthSettings"));
             services.AddScoped<IAccountService, AccountService>();
+            services.AddScoped<ITwitterVerifier, TwitterVerifier>();
             services.AddScoped<IProfileService, CustomProfileService>();
-
-            services.AddMvcCore()
-                .AddAuthorization()
+            
+            services.AddMvcCore().AddAuthorization()
                 .AddJsonFormatters();
 
             var connectionString = Configuration.GetSection("AppSettings:ConnectionString").Value;
@@ -49,8 +49,8 @@ namespace MyStudyProject.IdentityServer
              options => options.UseSqlServer(connectionString));
 
             services.AddEntityFramework()
-                    .AddDbContext<SqlIdentityDbContext>(options =>
-                        options.UseSqlServer(connectionString));
+                    .AddDbContext<SqlIdentityDbContext>(
+                options => options.UseSqlServer(connectionString));
 
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<SqlIdentityDbContext>()
@@ -86,7 +86,6 @@ namespace MyStudyProject.IdentityServer
             app.UseIdentity();
             app.UseIdentityServer();
 
-            //after identity before mvc
             app.UseTwitterAuthentication(new TwitterOptions
             {
                 AuthenticationScheme = "Id",
@@ -98,7 +97,6 @@ namespace MyStudyProject.IdentityServer
                 SaveTokens = true
             });
             
-
             app.UseMvcWithDefaultRoute();
         }
     }

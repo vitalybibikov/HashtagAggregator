@@ -10,6 +10,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Remove="GenerateSSLCert.ps1" />
+    <None Remove="Properties\PublishProfiles\SilichyExchangeIdentity - Web Deploy.pubxml" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="IdentityServer4" Version="1.4.0" />
@@ -31,5 +32,6 @@
 
   <ItemGroup>
     <Folder Include="Middleware\" />
+    <Folder Include="Properties\PublishProfiles\" />
   </ItemGroup>
 </Project>

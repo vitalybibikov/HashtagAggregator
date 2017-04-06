@@ -13,6 +13,8 @@
   <ItemGroup>
     <None Remove="Properties\PublishProfiles\MyStudyProject - Web Deploy.pubxml" />
     <None Remove="Properties\PublishProfiles\MyStudyProject.pubxml" />
+    <None Remove="Properties\PublishProfiles\SilichyExchange - FTP.pubxml" />
+    <None Remove="Properties\PublishProfiles\SilichyExchange - Web Deploy.pubxml" />
     <None Remove="Properties\PublishProfiles\SkiExchange - Web Deploy.pubxml" />
   </ItemGroup>
 
@@ -74,6 +76,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Properties\PublishProfiles\" />
     <Folder Include="Properties\PublishProfiles\" />
   </ItemGroup>
 </Project>

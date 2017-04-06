@@ -1,6 +1,5 @@
 ﻿using System;
 using System.IO;
-using System.Net;
 using System.Net.Http;
 using System.Security.Cryptography;
 using System.Text;
@@ -98,15 +97,9 @@ namespace MyStudyProject.IdentityServer.Infrastructure
 
             try
             {
-                //var response = await client.SendAsync(message);
-                //var stream = await response.Content.ReadAsStreamAsync();
-                //dto = JsonConvert.DeserializeObject<TwitterDto>(new StreamReader(stream).ReadToEnd());
-                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(resourceUrl);
-                request.Headers["Authorization"] = authHeader;
-                request.Method = "GET";
-
-                var response = await request.GetResponseAsync();
-                dto = JsonConvert.DeserializeObject<TwitterDto>(new StreamReader(response.GetResponseStream()).ReadToEnd());
+                var response = await client.SendAsync(message);
+                var stream = await response.Content.ReadAsStreamAsync();
+                dto = JsonConvert.DeserializeObject<TwitterDto>(new StreamReader(stream).ReadToEnd());
             }
             catch (Exception ex)
             {

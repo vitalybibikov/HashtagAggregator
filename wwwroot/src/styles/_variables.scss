@@ -1,9 +1,16 @@
-$nav-button-color: #00838F;
+// body
+$backgroundColor:#F0F0F0;
+$title-color: #f06448;
 
+//header
+$headerTitleColor: $title-color;
+$headerTextColor : $title-color;
+$headerHeight: 400px;
+
+
+//#errors
 $errorNotificationTitle:#6b7074;
 
-$backgroundColor:lightcyan;
-$headerTitleColor: lightcyan;
+//common
 
-$headerHeight: 450px;
-$headerTextColor : #f06448;
+

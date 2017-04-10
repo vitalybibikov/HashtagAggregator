@@ -1,5 +1,7 @@
+@import '../../../../../styles/variables.scss';
+
 .my-external-login-buttons{
-  position: absolute;
-  right: 15px;
-  top:15px;
+  //position: absolute;
+  //right: $nav-button-margin;
+  //top: $nav-button-margin;
 }

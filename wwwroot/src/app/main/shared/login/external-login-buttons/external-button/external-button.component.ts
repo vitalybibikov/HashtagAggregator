@@ -6,7 +6,6 @@ import {
 import {ExternalProviderData} from "../../../models/external-login-provider";
 import {ExternalLoginService} from "../../services/external-login.service";
 
-
 @Component({
   selector: 'external-button',
   styleUrls: ['external-button.component.scss'],

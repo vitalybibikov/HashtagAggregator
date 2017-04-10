@@ -1,30 +1,61 @@
 @import '../../styles/variables.scss';
 
-html,
-body {
-  height: 100%;
-  font-family: Arial, Helvetica, sans-serif;
-  background-color: $backgroundColor;
-}
-
-a.active {
-  background-color: gray;
-}
+$darken: 60%;
+$color: rgb(255,255,255);
+$color-base: rgb(0,0,0); // Apply color here!
+$color-alpha: darken( $color, $darken );
 
 header {
-  background-image: url("../../assets/images/header.jpg");
-  background-position-y: 60%;
-  height: $headerHeight;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  cursor: default;
-  h1 {
-    font-size: 60px;
-    color: $headerTitleColor;
-  }
-  p {
-    font-size: 50px;
-    color: #f06448;
+  .my-nav-panel{
+    background-color: #14B9D5;
+    height:70px;
+    width:100%;
   }
 }
+
+.my-bar{
+  color:white;
+}
+
+.my-header{
+  height: $headerHeight;
+  background-image: url("../../assets/images/header.jpg");
+  background-position-y: 65%;
+  background-size: cover;
+}
+
+svg{
+  width: 100%;
+  height: inherit;
+
+  text{
+    text-anchor: middle;
+  }
+
+  #alpha{
+    fill: $color-alpha;
+  }
+
+  #title{
+    letter-spacing: -2px;
+    font-size: 6em;
+    font-weight: 800;
+  }
+
+  #subtitle{
+    letter-spacing: 8px;
+    font-size: 1.2em;
+    font-weight: 300;
+    text-transform: uppercase;
+  }
+
+  #base{
+    fill: $color-base;
+    mask: url(#mask);
+  }
+}
+
+
+
+
+

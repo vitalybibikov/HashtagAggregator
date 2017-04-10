@@ -1,3 +1,5 @@
+@import '../styles/variables.scss';
+
 html,
 body {
     height: 100%;
@@ -12,14 +14,14 @@ a.active {
 header {
     background-image: url("../assets/images/header.jpg");
     background-position-y: 60%;
-    height: 450px;
+    height: $headerHeight;
     display: flex;
     justify-content: center;
     flex-direction: column;
     cursor: default;
     h1 {
         font-size: 60px;
-        color: lightcyan;
+        color: $headerTitleColor;
     }
     p {
         font-size: 50px;

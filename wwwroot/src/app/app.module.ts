@@ -25,7 +25,6 @@ import { APP_ROUTES } from './app.routes';
 import { AppComponent } from './app.component';
 import { APP_RESOLVER_PROVIDERS } from './app.resolver';
 import { AppState, InternalStateType } from './app.service';
-import { NoContentComponent } from './no-content';
 
 import '../styles/styles.scss';
 import '../styles/headings.css';
@@ -37,6 +36,7 @@ import {TranslateModule, TranslateLoader} from '@ngx-translate/core'
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import {LoginModule} from "./login/login.module";
 import {AppConfigService} from "./shared/services/config/app-config.service";
+import {NotFoundComponent} from "./no-content/not-found.component";
 
 export function HttpLoaderFactory(http: Http) {
   return new TranslateHttpLoader(http);
@@ -53,7 +53,7 @@ type StoreType = {
   bootstrap: [AppComponent],
   declarations: [
     AppComponent,
-    NoContentComponent
+    NotFoundComponent
   ],
   imports: [
     HomeModule,

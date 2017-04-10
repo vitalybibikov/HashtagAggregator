@@ -35,7 +35,7 @@ export const CONFIG: AppConfig = {
     i18nResourceFileFormat: ".json",
     idTokenName: "id_token",
     accessTokenName: "access_token",
-    hashtag: "somesmallmessagefortest1", //somesmallmessagefortest1
+    hashtag: "microsoft", //somesmallmessagefortest1
     clientId: "statisticsapiclient",
     defaultAvatar: "http://abs.twimg.com/sticky/default_profile_images/default_profile_normal.png"
 };

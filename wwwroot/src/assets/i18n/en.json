@@ -1,5 +1,7 @@
 {
     "ski-pass-exchange-header": "Ski-pass Exchange",
     "ski-pass-exchange-text": "Trade your all-day skipass to others",
-    "footer-copyright-text": "Vitaly Bibikov © 2017"
+    "footer-copyright-text": "Vitaly Bibikov © 2017",
+    "not-found-404-message-title": "404",
+    "not-found-404-message-text": "The page you are looking for does not exist."
 }

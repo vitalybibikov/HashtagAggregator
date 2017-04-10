@@ -1,0 +1,27 @@
+@import "../../styles/variables";
+
+$topMargin : 25%;
+$widthContainer: 700px;
+
+.error-container {
+  position: absolute;
+  width: $widthContainer;
+  left: calc(50% - #{$widthContainer/2} );
+  text-align: center;
+  top: $topMargin;
+
+  .error-title {
+    font-size: 160px;
+    color: $errorNotificationTitle;
+    font-weight: bold;
+    line-height: 1;
+  }
+
+  .error-message {
+    font-size: 24px;
+    color: $headerTextColor;
+    font-weight: bold;
+    margin-bottom: 60px;
+  }
+}
+

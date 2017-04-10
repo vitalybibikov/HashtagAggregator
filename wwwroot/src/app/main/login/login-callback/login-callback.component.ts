@@ -9,8 +9,8 @@ import {Token} from "../../shared/models/token.model";
 
 @Component({
   selector: 'login-callback',
-  styleUrls: ['./login-callback.component.scss'],
-  templateUrl: './login-callback.component.html',
+  styleUrls: ['login-callback.component.scss'],
+  templateUrl: 'login-callback.component.html',
   providers: [
     CallbackParseService
   ],
@@ -31,7 +31,7 @@ export class LoginCallbackComponent implements  OnInit{
      for(let token of result){
        this.saveToken(token);
      }
-    this.router.navigate(["home"])
+    this.router.navigate(["main"])
   }
 
   private saveToken(token : Token): void {

@@ -1,9 +1,8 @@
 import {
   Component,
-  OnInit, Input,
+  Input,
 } from '@angular/core';
 
-import {AppState} from "../../../../app.service";
 import {ExternalProviderData} from "../../../models/external-login-provider";
 import {ExternalLoginService} from "../../services/external-login.service";
 
@@ -13,16 +12,12 @@ import {ExternalLoginService} from "../../services/external-login.service";
   styleUrls: ['external-button.component.scss'],
   templateUrl: 'external-button.component.html'
 })
-export class ExternalButtonComponent implements OnInit {
+export class ExternalButtonComponent  {
 
   @Input() externalProvider: ExternalProviderData;
   @Input() returnURL: string;
 
-  constructor(public appState: AppState, private loginService : ExternalLoginService) {
-
-  }
-
-  public ngOnInit(): void {
+  constructor(private loginService : ExternalLoginService) {
 
   }
 

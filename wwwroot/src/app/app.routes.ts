@@ -1,11 +1,16 @@
 import { Routes } from '@angular/router';
-import { HomeComponent } from './home';
-import {LoginCallbackComponent} from "./login/login-callback/login-callback.component";
+import {LoginCallbackComponent} from "./main/login/login-callback/login-callback.component";
 import {NotFoundComponent} from "./no-content/not-found.component";
+import {MainComponent} from "./main/main.component";
+import {HomeComponent} from "./main/home/home.component";
 
 export const APP_ROUTES: Routes = [
-  { path: '',  component: HomeComponent },
-  { path: 'home', redirectTo: '',  component: HomeComponent, },
+  { path: '',  component: MainComponent,
+    children: [
+        { path: '', component: HomeComponent }
+      ]
+  },
+  { path: 'main', redirectTo: '',  component: MainComponent, },
   { path: 'login-callback', component: LoginCallbackComponent },
   { path: '**',    component: NotFoundComponent },
 ];

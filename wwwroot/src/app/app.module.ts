@@ -1,8 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 
-import { HomeModule } from './home/home.module';
-import { SharedModule } from "./shared/shared.module";
 import {
   NgModule,
   ApplicationRef
@@ -23,20 +21,18 @@ import { PROVIDERS } from "../platform/providers";
 import { APP_ROUTES } from './app.routes';
 
 import { AppComponent } from './app.component';
-import { APP_RESOLVER_PROVIDERS } from './app.resolver';
+
 import { AppState, InternalStateType } from './app.service';
 
 import '../styles/styles.scss';
 import '../styles/headings.css';
-import {AuthModule} from "./shared/auth.module";
-import {StorageService} from "./shared/services/storage.service";
 import { HttpModule, Http } from "@angular/http";
 
-import {TranslateModule, TranslateLoader} from '@ngx-translate/core'
+import {TranslateModule, TranslateLoader, TranslatePipe} from '@ngx-translate/core'
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import {LoginModule} from "./login/login.module";
-import {AppConfigService} from "./shared/services/config/app-config.service";
+
 import {NotFoundComponent} from "./no-content/not-found.component";
+import {MainModule} from "./main/main.module";
 
 export function HttpLoaderFactory(http: Http) {
   return new TranslateHttpLoader(http);
@@ -48,7 +44,6 @@ type StoreType = {
   disposeOldHosts: () => void
 };
 
-
 @NgModule({
   bootstrap: [AppComponent],
   declarations: [
@@ -56,13 +51,10 @@ type StoreType = {
     NotFoundComponent
   ],
   imports: [
-    HomeModule,
-    LoginModule,
+    MainModule,
     BrowserModule,
     FormsModule,
     HttpModule,
-    SharedModule,
-    AuthModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -70,16 +62,12 @@ type StoreType = {
         deps: [Http]
       }
     }),
-
     RouterModule.forRoot(APP_ROUTES, { useHash: false, preloadingStrategy: PreloadAllModules })
   ],
   providers: [
     ...PROVIDERS,
     ...ENV_PROVIDERS,
-    APP_RESOLVER_PROVIDERS,
-    AppState,
-    AppConfigService,
-    StorageService
+    AppState
   ]
 })
 

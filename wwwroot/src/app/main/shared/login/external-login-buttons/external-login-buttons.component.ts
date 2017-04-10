@@ -4,7 +4,7 @@ import {
   OnDestroy,
 } from '@angular/core';
 
-import {AppState} from "../../../app.service";
+import {AppState} from "../../../../app.service";
 import {ExternalLoginService} from "../services/external-login.service";
 import {LoginData} from "../../models/login-data";
 import {Subscription} from "rxjs";

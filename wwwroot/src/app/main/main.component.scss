@@ -1,0 +1,30 @@
+@import '../../styles/variables.scss';
+
+html,
+body {
+  height: 100%;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: lightcyan;
+}
+
+a.active {
+  background-color: gray;
+}
+
+header {
+  background-image: url("../../assets/images/header.jpg");
+  background-position-y: 60%;
+  height: $headerHeight;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  cursor: default;
+  h1 {
+    font-size: 60px;
+    color: $headerTitleColor;
+  }
+  p {
+    font-size: 50px;
+    color: #f06448;
+  }
+}

@@ -1,13 +1,13 @@
 import {
   Component,
   OnInit,
-  Input, Output
+  Input
 } from '@angular/core';
 
-import {AppState} from '../../../app.service';
-import {Message} from '../../shared/models/message';
+import {AppState} from '../../../../app.service';
 import {AppConfigService} from '../../../shared/services/config/app-config.service';
 import {MediaType} from "../../shared/enums/social-media.enum";
+import {Message} from "../../shared/models/message";
 
 @Component({
   selector: 'message',

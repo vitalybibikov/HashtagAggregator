@@ -3,13 +3,13 @@ import {
   OnInit
 } from '@angular/core';
 
-import { AppState } from '../app.service';
+import { AppState } from '../../app.service';
 import { MessageService } from './shared/message.service';
 
 @Component({
   selector: 'home',
-  styleUrls: ['./home.component.scss'],
-  templateUrl: './home.component.html',
+  styleUrls: ['home.component.scss'],
+  templateUrl: 'home.component.html',
   providers: [
     MessageService
   ],

@@ -40,6 +40,7 @@ namespace MyStudyProject.Domain.Cqrs.EF.Handlers
             foreach (var message in newMessages)
             {
                 message.User = context.Users.FirstOrDefault(x => x.NetworkId == message.User.NetworkId);
+                message.PostDate = message.PostDate?.ToUniversalTime();
             }
             await context.Messages.AddRangeAsync(newMessages);
             context.SaveChanges();

@@ -29,7 +29,7 @@ namespace MyStudyProject.Data.Internet.Assemblers
             var results = new MessagesQueryResult();
             foreach (var post in feed.Feed)
             {
-                var date = DateTimeOffset.FromUnixTimeSeconds(post.UnixTimeStamp).DateTime;
+                var date = DateTimeOffset.FromUnixTimeSeconds(post.UnixTimeStamp).UtcDateTime;
                 var user = FillUser(post, feed);
                 MessageQueryResult message =
                   new MessageQueryResult(0,

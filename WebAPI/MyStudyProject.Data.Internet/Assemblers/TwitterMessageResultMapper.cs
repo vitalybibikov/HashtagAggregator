@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 using MyStudyProject.Core.Models.Results.Query;
 
@@ -39,7 +40,7 @@ namespace MyStudyProject.Data.Internet.Assemblers
                 tweet.Text,
                 hashtag,
                 SocialMediaType.Twitter,
-                tweet.TweetLocalCreationDate, 
+                tweet.TweetLocalCreationDate.ToUniversalTime(),
                 tweet.IdStr,
                 user);
             return message;

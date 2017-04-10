@@ -67,7 +67,7 @@ namespace MyStudyProject.Tests.Unit.InMemory
                 Assert.Equal(command.Id, result.Id);
                 Assert.Equal(command.MediaType, result.MediaType);
                 Assert.Equal(command.NetworkId, result.NetworkId);
-                Assert.Equal(command.PostDate, result.PostDate);
+                Assert.Equal(command.PostDate.Value.ToUniversalTime(), result.PostDate.Value.ToUniversalTime());
             }
         }
 

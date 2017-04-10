@@ -32,7 +32,7 @@ namespace MyStudyProject.Tests.Unit.Mappers
             Assert.Equal(hash, result.HashTag);
             Assert.Equal(tweet.IdStr, result.NetworkId);
             Assert.Equal(SocialMediaType.Twitter, result.MediaType);
-            Assert.Equal(tweet.TweetLocalCreationDate, result.PostDate);
+            Assert.Equal(tweet.TweetLocalCreationDate.ToUniversalTime(), result.PostDate.Value.ToUniversalTime());
         }
     }
 }

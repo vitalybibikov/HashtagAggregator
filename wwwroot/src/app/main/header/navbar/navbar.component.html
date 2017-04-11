@@ -1,11 +1,11 @@
 <nav class="navbar navbar-toggleable-md navbar-light">
-  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" (click)="isCollapsedContent = !isCollapsedContent"
           data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false"
-          aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
+          aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span>
   </button>
+
   <a class="navbar-brand" href="#">Logo</a>
-  <div class="collapse navbar-collapse" id="navbarCollapse">
+  <div class="collapse navbar-collapse" id="navbarCollapse" [collapse]="isCollapsedContent">
     <div class="navbar-nav mr-auto">
     </div>
 
@@ -13,8 +13,10 @@
       <input class="form-control mr-sm-2" type="text" placeholder="Search">
       <button class="btn btn-success my-2 my-sm-2" type="submit">Search</button>
     </form>
+
     <form class="form-inline mr-2">
       <auth-section></auth-section>
     </form>
+
   </div>
 </nav>

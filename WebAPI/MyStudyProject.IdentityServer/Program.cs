@@ -13,6 +13,7 @@ namespace MyStudyProject.IdentityServer
                 .UseContentRoot(Directory.GetCurrentDirectory())
                 .UseIISIntegration()
                 .UseStartup<Startup>()
+                .UseUrls("http://localhost:5001/")
                 .UseApplicationInsights()
                 .Build();
 

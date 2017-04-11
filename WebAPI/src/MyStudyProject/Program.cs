@@ -13,6 +13,7 @@ namespace MyStudyProject
                 .UseContentRoot(Directory.GetCurrentDirectory())
                 .UseIISIntegration()
                 .UseStartup<Startup>()
+                .UseUrls("http://localhost:5005/")
                 .UseApplicationInsights()
                 .Build();
 

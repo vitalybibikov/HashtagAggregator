@@ -4,6 +4,7 @@ import { MessagesListComponent } from './messages-list';
 import { MessageComponent } from './messages-list/message/message.component';
 import { HomeComponent } from './home.component';
 import { LazyLoadImageModule } from 'ng-lazyload-image';
+import {Ng2FilterPipeModule} from "ng2-filter-pipe";
 
 @NgModule({
     declarations: [
@@ -13,7 +14,8 @@ import { LazyLoadImageModule } from 'ng-lazyload-image';
     ],
     imports: [
         CommonModule,
-        LazyLoadImageModule
+        LazyLoadImageModule,
+        Ng2FilterPipeModule
     ],
     providers: [
     ]

@@ -1,4 +1,4 @@
-<site-nav></site-nav>
+<site-nav (searchEvent)='onSearchEvent($event)'></site-nav>
 <header>
   <div class="mb-1 my-header">
     <svg>
@@ -6,10 +6,10 @@
         <mask id="mask" x="0" y="0" width="100%" height="100%">
           <rect id="alpha" x="0" y="0" width="100%" height="100%"/>
           <text id="title" x="50%" y="0" dy="2em">{{'ski-pass-exchange-header' | translate}}</text>
-          <text id="subtitle" x="50%" y="0" dy="9em">{{'ski-pass-exchange-text' | translate}}</text>
-        </mask>
-      </defs>
-      <rect id="base" x="0" y="0" width="100%" height="100%"/>
-    </svg>
-  </div>
+<text id="subtitle" x="50%" y="0" dy="9em">{{'ski-pass-exchange-text' | translate}}</text>
+</mask>
+</defs>
+<rect id="base" x="0" y="0" width="100%" height="100%"/>
+</svg>
+</div>
 </header>

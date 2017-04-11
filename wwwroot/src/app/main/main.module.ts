@@ -12,6 +12,8 @@ import {RouterModule} from '@angular/router';
 
 import {NavbarComponent, HeaderComponent} from "./header";
 import {Collapse} from "./header/navbar/navbar-collapse.directive";
+import {Ng2FilterPipeModule} from "ng2-filter-pipe";
+import { ReactiveFormsModule , FormsModule } from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -27,6 +29,8 @@ import {Collapse} from "./header/navbar/navbar-collapse.directive";
     LoginModule,
     HomeModule,
     TranslateModule,
+    ReactiveFormsModule,
+    FormsModule,
     RouterModule
   ],
   providers:[

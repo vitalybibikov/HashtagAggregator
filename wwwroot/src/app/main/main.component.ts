@@ -1,25 +1,24 @@
 import {
   Component,
-  ViewEncapsulation
+  ViewEncapsulation, OnInit
 } from '@angular/core';
 
-import { TranslateService } from '@ngx-translate/core';
-import {AuthHttp} from "angular2-jwt";
+import {TranslateService} from '@ngx-translate/core';
 import {AppConfigService} from "./shared/services/config/app-config.service";
+import {SearchService} from "./shared/services/search.service";
 
 @Component({
   selector: 'main-page',
   encapsulation: ViewEncapsulation.None,
   styleUrls: ['main.component.scss'],
   templateUrl: 'main.component.html',
-  providers: [TranslateService]
+  providers: [TranslateService, SearchService]
 })
 
-export class MainComponent{
+export class MainComponent {
 
-  constructor(
-    private authHttp: AuthHttp,
-    private configService: AppConfigService) {
+  constructor(private configService: AppConfigService) {
+
   }
 }
 

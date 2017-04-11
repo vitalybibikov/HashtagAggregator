@@ -1,8 +1,6 @@
 import {InjectionToken} from "@angular/core";
 
-/**
- * App configuration
- */
+
 export const APP_CONFIG_TOKEN = new InjectionToken<AppConfig>("app.config");
 export const VK_CONFIG_TOKEN = new InjectionToken<VkConfig>("vk.config");
 export const TWI_CONFIG_TOKEN = new InjectionToken<TwiConfig>("twi.config");
@@ -35,7 +33,7 @@ export const CONFIG: AppConfig = {
     i18nResourceFileFormat: ".json",
     idTokenName: "id_token",
     accessTokenName: "access_token",
-    hashtag: "microsoft", //somesmallmessagefortest1
+    hashtag: "somesmallmessagefortest1", //somesmallmessagefortest1
     clientId: "statisticsapiclient",
     defaultAvatar: "http://abs.twimg.com/sticky/default_profile_images/default_profile_normal.png"
 };

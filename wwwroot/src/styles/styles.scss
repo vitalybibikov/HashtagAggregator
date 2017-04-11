@@ -23,14 +23,3 @@ a.active {
   background-color: gray;
 }
 
-@include media-breakpoint-between(xs, md) {
-  $headerHeight: 200px;
-}
-
-@include media-breakpoint-between(md, lg) {
-  $headerHeight: 350px;
-}
-
-@include media-breakpoint-between(md, lg) {
-  $headerHeight: 400px;
-}

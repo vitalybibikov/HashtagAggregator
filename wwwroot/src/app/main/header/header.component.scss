@@ -16,6 +16,7 @@ $color-alpha: darken( $color, $darken );
 @include media-breakpoint-between(xs, md) {
   .my-header{
     height: $smallHeaderSize;
+    background-position-x: 75%;
   }
   #subtitle{
     display:none;

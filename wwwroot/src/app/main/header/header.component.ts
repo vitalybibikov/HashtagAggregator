@@ -15,7 +15,7 @@ import {AppConfigService} from "../shared/services/config/app-config.service";
 export class HeaderComponent{
 
   constructor(private configService: AppConfigService) {
-  }
 
+  }
 }
 

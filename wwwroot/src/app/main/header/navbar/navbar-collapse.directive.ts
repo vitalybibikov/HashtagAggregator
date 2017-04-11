@@ -27,10 +27,12 @@ export class Collapse {
   @Input()
   private set collapse(value: boolean) {
     if (value !== undefined) {
-      console.log(value);
       this.isExpanded = value;
       this.toggle();
-      console.log("here");
+    }
+    else{
+      this.isExpanded = false;
+      this.hide();
     }
   }
 
@@ -50,7 +52,12 @@ export class Collapse {
   }
 
   private hide(): void {
-    this.toggleVariables();
+
+    this.isCollapsing = true;
+    this.isCollapse = true;
+    this.isExpanded = false;
+    this.isCollapsed = true;
+
     setTimeout(() => {
       this.height = '0';
       this.isCollapsing = false;
@@ -58,17 +65,14 @@ export class Collapse {
   }
 
   private show(): void {
-    this.toggleVariables();
+
+    this.isCollapsing = false;
+    this.isCollapse = false;
+    this.isExpanded = true;
+    this.isCollapsed =  false;
+
     setTimeout(() => {
       this.height = 'auto';
-      this.isCollapsing = false;
     }, 4);
-  }
-
-  private toggleVariables(): void {
-    this.isCollapsing = !this.isCollapsing;
-    this.isCollapse = !this.isCollapse;
-    this.isExpanded = !this.isExpanded;
-    this.isCollapsed = !this.isCollapsed;
   }
 }

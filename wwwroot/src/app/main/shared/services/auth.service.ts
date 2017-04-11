@@ -32,6 +32,10 @@ export class AuthService{
   }
 
   public isAuthorized(token : Token): boolean {
+
+    console.log("isAuthorized");
+    console.log(token);
+
     let isAuthorized: boolean = false;
     console.log(`Check: ${token}`);
 
@@ -46,6 +50,8 @@ export class AuthService{
         this.resetAuthData();
       }
     }
+
+    console.log(isAuthorized);
     return isAuthorized;
   }
 

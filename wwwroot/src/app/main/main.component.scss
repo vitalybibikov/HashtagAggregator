@@ -1,59 +1,9 @@
 @import '../../styles/variables.scss';
 
-$darken: 60%;
-$color: rgb(255,255,255);
-$color-base: rgb(0,0,0); // Apply color here!
-$color-alpha: darken( $color, $darken );
 
-nav{
-  background-color: #14B9D5;
-}
 
-header {
 
-}
 
-.my-bar{
-  color:white;
-}
-
-.my-header{
-  height: $headerHeight;
-  background-image: url("../../assets/images/header.jpg");
-  background-position-y: 65%;
-  background-size: cover;
-}
-
-svg{
-  width: 100%;
-  height: inherit;
-
-  text{
-    text-anchor: middle;
-  }
-
-  #alpha{
-    fill: $color-alpha;
-  }
-
-  #title{
-    letter-spacing: -2px;
-    font-size: 6em;
-    font-weight: 800;
-  }
-
-  #subtitle{
-    letter-spacing: 8px;
-    font-size: 1.2em;
-    font-weight: 300;
-    text-transform: uppercase;
-  }
-
-  #base{
-    fill: $color-base;
-    mask: url(#mask);
-  }
-}
 
 
 

@@ -1,0 +1,8 @@
+@import '../../../styles/variables.scss';
+
+.my-header{
+  height: $headerHeight;
+  background-image: url("../../../assets/images/header.jpg");
+  background-position-y: 65%;
+  background-size: cover;
+}

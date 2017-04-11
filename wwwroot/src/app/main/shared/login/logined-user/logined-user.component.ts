@@ -11,8 +11,8 @@ import {AuthService} from "../../services/auth.service";
 
 @Component({
   selector: 'logined-user',
-  styleUrls: ['logined-user.scss'],
-  templateUrl: 'logined-user.html'
+  styleUrls: ['logined-user.component.scss'],
+  templateUrl: 'logined-user.component.html'
 })
 
 export class LoginedUserComponent implements OnInit {

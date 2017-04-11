@@ -9,10 +9,15 @@ import {StorageService} from "./shared/services/storage.service";
 import {AppConfigService} from "./shared/services/config/app-config.service";
 import {TranslateModule} from "@ngx-translate/core";
 import {RouterModule} from '@angular/router';
+import {CollapseModule} from "ngx-bootstrap";
+
+import {NavbarComponent, HeaderComponent} from "./header";
 
 @NgModule({
   declarations: [
-    MainComponent
+    MainComponent,
+    NavbarComponent,
+    HeaderComponent
   ],
   imports: [
     CommonModule,
@@ -21,13 +26,15 @@ import {RouterModule} from '@angular/router';
     LoginModule,
     HomeModule,
     TranslateModule,
-    RouterModule
+    RouterModule,
+    CollapseModule
   ],
   providers:[
     AppConfigService,
     StorageService
   ]
 })
+
 export class MainModule {
 
 }

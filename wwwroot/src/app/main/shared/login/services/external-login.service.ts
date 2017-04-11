@@ -15,10 +15,14 @@ export class ExternalLoginService {
 
   public getExternalLogins(): Observable<LoginData> {
     let uri = this.configService.getApp<string>("loginApiEndpoint") + 'account/login';
+
     let params = new URLSearchParams();
     params.set('returnUrl',  this.getReturnURL());
     let requestOptions = new RequestOptions();
     requestOptions.search = params;
+
+    console.log("getExternalLogins");
+    console.log(uri);
 
     return this.http.get(uri, requestOptions)
       .map(data => this.getLogins(data))
@@ -29,6 +33,10 @@ export class ExternalLoginService {
     let url = encodeURIComponent(returnUrl);
     let uri = this.configService.getApp<string>("loginApiEndpoint") + 'account/externallogin/';
     uri = uri + '?' + 'provider='  + encodeURIComponent(scheme)+ '&' + 'returnUrl=' + url;
+
+    console.log("externalLogIn");
+    console.log(uri);
+
     window.location.href = uri;
   }
 

@@ -24,8 +24,7 @@ import { AppComponent } from './app.component';
 
 import { AppState, InternalStateType } from './app.service';
 
-import '../styles/styles.scss';
-import '../styles/headings.css';
+
 import { HttpModule, Http } from "@angular/http";
 
 import {TranslateModule, TranslateLoader, TranslatePipe} from '@ngx-translate/core'
@@ -33,6 +32,9 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 import {NotFoundComponent} from "./no-content/not-found.component";
 import {MainModule} from "./main/main.module";
+
+import '../styles/styles.scss';
+import '../styles/headings.css';
 
 export function HttpLoaderFactory(http: Http) {
   return new TranslateHttpLoader(http);

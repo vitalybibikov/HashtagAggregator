@@ -9,7 +9,6 @@ import {AppConfigService} from "./shared/services/config/app-config.service";
 
 @Component({
   selector: 'main-page',
-  encapsulation: ViewEncapsulation.None,
   styleUrls: ['main.component.scss'],
   templateUrl: 'main.component.html',
   providers: [TranslateService]

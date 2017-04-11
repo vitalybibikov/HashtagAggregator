@@ -1,5 +1,6 @@
 import {
-  Component
+  Component,
+  ViewEncapsulation
 } from '@angular/core';
 
 import {AppConfigService} from "../../shared/services/config/app-config.service";
@@ -10,12 +11,12 @@ import {AppConfigService} from "../../shared/services/config/app-config.service"
   templateUrl: 'navbar.component.html'
 })
 
-export class NavbarComponent {
+export class NavbarComponent{
 
   public isCollapsedContent: boolean = true;
 
   constructor(private configService: AppConfigService) {
-
   }
+
 }
 

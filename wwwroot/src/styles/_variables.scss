@@ -1,16 +1,31 @@
-// body
+@import '../../node_modules/bootstrap/scss/mixins/_breakpoints.scss';
+
 $backgroundColor:#F0F0F0;
 $title-color: #f06448;
 
 //header
 $headerTitleColor: $title-color;
 $headerTextColor : $title-color;
-$headerHeight: 400px;
-
 
 //#errors
 $errorNotificationTitle:#6b7074;
 
-//common
+$smallHeaderSize: 200px;
+$tabletHeaderSize: 350px;
+$pcHeaderSize: 450px;
+
+//devices
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px
+)
+
+
+
+
+
 
 

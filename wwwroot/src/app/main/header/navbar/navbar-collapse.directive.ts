@@ -52,27 +52,14 @@ export class Collapse {
   }
 
   private hide(): void {
-
-    this.isCollapsing = true;
     this.isCollapse = true;
     this.isExpanded = false;
     this.isCollapsed = true;
-
-    setTimeout(() => {
-      this.height = '0';
-      this.isCollapsing = false;
-    }, 4);
   }
 
   private show(): void {
-
-    this.isCollapsing = false;
     this.isCollapse = false;
     this.isExpanded = true;
     this.isCollapsed =  false;
-
-    setTimeout(() => {
-      this.height = 'auto';
-    }, 4);
   }
 }

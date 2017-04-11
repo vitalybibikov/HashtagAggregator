@@ -14,6 +14,8 @@ import {AppConfigService} from "../../shared/services/config/app-config.service"
 
 export class NavbarComponent{
 
+  private isCollapsedContent: boolean = true;
+
   constructor(private configService: AppConfigService) {
   }
 

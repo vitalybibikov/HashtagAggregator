@@ -1,12 +1,12 @@
 <nav class="navbar navbar-toggleable-md navbar-light">
-  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" (click)="isCollapsedContent = !isCollapsedContent"
-          data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false"
+  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" (click)="isCollapsed = !isCollapsed"
+          data-target="#navbarCollapse" aria-controls="navbarCollapse"
           aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-
   <a class="navbar-brand" href="#">Logo</a>
-  <div class="collapse navbar-collapse" id="navbarCollapse" [collapse]="isCollapsedContent">
+  <div [collapse]="isCollapsed" class="navbar-collapse" id="navbarCollapse">
+
     <div class="navbar-nav mr-auto">
     </div>
 

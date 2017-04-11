@@ -7,6 +7,7 @@ import {AppConfigService} from "../shared/services/config/app-config.service";
 
 @Component({
   selector: 'site-header',
+  encapsulation: ViewEncapsulation.None,
   styleUrls: ['header.component.scss'],
   templateUrl: 'header.component.html'
 })

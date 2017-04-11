@@ -1,7 +1,5 @@
 import {Directive, HostBinding, Input} from "@angular/core";
 
-const SmallestTimeoutPossible : number = 4;
-
 @Directive({selector: '[collapse]'})
 export class Collapse {
 
@@ -18,7 +16,7 @@ export class Collapse {
   @HostBinding('attr.aria-hidden')
   private isCollapsed: boolean = false;
 
-  // stale state
+  //stale state
   @HostBinding('class.collapse')
   private isCollapse: boolean = true;
 
@@ -28,8 +26,12 @@ export class Collapse {
 
   @Input()
   private set collapse(value: boolean) {
-    this.isExpanded = value;
-    this.toggle();
+    if (value !== undefined) {
+      console.log(value);
+      this.isExpanded = value;
+      this.toggle();
+      console.log("here");
+    }
   }
 
   private get collapse(): boolean {
@@ -39,40 +41,34 @@ export class Collapse {
   constructor() {
   }
 
-  public toggle() : void {
-    if (this.isExpanded) {
+  private toggle(): void {
+    if (!this.isExpanded) {
       this.hide();
     } else {
       this.show();
     }
   }
 
-  public hide(): void{
-    this.isCollapse = false;
-    this.isCollapsing = true;
-
-    this.isExpanded = false;
-    this.isCollapsed = true;
-
+  private hide(): void {
+    this.toggleVariables();
     setTimeout(() => {
       this.height = '0';
-      this.isCollapse = true;
       this.isCollapsing = false;
-    }, SmallestTimeoutPossible);
+    }, 4);
   }
 
-  public show(): void {
-    this.isCollapse = false;
-    this.isCollapsing = true;
-
-    this.isExpanded = true;
-    this.isCollapsed = false;
-
+  private show(): void {
+    this.toggleVariables();
     setTimeout(() => {
       this.height = 'auto';
-
-      this.isCollapse = true;
       this.isCollapsing = false;
-    }, SmallestTimeoutPossible);
+    }, 4);
+  }
+
+  private toggleVariables(): void {
+    this.isCollapsing = !this.isCollapsing;
+    this.isCollapse = !this.isCollapse;
+    this.isExpanded = !this.isExpanded;
+    this.isCollapsed = !this.isCollapsed;
   }
 }

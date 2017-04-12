@@ -3,7 +3,7 @@
 echo Started
 
 SET currentPath=%~dp0
-SET apiPath=%~dp0\..\..\..\MyStudyProject\WebAPI\src\MyStudyProject
+SET apiPath=%~dp0\..\..\..\HashtagAggregator\WebAPI\src\HashtagAggregator
 
 SET ASPNETCORE_ENVIRONMENT=dev
 

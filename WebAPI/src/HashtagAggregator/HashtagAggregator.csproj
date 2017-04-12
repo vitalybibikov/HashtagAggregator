@@ -1,0 +1,82 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp1.1</TargetFramework>
+    <PreserveCompilationContext>true</PreserveCompilationContext>
+    <AssemblyName>HashtagAggregator</AssemblyName>
+    <OutputType>Exe</OutputType>
+    <PackageId>HashtagAggregator</PackageId>
+    <PackageTargetFallback>$(PackageTargetFallback);dnxcore50</PackageTargetFallback>
+    <RuntimeFrameworkVersion>1.1.1</RuntimeFrameworkVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Properties\PublishProfiles\HashtagAggregator - Web Deploy.pubxml" />
+    <None Remove="Properties\PublishProfiles\HashtagAggregator.pubxml" />
+    <None Remove="Properties\PublishProfiles\SilichyExchange - FTP.pubxml" />
+    <None Remove="Properties\PublishProfiles\SilichyExchange - Web Deploy.pubxml" />
+    <None Remove="Properties\PublishProfiles\SkiExchange - Web Deploy.pubxml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="wwwroot\**\*">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\HashtagAggregator.Shared.Common\HashtagAggregator.Shared.Common.csproj" />
+    <ProjectReference Include="..\..\HashtagAggregator.Data.DataAccess\HashtagAggregator.Data.DataAccess.csproj" />
+    <ProjectReference Include="..\..\HashtagAggregator.Data.Contracts\HashtagAggregator.Data.Contracts.csproj" />
+    <ProjectReference Include="..\..\HashtagAggregator.Core.Cqrs\HashtagAggregator.Core.Cqrs.csproj" />
+    <ProjectReference Include="..\..\HashtagAggregator.Core.Models\HashtagAggregator.Core.Models.csproj" />
+    <ProjectReference Include="..\..\HashtagAggregator.Domain.Cqrs.Twitter\HashtagAggregator.Domain.Cqrs.Twitter.csproj" />
+    <ProjectReference Include="..\..\HashtagAggregator.Domain.Cqrs.Vk\HashtagAggregator.Domain.Cqrs.Vk.csproj" />
+    <ProjectReference Include="..\..\HashtagAggregator.Data.Internet\HashtagAggregator.Data.Internet.csproj" />
+    <ProjectReference Include="..\..\HashtagAggregator.Domain.Cqrs.EF\HashtagAggregator.Domain.Cqrs.EF.csproj" />
+    <ProjectReference Include="..\..\HashtagAggregator.Shared.Logging\HashtagAggregator.Shared.Logging.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="IdentityServer4" Version="1.4.2" />
+    <PackageReference Include="IdentityServer4.AccessTokenValidation" Version="1.1.0" />
+    <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.1.0-beta1" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="1.1.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Routing" Version="1.1.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Server.IISIntegration" Version="1.1.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Server.Kestrel" Version="1.1.1" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.EnvironmentVariables" Version="1.1.1" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.FileExtensions" Version="1.1.1" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="1.1.1" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="1.1.1" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="1.1.1" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="1.1.1" />
+    <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="1.1.1" />
+    <PackageReference Include="AutoMapper" Version="6.0.2" />
+    <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="4.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Diagnostics" Version="1.1.1" />
+    <PackageReference Include="Hangfire.Core" Version="1.6.12" />
+    <PackageReference Include="Hangfire" Version="1.6.12" />
+    <PackageReference Include="Serilog.Sinks.File" Version="3.2.0" />
+    <PackageReference Include="Serilog.Settings.Configuration" Version="2.4.0-dev-00055" />
+    <PackageReference Include="AutofacSerilogIntegration" Version="2.0.1-dev-00023" />
+    <PackageReference Include="Serilog.Sinks.Literate" Version="2.1.0" />
+    <PackageReference Include="Serilog.Extensions.Logging" Version="1.4.1-dev-10147" />
+    <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="1.1.1" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="1.1.1" />
+    <PackageReference Include="System.Diagnostics.TraceSource" Version="4.3.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <DotNetCliToolReference Include="Microsoft.Extensions.SecretManager.Tools" Version="1.1.0-preview4-final" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Properties\PublishProfiles\" />
+    <Folder Include="Properties\PublishProfiles\" />
+  </ItemGroup>
+</Project>

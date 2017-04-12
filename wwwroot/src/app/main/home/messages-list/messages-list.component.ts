@@ -9,7 +9,6 @@ import {Message} from '../shared/models/message';
 import {Subscription, Subject} from "rxjs";
 import {MessageService} from "../shared/message.service";
 import {SearchService} from "../../shared/services/search.service";
-import {User} from "../shared/models/user";
 
 @Component({
   selector: 'messages-list',

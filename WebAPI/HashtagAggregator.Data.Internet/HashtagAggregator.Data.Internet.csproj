@@ -1,0 +1,32 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp1.1</TargetFramework>
+    <AssemblyName>HashtagAggregator.Data.Internet</AssemblyName>
+    <PackageId>HashtagAggregator.Data.Internet</PackageId>
+    <PackageTargetFallback>$(PackageTargetFallback);dnxcore50</PackageTargetFallback>
+    <RuntimeFrameworkVersion>1.1.1</RuntimeFrameworkVersion>
+    <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
+    <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
+    <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\HashtagAggregator.Core.Contracts\HashtagAggregator.Core.Contracts.csproj" />
+    <ProjectReference Include="..\HashtagAggregator.Core.Cqrs\HashtagAggregator.Core.Cqrs.csproj" />
+    <ProjectReference Include="..\HashtagAggregator.Core.Entities\HashtagAggregator.Core.Entities.csproj" />
+    <ProjectReference Include="..\HashtagAggregator.Core.Models\HashtagAggregator.Core.Models.csproj" />
+    <ProjectReference Include="..\HashtagAggregator.Data.Contracts\HashtagAggregator.Data.Contracts.csproj" />
+    <ProjectReference Include="..\HashtagAggregator.Shared.Common\HashtagAggregator.Shared.Common.csproj" />
+    <ProjectReference Include="..\HashtagAggregator.Shared.Logging\HashtagAggregator.Shared.Logging.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AspNetCore.Security.OAuth.Vkontakte" Version="1.0.1" />
+    <PackageReference Include="Hangfire.Core" Version="1.6.12" />
+    <PackageReference Include="Newtonsoft.Json" Version="10.0.2" />
+    <PackageReference Include="TweetinviAPI" Version="1.2.0.1" />
+    <PackageReference Include="VkNet" Version="1.28.0" />
+  </ItemGroup>
+
+</Project>

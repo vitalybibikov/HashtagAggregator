@@ -3,7 +3,7 @@
 echo Started
 
 SET currentPath=%~dp0
-SET authPath=%~dp0\..\..\..\MyStudyProject\WebAPI\MyStudyProject.IdentityServer
+SET authPath=%~dp0\..\..\..\HashtagAggregator\WebAPI\HashtagAggregator.IdentityServer
 SET ASPNETCORE_ENVIRONMENT=dev
 
 cd %authPath%

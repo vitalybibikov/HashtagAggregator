@@ -1,0 +1,29 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp1.1</TargetFramework>
+    <AssemblyName>HashtagAggregator.Domain.Cqrs.EF</AssemblyName>
+    <PackageId>HashtagAggregator.Domain.Cqrs.EF</PackageId>
+    <PackageTargetFallback>$(PackageTargetFallback);dnxcore50</PackageTargetFallback>
+    <RuntimeFrameworkVersion>1.1.1</RuntimeFrameworkVersion>
+    <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
+    <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
+    <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\HashtagAggregator.Core.Contracts\HashtagAggregator.Core.Contracts.csproj" />
+    <ProjectReference Include="..\HashtagAggregator.Core.Cqrs\HashtagAggregator.Core.Cqrs.csproj" />
+    <ProjectReference Include="..\HashtagAggregator.Core.Entities\HashtagAggregator.Core.Entities.csproj" />
+    <ProjectReference Include="..\HashtagAggregator.Core.Models\HashtagAggregator.Core.Models.csproj" />
+    <ProjectReference Include="..\HashtagAggregator.Data.DataAccess\HashtagAggregator.Data.DataAccess.csproj" />
+    <ProjectReference Include="..\HashtagAggregator.Domain.Cqrs.Common\HashtagAggregator.Domain.Cqrs.Common.csproj" />
+    <ProjectReference Include="..\HashtagAggregator.Shared.Contracts\HashtagAggregator.Shared.Contracts.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="1.1.1" />
+    <PackageReference Include="Newtonsoft.Json" Version="10.0.2" />
+  </ItemGroup>
+
+</Project>

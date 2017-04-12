@@ -8,7 +8,7 @@ SET authPath=%~dp0\..\..\..\HashtagAggregator\WebAPI\HashtagAggregator.IdentityS
 
 cd %apiPath% 
 
-dotnet ef database update -e dev
+dotnet ef database update -e dev -c SqlApplicationDbContext
 
 cd %authPath%
 
@@ -21,3 +21,4 @@ dotnet ef database update -e dev -c ConfigurationDbContext
 cd %currentPath%
 
 echo Finished
+

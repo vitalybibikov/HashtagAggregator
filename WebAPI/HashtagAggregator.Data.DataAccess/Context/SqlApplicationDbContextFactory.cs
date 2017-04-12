@@ -8,7 +8,7 @@ namespace HashtagAggregator.Data.DataAccess.Context
 {
     public class SqlApplicationDbContextFactory : IDbContextFactory<SqlApplicationDbContext>
     {
-        private string ParentProject = @"src\MyStudyProject";
+        private string ParentProject = @"src\HashtagAggregator";
         private IConfigurationRoot configuration;
 
         public SqlApplicationDbContext Create(DbContextFactoryOptions options)

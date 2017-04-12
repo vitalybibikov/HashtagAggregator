@@ -6,7 +6,6 @@ namespace HashtagAggregator.DependencyInjection
     {
         protected override void Load(ContainerBuilder builder)
         {
-            //builder.RegisterType<SqlApplicationDbContext>().As<IApplicationContext>();
         }
     }
 }

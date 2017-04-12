@@ -1,4 +1,5 @@
 ﻿using System;
+
 using HashtagAggregator.Shared.Contracts.Enums;
 using Newtonsoft.Json;
 

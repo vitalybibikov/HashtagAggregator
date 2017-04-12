@@ -122,7 +122,7 @@ namespace HashtagAggregator.IdentityServer.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("MyStudyProject.IdentityServer.Identity.ApplicationUser", b =>
+            modelBuilder.Entity("HashtagAggregator.IdentityServer.Identity.ApplicationUser", b =>
                 {
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd();
@@ -182,7 +182,7 @@ namespace HashtagAggregator.IdentityServer.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("MyStudyProject.IdentityServer.Identity.ApplicationUser")
+                    b.HasOne("HashtagAggregator.IdentityServer.Identity.ApplicationUser")
                         .WithMany("Claims")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -190,7 +190,7 @@ namespace HashtagAggregator.IdentityServer.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("MyStudyProject.IdentityServer.Identity.ApplicationUser")
+                    b.HasOne("HashtagAggregator.IdentityServer.Identity.ApplicationUser")
                         .WithMany("Logins")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -203,7 +203,7 @@ namespace HashtagAggregator.IdentityServer.Migrations
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("MyStudyProject.IdentityServer.Identity.ApplicationUser")
+                    b.HasOne("HashtagAggregator.IdentityServer.Identity.ApplicationUser")
                         .WithMany("Roles")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);

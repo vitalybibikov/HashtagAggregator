@@ -1,12 +1,14 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using AutoMapper;
+
 using HashtagAggregator.Core.Contracts.Interface.Cqrs.Command;
 using HashtagAggregator.Core.Contracts.Interface.Cqrs.Query;
 using HashtagAggregator.Core.Models.Commands;
 using HashtagAggregator.Core.Models.Queries;
 using HashtagAggregator.Core.Models.Results.Query;
 using HashtagAggregator.ViewModels;
+
 using Microsoft.AspNetCore.Mvc;
 
 namespace HashtagAggregator.Controllers

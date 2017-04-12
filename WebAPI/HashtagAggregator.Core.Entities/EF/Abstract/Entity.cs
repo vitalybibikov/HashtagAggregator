@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Diagnostics;
 
-namespace HashtagAggregator.Core.Entities.EF
+namespace HashtagAggregator.Core.Entities.EF.Abstract
 {
     /// <summary>
     ///   Base class for entitities.

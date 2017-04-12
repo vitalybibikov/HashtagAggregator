@@ -14,7 +14,7 @@ namespace HashtagAggregator.Tests.Integration
 {
     public class TestFixture<TStartup> : IDisposable
     {
-        private const string SolutionName = "MyStudyProject.sln";
+        private const string SolutionName = "HashtagAggregator.sln";
         private readonly TestServer server;
 
         public HttpClient Client { get; }

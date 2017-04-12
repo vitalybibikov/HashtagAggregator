@@ -1,4 +1,5 @@
 ﻿using System;
+
 using HashtagAggregator.Core.Models.Interface.Cqrs.Command;
 using HashtagAggregator.Shared.Contracts.Enums;
 

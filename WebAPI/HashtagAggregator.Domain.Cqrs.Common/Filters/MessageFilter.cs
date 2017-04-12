@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+
 using HashtagAggregator.Core.Contracts.Interface;
 using HashtagAggregator.Core.Models.Results.Query;
 
@@ -36,7 +37,7 @@ namespace HashtagAggregator.Domain.Cqrs.Common.Filters
 
         private MessageFilter FilterOwnMessages(MessagesQueryResult messages)
         {
-
+            //todo: add filtration of reposts after feature is implemented
             return this;
         }
 

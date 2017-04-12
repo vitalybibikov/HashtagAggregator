@@ -2,6 +2,7 @@
 using HashtagAggregator.Core.Models.Commands;
 using HashtagAggregator.Core.Models.Interface.Cqrs.Command;
 using HashtagAggregator.Core.Models.Queries;
+using HashtagAggregator.Core.Models.Results;
 using HashtagAggregator.Data.Contracts.Interface;
 using HashtagAggregator.Data.Contracts.Interface.JobObjects;
 using Tweetinvi;

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using HashtagAggregator.Core.Models.Commands;
 using HashtagAggregator.Domain.Cqrs.EF.Assemblers;
+using HashtagAggregator.Domain.Cqrs.EF.Assemblers.ToEnity;
 using HashtagAggregator.Shared.Contracts.Enums;
 using Xunit;
 

@@ -1,4 +1,4 @@
-﻿namespace HashtagAggregator.Core.Entities.EF
+﻿namespace HashtagAggregator.Core.Entities.EF.Abstract
 {
     public interface IEntity
     {

@@ -5,9 +5,9 @@ using HashtagAggregator.Core.Models.Commands;
 
 namespace HashtagAggregator.Domain.Cqrs.Common.Handlers.CompositeCommandHandlers
 {
-    public class MessagesCreateCommandHandler : CompositeCommandHandler<MessagesCreateCommand>
+    public class HashTagCreateCommandHandler : CompositeCommandHandler<HashTagCreateCommand>
     {
-        public MessagesCreateCommandHandler(ILogger logger) : base(logger)
+        public HashTagCreateCommandHandler(ILogger logger) : base(logger)
         {
         }
     }

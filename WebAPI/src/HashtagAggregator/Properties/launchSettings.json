@@ -15,7 +15,7 @@
         "ASPNETCORE_ENVIRONMENT": "dev"
       }
     },
-    "MyStudyProject": {
+    "HashtagAggregator": {
       "commandName": "Project",
       "launchBrowser": true,
       "launchUrl": "http://localhost:5000/",

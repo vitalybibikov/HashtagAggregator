@@ -9,7 +9,10 @@ namespace HashtagAggregator.Core.Models.Queries
 
         public string HashTag
         {
-            get { return hashTag; }
+            get
+            {
+                return hashTag;
+            }
             set
             {
                 if (!value.StartsWith(HashTagSymbol))

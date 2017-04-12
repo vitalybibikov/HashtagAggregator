@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+
 using HashtagAggregator.Core.Entities.EF;
 using HashtagAggregator.Core.Models.Results.Query;
 using HashtagAggregator.Shared.Contracts.Enums;
 
-namespace HashtagAggregator.Domain.Cqrs.EF.Assemblers
+namespace HashtagAggregator.Domain.Cqrs.EF.Assemblers.ToResult
 {
     public class EntityToMessagesResultMapper
     {

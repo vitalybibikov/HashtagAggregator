@@ -1,7 +1,7 @@
 ﻿using HashtagAggregator.Core.Entities.EF;
 using HashtagAggregator.Core.Models.Results.Query;
 
-namespace HashtagAggregator.Domain.Cqrs.EF.Assemblers
+namespace HashtagAggregator.Domain.Cqrs.EF.Assemblers.ToResult
 {
     public class EntityToUserResultMapper
     {

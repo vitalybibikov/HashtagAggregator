@@ -6,6 +6,7 @@ namespace HashtagAggregator.Core.Models
     {
         public static MessageCreateCommand BodyConvert(this MessageCreateCommand command, int maxLength)
         {
+            //todo: move to another assembly
             command.MessageText = new MessageConverter().ConvertBody(command.MessageText, maxLength);
             return command;
         }

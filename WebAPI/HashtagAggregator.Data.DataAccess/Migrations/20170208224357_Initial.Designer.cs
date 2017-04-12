@@ -17,7 +17,7 @@ namespace HashtagAggregator.Data.DataAccess.Migrations
                 .HasAnnotation("ProductVersion", "1.1.0-rtm-22752")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("MyStudyProject.Data.Entities.Entities.MessageEntity", b =>
+            modelBuilder.Entity("HashtagAggregator.Data.Entities.Entities.MessageEntity", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd();
@@ -44,7 +44,7 @@ namespace HashtagAggregator.Data.DataAccess.Migrations
                     b.ToTable("Messages");
                 });
 
-            modelBuilder.Entity("MyStudyProject.Data.Entities.Entities.UserEntity", b =>
+            modelBuilder.Entity("HashtagAggregator.Data.Entities.Entities.UserEntity", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd();
@@ -62,9 +62,9 @@ namespace HashtagAggregator.Data.DataAccess.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("MyStudyProject.Data.Entities.Entities.MessageEntity", b =>
+            modelBuilder.Entity("HashtagAggregator.Data.Entities.Entities.MessageEntity", b =>
                 {
-                    b.HasOne("MyStudyProject.Data.Entities.Entities.UserEntity", "User")
+                    b.HasOne("HashtagAggregator.Data.Entities.Entities.UserEntity", "User")
                         .WithMany("Messages")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);

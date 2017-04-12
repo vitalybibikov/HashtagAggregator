@@ -1,4 +1,5 @@
 ﻿using Autofac;
+
 using HashtagAggregator.Core.Contracts.Interface.DataSources;
 using HashtagAggregator.Core.Models.Commands;
 using HashtagAggregator.Data.Contracts.Interface;

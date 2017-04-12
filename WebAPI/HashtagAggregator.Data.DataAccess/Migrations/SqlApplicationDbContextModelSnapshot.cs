@@ -1,8 +1,10 @@
 ﻿using System;
-using HashtagAggregator.Data.DataAccess.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
+using HashtagAggregator.Data.DataAccess.Context;
+using HashtagAggregator.Shared.Contracts.Enums;
 
 namespace HashtagAggregator.Data.DataAccess.Migrations
 {
@@ -15,7 +17,21 @@ namespace HashtagAggregator.Data.DataAccess.Migrations
                 .HasAnnotation("ProductVersion", "1.1.1")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("MyStudyProject.Core.Entities.EF.MessageEntity", b =>
+            modelBuilder.Entity("HashtagAggregator.Core.Entities.EF.HashTagEntity", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("HashTag");
+
+                    b.Property<bool>("IsEnabled");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Hashtags");
+                });
+
+            modelBuilder.Entity("HashtagAggregator.Core.Entities.EF.MessageEntity", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd();
@@ -42,7 +58,7 @@ namespace HashtagAggregator.Data.DataAccess.Migrations
                     b.ToTable("Messages");
                 });
 
-            modelBuilder.Entity("MyStudyProject.Core.Entities.EF.UserEntity", b =>
+            modelBuilder.Entity("HashtagAggregator.Core.Entities.EF.UserEntity", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd();
@@ -67,9 +83,9 @@ namespace HashtagAggregator.Data.DataAccess.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("MyStudyProject.Core.Entities.EF.MessageEntity", b =>
+            modelBuilder.Entity("HashtagAggregator.Core.Entities.EF.MessageEntity", b =>
                 {
-                    b.HasOne("MyStudyProject.Core.Entities.EF.UserEntity", "User")
+                    b.HasOne("HashtagAggregator.Core.Entities.EF.UserEntity", "User")
                         .WithMany("Messages")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);

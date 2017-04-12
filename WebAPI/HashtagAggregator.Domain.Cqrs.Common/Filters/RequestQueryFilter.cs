@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Reflection;
 using System.Threading.Tasks;
+
 using HashtagAggregator.Core.Contracts.Interface;
 using HashtagAggregator.Shared.Common.Attributes;
 using HashtagAggregator.Shared.Common.Settings;
 using HashtagAggregator.Shared.Contracts.Enums;
 using HashtagAggregator.Shared.Contracts.Interfaces;
 using HashtagAggregator.Shared.Logging;
+
 using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
@@ -30,7 +32,8 @@ namespace HashtagAggregator.Domain.Cqrs.Common.Filters
         {
             DataSourceTypeAttribute attribute =
                 handler?.GetType().GetTypeInfo().GetCustomAttribute<DataSourceTypeAttribute>();
-            TaskCompletionSource<bool> src = new TaskCompletionSource<bool>();
+            var src = new TaskCompletionSource<bool>();
+
             var result = IsRequestAllowed(attribute);
             src.SetResult(result);
             LogRequestResult(result, handler);

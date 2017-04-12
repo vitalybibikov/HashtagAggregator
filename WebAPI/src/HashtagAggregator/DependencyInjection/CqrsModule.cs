@@ -1,5 +1,6 @@
 ﻿using System.Reflection;
 using Autofac;
+
 using HashtagAggregator.Core.Contracts.Interface.Cqrs.Command;
 using HashtagAggregator.Core.Contracts.Interface.Cqrs.Query;
 using HashtagAggregator.Core.Cqrs.Dispatchers;

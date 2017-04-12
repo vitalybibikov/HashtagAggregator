@@ -1,6 +1,6 @@
 {
   "profiles": {
-    "MyStudyProject.Data.DataAccess": {
+    "HashtagAggregator.Data.DataAccess": {
       "commandName": "Project",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "dev"

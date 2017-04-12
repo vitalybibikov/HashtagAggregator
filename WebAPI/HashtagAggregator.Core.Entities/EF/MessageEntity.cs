@@ -1,4 +1,6 @@
 ﻿using System;
+
+using HashtagAggregator.Core.Entities.EF.Abstract;
 using HashtagAggregator.Shared.Contracts.Enums;
 
 namespace HashtagAggregator.Core.Entities.EF

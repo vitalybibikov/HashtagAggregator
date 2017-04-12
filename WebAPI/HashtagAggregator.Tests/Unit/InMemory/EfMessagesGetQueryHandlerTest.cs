@@ -5,6 +5,7 @@ using HashtagAggregator.Core.Models.Queries;
 using HashtagAggregator.Core.Models.Results.Query;
 using HashtagAggregator.Data.DataAccess.Context;
 using HashtagAggregator.Domain.Cqrs.EF.Assemblers;
+using HashtagAggregator.Domain.Cqrs.EF.Assemblers.ToResult;
 using HashtagAggregator.Domain.Cqrs.EF.Handlers;
 using HashtagAggregator.Shared.Contracts.Enums;
 using Microsoft.EntityFrameworkCore;

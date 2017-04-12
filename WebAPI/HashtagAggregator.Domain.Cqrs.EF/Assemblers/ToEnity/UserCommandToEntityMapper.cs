@@ -1,7 +1,7 @@
 ﻿using HashtagAggregator.Core.Entities.EF;
 using HashtagAggregator.Core.Models.Commands;
 
-namespace HashtagAggregator.Domain.Cqrs.EF.Assemblers
+namespace HashtagAggregator.Domain.Cqrs.EF.Assemblers.ToEnity
 {
     public class UserCommandToEntityMapper
     {

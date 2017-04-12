@@ -3,12 +3,15 @@ using System.Net;
 using Autofac;
 using AutoMapper;
 using Hangfire;
+using Serilog;
+
 using HashtagAggregator.Configuration;
 using HashtagAggregator.Data.DataAccess.Context;
 using HashtagAggregator.DependencyInjection;
 using HashtagAggregator.Shared.Common.Helpers;
 using HashtagAggregator.Shared.Common.Settings;
 using HashtagAggregator.Shared.Contracts.Interfaces;
+
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Hosting;
@@ -18,7 +21,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Serilog;
 
 namespace HashtagAggregator
 {
@@ -46,7 +48,9 @@ namespace HashtagAggregator
         }
 
         private MapperConfiguration mapperConfiguration;
+
         public IMapper Mapper { get; set; }
+
         public IConfigurationRoot Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.

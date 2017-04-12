@@ -1,21 +1,36 @@
 ﻿using System;
-using HashtagAggregator.Data.DataAccess.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
+using HashtagAggregator.Data.DataAccess.Context;
+using HashtagAggregator.Shared.Contracts.Enums;
 
 namespace HashtagAggregator.Data.DataAccess.Migrations
 {
     [DbContext(typeof(SqlApplicationDbContext))]
-    [Migration("20170213205656_Update-01")]
-    partial class Update01
+    [Migration("20170412151746_HashTagMigration")]
+    partial class HashTagMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
-                .HasAnnotation("ProductVersion", "1.1.0-rtm-22752")
+                .HasAnnotation("ProductVersion", "1.1.1")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+            modelBuilder.Entity("HashtagAggregator.Core.Entities.EF.HashTagEntity", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("HashTag");
+
+                    b.Property<bool>("IsEnabled");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Hashtags");
+                });
 
             modelBuilder.Entity("HashtagAggregator.Core.Entities.EF.MessageEntity", b =>
                 {
@@ -48,6 +63,8 @@ namespace HashtagAggregator.Data.DataAccess.Migrations
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd();
+
+                    b.Property<string>("AvatarUrl50");
 
                     b.Property<int>("MediaType");
 

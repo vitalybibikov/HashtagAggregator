@@ -1,12 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
+
 using HashtagAggregator.Core.Contracts.Interface;
 using HashtagAggregator.Core.Contracts.Interface.Cqrs.Query;
 using HashtagAggregator.Core.Cqrs.Abstract;
 using HashtagAggregator.Core.Models.Queries;
 using HashtagAggregator.Core.Models.Results.Query;
-using Microsoft.Extensions.Logging;
 
 namespace HashtagAggregator.Domain.Cqrs.Common.Handlers.CompositeQueryHandlers
 {

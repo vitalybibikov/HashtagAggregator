@@ -36,6 +36,7 @@ namespace HashtagAggregator.Domain.Cqrs.Common.Filters
 
             var result = IsRequestAllowed(attribute);
             src.SetResult(result);
+
             LogRequestResult(result, handler);
             return src.Task;
         }

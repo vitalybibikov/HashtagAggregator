@@ -2,7 +2,7 @@
 
 namespace HashtagAggregator.Core.Models.Queries
 {
-    public class HashTagParentsGetQuery : IQuery
+    public class HashTagParentsQuery : IQuery
     {
         public bool IsParent { get; set; }
     }

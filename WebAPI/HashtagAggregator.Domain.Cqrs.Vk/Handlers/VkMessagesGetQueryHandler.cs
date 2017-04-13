@@ -10,13 +10,13 @@ using HashtagAggregator.Shared.Contracts.Enums;
 namespace HashtagAggregator.Domain.Cqrs.Vk.Handlers
 {
     [DataSourceType(SocialMediaType.VK)]
-    public class VkMessagesGetQueryHandler : VkQueryHandler<MessagesGetQuery, MessagesQueryResult>
+    public class VkMessagesGetQueryHandler : VkQueryHandler<MessagesQuery, MessagesQueryResult>
     {
         public VkMessagesGetQueryHandler(IVkMessageFacade facade) : base(facade)
         {
         }
 
-        protected override async Task<MessagesQueryResult> GetDataAsync(MessagesGetQuery query)
+        protected override async Task<MessagesQueryResult> GetDataAsync(MessagesQuery query)
         {
             return await Facade.GetAllAsync(query.HashTag);
         }

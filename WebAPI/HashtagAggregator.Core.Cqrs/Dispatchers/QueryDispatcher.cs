@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Autofac;
+
 using HashtagAggregator.Core.Contracts.Interface;
 using HashtagAggregator.Core.Contracts.Interface.Cqrs.Query;
 using HashtagAggregator.Core.Cqrs.Abstract;
@@ -12,7 +13,7 @@ namespace HashtagAggregator.Core.Cqrs.Dispatchers
     public class QueryDispatcher : IQueryDispatcher
     {
         private readonly ILifetimeScope container;
-        private IRequestFilter requestFilter;
+        private readonly IRequestFilter requestFilter;
         private readonly ILogger logger;
 
         public QueryDispatcher(ILifetimeScope container, IRequestFilter requestFilter, ILogger<QueryDispatcher> logger)
@@ -22,7 +23,7 @@ namespace HashtagAggregator.Core.Cqrs.Dispatchers
             this.logger = logger;
         }
 
-        public async Task<TResult> DispatchAsync<TParameter, TResult>(TParameter query)
+        public async Task<TResult> DispatchMultipleAsync<TParameter, TResult>(TParameter query)
             where TParameter : IQuery
             where TResult : IQueryResult, new()
         {
@@ -43,6 +44,27 @@ namespace HashtagAggregator.Core.Cqrs.Dispatchers
                 }
             }
             return await compositeHandler.GetAsync(query);
+        }
+
+        public async Task<TResult> DispatchAsync<TParameter, TResult>(TParameter query)
+            where TParameter : IQuery
+            where TResult : IQueryResult, new()
+        {
+            var result = new TaskCompletionSource<TResult>();
+
+            var typedParameter = new TypedParameter(typeof(ILogger), logger);
+            var handler = container.Resolve<IQueryHandler<TParameter, TResult>>(typedParameter);
+            var requestAllowed = await requestFilter.IsRequestAllowed(handler);
+
+            if (requestAllowed)
+            {
+                result.SetResult(await handler.GetAsync(query));
+            }
+            else
+            {
+                result.SetResult(default(TResult));
+            }
+            return await result.Task;
         }
     }
 }

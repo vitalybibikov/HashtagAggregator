@@ -26,8 +26,8 @@ namespace HashtagAggregator.Controllers
         [HttpGet("parent")]
         public async Task<IEnumerable<HashtagViewModel>> Get()
         {
-            var query = new HashTagParentsGetQuery() { IsParent =  true};
-            var result = await queryDispatcher.DispatchAsync<HashTagParentsGetQuery, HashTagsQueryResult>(query);
+            var query = new HashTagParentsQuery { IsParent = true };
+            var result = await queryDispatcher.DispatchAsync<HashTagParentsQuery, HashTagsQueryResult>(query);
             var results = Mapper.Map<IEnumerable<HashtagViewModel>>(result.HashTags);
             return results;
         }
@@ -35,8 +35,17 @@ namespace HashtagAggregator.Controllers
         [HttpGet("children/{id:long}")]
         public async Task<IEnumerable<HashtagViewModel>> Get(long id)
         {
-            var query = new HashTagsGetQuery() { ParentId = id};
-            var result = await queryDispatcher.DispatchAsync<HashTagsGetQuery, HashTagsQueryResult>(query);
+            var query = new HashTagsQuery { ParentId = id };
+            var result = await queryDispatcher.DispatchAsync<HashTagsQuery, HashTagsQueryResult>(query);
+            var results = Mapper.Map<IEnumerable<HashtagViewModel>>(result.HashTags);
+            return results;
+        }
+
+        [HttpGet("children/{parentName}")]
+        public async Task<IEnumerable<HashtagViewModel>> Get(string parentName)
+        {
+            var query = new HashTagByParentNameQuery { HashTag = parentName };
+            var result = await queryDispatcher.DispatchAsync<HashTagByParentNameQuery, HashTagsQueryResult>(query);
             var results = Mapper.Map<IEnumerable<HashtagViewModel>>(result.HashTags);
             return results;
         }

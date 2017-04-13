@@ -10,13 +10,13 @@ using Microsoft.EntityFrameworkCore;
 
 namespace HashtagAggregator.Domain.Cqrs.EF.Handlers.Queries
 {
-    public class EfHashTagParentGetQueryHandler : EfQueryHandler<HashTagParentsGetQuery, HashTagsQueryResult>
+    public class EfHashTagParentGetQueryHandler : EfQueryHandler<HashTagParentsQuery, HashTagsQueryResult>
     {
         public EfHashTagParentGetQueryHandler(SqlApplicationDbContext context) : base(context)
         {
         }
 
-        protected override async Task<HashTagsQueryResult> GetDataAsync(HashTagParentsGetQuery query)
+        protected override async Task<HashTagsQueryResult> GetDataAsync(HashTagParentsQuery query)
         {
             var mapper = new EntityToHashTagResultMapper();
             var result = await Context.Hashtags.Where(x => x.ParentId.HasValue != query.IsParent).ToListAsync();

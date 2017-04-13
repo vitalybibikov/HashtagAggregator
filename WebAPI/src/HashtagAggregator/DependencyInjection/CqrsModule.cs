@@ -8,7 +8,6 @@ using HashtagAggregator.Core.Models.Interface.Cqrs.Command;
 using HashtagAggregator.Core.Models.Interface.Cqrs.Query;
 using HashtagAggregator.Core.Models.Queries;
 using HashtagAggregator.Domain.Cqrs.Common.Handlers.CompositeQueryHandlers;
-using HashtagAggregator.Domain.Cqrs.EF.Handlers;
 using HashtagAggregator.Domain.Cqrs.EF.Handlers.Queries;
 using HashtagAggregator.Domain.Cqrs.Twitter.Handlers;
 using HashtagAggregator.Domain.Cqrs.Vk.Handlers;
@@ -20,7 +19,7 @@ namespace HashtagAggregator.DependencyInjection
     {
         protected override void Load(ContainerBuilder builder)
         {
-            var modelAssembly = typeof(MessagesGetQuery).GetTypeInfo().Assembly;
+            var modelAssembly = typeof(MessagesQuery).GetTypeInfo().Assembly;
             var dataAssembly = typeof(MessagesGetQueryHandler).GetTypeInfo().Assembly;
             var vkAssembly = typeof(VkMessagesGetQueryHandler).GetTypeInfo().Assembly;
             var twitterAssembly = typeof(TwitterMessagesGetQueryHandler).GetTypeInfo().Assembly;

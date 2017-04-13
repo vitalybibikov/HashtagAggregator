@@ -29,7 +29,7 @@ namespace HashtagAggregator.Tests.Unit.InMemory
                 //Arrange
                 string hashtag = "#microsoft";
                 EfMessagesGetQueryHandler handler = new EfMessagesGetQueryHandler(context);
-                MessagesGetQuery query = new MessagesGetQuery { HashTag = hashtag };
+                MessagesQuery query = new MessagesQuery { HashTag = hashtag };
                 var data = GetData(hashtag);
                 context.AddRange(data);
                 context.SaveChanges();
@@ -54,7 +54,7 @@ namespace HashtagAggregator.Tests.Unit.InMemory
                 //Arrange
                 string hashtag = "#microsoft";
                 EfMessagesGetQueryHandler handler = new EfMessagesGetQueryHandler(context);
-                MessagesGetQuery query = new MessagesGetQuery { HashTag = hashtag };
+                MessagesQuery query = new MessagesQuery { HashTag = hashtag };
                 EntityToMessagesResultMapper mapper = new EntityToMessagesResultMapper();
                 var data = GetData(hashtag);
                 context.AddRange(data);

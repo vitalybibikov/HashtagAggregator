@@ -1,10 +1,11 @@
 ﻿using System;
+
 using HashtagAggregator.Core.Models.Interface.Cqrs.Query;
 
 namespace HashtagAggregator.Core.Models.Queries
 {
-    public class HashTagsGetQuery : IQuery
+    public class HashTagByParentNameQuery : IQuery
     {
-       public long ParentId { get; set; }
+        public string HashTag { get; set; }
     }
 }

@@ -7,12 +7,11 @@ using HashtagAggregator.Core.Contracts.Interface;
 using HashtagAggregator.Core.Contracts.Interface.Cqrs.Query;
 using HashtagAggregator.Core.Cqrs.Abstract;
 using HashtagAggregator.Core.Models.Queries;
-using HashtagAggregator.Core.Models.Results.Query;
 using HashtagAggregator.Core.Models.Results.Query.Message;
 
 namespace HashtagAggregator.Domain.Cqrs.Common.Handlers.CompositeQueryHandlers
 {
-    public class MessagesGetQueryHandler : CompositeQueryHandler<MessagesGetQuery, MessagesQueryResult>
+    public class MessagesGetQueryHandler : CompositeQueryHandler<MessagesQuery, MessagesQueryResult>
     {
         private readonly IMessageFilter<MessagesQueryResult> filter;
 
@@ -21,7 +20,7 @@ namespace HashtagAggregator.Domain.Cqrs.Common.Handlers.CompositeQueryHandlers
             this.filter = filter;
         }
 
-        protected override async Task<MessagesQueryResult> GetDataAsync(MessagesGetQuery query)
+        protected override async Task<MessagesQueryResult> GetDataAsync(MessagesQuery query)
         {
             MessagesQueryResult list = new MessagesQueryResult();
             List<MessagesQueryResult> results = await RunHandlers(RunHandler, query);
@@ -30,7 +29,7 @@ namespace HashtagAggregator.Domain.Cqrs.Common.Handlers.CompositeQueryHandlers
         }
 
         protected override async Task<MessagesQueryResult> RunHandler(
-            IQueryHandler<MessagesGetQuery, MessagesQueryResult> handler, MessagesGetQuery query)
+            IQueryHandler<MessagesQuery, MessagesQueryResult> handler, MessagesQuery query)
         {
             MessagesQueryResult messages = await handler.GetAsync(query);
             return messages;

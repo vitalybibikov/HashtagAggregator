@@ -10,14 +10,14 @@ using HashtagAggregator.Shared.Contracts.Enums;
 namespace HashtagAggregator.Domain.Cqrs.Twitter.Handlers
 {
     [DataSourceType(SocialMediaType.Twitter)]
-    public class TwitterMessagesGetQueryHandler : TwitterQueryHandler<MessagesGetQuery, MessagesQueryResult>
+    public class TwitterMessagesGetQueryHandler : TwitterQueryHandler<MessagesQuery, MessagesQueryResult>
     {
         public TwitterMessagesGetQueryHandler(ITwitterMessageFacade facade) : base(facade)
         {
 
         }
 
-        protected override async Task<MessagesQueryResult> GetDataAsync(MessagesGetQuery query)
+        protected override async Task<MessagesQueryResult> GetDataAsync(MessagesQuery query)
         {
             return await Facade.GetAllAsync(query.HashTag);
         }

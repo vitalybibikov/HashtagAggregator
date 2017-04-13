@@ -2,7 +2,7 @@
 
 namespace HashtagAggregator.Core.Models.Queries
 {
-    public class MessagesGetQuery : IQuery
+    public class MessagesQuery : IQuery
     {
         private const string HashTagSymbol = "#";
         private string hashTag;

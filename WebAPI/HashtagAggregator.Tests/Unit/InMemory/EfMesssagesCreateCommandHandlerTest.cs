@@ -3,6 +3,7 @@ using System.Linq;
 using HashtagAggregator.Core.Models.Commands;
 using HashtagAggregator.Data.DataAccess.Context;
 using HashtagAggregator.Domain.Cqrs.EF.Handlers;
+using HashtagAggregator.Domain.Cqrs.EF.Handlers.Commands;
 using HashtagAggregator.Shared.Contracts.Enums;
 using Microsoft.EntityFrameworkCore;
 using Xunit;

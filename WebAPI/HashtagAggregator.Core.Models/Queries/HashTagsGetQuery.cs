@@ -5,6 +5,6 @@ namespace HashtagAggregator.Core.Models.Queries
 {
     public class HashTagsGetQuery : IQuery
     {
-        
+       public long ParentId { get; set; }
     }
 }

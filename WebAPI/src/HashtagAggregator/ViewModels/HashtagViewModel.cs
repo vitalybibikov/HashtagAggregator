@@ -1,5 +1,4 @@
-﻿using System;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 
 namespace HashtagAggregator.ViewModels
 {
@@ -7,6 +6,9 @@ namespace HashtagAggregator.ViewModels
     {
         [JsonProperty("id")]
         public long Id { get; set; }
+
+        [JsonProperty("parentId")]
+        public long? ParentId { get; set; }
 
         [JsonProperty("isEnabled")]
         public string IsEnabled { get; set; }

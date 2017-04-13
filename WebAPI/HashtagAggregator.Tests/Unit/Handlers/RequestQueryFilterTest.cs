@@ -4,6 +4,7 @@ using HashtagAggregator.Core.Contracts.Interface.DataSources;
 using HashtagAggregator.Data.DataAccess.Context;
 using HashtagAggregator.Domain.Cqrs.Common.Filters;
 using HashtagAggregator.Domain.Cqrs.EF.Handlers;
+using HashtagAggregator.Domain.Cqrs.EF.Handlers.Queries;
 using HashtagAggregator.Domain.Cqrs.Twitter.Handlers;
 using HashtagAggregator.Domain.Cqrs.Vk.Handlers;
 using HashtagAggregator.Shared.Common.Attributes;

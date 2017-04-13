@@ -1,6 +1,5 @@
-﻿using System.Linq;
+using System.Linq;
 using System.Threading.Tasks;
-
 using HashtagAggregator.Core.Cqrs.Abstract;
 using HashtagAggregator.Core.Models.Commands;
 using HashtagAggregator.Core.Models.Interface.Cqrs.Command;
@@ -8,7 +7,7 @@ using HashtagAggregator.Core.Models.Queries;
 using HashtagAggregator.Data.DataAccess.Context;
 using HashtagAggregator.Domain.Cqrs.EF.Assemblers.ToEnity;
 
-namespace HashtagAggregator.Domain.Cqrs.EF.Handlers
+namespace HashtagAggregator.Domain.Cqrs.EF.Handlers.Commands
 {
     public class EfMesssagesCreateCommandHandler : CommandHandler<MessagesCreateCommand>
     {

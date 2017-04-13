@@ -1,7 +1,7 @@
 ﻿using HashtagAggregator.Core.Models.Interface.Cqrs.Query;
 using HashtagAggregator.Shared.Contracts.Enums;
 
-namespace HashtagAggregator.Core.Models.Results.Query
+namespace HashtagAggregator.Core.Models.Results.Query.User
 {
     public class UserQueryResult : IQueryResult
     {

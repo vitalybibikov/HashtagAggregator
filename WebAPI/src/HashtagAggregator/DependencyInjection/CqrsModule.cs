@@ -9,6 +9,7 @@ using HashtagAggregator.Core.Models.Interface.Cqrs.Query;
 using HashtagAggregator.Core.Models.Queries;
 using HashtagAggregator.Domain.Cqrs.Common.Handlers.CompositeQueryHandlers;
 using HashtagAggregator.Domain.Cqrs.EF.Handlers;
+using HashtagAggregator.Domain.Cqrs.EF.Handlers.Queries;
 using HashtagAggregator.Domain.Cqrs.Twitter.Handlers;
 using HashtagAggregator.Domain.Cqrs.Vk.Handlers;
 using Module = Autofac.Module;

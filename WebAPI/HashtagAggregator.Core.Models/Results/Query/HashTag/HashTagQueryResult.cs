@@ -1,8 +1,6 @@
-﻿using System;
+﻿using HashtagAggregator.Core.Models.Interface.Cqrs.Query;
 
-using HashtagAggregator.Core.Models.Interface.Cqrs.Query;
-
-namespace HashtagAggregator.Core.Models.Results.Query
+namespace HashtagAggregator.Core.Models.Results.Query.HashTag
 {
     public class HashTagQueryResult : IQueryResult
     {
@@ -11,5 +9,7 @@ namespace HashtagAggregator.Core.Models.Results.Query
         public string HashTag { get; set; }
 
         public bool IsEnabled { get; set; }
+
+        public long? ParentId { get; set; }
     }
 }

@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using HashtagAggregator.Core.Models.Results.Query;
+using HashtagAggregator.Core.Models.Results.Query.Message;
+using HashtagAggregator.Core.Models.Results.Query.User;
 using HashtagAggregator.Shared.Contracts.Enums;
 using Tweetinvi.Models;
 

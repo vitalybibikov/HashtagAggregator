@@ -2,6 +2,7 @@
 
 using HashtagAggregator.Core.Contracts.Interface;
 using HashtagAggregator.Core.Models.Results.Query;
+using HashtagAggregator.Core.Models.Results.Query.Message;
 
 namespace HashtagAggregator.Domain.Cqrs.Common.Filters
 {

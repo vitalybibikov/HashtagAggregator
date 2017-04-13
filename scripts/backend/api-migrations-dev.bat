@@ -7,7 +7,7 @@ SET apiPath=%~dp0\..\..\..\HashtagAggregator\WebAPI\HashtagAggregator.Data.DataA
 
 cd %apiPath% 
 
-dotnet ef migrations add HashTagMigration -e dev -c SqlApplicationDbContext
+dotnet ef migrations add HashTagParentMigration2 -e dev -c SqlApplicationDbContext
 
 cd %currentPath%
 

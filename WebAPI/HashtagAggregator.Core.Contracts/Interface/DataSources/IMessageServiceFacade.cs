@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using HashtagAggregator.Core.Models.Commands;
 using HashtagAggregator.Core.Models.Interface.Cqrs.Command;
 using HashtagAggregator.Core.Models.Results.Query;
+using HashtagAggregator.Core.Models.Results.Query.Message;
 
 namespace HashtagAggregator.Core.Contracts.Interface.DataSources
 {

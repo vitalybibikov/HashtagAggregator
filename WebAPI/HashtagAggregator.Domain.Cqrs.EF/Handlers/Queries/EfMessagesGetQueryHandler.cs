@@ -1,15 +1,14 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
-
 using HashtagAggregator.Core.Models.Queries;
 using HashtagAggregator.Core.Models.Results.Query;
+using HashtagAggregator.Core.Models.Results.Query.Message;
 using HashtagAggregator.Data.DataAccess.Context;
 using HashtagAggregator.Domain.Cqrs.EF.Abstract;
-using HashtagAggregator.Domain.Cqrs.EF.Assemblers;
 using HashtagAggregator.Domain.Cqrs.EF.Assemblers.ToResult;
+using Microsoft.EntityFrameworkCore;
 
-namespace HashtagAggregator.Domain.Cqrs.EF.Handlers
+namespace HashtagAggregator.Domain.Cqrs.EF.Handlers.Queries
 {
     public class EfMessagesGetQueryHandler : EfQueryHandler<MessagesGetQuery, MessagesQueryResult>
     {

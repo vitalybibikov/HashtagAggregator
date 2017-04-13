@@ -6,18 +6,17 @@ using Microsoft.Extensions.Logging;
 using HashtagAggregator.Core.Contracts.Interface.Cqrs.Query;
 using HashtagAggregator.Core.Cqrs.Abstract;
 using HashtagAggregator.Core.Models.Queries;
-
 using HashtagAggregator.Core.Models.Results.Query.HashTag;
 
 namespace HashtagAggregator.Domain.Cqrs.Common.Handlers.CompositeQueryHandlers
 {
-    public class HashTagsGetQueryHandler : CompositeQueryHandler<HashTagsGetQuery, HashTagsQueryResult>
+    public class HashTagParentsGetQueryHandler : CompositeQueryHandler<HashTagParentsGetQuery, HashTagsQueryResult>
     {
-        public HashTagsGetQueryHandler(ILogger logger) : base(logger)
+        public HashTagParentsGetQueryHandler(ILogger logger) : base(logger)
         {
         }
 
-        protected override async Task<HashTagsQueryResult> GetDataAsync(HashTagsGetQuery query)
+        protected override async Task<HashTagsQueryResult> GetDataAsync(HashTagParentsGetQuery query)
         {
             var list = new HashTagsQueryResult();
             List<HashTagsQueryResult> results = await RunHandlers(RunHandler, query);
@@ -26,7 +25,7 @@ namespace HashtagAggregator.Domain.Cqrs.Common.Handlers.CompositeQueryHandlers
         }
 
         protected override async Task<HashTagsQueryResult> RunHandler(
-            IQueryHandler<HashTagsGetQuery, HashTagsQueryResult> handler, HashTagsGetQuery query)
+            IQueryHandler<HashTagParentsGetQuery, HashTagsQueryResult> handler, HashTagParentsGetQuery query)
         {
             var tagsQueryResult = await handler.GetAsync(query);
             return tagsQueryResult;

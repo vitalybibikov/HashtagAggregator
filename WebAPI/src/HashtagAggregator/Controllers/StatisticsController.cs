@@ -7,6 +7,7 @@ using HashtagAggregator.Core.Contracts.Interface.Cqrs.Query;
 using HashtagAggregator.Core.Models.Commands;
 using HashtagAggregator.Core.Models.Queries;
 using HashtagAggregator.Core.Models.Results.Query;
+using HashtagAggregator.Core.Models.Results.Query.Message;
 using HashtagAggregator.ViewModels;
 
 using Microsoft.AspNetCore.Mvc;

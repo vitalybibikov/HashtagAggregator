@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using HashtagAggregator.Core.Models.Interface.Cqrs.Query;
 
-namespace HashtagAggregator.Core.Models.Results.Query
+namespace HashtagAggregator.Core.Models.Results.Query.Message
 {
     public class MessagesQueryResult : IQueryResult
     {

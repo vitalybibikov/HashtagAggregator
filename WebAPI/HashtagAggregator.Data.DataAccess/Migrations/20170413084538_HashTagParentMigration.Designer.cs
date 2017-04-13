@@ -1,17 +1,19 @@
 ﻿using System;
+
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
+
 using HashtagAggregator.Data.DataAccess.Context;
-using HashtagAggregator.Shared.Contracts.Enums;
 
 namespace HashtagAggregator.Data.DataAccess.Migrations
 {
     [DbContext(typeof(SqlApplicationDbContext))]
-    partial class SqlApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20170413084538_HashTagParentMigration")]
+    partial class HashTagParentMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.1.1")
@@ -26,14 +28,14 @@ namespace HashtagAggregator.Data.DataAccess.Migrations
 
                     b.Property<bool>("IsEnabled");
 
+                    b.Property<string>("ParentHashtag");
+
                     b.Property<long?>("ParentId");
 
                     b.HasKey("Id");
 
                     b.HasIndex("HashTag")
                         .IsUnique();
-
-                    b.HasIndex("ParentId");
 
                     b.ToTable("Hashtags");
                 });
@@ -88,13 +90,6 @@ namespace HashtagAggregator.Data.DataAccess.Migrations
                         .IsUnique();
 
                     b.ToTable("Users");
-                });
-
-            modelBuilder.Entity("HashtagAggregator.Core.Entities.EF.HashTagEntity", b =>
-                {
-                    b.HasOne("HashtagAggregator.Core.Entities.EF.HashTagEntity", "Parent")
-                        .WithMany("Children")
-                        .HasForeignKey("ParentId");
                 });
 
             modelBuilder.Entity("HashtagAggregator.Core.Entities.EF.MessageEntity", b =>

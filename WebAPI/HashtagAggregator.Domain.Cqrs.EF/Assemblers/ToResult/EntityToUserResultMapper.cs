@@ -1,5 +1,6 @@
 ﻿using HashtagAggregator.Core.Entities.EF;
 using HashtagAggregator.Core.Models.Results.Query;
+using HashtagAggregator.Core.Models.Results.Query.User;
 
 namespace HashtagAggregator.Domain.Cqrs.EF.Assemblers.ToResult
 {

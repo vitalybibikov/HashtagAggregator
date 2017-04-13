@@ -1,6 +1,7 @@
 ﻿using Autofac;
 using HashtagAggregator.Core.Contracts.Interface;
 using HashtagAggregator.Core.Models.Results.Query;
+using HashtagAggregator.Core.Models.Results.Query.Message;
 using HashtagAggregator.Domain.Cqrs.Common.Filters;
 using Module = Autofac.Module;
 

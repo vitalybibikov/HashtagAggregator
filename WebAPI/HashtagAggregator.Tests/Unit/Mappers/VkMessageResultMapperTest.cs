@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using HashtagAggregator.Core.Entities.VkEntities;
 using HashtagAggregator.Core.Models.Results.Query;
+using HashtagAggregator.Core.Models.Results.Query.Message;
 using HashtagAggregator.Data.Internet.Assemblers;
 using HashtagAggregator.Shared.Contracts.Enums;
 using HashtagAggregator.Tests.TestHelpers;

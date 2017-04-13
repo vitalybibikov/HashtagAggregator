@@ -8,6 +8,7 @@ using HashtagAggregator.Core.Contracts.Interface.Cqrs.Query;
 using HashtagAggregator.Core.Cqrs.Abstract;
 using HashtagAggregator.Core.Models.Queries;
 using HashtagAggregator.Core.Models.Results.Query;
+using HashtagAggregator.Core.Models.Results.Query.Message;
 
 namespace HashtagAggregator.Domain.Cqrs.Common.Handlers.CompositeQueryHandlers
 {

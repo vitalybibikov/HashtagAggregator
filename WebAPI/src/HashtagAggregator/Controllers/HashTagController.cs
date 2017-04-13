@@ -5,7 +5,7 @@ using AutoMapper;
 
 using HashtagAggregator.Core.Contracts.Interface.Cqrs.Query;
 using HashtagAggregator.Core.Models.Queries;
-using HashtagAggregator.Core.Models.Results.Query;
+using HashtagAggregator.Core.Models.Results.Query.HashTag;
 using HashtagAggregator.ViewModels;
 
 namespace HashtagAggregator.Controllers
@@ -22,10 +22,20 @@ namespace HashtagAggregator.Controllers
             this.Mapper = mapper;
         }
 
-        // GET: api/hashtag/
+        // GET: api/hashtag/parent
+        [HttpGet("parent")]
         public async Task<IEnumerable<HashtagViewModel>> Get()
         {
-            var query = new HashTagsGetQuery();
+            var query = new HashTagParentsGetQuery() { IsParent =  true};
+            var result = await queryDispatcher.DispatchAsync<HashTagParentsGetQuery, HashTagsQueryResult>(query);
+            var results = Mapper.Map<IEnumerable<HashtagViewModel>>(result.HashTags);
+            return results;
+        }
+
+        [HttpGet("children/{id:long}")]
+        public async Task<IEnumerable<HashtagViewModel>> Get(long id)
+        {
+            var query = new HashTagsGetQuery() { ParentId = id};
             var result = await queryDispatcher.DispatchAsync<HashTagsGetQuery, HashTagsQueryResult>(query);
             var results = Mapper.Map<IEnumerable<HashtagViewModel>>(result.HashTags);
             return results;

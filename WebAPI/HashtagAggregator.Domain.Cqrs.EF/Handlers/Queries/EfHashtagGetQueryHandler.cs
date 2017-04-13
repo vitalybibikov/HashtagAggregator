@@ -1,13 +1,14 @@
-﻿using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
+﻿using System.Linq;
+using System.Threading.Tasks;
 
 using HashtagAggregator.Core.Models.Queries;
-using HashtagAggregator.Core.Models.Results.Query;
+using HashtagAggregator.Core.Models.Results.Query.HashTag;
 using HashtagAggregator.Data.DataAccess.Context;
 using HashtagAggregator.Domain.Cqrs.EF.Abstract;
 using HashtagAggregator.Domain.Cqrs.EF.Assemblers.ToResult;
+using Microsoft.EntityFrameworkCore;
 
-namespace HashtagAggregator.Domain.Cqrs.EF.Handlers
+namespace HashtagAggregator.Domain.Cqrs.EF.Handlers.Queries
 {
     public class EfHashtagGetQueryHandler : EfQueryHandler<HashTagsGetQuery, HashTagsQueryResult>
     {
@@ -18,7 +19,10 @@ namespace HashtagAggregator.Domain.Cqrs.EF.Handlers
         protected override async Task<HashTagsQueryResult> GetDataAsync(HashTagsGetQuery query)
         {
             var mapper = new EntityToHashTagResultMapper();
-            var result = await Context.Hashtags.ToListAsync();
+            var result = await Context.Hashtags.Where(
+                x => x.ParentId.HasValue && 
+                x.ParentId.Value == query.ParentId)
+                .ToListAsync();
             return mapper.MapBunch(result);
         }
     }

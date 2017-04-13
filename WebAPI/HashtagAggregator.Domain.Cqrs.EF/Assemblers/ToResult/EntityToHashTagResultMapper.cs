@@ -2,6 +2,7 @@
 
 using HashtagAggregator.Core.Entities.EF;
 using HashtagAggregator.Core.Models.Results.Query;
+using HashtagAggregator.Core.Models.Results.Query.HashTag;
 
 namespace HashtagAggregator.Domain.Cqrs.EF.Assemblers.ToResult
 {

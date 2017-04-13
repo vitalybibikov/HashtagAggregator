@@ -8,7 +8,7 @@ namespace HashtagAggregator.Shared.Common.Attributes
     {
         public DataSourceTypeAttribute(SocialMediaType mediaType)
         {
-            this.MediaType = mediaType;
+            MediaType = mediaType;
         }
 
         public SocialMediaType MediaType { get; }

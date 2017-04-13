@@ -8,7 +8,7 @@ namespace HashtagAggregator.Data.Internet.DataSources.Twitter
 {
     public class TwitterAuth : ITwitterAuth
     {
-        private IOptions<TwitterAuthSettings> settings;
+        private readonly IOptions<TwitterAuthSettings> settings;
 
         public TwitterAuth(IOptions<TwitterAuthSettings> settings)
         {

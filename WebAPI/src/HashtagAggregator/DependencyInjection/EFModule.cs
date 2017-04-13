@@ -2,7 +2,7 @@
 
 namespace HashtagAggregator.DependencyInjection
 {
-    public class EFModule : Module
+    public class EfModule : Module
     {
         protected override void Load(ContainerBuilder builder)
         {

@@ -16,11 +16,10 @@ namespace HashtagAggregator.IdentityServer.Controllers
     [SecurityHeaders]
     public class AccountController : Controller
     {
-        private IAccountService service;
+        private readonly IAccountService service;
         private readonly ITwitterVerifier twitterVerifier;
         private readonly UserManager<ApplicationUser> userManager;
         private readonly SignInManager<ApplicationUser> signInManager;
-
 
         public AccountController(
             UserManager<ApplicationUser> userManager,

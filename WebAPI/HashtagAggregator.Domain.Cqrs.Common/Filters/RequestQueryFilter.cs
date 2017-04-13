@@ -17,7 +17,7 @@ namespace HashtagAggregator.Domain.Cqrs.Common.Filters
 {
     public class RequestQueryFilter : IRequestFilter
     {
-        private IMemoryCacheWrapper memoryCache;
+        private readonly IMemoryCacheWrapper memoryCache;
         private readonly IOptions<InternetUpdateSettings> updateSettings;
         private readonly ILogger<RequestQueryFilter> logger;
 

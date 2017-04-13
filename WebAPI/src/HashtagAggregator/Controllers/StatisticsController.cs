@@ -26,7 +26,7 @@ namespace HashtagAggregator.Controllers
         {
             this.queryDispatcher = queryDispatcher;
             this.commandDispatcher = commandDispatcher;
-            this.Mapper = mapper;
+            Mapper = mapper;
         }
 
         // GET: api/statistics/

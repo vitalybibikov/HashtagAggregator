@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 
 using HashtagAggregator.Core.Entities.EF;
-using HashtagAggregator.Core.Models.Results.Query;
 using HashtagAggregator.Core.Models.Results.Query.HashTag;
 
 namespace HashtagAggregator.Domain.Cqrs.EF.Assemblers.ToResult
@@ -17,7 +16,8 @@ namespace HashtagAggregator.Domain.Cqrs.EF.Assemblers.ToResult
                 {
                     Id = entity.Id,
                     HashTag = entity.HashTag,
-                    IsEnabled = entity.IsEnabled
+                    IsEnabled = entity.IsEnabled,
+                    ParentId =  entity.ParentId
                 };
 
                 results.HashTags.Add(result);

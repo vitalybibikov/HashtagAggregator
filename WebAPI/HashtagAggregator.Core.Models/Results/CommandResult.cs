@@ -1,6 +1,6 @@
 ﻿using HashtagAggregator.Core.Models.Interface.Cqrs.Command;
 
-namespace HashtagAggregator.Core.Models.Queries
+namespace HashtagAggregator.Core.Models.Results
 {
     public class CommandResult : ICommandResult
     {

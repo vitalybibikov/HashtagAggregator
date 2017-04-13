@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using HashtagAggregator.Core.Contracts.Interface.Cqrs.Command;
 using HashtagAggregator.Core.Models.Interface.Cqrs.Command;
 using HashtagAggregator.Core.Models.Queries;
+using HashtagAggregator.Core.Models.Results;
 using HashtagAggregator.Shared.Logging;
 using Microsoft.Extensions.Logging;
 
@@ -13,7 +14,7 @@ namespace HashtagAggregator.Core.Cqrs.Abstract
         where TParameter : ICommand, new()
     {
         private readonly List<ICommandHandler<TParameter>> handlers;
-        private ILogger logger;
+        private readonly ILogger logger;
         public List<ICommandHandler<TParameter>> Handlers => handlers;
 
         protected CompositeCommandHandler(ILogger logger)

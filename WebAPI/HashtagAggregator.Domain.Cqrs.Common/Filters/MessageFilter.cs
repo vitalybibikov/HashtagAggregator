@@ -12,7 +12,7 @@ namespace HashtagAggregator.Domain.Cqrs.Common.Filters
 
         public MessagesQueryResult Filter(MessagesQueryResult data)
         {
-            this.messages = data;
+            messages = data;
             return  FilterDuplicates(messages)
                    .FilterOwnMessages(messages)
                    .Build();

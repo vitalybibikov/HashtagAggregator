@@ -14,7 +14,7 @@ namespace HashtagAggregator.DependencyInjection
             builder.RegisterModule<CqrsModule>();
             builder.RegisterModule<VkModule>();
             builder.RegisterModule<TwitterModule>();
-            builder.RegisterModule<EFModule>();
+            builder.RegisterModule<EfModule>();
             builder.RegisterModule<CommonModule>();
             builder.Populate(services);
             

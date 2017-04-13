@@ -15,7 +15,7 @@ namespace HashtagAggregator.DependencyInjection
 
         public override object ActivateJob(Type type)
         {
-            return this.container.Resolve(type);
+            return container.Resolve(type);
         }
     }
 }

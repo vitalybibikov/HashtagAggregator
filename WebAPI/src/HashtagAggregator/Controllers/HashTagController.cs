@@ -19,7 +19,7 @@ namespace HashtagAggregator.Controllers
         public HashTagController(IMapper mapper, IQueryDispatcher queryDispatcher)
         {
             this.queryDispatcher = queryDispatcher;
-            this.Mapper = mapper;
+            Mapper = mapper;
         }
 
         // GET: api/hashtag/parent

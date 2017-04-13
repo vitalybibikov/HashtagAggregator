@@ -47,7 +47,7 @@ namespace HashtagAggregator
             });
         }
 
-        private MapperConfiguration mapperConfiguration;
+        private readonly MapperConfiguration mapperConfiguration;
 
         public IMapper Mapper { get; set; }
 

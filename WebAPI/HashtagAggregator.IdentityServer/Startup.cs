@@ -1,24 +1,29 @@
-﻿using System.Reflection;
+﻿using System.Net;
+using System.Reflection;
 using HashtagAggregator.IdentityServer.Configuration;
 using HashtagAggregator.IdentityServer.Database.Context;
 using HashtagAggregator.IdentityServer.Database.Identity;
 using HashtagAggregator.IdentityServer.Infrastructure;
 using HashtagAggregator.IdentityServer.Services;
+
 using IdentityServer4.Services;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Serilog;
 
 namespace HashtagAggregator.IdentityServer
 {
     public class Startup
     {
-        public Startup(IHostingEnvironment env)
+        public Startup(IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
             var builder = new ConfigurationBuilder()
                 .SetBasePath(env.ContentRootPath)
@@ -26,6 +31,11 @@ namespace HashtagAggregator.IdentityServer
                 .AddJsonFile($"identityserversettings.{env.EnvironmentName}.json", optional: true)
                 .AddEnvironmentVariables();
             Configuration = builder.Build();
+
+            Log.Logger = new LoggerConfiguration()
+                .ReadFrom
+                .Configuration(Configuration)
+                .CreateLogger();
         }
 
         public IConfigurationRoot Configuration { get; }
@@ -74,6 +84,7 @@ namespace HashtagAggregator.IdentityServer
 
         public void Configure(IApplicationBuilder app, ILoggerFactory loggerFactory)
         {
+            loggerFactory.AddSerilog();
             loggerFactory.AddConsole(LogLevel.Debug);
 
             var id4Initializer = new IdentityServerInitializer();

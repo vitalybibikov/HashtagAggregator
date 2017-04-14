@@ -12,5 +12,20 @@
     "RedirectURI": "http://exchangeclient.azurewebsites.net/login-callback",
     "LogoutURI": "http://exchangeclient.azurewebsites.net",
     "AllowedCorsOriginsURI": "http://exchangeclient.azurewebsites.net"
+  },
+
+  "Serilog": {
+    "Using": [ "Serilog.Sinks.Literate", "Serilog.Sinks.File" ],
+    "MinimumLevel": "Debug",
+    "WriteTo": [
+      { "Name": "LiterateConsole" },
+      {
+        "Name": "File",
+        "Args": { "path": "%TEMP%\\Logs\\HashtagAggregatorIdentity.log" }
+      }
+    ],
+    "Properties": {
+      "Application": "HashtagAggregatorIdentity"
+    }
   }
 }

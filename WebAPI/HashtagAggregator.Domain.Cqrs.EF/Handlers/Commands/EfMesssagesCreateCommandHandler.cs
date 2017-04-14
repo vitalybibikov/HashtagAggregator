@@ -1,9 +1,9 @@
 using System.Linq;
 using System.Threading.Tasks;
+
 using HashtagAggregator.Core.Cqrs.Abstract;
 using HashtagAggregator.Core.Models.Commands;
 using HashtagAggregator.Core.Models.Interface.Cqrs.Command;
-using HashtagAggregator.Core.Models.Queries;
 using HashtagAggregator.Core.Models.Results;
 using HashtagAggregator.Data.DataAccess.Context;
 using HashtagAggregator.Domain.Cqrs.EF.Assemblers.ToEnity;

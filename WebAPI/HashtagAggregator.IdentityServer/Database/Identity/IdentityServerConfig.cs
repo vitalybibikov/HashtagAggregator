@@ -34,7 +34,7 @@ namespace HashtagAggregator.IdentityServer.Database.Identity
                 new Client
                 {
                     ClientId = "statisticsapiclient",
-                    ClientName = "Statistics API Сlient",
+                    ClientName = "Statistics API Client",
                     AllowedGrantTypes = GrantTypes.Implicit,
 
                     RedirectUris = { configuration.GetSection("StatisticsApiClient:RedirectURI").Value },

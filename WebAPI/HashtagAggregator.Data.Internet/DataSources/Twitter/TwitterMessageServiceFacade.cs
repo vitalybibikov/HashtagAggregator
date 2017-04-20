@@ -1,20 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
+
 using HashtagAggregator.Core.Contracts.Interface.DataSources;
 using HashtagAggregator.Core.Models;
 using HashtagAggregator.Core.Models.Commands;
 using HashtagAggregator.Core.Models.Interface.Cqrs.Command;
-using HashtagAggregator.Core.Models.Queries;
 using HashtagAggregator.Core.Models.Results;
-using HashtagAggregator.Core.Models.Results.Query;
 using HashtagAggregator.Core.Models.Results.Query.Message;
 using HashtagAggregator.Data.Contracts.Interface;
 using HashtagAggregator.Data.Internet.Assemblers;
 using HashtagAggregator.Shared.Common.Settings;
 using HashtagAggregator.Shared.Logging;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
+
 using Tweetinvi;
 using Tweetinvi.Models;
 using Tweetinvi.Parameters;
@@ -49,7 +49,7 @@ namespace HashtagAggregator.Data.Internet.DataSources.Twitter
                     fail);
             }
             var mapper = new TwitterMessageResultMapper();
-            return mapper.MapBunch(tweets, hashtag);
+            return mapper.MapBunch(tweets);
         }
 
         public async Task<ICommandResult> Save(IEnumerable<MessageCreateCommand> filtered)
@@ -87,7 +87,7 @@ namespace HashtagAggregator.Data.Internet.DataSources.Twitter
 
             IEnumerable<ITweet> tweets = await SearchAsync.SearchTweets(searchParameter);
             TwitterMessageResultMapper mapper = new TwitterMessageResultMapper();
-            return mapper.MapBunch(tweets, hashtag);
+            return mapper.MapBunch(tweets);
         }
 
         public async Task<MessagesQueryResult> GetSinceLastIdAsync(long id, string hashtag)
@@ -99,7 +99,7 @@ namespace HashtagAggregator.Data.Internet.DataSources.Twitter
 
             IEnumerable<ITweet> tweets = await SearchAsync.SearchTweets(searchParameter);
             TwitterMessageResultMapper mapper = new TwitterMessageResultMapper();
-            return mapper.MapBunch(tweets, hashtag);
+            return mapper.MapBunch(tweets);
         }
     }
 }

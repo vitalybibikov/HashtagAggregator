@@ -19,6 +19,6 @@ namespace HashtagAggregator.Core.Entities.EF
 
         public string AvatarUrl50 { get; set; }
 
-        public virtual List<MessageEntity> Messages { get; set; }
+        public virtual ICollection<MessageEntity> Messages { get; set; }
     }
 }

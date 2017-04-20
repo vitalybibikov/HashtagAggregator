@@ -20,6 +20,8 @@ namespace HashtagAggregator.Configuration
             CreateMap<UserQueryResult, UserViewModel>();
 
             CreateMap<HashTagQueryResult, HashtagViewModel>();
+
+            CreateMap<HashTagQueryResult, HashTagCreateCommand>();
         }
     }
 }

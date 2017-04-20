@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
+
 using HashtagAggregator.Core.Models.Interface.Cqrs.Query;
+using HashtagAggregator.Core.Models.Results.Query.HashTag;
 using HashtagAggregator.Core.Models.Results.Query.User;
 using HashtagAggregator.Shared.Contracts.Enums;
 
@@ -9,7 +12,7 @@ namespace HashtagAggregator.Core.Models.Results.Query.Message
     {
         public MessageQueryResult(long id,
             string messageText,
-            string hashtag,
+            List<HashTagQueryResult> hashtags,
             SocialMediaType mediaType,
             DateTime? postDate,
             string networkId,
@@ -17,7 +20,7 @@ namespace HashtagAggregator.Core.Models.Results.Query.Message
         {
             Id = id;
             MessageText = messageText;
-            HashTag = hashtag;
+            HashTags = hashtags;
             MediaType = mediaType;
             PostDate = postDate;
             NetworkId = networkId;
@@ -32,7 +35,7 @@ namespace HashtagAggregator.Core.Models.Results.Query.Message
 
         public string MessageText { get; set; }
 
-        public string HashTag { get; set; }
+        public List<HashTagQueryResult> HashTags { get; set; }
 
         public SocialMediaType MediaType { get; set; }
 
@@ -51,7 +54,6 @@ namespace HashtagAggregator.Core.Models.Results.Query.Message
             }
             return Id == query.Id
                    && MessageText.Equals(query.MessageText)
-                   && HashTag.Equals(query.HashTag)
                    && MediaType == query.MediaType
                    && PostDate.Equals(query.PostDate)
                    && NetworkId.Equals(query.NetworkId);
@@ -62,7 +64,6 @@ namespace HashtagAggregator.Core.Models.Results.Query.Message
             int hashCode = 17;
             hashCode = (hashCode * 23) + Id.GetHashCode();
             hashCode = (hashCode * 23) + MessageText.GetHashCode();
-            hashCode = (hashCode * 23) + HashTag.GetHashCode();
             hashCode = (hashCode * 23) + MediaType.GetHashCode();
             hashCode = (hashCode * 23) + PostDate.GetHashCode();
             hashCode = (hashCode * 23) + NetworkId.GetHashCode();

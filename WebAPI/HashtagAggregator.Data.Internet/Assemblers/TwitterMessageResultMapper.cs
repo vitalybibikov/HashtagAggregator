@@ -1,29 +1,31 @@
 ﻿using System.Collections.Generic;
-using HashtagAggregator.Core.Models.Results.Query;
+using System.Linq;
+using HashtagAggregator.Core.Models.Results.Query.HashTag;
 using HashtagAggregator.Core.Models.Results.Query.Message;
 using HashtagAggregator.Core.Models.Results.Query.User;
 using HashtagAggregator.Shared.Contracts.Enums;
+
 using Tweetinvi.Models;
 
 namespace HashtagAggregator.Data.Internet.Assemblers
 {
     public class TwitterMessageResultMapper
     {
-        public MessagesQueryResult MapBunch(IEnumerable<ITweet> messages, string hashtag)
+        public MessagesQueryResult MapBunch(IEnumerable<ITweet> messages)
         {
             var results = new MessagesQueryResult();
             if (messages != null)
             {
                 foreach (var tweet in messages)
                 {
-                    var message = MapSingle(tweet, hashtag);
+                    var message = MapSingle(tweet);
                     results.Messages.Add(message);
                 }
             }
             return results;
         }
 
-        public MessageQueryResult MapSingle(ITweet tweet, string hashtag)
+        public MessageQueryResult MapSingle(ITweet tweet)
         {
             UserQueryResult user = new UserQueryResult
             {
@@ -34,9 +36,16 @@ namespace HashtagAggregator.Data.Internet.Assemblers
                 MediaType = SocialMediaType.Twitter
             };
 
+            List<HashTagQueryResult> tags = tweet.Hashtags.Select(x => new HashTagQueryResult()
+            {
+                HashTag = x.Text,
+                IsEnabled = false
+            }).ToList();
+
+
             MessageQueryResult message = new MessageQueryResult(0,
                 tweet.Text,
-                hashtag,
+                tags,
                 SocialMediaType.Twitter,
                 tweet.TweetLocalCreationDate.ToUniversalTime(),
                 tweet.IdStr,

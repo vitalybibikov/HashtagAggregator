@@ -12,6 +12,8 @@ namespace HashtagAggregator.Data.DataAccess.Context
 
         public DbSet<HashTagEntity> Hashtags { get; set; }
 
+        public DbSet<MessageHashTagRelationsEntity> TaggedMessages { get; set; }
+
         public SqlApplicationDbContext(DbContextOptions<SqlApplicationDbContext> options)
             : base(options)
         {        
@@ -26,6 +28,20 @@ namespace HashtagAggregator.Data.DataAccess.Context
                 .HasOne(m => m.User)
                 .WithMany(u => u.Messages)
                 .HasForeignKey(u => u.UserId);
+
+            //many to many configuration between Tags And Messages
+            modelBuilder.Entity<MessageHashTagRelationsEntity>()
+                .HasKey(t => new { t.HashTagEntityId, t.MessageEntityId });
+
+            modelBuilder.Entity<MessageHashTagRelationsEntity>()
+                .HasOne(pt => pt.MessageEntity)
+                .WithMany(p => p.MessageHashTagRelations)
+                .HasForeignKey(pt => pt.MessageEntityId);
+
+            modelBuilder.Entity<MessageHashTagRelationsEntity>()
+                .HasOne(pt => pt.HashTagEntity)
+                .WithMany(t => t.MessageHashTagRelations)
+                .HasForeignKey(pt => pt.HashTagEntityId);
         }
     }
 }

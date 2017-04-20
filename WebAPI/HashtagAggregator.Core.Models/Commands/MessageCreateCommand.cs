@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 using HashtagAggregator.Core.Models.Interface.Cqrs.Command;
 using HashtagAggregator.Shared.Contracts.Enums;
@@ -11,7 +12,7 @@ namespace HashtagAggregator.Core.Models.Commands
 
         public string MessageText { get; set; }
 
-        public string HashTag { get; set; }
+        public List<HashTagCreateCommand> HashTags { get; set; }
 
         public SocialMediaType MediaType { get; set; }
 

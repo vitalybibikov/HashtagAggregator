@@ -77,7 +77,7 @@ namespace HashtagAggregator.Tests.Unit.InMemory
                 MessageText = "TestBody",
                 UserId = 0,
                 PostDate = DateTime.Now,
-                HashTag = hashtag,
+              //  HashTag = hashtag,
                 NetworkId = "2",
 
             };

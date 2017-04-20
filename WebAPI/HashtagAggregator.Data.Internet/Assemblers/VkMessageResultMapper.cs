@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+
 using HashtagAggregator.Core.Entities.VkEntities;
-using HashtagAggregator.Core.Models.Results.Query;
+using HashtagAggregator.Core.Models.Results.Query.HashTag;
 using HashtagAggregator.Core.Models.Results.Query.Message;
 using HashtagAggregator.Core.Models.Results.Query.User;
 using HashtagAggregator.Shared.Contracts.Enums;
@@ -28,6 +29,9 @@ namespace HashtagAggregator.Data.Internet.Assemblers
         public MessagesQueryResult MapSingle(VkNewsFeed feed, string hashtag)
         {
             var results = new MessagesQueryResult();
+            // vk doesn't return list of all hashtags in message
+            // todo: consider parsing message for hashtags. But it might be too memory consuming operation.
+
             foreach (var post in feed.Feed)
             {
                 var date = DateTimeOffset.FromUnixTimeSeconds(post.UnixTimeStamp).UtcDateTime;
@@ -35,7 +39,7 @@ namespace HashtagAggregator.Data.Internet.Assemblers
                 MessageQueryResult message =
                   new MessageQueryResult(0,
                       post.Text,
-                      hashtag,
+                      new List<HashTagQueryResult> { new HashTagQueryResult() { HashTag = hashtag } },  
                       SocialMediaType.VK,
                       date,
                       post.Id.ToString(),

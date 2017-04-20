@@ -12,8 +12,10 @@ namespace HashtagAggregator.Core.Entities.EF
 
         public HashTagEntity Parent { get; set; }
 
-        public List<HashTagEntity> Children { get; set; }
+        public ICollection<HashTagEntity> Children { get; set; }
 
         public bool IsEnabled { get; set; }
+
+        public virtual ICollection<MessageHashTagRelationsEntity> MessageHashTagRelations { get; set; }
     }
 }

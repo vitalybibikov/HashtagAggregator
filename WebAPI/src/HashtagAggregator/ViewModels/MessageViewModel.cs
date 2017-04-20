@@ -1,5 +1,5 @@
 ﻿using System;
-
+using System.Collections.Generic;
 using HashtagAggregator.Shared.Contracts.Enums;
 using Newtonsoft.Json;
 
@@ -13,8 +13,8 @@ namespace HashtagAggregator.ViewModels
         [JsonProperty("body")]
         public string MessageText { get; set; }
 
-        [JsonProperty("hashTag")]
-        public string HashTag { get; set; }
+        [JsonProperty("hashTags")]
+        public List<string> HashTags { get; set; }
 
         [JsonProperty("mediaType")]
         public SocialMediaType MediaType { get; set; }

@@ -24,7 +24,7 @@ namespace HashtagAggregator.Tests.Unit.Mappers
 
             //Assert
             Assert.Equal(command.MessageText, result.MessageText);
-            Assert.Equal(command.HashTag, result.HashTag);
+            //Assert.Equal(command.HashTag, result.HashTag);
             Assert.Equal(command.Id, result.Id);
             Assert.Equal(command.MediaType, result.MediaType);
             Assert.Equal(command.NetworkId, result.NetworkId);
@@ -45,7 +45,7 @@ namespace HashtagAggregator.Tests.Unit.Mappers
 
             //Assert
             Assert.Equal(command.MessageText, result.MessageText);
-            Assert.Equal(command.HashTag, result.HashTag);
+           // Assert.Equal(command.HashTag, result.HashTag);
             Assert.Equal(command.Id, result.Id);
             Assert.Equal(command.MediaType, result.MediaType);
             Assert.Equal(command.NetworkId, result.NetworkId);
@@ -57,7 +57,7 @@ namespace HashtagAggregator.Tests.Unit.Mappers
             var command = new MessageEntity
             {
                 MessageText = "Body",
-                HashTag = hash,
+                //HashTag = hash,
                 Id = 33,
                 MediaType = SocialMediaType.Twitter,
                 NetworkId = "123",

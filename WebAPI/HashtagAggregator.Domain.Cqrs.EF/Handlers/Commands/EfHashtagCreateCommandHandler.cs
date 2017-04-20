@@ -7,7 +7,7 @@ using HashtagAggregator.Data.DataAccess.Context;
 
 namespace HashtagAggregator.Domain.Cqrs.EF.Handlers.Commands
 {
-    public class EfHashtagCreateCommandHandler : CommandHandler<MessagesCreateCommand>
+    public class EfHashtagCreateCommandHandler : CommandHandler<HashTagCreateCommand>
     {
         private readonly SqlApplicationDbContext context;
 
@@ -16,7 +16,7 @@ namespace HashtagAggregator.Domain.Cqrs.EF.Handlers.Commands
             this.context = context;
         }
 
-        public override async Task<ICommandResult> ExecuteAsync(MessagesCreateCommand command)
+        public override async Task<ICommandResult> ExecuteAsync(HashTagCreateCommand command)
         {
            throw new NotImplementedException();
         }

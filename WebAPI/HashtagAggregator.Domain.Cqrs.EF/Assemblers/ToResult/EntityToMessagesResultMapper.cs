@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 
 using HashtagAggregator.Core.Entities.EF;
-using HashtagAggregator.Core.Models.Results.Query;
+using HashtagAggregator.Core.Models.Results.Query.HashTag;
 using HashtagAggregator.Core.Models.Results.Query.Message;
 using HashtagAggregator.Shared.Contracts.Enums;
 
@@ -18,10 +18,16 @@ namespace HashtagAggregator.Domain.Cqrs.EF.Assemblers.ToResult
                 SocialMediaType mediaType;
                 Enum.TryParse(entity.MediaType.ToString(), out mediaType);
                 EntityToUserResultMapper mapper = new EntityToUserResultMapper();
+
                 MessageQueryResult message = new MessageQueryResult(
                     entity.Id,
                     entity.MessageText,
-                    hashtag,
+                    new List<HashTagQueryResult> {
+                        new HashTagQueryResult
+                        {
+                            HashTag = hashtag
+                        }
+                    },
                     mediaType,
                     entity.PostDate,
                     entity.NetworkId,

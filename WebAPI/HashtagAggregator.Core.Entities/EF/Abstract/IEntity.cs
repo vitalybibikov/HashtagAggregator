@@ -7,10 +7,5 @@
             get;
             set;
         }
-
-        bool IsNew
-        {
-            get;
-        }
     }
 }

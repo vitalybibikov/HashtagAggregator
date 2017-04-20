@@ -1,6 +1,7 @@
 ﻿using HashtagAggregator.Data.Contracts.Interface;
 using HashtagAggregator.Shared.Common.Settings;
 using Microsoft.Extensions.Options;
+
 using Tweetinvi;
 using Tweetinvi.Models;
 

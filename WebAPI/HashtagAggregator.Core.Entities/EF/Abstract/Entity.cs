@@ -6,8 +6,8 @@ namespace HashtagAggregator.Core.Entities.EF.Abstract
     /// <summary>
     ///   Base class for entitities.
     /// </summary>
-    [DebuggerDisplay("Id = {Id}")]
-    public abstract class Entity : IEntity
+    [DebuggerDisplay("Id = {" + nameof(Id) + "}")]
+    public abstract class Entity : IEntity, INewItem
     {
         /// <summary>
         ///   Gets or sets object id.

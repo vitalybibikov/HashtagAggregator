@@ -9,9 +9,10 @@ using HashtagAggregator.Shared.Contracts.Enums;
 namespace HashtagAggregator.Data.DataAccess.Migrations
 {
     [DbContext(typeof(SqlApplicationDbContext))]
-    partial class SqlApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20170420142607_HashTagMultilple5")]
+    partial class HashTagMultilple5
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.1.1")

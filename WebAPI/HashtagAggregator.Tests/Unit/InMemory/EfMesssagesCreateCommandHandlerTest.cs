@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Linq;
+
 using HashtagAggregator.Core.Models.Commands;
 using HashtagAggregator.Data.DataAccess.Context;
-using HashtagAggregator.Domain.Cqrs.EF.Handlers;
 using HashtagAggregator.Domain.Cqrs.EF.Handlers.Commands;
 using HashtagAggregator.Shared.Contracts.Enums;
 using Microsoft.EntityFrameworkCore;
@@ -61,7 +61,7 @@ namespace HashtagAggregator.Tests.Unit.InMemory
                 //Assert
                 var result = context.Messages.FirstOrDefault(message => message.NetworkId == command.NetworkId);
                 Assert.Equal(command.MessageText, result.MessageText);
-                Assert.Equal(command.HashTag, result.HashTag);
+            //    Assert.Equal(command.HashTag, result.HashTag);
                 Assert.Equal(command.Id, result.Id);
                 Assert.Equal(command.MediaType, result.MediaType);
                 Assert.Equal(command.NetworkId, result.NetworkId);
@@ -102,7 +102,7 @@ namespace HashtagAggregator.Tests.Unit.InMemory
                 MediaType = SocialMediaType.Twitter,
                 MessageText = "TestBody",
                 PostDate = DateTime.Now,
-                HashTag = hashtag,
+                //HashTag = hashtag,
                 NetworkId = "2",
                 Id = 1,
                 User = user

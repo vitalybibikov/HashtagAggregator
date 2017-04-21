@@ -73,8 +73,8 @@ namespace HashtagAggregator.Tests.Unit.InMemory
 
         private List<MessageEntity> GetData(params HashTagWord[] tags)
         {
-            var user = DataGenerator.GetUsers().FirstOrDefault();
-            return DataGenerator.GetMessages(user, 1, tags);
+            var user = EntityDataGenerator.GetUsers().FirstOrDefault();
+            return EntityDataGenerator.GetMessages(user, 1, tags);
         }
 
         private void InsertData(List<MessageEntity> messages, SqlApplicationDbContext context)

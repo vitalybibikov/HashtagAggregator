@@ -4,10 +4,11 @@ using System.Collections.Generic;
 using HashtagAggregator.Core.Entities.EF;
 using HashtagAggregator.Shared.Common.Infrastructure;
 using HashtagAggregator.Shared.Contracts.Enums;
+using HashTagAggregator.Tests.DataHelpers.Common;
 
 namespace HashTagAggregator.Tests.DataHelpers
 {
-    public class DataGenerator
+    public class EntityDataGenerator
     {
         public static List<MessageEntity> GetMessages(UserEntity user, int count = 1, params HashTagWord[] tags)
         {
@@ -22,7 +23,7 @@ namespace HashTagAggregator.Tests.DataHelpers
                     MessageText = "TestBody",
                     UserId = 0,
                     PostDate = DateTime.Now,
-                    NetworkId = random.Next(1, Int32.MaxValue).ToString(),
+                    NetworkId = IdGenerator.GetNetworkId(),
                 };
                 entity.User = user;
                 messages.Add(entity);
@@ -37,15 +38,14 @@ namespace HashTagAggregator.Tests.DataHelpers
 
         public static List<UserEntity> GetUsers(int count = 1)
         {
-            var random = new Random();
             var users = new List<UserEntity>();
             for (int i = 0; i < count; i++)
             {
                 var user = new UserEntity()
                 {
                     Id = 0,
-                    NetworkId = random.Next(1, Int32.MaxValue).ToString(),
-                    ProfileId = random.Next(1, Int32.MaxValue).ToString(),
+                    NetworkId = IdGenerator.GetNetworkId(),
+                    ProfileId = IdGenerator.GetNetworkId(),
                     Url = "http://sdf.com",
                     UserName = "Name"
                 };

@@ -5,6 +5,8 @@ using HashtagAggregator.Core.Models.Commands;
 using HashtagAggregator.Data.DataAccess.Context;
 using HashtagAggregator.Domain.Cqrs.EF.Handlers.Commands;
 using HashtagAggregator.Shared.Contracts.Enums;
+using HashTagAggregator.Tests.DataHelpers;
+using HashTagAggregator.Tests.DataHelpers.Common;
 using Microsoft.EntityFrameworkCore;
 using Xunit;
 
@@ -22,10 +24,12 @@ namespace HashtagAggregator.Tests.Unit.InMemory
             using (SqlApplicationDbContext context = new SqlApplicationDbContext(options))
             {
                 //Arrange
-                string hashtag = "#microsoft";
                 var handler = new EfMesssagesCreateCommandHandler(context);
 
-                var command = GetCommands(hashtag, GetUser());
+                var tags = CommandDataGenerator.GetHashTags(3);
+                var user = CommandDataGenerator.GetUsers().FirstOrDefault();
+                var command = CommandDataGenerator.GetCommands(tags, user, 1).FirstOrDefault();
+
                 MessagesCreateCommand commands = new MessagesCreateCommand();
                 commands.Messages.Add(command);
 
@@ -50,9 +54,10 @@ namespace HashtagAggregator.Tests.Unit.InMemory
                 //Arrange
                 string hashtag = "#microsoft";
                 var handler = new EfMesssagesCreateCommandHandler(context);
-
-                MessageCreateCommand command = GetCommands(hashtag, GetUser());
-                MessagesCreateCommand commands = new MessagesCreateCommand();
+                var tags = CommandDataGenerator.GetHashTags(3);
+                var user = CommandDataGenerator.GetUsers().FirstOrDefault();
+                var command = CommandDataGenerator.GetCommands(tags, user, 1).FirstOrDefault();
+                var commands = new MessagesCreateCommand();
                 commands.Messages.Add(command);
 
                 //Act
@@ -81,9 +86,9 @@ namespace HashtagAggregator.Tests.Unit.InMemory
                 //Arrange
                 string hashtag = "#microsoft";
                 var handler = new EfMesssagesCreateCommandHandler(context);
-
-                MessageCreateCommand command = GetCommands(hashtag, null);
-                MessagesCreateCommand commands = new MessagesCreateCommand();
+                var tags = CommandDataGenerator.GetHashTags(3);
+                var command = CommandDataGenerator.GetCommands(tags, null, 1).FirstOrDefault();
+                var commands = new MessagesCreateCommand();
                 commands.Messages.Add(command);
 
                 //Act
@@ -93,34 +98,6 @@ namespace HashtagAggregator.Tests.Unit.InMemory
                 var result = context.Messages.FirstOrDefault(message => message.NetworkId == command.NetworkId);
                 Assert.Null(result);
             }
-        }
-
-        private MessageCreateCommand GetCommands(string hashtag, UserCreateCommand user)
-        {
-            MessageCreateCommand command = new MessageCreateCommand
-            {
-                MediaType = SocialMediaType.Twitter,
-                MessageText = "TestBody",
-                PostDate = DateTime.Now,
-                //HashTag = hashtag,
-                NetworkId = "2",
-                Id = 1,
-                User = user
-            };
-            return command;
-        }
-
-        private UserCreateCommand GetUser()
-        {
-            UserCreateCommand user = new UserCreateCommand()
-            {
-                Id = 0,
-                NetworkId = "1",
-                ProfileId = "1",
-                Url = "http://sdf.com",
-                UserName = "Name"
-            };
-            return user;
         }
     }
 }

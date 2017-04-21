@@ -4,13 +4,14 @@ using System.Collections.Generic;
 using HashtagAggregator.Core.Entities.EF;
 using HashtagAggregator.Core.Models.Results.Query.HashTag;
 using HashtagAggregator.Core.Models.Results.Query.Message;
+using HashtagAggregator.Shared.Common.Infrastructure;
 using HashtagAggregator.Shared.Contracts.Enums;
 
 namespace HashtagAggregator.Domain.Cqrs.EF.Assemblers.ToResult
 {
     public class EntityToMessagesResultMapper
     {
-        public MessagesQueryResult MapBunch(IEnumerable<MessageEntity> messages, string hashtag)
+        public MessagesQueryResult MapBunch(IEnumerable<MessageEntity> messages, HashTagWord hashtag)
         {
             var results = new MessagesQueryResult();
             foreach (var entity in messages)

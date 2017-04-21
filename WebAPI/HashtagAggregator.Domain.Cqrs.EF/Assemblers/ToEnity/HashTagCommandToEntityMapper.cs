@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+
 using HashtagAggregator.Core.Entities.EF;
 using HashtagAggregator.Core.Models.Commands;
 
@@ -9,14 +10,17 @@ namespace HashtagAggregator.Domain.Cqrs.EF.Assemblers.ToEnity
         public List<HashTagEntity> MapBunch(IEnumerable<HashTagCreateCommand> tags)
         {
             var results = new List<HashTagEntity>();
-            foreach (var tag in tags)
+            if (tags != null)
             {
-                HashTagEntity entity = new HashTagEntity()
+                foreach (var tag in tags)
                 {
-                    HashTag = tag.HashTag,
-                    IsEnabled = tag.IsEnabled
-                };
-                results.Add(entity);
+                    HashTagEntity entity = new HashTagEntity()
+                    {
+                        HashTag = tag.HashTag,
+                        IsEnabled = tag.IsEnabled
+                    };
+                    results.Add(entity);
+                }
             }
             return results;
         }

@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Net.Http;
+using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 
 using HashtagAggregator.Core.Contracts.Interface.DataSources;
@@ -10,8 +12,9 @@ using HashtagAggregator.Core.Models.Interface.Cqrs.Command;
 using HashtagAggregator.Core.Models.Results.Query.Message;
 using HashtagAggregator.Data.Internet.Assemblers;
 using HashtagAggregator.Shared.Common.Helpers;
+using HashtagAggregator.Shared.Common.Infrastructure;
 using HashtagAggregator.Shared.Common.Settings;
-
+using HashtagAggregator.Shared.Logging;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
@@ -30,7 +33,7 @@ namespace HashtagAggregator.Data.Internet.DataSources.Vk
             this.logger = logger;
         }
 
-        public async Task<MessagesQueryResult> GetAllAsync(string hashtag)
+        public async Task<MessagesQueryResult> GetAllAsync(HashTagWord hashtag)
         {
             using (WebRequestWrapper request = new WebRequestWrapper())
             {
@@ -38,12 +41,23 @@ namespace HashtagAggregator.Data.Internet.DataSources.Vk
                     new VkMessageQuery(settings.Value.MessagesApiUrl,
                     settings.Value.ApiVersion)
                     {
-                        Query = hashtag
+                        Query = hashtag.ToString()
                     };
 
                 var json = await request.LoadJsonAsync(HttpMethod.Get, query.ToString());
-                var jObject = JObject.Parse(json).SelectToken("response");
-                VkNewsFeed feed = JsonConvert.DeserializeObject<VkNewsFeed>(jObject.ToString());
+                var jObject = JObject.Parse(json).SelectToken("response").ToString();
+
+                if (String.IsNullOrEmpty(jObject))
+                {
+                    logger.LogError(
+                        LoggingEvents.EXCEPTION_GET_TWITTER_MESSAGE,
+                        "Failed to get messages by {hashtag} with {error}",
+                        hashtag,
+                        jObject);
+                    throw new InvalidDataException(jObject);
+                }
+
+                VkNewsFeed feed = JsonConvert.DeserializeObject<VkNewsFeed>(jObject);
                 VkMessageResultMapper mapper = new VkMessageResultMapper();
                 return mapper.MapSingle(feed, hashtag);
             }

@@ -4,6 +4,7 @@ using System.Linq;
 using HashtagAggregator.Core.Entities.EF;
 using HashtagAggregator.Domain.Cqrs.EF.Assemblers;
 using HashtagAggregator.Domain.Cqrs.EF.Assemblers.ToResult;
+using HashtagAggregator.Shared.Common.Infrastructure;
 using HashtagAggregator.Shared.Contracts.Enums;
 using Xunit;
 
@@ -16,7 +17,7 @@ namespace HashtagAggregator.Tests.Unit.Mappers
         {
             //Arrange
             var mapper = new EntityToMessagesResultMapper();
-            var hash = "HashTag";
+            var hash = new HashTagWord("hash");
             var command = GetMessageEntity(hash, null);
       
             //Act
@@ -36,7 +37,7 @@ namespace HashtagAggregator.Tests.Unit.Mappers
         {
             //Arrange
             var mapper = new EntityToMessagesResultMapper();
-            var hash = "HashTag";
+            var hash = new HashTagWord("hash");
 
             var command = GetMessageEntity(hash, GetUserEntity());
 
@@ -52,7 +53,7 @@ namespace HashtagAggregator.Tests.Unit.Mappers
             Assert.Equal(command.PostDate, result.PostDate);
         }
 
-        private MessageEntity GetMessageEntity(string hash, UserEntity user)
+        private MessageEntity GetMessageEntity(HashTagWord hash, UserEntity user)
         {
             var command = new MessageEntity
             {

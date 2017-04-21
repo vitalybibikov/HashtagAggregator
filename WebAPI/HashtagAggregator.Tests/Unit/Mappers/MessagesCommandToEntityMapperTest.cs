@@ -16,17 +16,17 @@ namespace HashtagAggregator.Tests.Unit.Mappers
         {
             //Arrange
             var mapper = new MessagesCommandToEntityMapper();
-            var command = GetMessageCommand("nicrosoft", null);
+            var command = GetMessageCommand(null);
             //Act
             var result = mapper.MapBunch(new List<MessageCreateCommand> {command}).First();
 
             //Assert
-            Assert.Equal(command.MessageText, result.MessageText);
-        //    Assert.Equal(command.HashTag, result.HashTag);
-            Assert.Equal(command.Id, result.Id);
-            Assert.Equal(command.MediaType, result.MediaType);
-            Assert.Equal(command.NetworkId, result.NetworkId);
-            Assert.Equal(command.PostDate, result.PostDate);
+            Assert.Equal(result.MessageText, command.MessageText);
+            Assert.Equal(result.HashTags.Count, 0);
+            Assert.Equal(result.Id, command.Id);
+            Assert.Equal(result.MediaType, command.MediaType);
+            Assert.Equal(result.NetworkId, command.NetworkId);
+            Assert.Equal(result.PostDate, command.PostDate);
             Assert.Null(result.User);
         }
 
@@ -35,32 +35,40 @@ namespace HashtagAggregator.Tests.Unit.Mappers
         {
             //Arrange
             var mapper = new MessagesCommandToEntityMapper();
-            var command = GetMessageCommand("nicrosoft", GetUserCommand());
+            var param = new List<string> { "nicrosoft", "hashtag" };
+            var command = GetMessageCommand(GetUserCommand(), param.ToArray());
+
             //Act
-            var result = mapper.MapBunch(new List<MessageCreateCommand> { command }).First();
+            var result = mapper.MapBunch(
+                new List<MessageCreateCommand> { command }).First();
 
             //Assert
-            Assert.Equal(command.MessageText, result.MessageText);
-           // Assert.Equal(command.HashTag, result.HashTag);
-            Assert.Equal(command.Id, result.Id);
-            Assert.Equal(command.MediaType, result.MediaType);
-            Assert.Equal(command.NetworkId, result.NetworkId);
-            Assert.Equal(command.PostDate, result.PostDate);
+            Assert.Equal(result.MessageText, command.MessageText);
+            Assert.Equal(result.HashTags.Count, param.Count);
+            Assert.Equal(result.Id, command.Id);
+            Assert.Equal(result.MediaType, command.MediaType);
+            Assert.Equal(result.NetworkId, command.NetworkId);
+            Assert.Equal(result.PostDate, command.PostDate);
             Assert.NotNull(result.User);
         }
 
-        private MessageCreateCommand GetMessageCommand(string hash, UserCreateCommand user)
+        private MessageCreateCommand GetMessageCommand(UserCreateCommand user, params string [] tags)
         {
             var command = new MessageCreateCommand
             {
                 MessageText = "Body",
-            //    HashTag = hash,
                 Id = 33,
                 MediaType = SocialMediaType.Twitter,
                 NetworkId = "123",
                 PostDate = DateTime.Now,
                 User = user
             };
+
+            foreach (var tag in tags)
+            {
+                command.HashTags.Add(new HashTagCreateCommand {HashTag = tag});
+            }
+
             return command;
         }
 

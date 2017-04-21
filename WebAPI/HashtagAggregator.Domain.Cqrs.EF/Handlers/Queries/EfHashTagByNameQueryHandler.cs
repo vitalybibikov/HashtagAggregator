@@ -19,7 +19,7 @@ namespace HashtagAggregator.Domain.Cqrs.EF.Handlers.Queries
         protected override async Task<HashTagsQueryResult> GetDataAsync(HashTagByParentNameQuery query)
         {
             var mapper = new EntityToHashTagResultMapper();
-            var result = await Context.Hashtags.Where(x=>x.Parent.HashTag == query.HashTag).ToListAsync();
+            var result = await Context.Hashtags.Where(x => x.Parent.HashTag == query.HashTag).ToListAsync();
             return mapper.MapBunch(result);
         }
     }

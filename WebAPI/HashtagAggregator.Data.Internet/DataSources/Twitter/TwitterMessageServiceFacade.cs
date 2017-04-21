@@ -12,6 +12,7 @@ using HashtagAggregator.Core.Models.Results;
 using HashtagAggregator.Core.Models.Results.Query.Message;
 using HashtagAggregator.Data.Contracts.Interface;
 using HashtagAggregator.Data.Internet.Assemblers;
+using HashtagAggregator.Shared.Common.Infrastructure;
 using HashtagAggregator.Shared.Common.Settings;
 using HashtagAggregator.Shared.Logging;
 
@@ -33,9 +34,9 @@ namespace HashtagAggregator.Data.Internet.DataSources.Twitter
             this.logger = logger;
         }
 
-        public async Task<MessagesQueryResult> GetAllAsync(string hashtag)
+        public async Task<MessagesQueryResult> GetAllAsync(HashTagWord hashtag)
         {
-            ISearchTweetsParameters tweetsParameters = new SearchTweetsParameters(hashtag);
+            ISearchTweetsParameters tweetsParameters = new SearchTweetsParameters(hashtag.TagWithHash);
             tweetsParameters.TweetSearchType = TweetSearchType.OriginalTweetsOnly;
             IEnumerable<ITweet> tweets = await SearchAsync.SearchTweets(tweetsParameters);
 

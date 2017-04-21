@@ -1,4 +1,5 @@
 ﻿using System;
+
 using HashtagAggregator.Shared.Contracts.Enums;
 
 namespace HashtagAggregator.Shared.Common.Attributes
@@ -12,6 +13,5 @@ namespace HashtagAggregator.Shared.Common.Attributes
         }
 
         public SocialMediaType MediaType { get; }
-
     }
 }

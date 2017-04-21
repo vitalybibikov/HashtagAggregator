@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
+
 using HashtagAggregator.Core.Contracts.Interface.DataSources;
 using HashtagAggregator.Core.Models.Queries;
-using HashtagAggregator.Core.Models.Results.Query;
 using HashtagAggregator.Core.Models.Results.Query.Message;
 using HashtagAggregator.Domain.Cqrs.Vk.Abstract;
 using HashtagAggregator.Shared.Common.Attributes;

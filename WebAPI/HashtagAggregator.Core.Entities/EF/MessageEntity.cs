@@ -9,6 +9,12 @@ namespace HashtagAggregator.Core.Entities.EF
 {
     public class MessageEntity : Entity
     {
+        public MessageEntity()
+        {
+            HashTags = new List<HashTagEntity>();
+            MessageHashTagRelations = new List<MessageHashTagRelationsEntity>();
+        }
+
         public string NetworkId { get; set; }
 
         public string MessageText { get; set; }

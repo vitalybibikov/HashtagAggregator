@@ -14,6 +14,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\HashTagAggregator.Tests.DataHelpers\HashTagAggregator.Tests.DataHelpers.csproj" />
     <ProjectReference Include="..\src\HashtagAggregator\HashtagAggregator.csproj" />
   </ItemGroup>
 

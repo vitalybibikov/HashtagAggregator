@@ -3,6 +3,7 @@ using System.Linq;
 using HashtagAggregator.Core.Models.Results.Query.HashTag;
 using HashtagAggregator.Core.Models.Results.Query.Message;
 using HashtagAggregator.Core.Models.Results.Query.User;
+using HashtagAggregator.Shared.Common.Infrastructure;
 using HashtagAggregator.Shared.Contracts.Enums;
 
 using Tweetinvi.Models;
@@ -38,7 +39,7 @@ namespace HashtagAggregator.Data.Internet.Assemblers
 
             List<HashTagQueryResult> tags = tweet.Hashtags.Select(x => new HashTagQueryResult()
             {
-                HashTag = x.Text,
+                HashTag = new HashTagWord(x.Text),
                 IsEnabled = false
             }).ToList();
 

@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Reflection;
+
 using HashtagAggregator.Core.Contracts.Interface.DataSources;
 using HashtagAggregator.Data.DataAccess.Context;
 using HashtagAggregator.Domain.Cqrs.Common.Filters;
-using HashtagAggregator.Domain.Cqrs.EF.Handlers;
 using HashtagAggregator.Domain.Cqrs.EF.Handlers.Queries;
 using HashtagAggregator.Domain.Cqrs.Twitter.Handlers;
 using HashtagAggregator.Domain.Cqrs.Vk.Handlers;
@@ -11,6 +11,7 @@ using HashtagAggregator.Shared.Common.Attributes;
 using HashtagAggregator.Shared.Common.Settings;
 using HashtagAggregator.Shared.Contracts.Enums;
 using HashtagAggregator.Shared.Contracts.Interfaces;
+
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;

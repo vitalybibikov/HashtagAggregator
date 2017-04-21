@@ -63,8 +63,6 @@ namespace HashtagAggregator.Domain.Cqrs.EF.Handlers.Commands
                 }
 
             }
-
-           // await context.Messages.AddRangeAsync(newMessages);
             context.SaveChanges();
             return new CommandResult { Success = true };
         }

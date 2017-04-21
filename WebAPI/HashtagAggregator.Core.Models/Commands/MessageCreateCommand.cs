@@ -8,6 +8,11 @@ namespace HashtagAggregator.Core.Models.Commands
 {
     public class MessageCreateCommand : ICommand
     {
+        public MessageCreateCommand()
+        {
+            HashTags = new List<HashTagCreateCommand>();
+        }
+
         public long Id { get; set; }
 
         public string MessageText { get; set; }

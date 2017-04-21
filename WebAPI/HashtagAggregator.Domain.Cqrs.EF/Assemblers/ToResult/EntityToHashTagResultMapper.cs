@@ -2,6 +2,7 @@
 
 using HashtagAggregator.Core.Entities.EF;
 using HashtagAggregator.Core.Models.Results.Query.HashTag;
+using HashtagAggregator.Shared.Common.Infrastructure;
 
 namespace HashtagAggregator.Domain.Cqrs.EF.Assemblers.ToResult
 {
@@ -12,10 +13,10 @@ namespace HashtagAggregator.Domain.Cqrs.EF.Assemblers.ToResult
             var results = new HashTagsQueryResult();
             foreach (var entity in tags)
             {
-                var result = new HashTagQueryResult()
+                var result = new HashTagQueryResult
                 {
                     Id = entity.Id,
-                    HashTag = entity.HashTag,
+                    HashTag = new HashTagWord(entity.HashTag),
                     IsEnabled = entity.IsEnabled,
                     ParentId =  entity.ParentId
                 };

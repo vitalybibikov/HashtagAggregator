@@ -6,13 +6,14 @@ using HashtagAggregator.Core.Entities.VkEntities;
 using HashtagAggregator.Core.Models.Results.Query.HashTag;
 using HashtagAggregator.Core.Models.Results.Query.Message;
 using HashtagAggregator.Core.Models.Results.Query.User;
+using HashtagAggregator.Shared.Common.Infrastructure;
 using HashtagAggregator.Shared.Contracts.Enums;
 
 namespace HashtagAggregator.Data.Internet.Assemblers
 {
     public class VkMessageResultMapper
     {
-        public MessagesQueryResult MapBunch(IEnumerable<VkNewsFeed> feeds, string hashtag)
+        public MessagesQueryResult MapBunch(IEnumerable<VkNewsFeed> feeds, HashTagWord hashtag)
         {
             MessagesQueryResult results = new MessagesQueryResult();
             foreach (VkNewsFeed feed in feeds)
@@ -26,7 +27,7 @@ namespace HashtagAggregator.Data.Internet.Assemblers
             return results;
         }
 
-        public MessagesQueryResult MapSingle(VkNewsFeed feed, string hashtag)
+        public MessagesQueryResult MapSingle(VkNewsFeed feed, HashTagWord hashtag)
         {
             var results = new MessagesQueryResult();
             // vk doesn't return list of all hashtags in message
@@ -39,7 +40,13 @@ namespace HashtagAggregator.Data.Internet.Assemblers
                 MessageQueryResult message =
                   new MessageQueryResult(0,
                       post.Text,
-                      new List<HashTagQueryResult> { new HashTagQueryResult() { HashTag = hashtag } },  
+                      new List<HashTagQueryResult>
+                      {
+                          new HashTagQueryResult
+                          {
+                              HashTag = hashtag
+                          }
+                      },  
                       SocialMediaType.VK,
                       date,
                       post.Id.ToString(),

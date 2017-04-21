@@ -4,6 +4,7 @@ using HashtagAggregator.Core.Entities.VkEntities;
 using HashtagAggregator.Core.Models.Results.Query;
 using HashtagAggregator.Core.Models.Results.Query.Message;
 using HashtagAggregator.Data.Internet.Assemblers;
+using HashtagAggregator.Shared.Common.Infrastructure;
 using HashtagAggregator.Shared.Contracts.Enums;
 using HashtagAggregator.Tests.TestHelpers;
 using Xunit;
@@ -16,7 +17,7 @@ namespace HashtagAggregator.Tests.Unit.Mappers
         public void TestVkMessageSingleMap()
         {
             //Arrange
-            var hash = "hash";
+            var hash = new HashTagWord("hash");
             VkNewsSearchResult search = GetSearch();
             VkNewsProfile profile = GetProfile();
             var date = DateTimeOffset.FromUnixTimeSeconds(search.UnixTimeStamp).DateTime;

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26228.4
+VisualStudioVersion = 15.0.26228.10
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{150D8B9D-3032-41DE-9BC1-E259047AA970}"
 EndProject
@@ -50,6 +50,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HashtagAggregator.Core.Entities", "HashtagAggregator.Core.Entities\HashtagAggregator.Core.Entities.csproj", "{E0010945-BA57-4911-8FF1-7EBFB4B7DBD0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HashtagAggregator.IdentityServer", "HashtagAggregator.IdentityServer\HashtagAggregator.IdentityServer.csproj", "{9AED1585-A37D-4D76-9F01-69145B2F7488}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HashTagAggregator.Tests.DataHelpers", "HashTagAggregator.Tests.DataHelpers\HashTagAggregator.Tests.DataHelpers.csproj", "{D946987C-74D8-4FA2-9599-8945DE9FB145}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -125,6 +127,10 @@ Global
 		{9AED1585-A37D-4D76-9F01-69145B2F7488}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9AED1585-A37D-4D76-9F01-69145B2F7488}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9AED1585-A37D-4D76-9F01-69145B2F7488}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D946987C-74D8-4FA2-9599-8945DE9FB145}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D946987C-74D8-4FA2-9599-8945DE9FB145}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D946987C-74D8-4FA2-9599-8945DE9FB145}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D946987C-74D8-4FA2-9599-8945DE9FB145}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -152,5 +158,6 @@ Global
 		{12E3222C-E86D-485F-8DB0-4BE591D17F22} = {C0A6C582-F7FE-44CA-8FC2-BBB3A62C961E}
 		{E0010945-BA57-4911-8FF1-7EBFB4B7DBD0} = {69BD6B5D-B997-49C3-872C-967243F258EE}
 		{9AED1585-A37D-4D76-9F01-69145B2F7488} = {150D8B9D-3032-41DE-9BC1-E259047AA970}
+		{D946987C-74D8-4FA2-9599-8945DE9FB145} = {B7DCEB1B-1E50-469A-A36E-206D5863D092}
 	EndGlobalSection
 EndGlobal

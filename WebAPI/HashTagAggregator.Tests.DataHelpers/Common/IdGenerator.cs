@@ -10,5 +10,11 @@ namespace HashTagAggregator.Tests.DataHelpers.Common
             var random = new Random();
             return random.Next(1, Int32.MaxValue).ToString();
         }
+
+        public static int GetInt32RandomId()
+        {
+            var random = new Random();
+            return random.Next(1, Int32.MaxValue);
+        }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Bogus.DataSets;
 
 using HashtagAggregator.Core.Entities.EF;
 using HashtagAggregator.Shared.Common.Infrastructure;
@@ -13,19 +14,18 @@ namespace HashTagAggregator.Tests.DataHelpers
         public static List<MessageEntity> GetMessages(UserEntity user, int count = 1, params HashTagWord[] tags)
         {
             var messages = new List<MessageEntity>();
-            var random = new Random();
-
+            var lorem = new Lorem();
             for (int i = 0; i < count; i++)
             {
                 var entity = new MessageEntity
                 {
                     MediaType = SocialMediaType.Twitter,
-                    MessageText = "TestBody",
+                    MessageText = lorem.Sentence(),
                     UserId = 0,
                     PostDate = DateTime.Now,
                     NetworkId = IdGenerator.GetNetworkId(),
+                    User = user,
                 };
-                entity.User = user;
                 messages.Add(entity);
 
                 foreach (var tag in tags)
@@ -41,13 +41,13 @@ namespace HashTagAggregator.Tests.DataHelpers
             var users = new List<UserEntity>();
             for (int i = 0; i < count; i++)
             {
-                var user = new UserEntity()
+                var user = new UserEntity
                 {
                     Id = 0,
                     NetworkId = IdGenerator.GetNetworkId(),
                     ProfileId = IdGenerator.GetNetworkId(),
-                    Url = "http://sdf.com",
-                    UserName = "Name"
+                    Url = new Internet().Url(),
+                    UserName = new Lorem().Word()
                 };
                 users.Add(user);
             }

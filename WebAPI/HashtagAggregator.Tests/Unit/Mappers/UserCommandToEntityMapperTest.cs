@@ -1,7 +1,10 @@
-﻿using HashtagAggregator.Core.Models.Commands;
-using HashtagAggregator.Domain.Cqrs.EF.Assemblers;
+﻿using System.Linq;
+
+using HashtagAggregator.Core.Models.Commands;
 using HashtagAggregator.Domain.Cqrs.EF.Assemblers.ToEnity;
 using HashtagAggregator.Shared.Contracts.Enums;
+using HashTagAggregator.Tests.DataHelpers;
+
 using Xunit;
 
 namespace HashtagAggregator.Tests.Unit.Mappers
@@ -13,7 +16,7 @@ namespace HashtagAggregator.Tests.Unit.Mappers
         {
             //Arrange
             var mapper = new UserCommandToEntityMapper();
-            var command = GetUserCommand();
+            var command = CommandDataGenerator.GetUsers().FirstOrDefault();
 
             //Act
             var result = mapper.MapSingle(command);
@@ -25,19 +28,7 @@ namespace HashtagAggregator.Tests.Unit.Mappers
             Assert.Equal(command.Url, result.Url);
             Assert.Equal(command.UserName, result.UserName);
             Assert.Equal(command.MediaType, result.MediaType);
-        }
-
-        private UserCreateCommand GetUserCommand()
-        {
-            var user = new UserCreateCommand
-            {
-                UserName = null,
-                NetworkId = "value",
-                ProfileId = "id",
-                Url = "url",
-                MediaType = SocialMediaType.Twitter
-            };
-            return user;
+            Assert.Equal(command.AvatarUrl50, result.AvatarUrl50);
         }
     }
 }

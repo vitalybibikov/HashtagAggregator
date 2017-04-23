@@ -28,7 +28,7 @@ namespace HashtagAggregator.Tests.Unit.InMemory
 
                 var tags = CommandDataGenerator.GetHashTags(3);
                 var user = CommandDataGenerator.GetUsers().FirstOrDefault();
-                var command = CommandDataGenerator.GetCommands(tags, user, 1).FirstOrDefault();
+                var command = CommandDataGenerator.GetMessages(tags, user, 1).FirstOrDefault();
 
                 MessagesCreateCommand commands = new MessagesCreateCommand();
                 commands.Messages.Add(command);
@@ -52,11 +52,11 @@ namespace HashtagAggregator.Tests.Unit.InMemory
             using (SqlApplicationDbContext context = new SqlApplicationDbContext(options))
             {
                 //Arrange
-                string hashtag = "#microsoft";
+                var tagCount = 3;
                 var handler = new EfMesssagesCreateCommandHandler(context);
-                var tags = CommandDataGenerator.GetHashTags(3);
+                var tags = CommandDataGenerator.GetHashTags(tagCount);
                 var user = CommandDataGenerator.GetUsers().FirstOrDefault();
-                var command = CommandDataGenerator.GetCommands(tags, user, 1).FirstOrDefault();
+                var command = CommandDataGenerator.GetMessages(tags, user, 1).FirstOrDefault();
                 var commands = new MessagesCreateCommand();
                 commands.Messages.Add(command);
 
@@ -66,7 +66,7 @@ namespace HashtagAggregator.Tests.Unit.InMemory
                 //Assert
                 var result = context.Messages.FirstOrDefault(message => message.NetworkId == command.NetworkId);
                 Assert.Equal(command.MessageText, result.MessageText);
-            //    Assert.Equal(command.HashTag, result.HashTag);
+                Assert.Equal(command.HashTags.Count, tagCount);
                 Assert.Equal(command.Id, result.Id);
                 Assert.Equal(command.MediaType, result.MediaType);
                 Assert.Equal(command.NetworkId, result.NetworkId);
@@ -84,10 +84,10 @@ namespace HashtagAggregator.Tests.Unit.InMemory
             using (SqlApplicationDbContext context = new SqlApplicationDbContext(options))
             {
                 //Arrange
-                string hashtag = "#microsoft";
+                var tagCount = 3;
                 var handler = new EfMesssagesCreateCommandHandler(context);
-                var tags = CommandDataGenerator.GetHashTags(3);
-                var command = CommandDataGenerator.GetCommands(tags, null, 1).FirstOrDefault();
+                var tags = CommandDataGenerator.GetHashTags(tagCount);
+                var command = CommandDataGenerator.GetMessages(tags, null, 1).FirstOrDefault();
                 var commands = new MessagesCreateCommand();
                 commands.Messages.Add(command);
 

@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using HashtagAggregator.Core.Entities.EF;
-using HashtagAggregator.Domain.Cqrs.EF.Assemblers;
 using HashtagAggregator.Domain.Cqrs.EF.Assemblers.ToResult;
 using HashtagAggregator.Shared.Common.Infrastructure;
-using HashtagAggregator.Shared.Contracts.Enums;
+using HashTagAggregator.Tests.DataHelpers;
 using Xunit;
 
 namespace HashtagAggregator.Tests.Unit.Mappers
@@ -17,72 +16,20 @@ namespace HashtagAggregator.Tests.Unit.Mappers
         public void CompareMappedObjectsWithNullUserTest()
         {
             //Arrange
-            var mapper = new EntityToMessagesResultMapper();
-            var hash = new HashTagWord("hash");
-            var command = GetMessageEntity(hash, null);
+            var mapper = new EntityToUserResultMapper();
+            var user = EntityDataGenerator.GetUsers().FirstOrDefault();
 
             //Act
-            var result = mapper.MapBunch(new List<MessageEntity> { command }, hash).Messages.First();
+            var result = mapper.MapSingle(user);
 
             //Assert
-            Assert.Equal(command.MessageText, result.MessageText);
-           // Assert.Equal(command.HashTags, result.HashTags);
-            Assert.Equal(command.Id, result.Id);
-            Assert.Equal(command.MediaType, result.MediaType);
-            Assert.Equal(command.NetworkId, result.NetworkId);
-            Assert.Equal(command.PostDate, result.PostDate);
-            Assert.Equal(command.MediaType, result.MediaType);
-        }
-
-        [Fact]
-        public void CompareMappedObjectsWithUserTest()
-        {
-            //Arrange
-            var mapper = new EntityToMessagesResultMapper();
-            var hash = new HashTagWord("hash");
-
-            var command = GetMessageEntity(hash, GetUserEntity());
-
-            //Act
-            var result = mapper.MapBunch(new List<MessageEntity> { command }, hash).Messages.First();
-
-            //Assert
-            Assert.Equal(command.MessageText, result.MessageText);
-           // Assert.Equal(command.HashTag, result.HashTag);
-            Assert.Equal(command.Id, result.Id);
-            Assert.Equal(command.MediaType, result.MediaType);
-            Assert.Equal(command.NetworkId, result.NetworkId);
-            Assert.Equal(command.PostDate, result.PostDate);
-            Assert.Equal(command.MediaType, result.MediaType);
-        }
-
-        private MessageEntity GetMessageEntity(HashTagWord hash, UserEntity user)
-        {
-            var command = new MessageEntity
-            {
-                MessageText = "Body",
-              //  HashTag = hash,
-                Id = 33,
-                MediaType = SocialMediaType.Twitter,
-                NetworkId = "123",
-                PostDate = DateTime.Now,
-                User = user
-            };
-            return command;
-        }
-
-        private UserEntity GetUserEntity()
-        {
-            var user = new UserEntity
-            {
-                UserName = null,
-                NetworkId = "value",
-                ProfileId = "id",
-                Url = "url",
-                Id = 3,
-                MediaType = SocialMediaType.VK
-            };
-            return user;
+            Assert.Equal(user.Id, result.Id);
+            Assert.Equal(user.AvatarUrl50, result.AvatarUrl50);
+            Assert.Equal(user.MediaType, result.MediaType);
+            Assert.Equal(user.NetworkId, result.NetworkId);
+            Assert.Equal(user.ProfileId, result.ProfileId);
+            Assert.Equal(user.UserName, result.UserName);
+            Assert.Equal(user.Url, result.Url);
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace HashtagAggregator.Tests.TestHelpers
+namespace HashTagAggregator.Tests.DataHelpers.TestHelpers
 {
     public static class DateTimeExtensions
     {

@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 
-using HashtagAggregator.Core.Models.Commands;
 using HashtagAggregator.Domain.Cqrs.EF.Assemblers.ToEnity;
-using HashtagAggregator.Shared.Contracts.Enums;
+using HashTagAggregator.Tests.DataHelpers;
 using Xunit;
 
 namespace HashtagAggregator.Tests.Unit.Mappers
@@ -16,13 +13,18 @@ namespace HashtagAggregator.Tests.Unit.Mappers
         {
             //Arrange
             var mapper = new MessagesCommandToEntityMapper();
-            var command = GetMessageCommand(null);
+
+            var hashCount = 3;
+            var hashCommand = CommandDataGenerator.GetHashTags(hashCount);
+            var commands = CommandDataGenerator.GetMessages(hashCommand, null);
+
             //Act
-            var result = mapper.MapBunch(new List<MessageCreateCommand> {command}).First();
+            var result = mapper.MapBunch(commands).First();
+            var command = commands.FirstOrDefault();
 
             //Assert
             Assert.Equal(result.MessageText, command.MessageText);
-            Assert.Equal(result.HashTags.Count, 0);
+            Assert.Equal(result.HashTags.Count, hashCount);
             Assert.Equal(result.Id, command.Id);
             Assert.Equal(result.MediaType, command.MediaType);
             Assert.Equal(result.NetworkId, command.NetworkId);
@@ -35,54 +37,23 @@ namespace HashtagAggregator.Tests.Unit.Mappers
         {
             //Arrange
             var mapper = new MessagesCommandToEntityMapper();
-            var param = new List<string> { "nicrosoft", "hashtag" };
-            var command = GetMessageCommand(GetUserCommand(), param.ToArray());
+            var hashCommand = CommandDataGenerator.GetHashTags(3);
+            var userCommand = CommandDataGenerator.GetUsers().FirstOrDefault();
+            var commands = CommandDataGenerator.GetMessages(hashCommand, userCommand);
 
             //Act
-            var result = mapper.MapBunch(
-                new List<MessageCreateCommand> { command }).First();
+            var result = mapper.MapBunch(commands).First();
+
+            var command = commands.FirstOrDefault();
 
             //Assert
             Assert.Equal(result.MessageText, command.MessageText);
-            Assert.Equal(result.HashTags.Count, param.Count);
+            Assert.Equal(result.HashTags.Count, hashCommand.Count);
             Assert.Equal(result.Id, command.Id);
             Assert.Equal(result.MediaType, command.MediaType);
             Assert.Equal(result.NetworkId, command.NetworkId);
             Assert.Equal(result.PostDate, command.PostDate);
             Assert.NotNull(result.User);
-        }
-
-        private MessageCreateCommand GetMessageCommand(UserCreateCommand user, params string [] tags)
-        {
-            var command = new MessageCreateCommand
-            {
-                MessageText = "Body",
-                Id = 33,
-                MediaType = SocialMediaType.Twitter,
-                NetworkId = "123",
-                PostDate = DateTime.Now,
-                User = user
-            };
-
-            foreach (var tag in tags)
-            {
-                command.HashTags.Add(new HashTagCreateCommand {HashTag = tag});
-            }
-
-            return command;
-        }
-
-        private UserCreateCommand GetUserCommand()
-        {
-            var user = new UserCreateCommand
-            {
-                UserName = null,
-                NetworkId = "value",
-                ProfileId = "id",
-                Url = "url",
-                Id = 3
-            };
-            return user;
         }
     }
 }

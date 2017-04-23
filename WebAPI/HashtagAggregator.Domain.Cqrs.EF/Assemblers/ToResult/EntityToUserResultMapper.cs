@@ -8,7 +8,7 @@ namespace HashtagAggregator.Domain.Cqrs.EF.Assemblers.ToResult
     {
         public UserQueryResult MapSingle(UserEntity item)
         {
-            UserQueryResult query = new UserQueryResult();
+            var query = new UserQueryResult();
             if (item != null)
             {
                 query.Id = item.Id;

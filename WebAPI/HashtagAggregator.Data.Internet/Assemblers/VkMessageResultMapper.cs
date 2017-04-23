@@ -15,8 +15,8 @@ namespace HashtagAggregator.Data.Internet.Assemblers
     {
         public MessagesQueryResult MapBunch(IEnumerable<VkNewsFeed> feeds, HashTagWord hashtag)
         {
-            MessagesQueryResult results = new MessagesQueryResult();
-            foreach (VkNewsFeed feed in feeds)
+            var results = new MessagesQueryResult();
+            foreach (var feed in feeds)
             {
                 var result = MapSingle(feed, hashtag);
                 if (result.Messages.Count > 0)
@@ -37,7 +37,7 @@ namespace HashtagAggregator.Data.Internet.Assemblers
             {
                 var date = DateTimeOffset.FromUnixTimeSeconds(post.UnixTimeStamp).UtcDateTime;
                 var user = FillUser(post, feed);
-                MessageQueryResult message =
+                var message =
                   new MessageQueryResult(0,
                       post.Text,
                       new List<HashTagQueryResult>

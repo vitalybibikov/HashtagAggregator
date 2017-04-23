@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+
 using HashtagAggregator.Core.Entities.VkEntities;
-using HashtagAggregator.Core.Models.Results.Query;
-using HashtagAggregator.Core.Models.Results.Query.Message;
 using HashtagAggregator.Data.Internet.Assemblers;
 using HashtagAggregator.Shared.Common.Infrastructure;
 using HashtagAggregator.Shared.Contracts.Enums;
-using HashtagAggregator.Tests.TestHelpers;
+using HashTagAggregator.Tests.DataHelpers.VK;
+
 using Xunit;
 
 namespace HashtagAggregator.Tests.Unit.Mappers
@@ -18,10 +19,11 @@ namespace HashtagAggregator.Tests.Unit.Mappers
         {
             //Arrange
             var hash = new HashTagWord("hash");
-            VkNewsSearchResult search = GetSearch();
-            VkNewsProfile profile = GetProfile();
+            var search = VkDataGenerator.GetSearches().FirstOrDefault();
+            var profile = VkDataGenerator.GetProfiles(search.FromId).FirstOrDefault();
+
             var date = DateTimeOffset.FromUnixTimeSeconds(search.UnixTimeStamp).DateTime;
-            VkNewsFeed feed = new VkNewsFeed
+            var feed = new VkNewsFeed
             {
                 Feed = new List<VkNewsSearchResult> { search },
                 Profiles = new List<VkNewsProfile> { profile }
@@ -32,10 +34,11 @@ namespace HashtagAggregator.Tests.Unit.Mappers
             var result = mapper.MapSingle(feed, hash);
             
             //Assert
-            foreach (MessageQueryResult message in result.Messages)
+            foreach (var message in result.Messages)
             {
                 Assert.Equal(search.Text, message.MessageText);
-               // Assert.Equal(hash, message.HashTag);
+
+                Assert.Equal(1, message.HashTags.Count);
                 Assert.Equal(SocialMediaType.VK, message.MediaType);
                 Assert.Equal(search.Id.ToString(), message.NetworkId);
                 Assert.Equal(date, message.PostDate);
@@ -43,29 +46,6 @@ namespace HashtagAggregator.Tests.Unit.Mappers
                 Assert.Equal(profile.UserName, message.User.ProfileId);
                 Assert.Equal(profile.Id.ToString(), message.User.NetworkId);
             }
-        }
-
-        private static VkNewsSearchResult GetSearch()
-        {
-            return new VkNewsSearchResult
-            {
-                FromId = 123123,
-                Id = 123123,
-                OwnerId = 123123,
-                Text = "Text",
-                UnixTimeStamp = DateTime.Now.ToUnixTime()
-            };
-        }
-
-        private static VkNewsProfile GetProfile()
-        {
-            return new VkNewsProfile
-            {
-                FirstName = "FirstName",
-                Id = 123123,
-                LastName = "LastName",
-                UserName = "UserName"
-            };
         }
     }
 }

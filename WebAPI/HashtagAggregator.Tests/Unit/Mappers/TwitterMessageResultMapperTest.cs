@@ -1,13 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+
 using HashtagAggregator.Data.Internet.Assemblers;
 using HashtagAggregator.Shared.Contracts.Enums;
-using Moq;
+
 using Tweetinvi.Logic.TwitterEntities;
 using Tweetinvi.Models;
 using Tweetinvi.Models.Entities;
-using Xunit;
 
+using Xunit;
+using Moq;
 namespace HashtagAggregator.Tests.Unit.Mappers
 {
     public class TwitterMessageResultMapperTest

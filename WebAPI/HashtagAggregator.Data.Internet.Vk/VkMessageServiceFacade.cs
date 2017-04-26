@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Net.Http;
-using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 
 using HashtagAggregator.Core.Contracts.Interface.DataSources;
@@ -10,26 +9,29 @@ using HashtagAggregator.Core.Entities.VkEntities;
 using HashtagAggregator.Core.Models.Commands;
 using HashtagAggregator.Core.Models.Interface.Cqrs.Command;
 using HashtagAggregator.Core.Models.Results.Query.Message;
-using HashtagAggregator.Data.Internet.Assemblers;
+using HashtagAggregator.Data.Internet.Vk.Assemblers;
 using HashtagAggregator.Shared.Common.Helpers;
 using HashtagAggregator.Shared.Common.Infrastructure;
 using HashtagAggregator.Shared.Common.Settings;
 using HashtagAggregator.Shared.Logging;
+
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
-namespace HashtagAggregator.Data.Internet.DataSources.Vk
+namespace HashtagAggregator.Data.Internet.Vk
 {
     public class VkMessageServiceFacade : IVkMessageFacade
     {
         private readonly IOptions<VkSettings> settings;
+        private readonly IOptions<VkAuthSettings> authVkSettings;
         private readonly ILogger<VkMessageServiceFacade> logger;
 
-        public VkMessageServiceFacade(IOptions<VkSettings> settings, ILogger<VkMessageServiceFacade> logger)
+        public VkMessageServiceFacade(IOptions<VkSettings> settings, IOptions<VkAuthSettings> authVkSettings, ILogger<VkMessageServiceFacade> logger)
         {
             this.settings = settings;
+            this.authVkSettings = authVkSettings;
             this.logger = logger;
         }
 
@@ -39,7 +41,8 @@ namespace HashtagAggregator.Data.Internet.DataSources.Vk
             {
                 VkMessageQuery query =
                     new VkMessageQuery(settings.Value.MessagesApiUrl,
-                    settings.Value.ApiVersion)
+                    settings.Value.ApiVersion,
+                    authVkSettings.Value.ServiceToken)
                     {
                         Query = hashtag.ToString()
                     };

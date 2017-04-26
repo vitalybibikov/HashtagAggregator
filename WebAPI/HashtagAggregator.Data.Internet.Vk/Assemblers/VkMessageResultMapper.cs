@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-
 using HashtagAggregator.Core.Entities.VkEntities;
 using HashtagAggregator.Core.Models.Results.Query.HashTag;
 using HashtagAggregator.Core.Models.Results.Query.Message;
@@ -9,7 +8,7 @@ using HashtagAggregator.Core.Models.Results.Query.User;
 using HashtagAggregator.Shared.Common.Infrastructure;
 using HashtagAggregator.Shared.Contracts.Enums;
 
-namespace HashtagAggregator.Data.Internet.Assemblers
+namespace HashtagAggregator.Data.Internet.Vk.Assemblers
 {
     public class VkMessageResultMapper
     {

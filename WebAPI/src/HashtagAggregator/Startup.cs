@@ -58,6 +58,7 @@ namespace HashtagAggregator
         {
             services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
             services.Configure<TwitterAuthSettings>(Configuration.GetSection("TwitterAuthSettings"));
+            services.Configure<VkAuthSettings>(Configuration.GetSection("VkAuthSettings"));
             services.Configure<VkSettings>(Configuration.GetSection("VkSettings"));
             services.Configure<InternetUpdateSettings>(Configuration.GetSection("InternetUpdateSettings"));
             services.Configure<TwitterApiSettings>(Configuration.GetSection("TwitterApiSettings"));

@@ -25,6 +25,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\HashtagAggregator.Data.Internet.Vk\HashtagAggregator.Data.Internet.Vk.csproj" />
     <ProjectReference Include="..\..\HashtagAggregator.Shared.Common\HashtagAggregator.Shared.Common.csproj" />
     <ProjectReference Include="..\..\HashtagAggregator.Data.DataAccess\HashtagAggregator.Data.DataAccess.csproj" />
     <ProjectReference Include="..\..\HashtagAggregator.Data.Contracts\HashtagAggregator.Data.Contracts.csproj" />

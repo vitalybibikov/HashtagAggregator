@@ -4,6 +4,7 @@ using System.Linq;
 
 using HashtagAggregator.Core.Entities.VkEntities;
 using HashtagAggregator.Data.Internet.Assemblers;
+using HashtagAggregator.Data.Internet.Vk.Assemblers;
 using HashtagAggregator.Shared.Common.Infrastructure;
 using HashtagAggregator.Shared.Contracts.Enums;
 using HashTagAggregator.Tests.DataHelpers.VK;

@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
+
 using HashtagAggregator.Core.Contracts.Interface.DataSources;
 using HashtagAggregator.Core.Cqrs.Abstract;
 using HashtagAggregator.Core.Models.Commands;

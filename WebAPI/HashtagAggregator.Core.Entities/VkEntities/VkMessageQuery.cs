@@ -5,8 +5,12 @@ namespace HashtagAggregator.Core.Entities.VkEntities
 {
     public class VkMessageQuery : VkQuery
     {
-        public VkMessageQuery(string baseUrl, string version) : base(baseUrl, version)
+        private const string AccessTokenName = "access_token";
+        private readonly string serviceToken;
+
+        public VkMessageQuery(string baseUrl, string version, string serviceToken) : base(baseUrl, version)
         {
+            this.serviceToken = serviceToken;
         }
 
         public string Query { get; set; }
@@ -21,6 +25,8 @@ namespace HashtagAggregator.Core.Entities.VkEntities
             builder.Append(Encode(Query));
             builder.Append("&extended=");
             builder.Append(Encode(Convert.ToInt32(Extended).ToString()));
+            builder.Append($"&{AccessTokenName}=");
+            builder.Append(serviceToken);
             return builder.ToString();
         }
     }

@@ -3,7 +3,7 @@
 using HashtagAggregator.Core.Contracts.Interface.DataSources;
 using HashtagAggregator.Core.Models.Commands;
 using HashtagAggregator.Data.Contracts.Interface.JobObjects;
-using HashtagAggregator.Data.Internet.DataSources.Vk;
+using HashtagAggregator.Data.Internet.Vk;
 
 namespace HashtagAggregator.DependencyInjection
 {

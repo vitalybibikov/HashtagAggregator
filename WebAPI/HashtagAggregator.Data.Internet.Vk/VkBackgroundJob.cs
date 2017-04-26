@@ -3,7 +3,7 @@ using HashtagAggregator.Core.Models.Commands;
 using HashtagAggregator.Core.Models.Interface.Cqrs.Command;
 using HashtagAggregator.Data.Contracts.Interface.JobObjects;
 
-namespace HashtagAggregator.Data.Internet.DataSources.Vk
+namespace HashtagAggregator.Data.Internet.Vk
 {
     public class VkBackgroundJob : IVkBackgroundJob<MessageCreateCommand>
     {

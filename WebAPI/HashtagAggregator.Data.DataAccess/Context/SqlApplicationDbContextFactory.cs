@@ -21,8 +21,6 @@ namespace HashtagAggregator.Data.DataAccess.Context
  
             configuration = builder.Build();
 
-            Console.WriteLine(configuration.GetSection("AppSettings:ConnectionString").Value);
-            Console.WriteLine("###");
             var optionsBuilder = new DbContextOptionsBuilder<SqlApplicationDbContext>();
             optionsBuilder.UseSqlServer(configuration.GetSection("AppSettings:ConnectionString").Value, m => { m.EnableRetryOnFailure(); });
 

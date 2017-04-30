@@ -37,9 +37,9 @@ namespace HashtagAggregator.Data.Internet.Vk
 
         public async Task<MessagesQueryResult> GetAllAsync(HashTagWord hashtag)
         {
-            using (WebRequestWrapper request = new WebRequestWrapper())
+            using (var request = new WebRequestWrapper())
             {
-                VkMessageQuery query =
+                var query =
                     new VkMessageQuery(settings.Value.MessagesApiUrl,
                     settings.Value.ApiVersion,
                     authVkSettings.Value.ServiceToken)
@@ -60,8 +60,8 @@ namespace HashtagAggregator.Data.Internet.Vk
                     throw new InvalidDataException(jObject);
                 }
 
-                VkNewsFeed feed = JsonConvert.DeserializeObject<VkNewsFeed>(jObject);
-                VkMessageResultMapper mapper = new VkMessageResultMapper();
+                var feed = JsonConvert.DeserializeObject<VkNewsFeed>(jObject);
+                var mapper = new VkMessageResultMapper();
                 return mapper.MapSingle(feed, hashtag);
             }
         }
@@ -86,16 +86,6 @@ namespace HashtagAggregator.Data.Internet.Vk
             //    Console.WriteLine(ex);
             //}
             //return new CommandResult { Success = true };
-        }
-
-        public async Task<MessagesQueryResult> GetNumberAsync(int number, string hashtag)
-        {
-            throw new NotImplementedException();
-        }
-
-        public async Task<MessagesQueryResult> GetSinceLastIdAsync(long lastId, string hashtag)
-        {
-            throw new NotImplementedException();
         }
     }
 }

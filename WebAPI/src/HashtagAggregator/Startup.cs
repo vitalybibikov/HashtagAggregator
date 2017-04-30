@@ -6,7 +6,9 @@ using Hangfire;
 using Serilog;
 
 using HashtagAggregator.Configuration;
+using HashtagAggregator.Data.Contracts.Interface;
 using HashtagAggregator.Data.DataAccess.Context;
+using HashtagAggregator.Data.DataAccess.Seed;
 using HashtagAggregator.DependencyInjection;
 using HashtagAggregator.Shared.Common.Helpers;
 using HashtagAggregator.Shared.Common.Settings;
@@ -34,7 +36,7 @@ namespace HashtagAggregator
                 .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
                 .AddEnvironmentVariables();
             Configuration = builder.Build();
-            
+
             //Configure Serilog
             Log.Logger = new LoggerConfiguration()
                 .ReadFrom
@@ -62,7 +64,7 @@ namespace HashtagAggregator
             services.Configure<VkSettings>(Configuration.GetSection("VkSettings"));
             services.Configure<InternetUpdateSettings>(Configuration.GetSection("InternetUpdateSettings"));
             services.Configure<TwitterApiSettings>(Configuration.GetSection("TwitterApiSettings"));
-            
+
             services.AddMemoryCache();
             services.AddMvc(options =>
             {
@@ -78,13 +80,16 @@ namespace HashtagAggregator
                 .AddDbContext<SqlApplicationDbContext>(
                 options => options.UseSqlServer(connectionString));
 
+            IDbSeeder dbSeeder = new DbSeeder();
+            dbSeeder.Seed(connectionString);
+
             services.AddSingleton<IConfiguration>(Configuration);
             services.AddSingleton<IMemoryCacheWrapper, MemoryCacheMock>();
             services.AddScoped(sp => mapperConfiguration.CreateMapper());
             mapperConfiguration.AssertConfigurationIsValid();
 
             //hangfire
-           services.AddHangfire(config => config.UseSqlServerStorage(connectionString));
+            services.AddHangfire(config => config.UseSqlServerStorage(connectionString));
 
             services.AddCors(options => options.AddPolicy("CorsPolicy",
             builder => builder.AllowAnyOrigin()
@@ -115,7 +120,7 @@ namespace HashtagAggregator
                         {
                             var err = $"Error: {ex.Error.Message}{ex.Error.StackTrace}";
                             System.Diagnostics.Trace.TraceError(err);
-                            await context.Response.WriteAsync(err).ConfigureAwait(false);       
+                            await context.Response.WriteAsync(err).ConfigureAwait(false);
                         }
                     });
             });

@@ -49,11 +49,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HashtagAggregator.Domain.Cq
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HashtagAggregator.Core.Entities", "HashtagAggregator.Core.Entities\HashtagAggregator.Core.Entities.csproj", "{E0010945-BA57-4911-8FF1-7EBFB4B7DBD0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HashtagAggregator.IdentityServer", "HashtagAggregator.IdentityServer\HashtagAggregator.IdentityServer.csproj", "{9AED1585-A37D-4D76-9F01-69145B2F7488}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HashTagAggregator.Tests.DataHelpers", "HashTagAggregator.Tests.DataHelpers\HashTagAggregator.Tests.DataHelpers.csproj", "{D946987C-74D8-4FA2-9599-8945DE9FB145}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HashTagAggregator.Tests.DataHelpers", "HashTagAggregator.Tests.DataHelpers\HashTagAggregator.Tests.DataHelpers.csproj", "{D946987C-74D8-4FA2-9599-8945DE9FB145}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HashtagAggregator.Data.Internet.Vk", "HashtagAggregator.Data.Internet.Vk\HashtagAggregator.Data.Internet.Vk.csproj", "{A3C0C348-C354-4225-AE45-E8A28E20C1DA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HashtagAggregator.Data.Internet.Vk", "HashtagAggregator.Data.Internet.Vk\HashtagAggregator.Data.Internet.Vk.csproj", "{A3C0C348-C354-4225-AE45-E8A28E20C1DA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -125,10 +123,6 @@ Global
 		{E0010945-BA57-4911-8FF1-7EBFB4B7DBD0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E0010945-BA57-4911-8FF1-7EBFB4B7DBD0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E0010945-BA57-4911-8FF1-7EBFB4B7DBD0}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9AED1585-A37D-4D76-9F01-69145B2F7488}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9AED1585-A37D-4D76-9F01-69145B2F7488}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9AED1585-A37D-4D76-9F01-69145B2F7488}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9AED1585-A37D-4D76-9F01-69145B2F7488}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D946987C-74D8-4FA2-9599-8945DE9FB145}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D946987C-74D8-4FA2-9599-8945DE9FB145}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D946987C-74D8-4FA2-9599-8945DE9FB145}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -163,7 +157,6 @@ Global
 		{155BF417-E5CA-4A3C-8F93-5B138B466C4F} = {C0A6C582-F7FE-44CA-8FC2-BBB3A62C961E}
 		{12E3222C-E86D-485F-8DB0-4BE591D17F22} = {C0A6C582-F7FE-44CA-8FC2-BBB3A62C961E}
 		{E0010945-BA57-4911-8FF1-7EBFB4B7DBD0} = {69BD6B5D-B997-49C3-872C-967243F258EE}
-		{9AED1585-A37D-4D76-9F01-69145B2F7488} = {150D8B9D-3032-41DE-9BC1-E259047AA970}
 		{D946987C-74D8-4FA2-9599-8945DE9FB145} = {B7DCEB1B-1E50-469A-A36E-206D5863D092}
 		{A3C0C348-C354-4225-AE45-E8A28E20C1DA} = {7178C8CC-19D3-4350-8531-664A79A0C0B4}
 	EndGlobalSection

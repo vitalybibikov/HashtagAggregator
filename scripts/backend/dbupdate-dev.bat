@@ -10,15 +10,4 @@ cd %apiPath%
 
 dotnet ef database update -e dev -c SqlApplicationDbContext
 
-cd %authPath%
-
-echo %authPath%
-
-dotnet ef database update -e dev -c SqlIdentityDbContext
-dotnet ef database update -e dev -c PersistedGrantDbContext
-dotnet ef database update -e dev -c ConfigurationDbContext
-
-cd %currentPath%
-
-echo Finished
 

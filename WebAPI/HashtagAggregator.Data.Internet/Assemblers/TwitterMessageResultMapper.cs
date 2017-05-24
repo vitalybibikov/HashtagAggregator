@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+
 using HashtagAggregator.Core.Models.Results.Query.HashTag;
 using HashtagAggregator.Core.Models.Results.Query.Message;
 using HashtagAggregator.Core.Models.Results.Query.User;

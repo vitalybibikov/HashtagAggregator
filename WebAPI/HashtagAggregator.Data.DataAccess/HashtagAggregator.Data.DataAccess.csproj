@@ -23,11 +23,11 @@
 
   <ItemGroup>
     <PackageReference Include="Dapper" Version="1.50.2" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="1.1.1" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="1.1.1" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="1.1.0" />
-    <PackageReference Include="Microsoft.Extensions.Configuration" Version="1.1.1" />
-    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="1.1.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="1.1.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="1.1.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="1.1.1" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="1.1.2" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="1.1.2" />
   </ItemGroup>
 
   <ItemGroup>

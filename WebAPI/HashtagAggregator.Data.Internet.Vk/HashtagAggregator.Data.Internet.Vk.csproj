@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp1.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="VkNet" Version="1.29.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\HashtagAggregator.Core.Contracts\HashtagAggregator.Core.Contracts.csproj" />
+    <ProjectReference Include="..\HashtagAggregator.Core.Cqrs\HashtagAggregator.Core.Cqrs.csproj" />
+    <ProjectReference Include="..\HashtagAggregator.Core.Entities\HashtagAggregator.Core.Entities.csproj" />
+    <ProjectReference Include="..\HashtagAggregator.Core.Models\HashtagAggregator.Core.Models.csproj" />
+    <ProjectReference Include="..\HashtagAggregator.Data.Contracts\HashtagAggregator.Data.Contracts.csproj" />
+  </ItemGroup>
+
+</Project>

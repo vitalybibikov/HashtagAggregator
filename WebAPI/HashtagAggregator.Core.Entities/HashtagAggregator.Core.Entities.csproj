@@ -12,11 +12,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\HashtagAggregator.Shared.Common\HashtagAggregator.Shared.Common.csproj" />
-    <ProjectReference Include="..\HashtagAggregator.Shared.Contracts\HashtagAggregator.Shared.Contracts.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
+    <PackageReference Include="HashtagAggregator.Shared.Contracts" Version="1.0.1" />
     <PackageReference Include="Newtonsoft.Json" Version="10.0.2" />
     <PackageReference Include="System.Text.Encodings.Web" Version="4.3.1" />
   </ItemGroup>

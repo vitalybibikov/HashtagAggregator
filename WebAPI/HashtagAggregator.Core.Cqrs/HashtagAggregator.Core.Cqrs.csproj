@@ -14,12 +14,11 @@
   <ItemGroup>
     <ProjectReference Include="..\HashtagAggregator.Core.Contracts\HashtagAggregator.Core.Contracts.csproj" />
     <ProjectReference Include="..\HashtagAggregator.Core.Models\HashtagAggregator.Core.Models.csproj" />
-    <ProjectReference Include="..\HashtagAggregator.Shared.Contracts\HashtagAggregator.Shared.Contracts.csproj" />
-    <ProjectReference Include="..\HashtagAggregator.Shared.Logging\HashtagAggregator.Shared.Logging.csproj" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Autofac" Version="4.6.0" />
+    <PackageReference Include="HashtagAggregator.Shared.Logging" Version="1.0.1" />
     <PackageReference Include="Serilog.Extensions.Logging" Version="1.4.1-dev-10147" />
   </ItemGroup>
 

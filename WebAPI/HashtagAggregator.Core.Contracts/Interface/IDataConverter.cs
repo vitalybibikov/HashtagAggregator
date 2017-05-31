@@ -1,4 +1,5 @@
-﻿namespace HashtagAggregator.Core.Contracts.Interface
+﻿
+namespace HashtagAggregator.Core.Contracts.Interface
 {
     public interface IDataConverter<T>
     {

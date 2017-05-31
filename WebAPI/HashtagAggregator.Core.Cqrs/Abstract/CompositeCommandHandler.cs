@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using HashtagAggregator.Core.Contracts.Interface.Cqrs.Command;
 using HashtagAggregator.Core.Models.Interface.Cqrs.Command;
-using HashtagAggregator.Core.Models.Queries;
 using HashtagAggregator.Core.Models.Results;
 using HashtagAggregator.Shared.Logging;
 using Microsoft.Extensions.Logging;

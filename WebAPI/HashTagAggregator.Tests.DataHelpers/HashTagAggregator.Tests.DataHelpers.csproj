@@ -11,8 +11,6 @@
   <ItemGroup>
     <ProjectReference Include="..\HashtagAggregator.Core.Entities\HashtagAggregator.Core.Entities.csproj" />
     <ProjectReference Include="..\HashtagAggregator.Core.Models\HashtagAggregator.Core.Models.csproj" />
-    <ProjectReference Include="..\HashtagAggregator.Shared.Common\HashtagAggregator.Shared.Common.csproj" />
-    <ProjectReference Include="..\HashtagAggregator.Shared.Contracts\HashtagAggregator.Shared.Contracts.csproj" />
   </ItemGroup>
 
 </Project>

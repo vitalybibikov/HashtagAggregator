@@ -26,7 +26,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\HashtagAggregator.Data.Internet.Vk\HashtagAggregator.Data.Internet.Vk.csproj" />
-    <ProjectReference Include="..\..\HashtagAggregator.Shared.Common\HashtagAggregator.Shared.Common.csproj" />
     <ProjectReference Include="..\..\HashtagAggregator.Data.DataAccess\HashtagAggregator.Data.DataAccess.csproj" />
     <ProjectReference Include="..\..\HashtagAggregator.Data.Contracts\HashtagAggregator.Data.Contracts.csproj" />
     <ProjectReference Include="..\..\HashtagAggregator.Core.Cqrs\HashtagAggregator.Core.Cqrs.csproj" />
@@ -35,10 +34,11 @@
     <ProjectReference Include="..\..\HashtagAggregator.Domain.Cqrs.Vk\HashtagAggregator.Domain.Cqrs.Vk.csproj" />
     <ProjectReference Include="..\..\HashtagAggregator.Data.Internet\HashtagAggregator.Data.Internet.csproj" />
     <ProjectReference Include="..\..\HashtagAggregator.Domain.Cqrs.EF\HashtagAggregator.Domain.Cqrs.EF.csproj" />
-    <ProjectReference Include="..\..\HashtagAggregator.Shared.Logging\HashtagAggregator.Shared.Logging.csproj" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="HashtagAggregator.Shared.Common" Version="1.0.1" />
+    <PackageReference Include="HashtagAggregator.Shared.Contracts" Version="1.0.1" />
     <PackageReference Include="IdentityServer4" Version="1.5.1" />
     <PackageReference Include="IdentityServer4.AccessTokenValidation" Version="1.2.1" />
     <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.1.0-beta1" />

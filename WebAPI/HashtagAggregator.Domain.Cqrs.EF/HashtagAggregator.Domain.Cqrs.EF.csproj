@@ -18,7 +18,6 @@
     <ProjectReference Include="..\HashtagAggregator.Core.Models\HashtagAggregator.Core.Models.csproj" />
     <ProjectReference Include="..\HashtagAggregator.Data.DataAccess\HashtagAggregator.Data.DataAccess.csproj" />
     <ProjectReference Include="..\HashtagAggregator.Domain.Cqrs.Common\HashtagAggregator.Domain.Cqrs.Common.csproj" />
-    <ProjectReference Include="..\HashtagAggregator.Shared.Contracts\HashtagAggregator.Shared.Contracts.csproj" />
   </ItemGroup>
 
   <ItemGroup>

@@ -8,6 +8,12 @@
     <PackageId>HashtagAggregator</PackageId>
     <PackageTargetFallback>$(PackageTargetFallback);dnxcore50</PackageTargetFallback>
     <RuntimeFrameworkVersion>1.1.1</RuntimeFrameworkVersion>
+    <Description>HashtagAggregator Main API</Description>
+    <Copyright>Vitaly Bibikov</Copyright>
+    <Authors>Vitaly Bibikov</Authors>
+    <RepositoryType>GIT</RepositoryType>
+    <RepositoryUrl>https://github.com/EvilAvenger/HashtagAggregator</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/EvilAvenger/HashtagAggregator</PackageProjectUrl>
   </PropertyGroup>
 
   <ItemGroup>
@@ -37,8 +43,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="HashtagAggregator.Shared.Common" Version="1.0.1" />
-    <PackageReference Include="HashtagAggregator.Shared.Contracts" Version="1.0.1" />
+    <PackageReference Include="HashtagAggregator.Core.Contracts" Version="1.0.2" />
     <PackageReference Include="IdentityServer4" Version="1.5.1" />
     <PackageReference Include="IdentityServer4.AccessTokenValidation" Version="1.2.1" />
     <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.1.0-beta1" />

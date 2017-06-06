@@ -1,4 +1,4 @@
-﻿using HashtagAggregator.Core.Models.Interface.Cqrs.Query;
+﻿using HashtagAggregator.Core.Contracts.Interface.Cqrs.Query;
 using HashtagAggregator.Shared.Common.Infrastructure;
 
 namespace HashtagAggregator.Core.Models.Results.Query.HashTag

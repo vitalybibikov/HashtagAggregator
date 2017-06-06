@@ -4,8 +4,6 @@ using Autofac;
 using HashtagAggregator.Core.Contracts.Interface.Cqrs.Command;
 using HashtagAggregator.Core.Contracts.Interface.Cqrs.Query;
 using HashtagAggregator.Core.Cqrs.Dispatchers;
-using HashtagAggregator.Core.Models.Interface.Cqrs.Command;
-using HashtagAggregator.Core.Models.Interface.Cqrs.Query;
 using HashtagAggregator.Core.Models.Queries;
 using HashtagAggregator.Domain.Cqrs.Common.Handlers.CompositeQueryHandlers;
 using HashtagAggregator.Domain.Cqrs.EF.Handlers.Queries;

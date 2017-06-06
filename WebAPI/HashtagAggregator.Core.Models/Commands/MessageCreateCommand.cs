@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-
-using HashtagAggregator.Core.Models.Interface.Cqrs.Command;
+using HashtagAggregator.Core.Contracts.Interface.Cqrs.Command;
 using HashtagAggregator.Shared.Contracts.Enums;
 
 namespace HashtagAggregator.Core.Models.Commands

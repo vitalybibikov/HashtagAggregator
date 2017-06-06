@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
 using HashtagAggregator.Core.Contracts.Interface.Cqrs.Command;
-using HashtagAggregator.Core.Models.Interface.Cqrs.Command;
 
 namespace HashtagAggregator.Core.Cqrs.Abstract
 {

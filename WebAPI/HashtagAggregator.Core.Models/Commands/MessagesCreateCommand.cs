@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using HashtagAggregator.Core.Models.Interface.Cqrs.Command;
+using HashtagAggregator.Core.Contracts.Interface.Cqrs.Command;
 
 namespace HashtagAggregator.Core.Models.Commands
 {

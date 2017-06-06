@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-
-using HashtagAggregator.Core.Models.Interface.Cqrs.Query;
+using HashtagAggregator.Core.Contracts.Interface.Cqrs.Query;
 using HashtagAggregator.Core.Models.Results.Query.HashTag;
 using HashtagAggregator.Core.Models.Results.Query.User;
 using HashtagAggregator.Shared.Contracts.Enums;

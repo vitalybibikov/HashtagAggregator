@@ -12,13 +12,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\HashtagAggregator.Core.Contracts\HashtagAggregator.Core.Contracts.csproj" />
     <ProjectReference Include="..\HashtagAggregator.Core.Cqrs\HashtagAggregator.Core.Cqrs.csproj" />
     <ProjectReference Include="..\HashtagAggregator.Core.Models\HashtagAggregator.Core.Models.csproj" />
     <ProjectReference Include="..\HashtagAggregator.Domain.Cqrs.Common\HashtagAggregator.Domain.Cqrs.Common.csproj" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="HashtagAggregator.Core.Contracts" Version="1.0.2" />
     <PackageReference Include="TweetinviAPI" Version="1.2.0.1" />
   </ItemGroup>
 

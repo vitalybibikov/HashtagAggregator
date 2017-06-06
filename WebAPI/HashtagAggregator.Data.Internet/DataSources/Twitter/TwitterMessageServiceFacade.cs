@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using HashtagAggregator.Core.Contracts.Interface.Cqrs.Command;
+using HashtagAggregator.Core.Contracts.Interface.Cqrs.Query;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 
 using HashtagAggregator.Core.Contracts.Interface.DataSources;
 using HashtagAggregator.Core.Models;
 using HashtagAggregator.Core.Models.Commands;
-using HashtagAggregator.Core.Models.Interface.Cqrs.Command;
 using HashtagAggregator.Core.Models.Results;
 using HashtagAggregator.Core.Models.Results.Query.Message;
 using HashtagAggregator.Data.Contracts.Interface;
@@ -34,7 +35,7 @@ namespace HashtagAggregator.Data.Internet.DataSources.Twitter
             this.logger = logger;
         }
 
-        public async Task<MessagesQueryResult> GetAllAsync(HashTagWord hashtag)
+        public async Task<IQueryResult> GetAllAsync(HashTagWord hashtag)
         {
             ISearchTweetsParameters tweetsParameters = new SearchTweetsParameters(hashtag.TagWithHash);
             tweetsParameters.TweetSearchType = TweetSearchType.OriginalTweetsOnly;
@@ -53,7 +54,7 @@ namespace HashtagAggregator.Data.Internet.DataSources.Twitter
             return mapper.MapBunch(tweets);
         }
 
-        public async Task<ICommandResult> Save(IEnumerable<MessageCreateCommand> filtered)
+        public async Task<ICommandResult> Save(IEnumerable<ICommand> filtered)
         {
             var publishIntervalInSec = 1;
             foreach (MessageCreateCommand command in filtered)
@@ -95,7 +96,7 @@ namespace HashtagAggregator.Data.Internet.DataSources.Twitter
         {
             var searchParameter = new SearchTweetsParameters(hashtag)
             {
-                SinceId = id,
+                SinceId = id
             };
 
             IEnumerable<ITweet> tweets = await SearchAsync.SearchTweets(searchParameter);

@@ -12,7 +12,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\HashtagAggregator.Core.Contracts\HashtagAggregator.Core.Contracts.csproj" />
+    <PackageReference Include="HashtagAggregator.Core.Contracts" Version="1.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\HashtagAggregator.Core.Cqrs\HashtagAggregator.Core.Cqrs.csproj" />
     <ProjectReference Include="..\HashtagAggregator.Core.Models\HashtagAggregator.Core.Models.csproj" />
   </ItemGroup>

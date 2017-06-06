@@ -18,7 +18,7 @@ namespace HashtagAggregator.Domain.Cqrs.Vk.Handlers
 
         protected override async Task<MessagesQueryResult> GetDataAsync(MessagesQuery query)
         {
-            return await Facade.GetAllAsync(query.HashTag);
+            return (MessagesQueryResult) await Facade.GetAllAsync(query.HashTag);
         }
     }
 }

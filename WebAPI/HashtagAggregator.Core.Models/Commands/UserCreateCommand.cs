@@ -1,8 +1,9 @@
-﻿using HashtagAggregator.Shared.Contracts.Enums;
+﻿using HashtagAggregator.Core.Contracts.Interface.Cqrs.Command;
+using HashtagAggregator.Shared.Contracts.Enums;
 
 namespace HashtagAggregator.Core.Models.Commands
 {
-    public class UserCreateCommand
+    public class UserCreateCommand : ICommand
     {
         public long Id { get; set; }
 

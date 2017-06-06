@@ -1,6 +1,6 @@
 ﻿using System;
+using HashtagAggregator.Core.Contracts.Interface.Cqrs.Command;
 using HashtagAggregator.Core.Models.Commands;
-using HashtagAggregator.Core.Models.Interface.Cqrs.Command;
 using HashtagAggregator.Data.Contracts.Interface.JobObjects;
 
 namespace HashtagAggregator.Data.Internet.Vk

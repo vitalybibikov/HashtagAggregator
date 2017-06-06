@@ -5,7 +5,6 @@ using Autofac;
 using HashtagAggregator.Core.Contracts.Interface;
 using HashtagAggregator.Core.Contracts.Interface.Cqrs.Query;
 using HashtagAggregator.Core.Cqrs.Abstract;
-using HashtagAggregator.Core.Models.Interface.Cqrs.Query;
 using Microsoft.Extensions.Logging;
 
 namespace HashtagAggregator.Core.Cqrs.Dispatchers

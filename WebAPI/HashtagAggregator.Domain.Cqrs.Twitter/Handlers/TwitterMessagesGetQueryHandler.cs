@@ -1,5 +1,4 @@
 ﻿using System.Threading.Tasks;
-
 using HashtagAggregator.Core.Contracts.Interface.DataSources;
 using HashtagAggregator.Core.Models.Queries;
 using HashtagAggregator.Core.Models.Results.Query.Message;
@@ -19,7 +18,7 @@ namespace HashtagAggregator.Domain.Cqrs.Twitter.Handlers
 
         protected override async Task<MessagesQueryResult> GetDataAsync(MessagesQuery query)
         {
-            return await Facade.GetAllAsync(query.HashTag);
+            return (MessagesQueryResult) await Facade.GetAllAsync(query.HashTag);
         }
     }
 }

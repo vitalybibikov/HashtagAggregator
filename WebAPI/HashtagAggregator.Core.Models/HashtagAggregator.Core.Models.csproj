@@ -12,8 +12,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="HashtagAggregator.Shared.Common" Version="1.0.1" />
-    <PackageReference Include="HashtagAggregator.Shared.Contracts" Version="1.0.1" />
+    <PackageReference Include="HashtagAggregator.Core.Contracts" Version="1.0.2" />
+    <PackageReference Include="HashtagAggregator.Shared.Contracts" Version="1.0.2" />
   </ItemGroup>
 
 </Project>

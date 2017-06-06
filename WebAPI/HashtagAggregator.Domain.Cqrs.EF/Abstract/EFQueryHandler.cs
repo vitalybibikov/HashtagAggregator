@@ -1,5 +1,5 @@
-﻿using HashtagAggregator.Core.Cqrs.Abstract;
-using HashtagAggregator.Core.Models.Interface.Cqrs.Query;
+﻿using HashtagAggregator.Core.Contracts.Interface.Cqrs.Query;
+using HashtagAggregator.Core.Cqrs.Abstract;
 using HashtagAggregator.Data.DataAccess.Context;
 
 namespace HashtagAggregator.Domain.Cqrs.EF.Abstract

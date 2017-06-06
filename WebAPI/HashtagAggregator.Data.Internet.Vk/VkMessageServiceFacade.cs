@@ -3,12 +3,10 @@ using System.Collections.Generic;
 using System.IO;
 using System.Net.Http;
 using System.Threading.Tasks;
-
+using HashtagAggregator.Core.Contracts.Interface.Cqrs.Command;
+using HashtagAggregator.Core.Contracts.Interface.Cqrs.Query;
 using HashtagAggregator.Core.Contracts.Interface.DataSources;
 using HashtagAggregator.Core.Entities.VkEntities;
-using HashtagAggregator.Core.Models.Commands;
-using HashtagAggregator.Core.Models.Interface.Cqrs.Command;
-using HashtagAggregator.Core.Models.Results.Query.Message;
 using HashtagAggregator.Data.Internet.Vk.Assemblers;
 using HashtagAggregator.Shared.Common.Helpers;
 using HashtagAggregator.Shared.Common.Infrastructure;
@@ -35,7 +33,7 @@ namespace HashtagAggregator.Data.Internet.Vk
             this.logger = logger;
         }
 
-        public async Task<MessagesQueryResult> GetAllAsync(HashTagWord hashtag)
+        public async Task<IQueryResult> GetAllAsync(HashTagWord hashtag)
         {
             using (var request = new WebRequestWrapper())
             {
@@ -66,7 +64,7 @@ namespace HashtagAggregator.Data.Internet.Vk
             }
         }
 
-        public async Task<ICommandResult> Save(IEnumerable<MessageCreateCommand> filtered)
+        public async Task<ICommandResult> Save(IEnumerable<ICommand> filtered)
         {
             //todo: refactor
             throw new NotImplementedException();

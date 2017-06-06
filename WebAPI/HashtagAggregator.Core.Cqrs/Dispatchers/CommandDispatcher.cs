@@ -3,7 +3,6 @@ using System.Threading.Tasks;
 using Autofac;
 using HashtagAggregator.Core.Contracts.Interface.Cqrs.Command;
 using HashtagAggregator.Core.Cqrs.Abstract;
-using HashtagAggregator.Core.Models.Interface.Cqrs.Command;
 using Microsoft.Extensions.Logging;
 
 namespace HashtagAggregator.Core.Cqrs.Dispatchers

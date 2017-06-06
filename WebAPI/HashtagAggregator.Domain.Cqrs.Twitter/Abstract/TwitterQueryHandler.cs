@@ -1,6 +1,6 @@
-﻿using HashtagAggregator.Core.Contracts.Interface.DataSources;
+﻿using HashtagAggregator.Core.Contracts.Interface.Cqrs.Query;
+using HashtagAggregator.Core.Contracts.Interface.DataSources;
 using HashtagAggregator.Core.Cqrs.Abstract;
-using HashtagAggregator.Core.Models.Interface.Cqrs.Query;
 
 namespace HashtagAggregator.Domain.Cqrs.Twitter.Abstract
 {

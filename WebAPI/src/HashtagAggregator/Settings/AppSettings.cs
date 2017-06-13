@@ -1,4 +1,4 @@
-﻿namespace HashtagAggregator.Shared.Common.Settings
+﻿namespace HashtagAggregator.Settings
 {
     public class AppSettings
     {

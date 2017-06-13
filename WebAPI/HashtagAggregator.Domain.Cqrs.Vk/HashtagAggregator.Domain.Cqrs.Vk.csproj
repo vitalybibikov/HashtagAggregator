@@ -13,7 +13,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\HashtagAggregator.Core.Cqrs\HashtagAggregator.Core.Cqrs.csproj" />
-    <ProjectReference Include="..\HashtagAggregator.Core.Entities\HashtagAggregator.Core.Entities.csproj" />
     <ProjectReference Include="..\HashtagAggregator.Core.Models\HashtagAggregator.Core.Models.csproj" />
     <ProjectReference Include="..\HashtagAggregator.Domain.Cqrs.Common\HashtagAggregator.Domain.Cqrs.Common.csproj" />
   </ItemGroup>

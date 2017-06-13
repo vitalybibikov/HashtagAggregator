@@ -10,8 +10,8 @@ using HashtagAggregator.Data.Contracts.Interface;
 using HashtagAggregator.Data.DataAccess.Context;
 using HashtagAggregator.Data.DataAccess.Seed;
 using HashtagAggregator.DependencyInjection;
+using HashtagAggregator.Settings;
 using HashtagAggregator.Shared.Common.Helpers;
-using HashtagAggregator.Shared.Common.Settings;
 using HashtagAggregator.Shared.Contracts.Interfaces;
 
 using Microsoft.AspNetCore.Builder;

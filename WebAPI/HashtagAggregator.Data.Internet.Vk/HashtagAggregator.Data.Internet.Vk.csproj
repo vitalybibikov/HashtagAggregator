@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="HashtagAggregator.Core.Entities" Version="1.0.0" />
     <PackageReference Include="VkNet" Version="1.29.1" />
   </ItemGroup>
 

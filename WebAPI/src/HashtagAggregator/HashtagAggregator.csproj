@@ -32,7 +32,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\HashtagAggregator.Data.Internet.Vk\HashtagAggregator.Data.Internet.Vk.csproj" />
-    <ProjectReference Include="..\..\HashtagAggregator.Data.DataAccess\HashtagAggregator.Data.DataAccess.csproj" />
     <ProjectReference Include="..\..\HashtagAggregator.Data.Contracts\HashtagAggregator.Data.Contracts.csproj" />
     <ProjectReference Include="..\..\HashtagAggregator.Core.Cqrs\HashtagAggregator.Core.Cqrs.csproj" />
     <ProjectReference Include="..\..\HashtagAggregator.Core.Models\HashtagAggregator.Core.Models.csproj" />
@@ -44,6 +43,7 @@
 
   <ItemGroup>
     <PackageReference Include="HashtagAggregator.Core.Contracts" Version="1.0.2" />
+    <PackageReference Include="HashtagAggregator.Data.DataAccess" Version="1.0.0" />
     <PackageReference Include="IdentityServer4" Version="1.5.1" />
     <PackageReference Include="IdentityServer4.AccessTokenValidation" Version="1.2.1" />
     <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.1.0-beta1" />

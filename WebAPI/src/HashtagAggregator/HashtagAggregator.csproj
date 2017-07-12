@@ -31,7 +31,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\HashtagAggregator.Data.Internet.Vk\HashtagAggregator.Data.Internet.Vk.csproj" />
     <ProjectReference Include="..\..\HashtagAggregator.Core.Cqrs\HashtagAggregator.Core.Cqrs.csproj" />
     <ProjectReference Include="..\..\HashtagAggregator.Core.Models\HashtagAggregator.Core.Models.csproj" />
     <ProjectReference Include="..\..\HashtagAggregator.Domain.Cqrs.EF\HashtagAggregator.Domain.Cqrs.EF.csproj" />

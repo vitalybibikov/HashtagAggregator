@@ -1,8 +1,9 @@
-﻿using HashtagAggregator.Core.Contracts.Interface.Cqrs.Query;
+﻿using HashtagAggregator.Core.Models.Results.Query.HashTag;
+using MediatR;
 
 namespace HashtagAggregator.Core.Models.Queries
 {
-    public class HashTagByParentNameQuery : IQuery
+    public class HashTagByParentNameQuery : IRequest<HashTagsQueryResult>
     {
         public string HashTag { get; set; }
     }

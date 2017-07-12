@@ -6,7 +6,7 @@
 
   <ItemGroup>
     <PackageReference Include="Bogus" Version="15.0.3" />
-    <PackageReference Include="HashtagAggregator.Core.Entities" Version="1.0.0" />
+    <PackageReference Include="HashtagAggregator.Core.Entities" Version="1.0.1" />
   </ItemGroup>
 
   <ItemGroup>

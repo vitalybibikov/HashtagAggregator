@@ -36,7 +36,7 @@ namespace HashtagAggregator.Tests.Unit.InMemory
                 context.SaveChanges();
 
                 //Act
-                var result = handler.GetAsync(query).Result;
+                var result = handler.Handle(query).Result;
 
                 //Assert
                 Assert.Equal(data.Count, result.Messages.Count);
@@ -63,7 +63,7 @@ namespace HashtagAggregator.Tests.Unit.InMemory
                 context.SaveChanges();
 
                 //Act
-                var result = handler.GetAsync(query);
+                var result = handler.Handle(query);
                 MessagesQueryResult mappedResult = mapper.MapBunch(data, hashtag);
 
                 //Assert

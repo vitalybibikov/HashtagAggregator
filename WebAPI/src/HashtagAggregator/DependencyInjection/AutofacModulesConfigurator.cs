@@ -1,6 +1,7 @@
 ﻿using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using AutofacSerilogIntegration;
+using HashTagAggregatorConsumer.Service.Configuration.Modules;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace HashtagAggregator.DependencyInjection
@@ -11,11 +12,7 @@ namespace HashtagAggregator.DependencyInjection
         {
             var builder = new ContainerBuilder();
             builder.RegisterLogger();
-            builder.RegisterModule<CqrsModule>();
-            builder.RegisterModule<VkModule>();
-            builder.RegisterModule<TwitterModule>();
-            builder.RegisterModule<EfModule>();
-            builder.RegisterModule<CommonModule>();
+            builder.RegisterModule<MediatrModule>();
             builder.Populate(services);
             
             return builder.Build();

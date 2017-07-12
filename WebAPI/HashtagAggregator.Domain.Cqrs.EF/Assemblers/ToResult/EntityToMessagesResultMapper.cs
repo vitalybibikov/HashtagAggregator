@@ -20,19 +20,23 @@ namespace HashtagAggregator.Domain.Cqrs.EF.Assemblers.ToResult
                 Enum.TryParse(entity.MediaType.ToString(), out mediaType);
                 EntityToUserResultMapper mapper = new EntityToUserResultMapper();
 
-                MessageQueryResult message = new MessageQueryResult(
-                    entity.Id,
-                    entity.MessageText,
-                    new List<HashTagQueryResult> {
+                MessageQueryResult message = new MessageQueryResult
+                {
+                    Id = entity.Id,
+                    MessageText = entity.MessageText,
+                    HashTags = new List<HashTagQueryResult>
+                    {
                         new HashTagQueryResult
                         {
                             HashTag = hashtag
                         }
                     },
-                    mediaType,
-                    entity.PostDate,
-                    entity.NetworkId,
-                    mapper.MapSingle(entity.User));
+                    MediaType = mediaType,
+                    PostDate = entity.PostDate,
+                    NetworkId = entity.NetworkId,
+                    User = mapper.MapSingle(entity.User)
+                };
+
 
                 results.Messages.Add(message);
             }

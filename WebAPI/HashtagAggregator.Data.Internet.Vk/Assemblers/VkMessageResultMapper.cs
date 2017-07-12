@@ -2,11 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using HashtagAggregator.Core.Entities.VkEntities;
-using HashtagAggregator.Core.Models.Results.Query.HashTag;
 using HashtagAggregator.Core.Models.Results.Query.Message;
 using HashtagAggregator.Core.Models.Results.Query.User;
 using HashtagAggregator.Shared.Common.Infrastructure;
-using HashtagAggregator.Shared.Contracts.Enums;
 
 namespace HashtagAggregator.Data.Internet.Vk.Assemblers
 {
@@ -36,21 +34,21 @@ namespace HashtagAggregator.Data.Internet.Vk.Assemblers
             {
                 var date = DateTimeOffset.FromUnixTimeSeconds(post.UnixTimeStamp).UtcDateTime;
                 var user = FillUser(post, feed);
-                var message =
-                  new MessageQueryResult(0,
-                      post.Text,
-                      new List<HashTagQueryResult>
-                      {
-                          new HashTagQueryResult
-                          {
-                              HashTag = hashtag
-                          }
-                      },  
-                      SocialMediaType.VK,
-                      date,
-                      post.Id.ToString(),
-                      user);
-                results.Messages.Add(message);
+                //var message =
+                //  new MessageQueryResult(0,
+                //      post.Text,
+                //      new List<HashTagQueryResult>
+                //      {
+                //          new HashTagQueryResult
+                //          {
+                //              HashTag = hashtag
+                //          }
+                //      },  
+                //      SocialMediaType.VK,
+                //      date,
+                //      post.Id.ToString(),
+                //      user);
+                //results.Messages.Add(message);
             }
             return results;
         }

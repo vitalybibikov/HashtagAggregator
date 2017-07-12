@@ -1,18 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Net.Http;
 using System.Threading.Tasks;
-using HashtagAggregator.Core.Contracts.Interface.Cqrs.Command;
-using HashtagAggregator.Core.Contracts.Interface.Cqrs.Query;
-using HashtagAggregator.Core.Contracts.Interface.DataSources;
+
 using HashtagAggregator.Core.Entities.VkEntities;
+using HashtagAggregator.Core.Models.Results.Query.Message;
 using HashtagAggregator.Data.Internet.Vk.Assemblers;
 using HashtagAggregator.Shared.Common.Helpers;
 using HashtagAggregator.Shared.Common.Infrastructure;
 using HashtagAggregator.Shared.Common.Settings;
 using HashtagAggregator.Shared.Logging;
-
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
@@ -20,7 +17,7 @@ using Newtonsoft.Json.Linq;
 
 namespace HashtagAggregator.Data.Internet.Vk
 {
-    public class VkMessageServiceFacade : IVkMessageFacade
+    public class VkMessageServiceFacade 
     {
         private readonly IOptions<VkSettings> settings;
         private readonly IOptions<VkAuthSettings> authVkSettings;
@@ -33,7 +30,7 @@ namespace HashtagAggregator.Data.Internet.Vk
             this.logger = logger;
         }
 
-        public async Task<IQueryResult> GetAllAsync(HashTagWord hashtag)
+        public async Task<MessagesQueryResult> GetAllAsync(HashTagWord hashtag)
         {
             using (var request = new WebRequestWrapper())
             {
@@ -62,28 +59,6 @@ namespace HashtagAggregator.Data.Internet.Vk
                 var mapper = new VkMessageResultMapper();
                 return mapper.MapSingle(feed, hashtag);
             }
-        }
-
-        public async Task<ICommandResult> Save(IEnumerable<ICommand> filtered)
-        {
-            //todo: refactor
-            throw new NotImplementedException();
-            //try
-            //{
-            //    var seconds = 1;
-            //    foreach (var command in filtered)
-            //    {
-            //        BackgroundJob.Schedule<IVkBackgroundJob<MessageCreateCommand>>(
-            //            x => x.Publish(command),
-            //            TimeSpan.FromSeconds(seconds));
-            //        seconds += settings.Value.VkMessagePublishDelay;
-            //    }
-            //}
-            //catch (Exception ex)
-            //{
-            //    Console.WriteLine(ex);
-            //}
-            //return new CommandResult { Success = true };
         }
     }
 }

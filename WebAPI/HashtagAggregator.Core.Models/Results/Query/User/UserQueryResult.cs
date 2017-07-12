@@ -1,9 +1,8 @@
-﻿using HashtagAggregator.Core.Contracts.Interface.Cqrs.Query;
-using HashtagAggregator.Shared.Contracts.Enums;
+﻿using HashtagAggregator.Shared.Contracts.Enums;
 
 namespace HashtagAggregator.Core.Models.Results.Query.User
 {
-    public class UserQueryResult : IQueryResult
+    public class UserQueryResult
     {
         public long Id { get; set; }
 

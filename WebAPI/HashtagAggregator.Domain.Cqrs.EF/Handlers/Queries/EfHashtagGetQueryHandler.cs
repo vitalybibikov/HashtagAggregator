@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
-
+using HashtagAggregator.Core.Cqrs.Interface.Queries;
 using HashtagAggregator.Core.Models.Queries;
 using HashtagAggregator.Core.Models.Results.Query.HashTag;
 using HashtagAggregator.Data.DataAccess.Context;
@@ -10,13 +10,13 @@ using Microsoft.EntityFrameworkCore;
 
 namespace HashtagAggregator.Domain.Cqrs.EF.Handlers.Queries
 {
-    public class EfHashtagGetQueryHandler : EfQueryHandler<HashTagsQuery, HashTagsQueryResult>
+    public class EfHashtagGetQueryHandler : EfQueryHandler, IEfHashtagGetQueryHandler
     {
         public EfHashtagGetQueryHandler(SqlApplicationDbContext context) : base(context)
         {
         }
 
-        protected override async Task<HashTagsQueryResult> GetDataAsync(HashTagsQuery query)
+        public async Task<HashTagsQueryResult> Handle(HashTagsQuery query)
         {
             var mapper = new EntityToHashTagResultMapper();
             var result = await Context.Hashtags.Where(

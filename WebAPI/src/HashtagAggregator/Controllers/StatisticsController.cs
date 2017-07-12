@@ -2,14 +2,11 @@
 using System.Threading.Tasks;
 using AutoMapper;
 
-using HashtagAggregator.Core.Contracts.Interface.Cqrs.Command;
-using HashtagAggregator.Core.Contracts.Interface.Cqrs.Query;
-using HashtagAggregator.Core.Models.Commands;
 using HashtagAggregator.Core.Models.Queries;
-using HashtagAggregator.Core.Models.Results.Query.Message;
 using HashtagAggregator.Shared.Common.Infrastructure;
 using HashtagAggregator.ViewModels;
 
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HashtagAggregator.Controllers
@@ -17,15 +14,13 @@ namespace HashtagAggregator.Controllers
     [Route("api/[controller]")]
     public class StatisticsController : Controller
     {
-        private readonly IQueryDispatcher queryDispatcher;
-        private readonly ICommandDispatcher commandDispatcher;
-
+        private readonly IMediator mediator;
+ 
         private IMapper Mapper { get; }
 
-        public StatisticsController(IMapper mapper, IQueryDispatcher queryDispatcher, ICommandDispatcher commandDispatcher)
+        public StatisticsController(IMapper mapper, IMediator mediator)
         {
-            this.queryDispatcher = queryDispatcher;
-            this.commandDispatcher = commandDispatcher;
+            this.mediator = mediator;
             Mapper = mapper;
         }
 
@@ -35,8 +30,7 @@ namespace HashtagAggregator.Controllers
         public async Task<IEnumerable<MessageViewModel>> Get(string hashtag)
         {
             var query = new MessagesQuery { HashTag = new HashTagWord(hashtag) };
-            var result = await queryDispatcher.DispatchMultipleAsync<MessagesQuery, MessagesQueryResult>(query);
-            await commandDispatcher.DispatchAsync(Mapper.Map<MessagesCreateCommand>(result));
+            var result = await mediator.Send(query);
             return Mapper.Map<IEnumerable<MessageViewModel>>(result.Messages);
         }
     }

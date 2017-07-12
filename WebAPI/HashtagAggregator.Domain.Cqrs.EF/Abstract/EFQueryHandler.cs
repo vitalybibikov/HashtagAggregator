@@ -1,12 +1,8 @@
-﻿using HashtagAggregator.Core.Contracts.Interface.Cqrs.Query;
-using HashtagAggregator.Core.Cqrs.Abstract;
-using HashtagAggregator.Data.DataAccess.Context;
+﻿using HashtagAggregator.Data.DataAccess.Context;
 
 namespace HashtagAggregator.Domain.Cqrs.EF.Abstract
 {
-    public abstract class EfQueryHandler<TParameter, TResult> : QueryHandler<TParameter, TResult>
-         where TResult : IQueryResult, new()
-         where TParameter : IQuery
+    public abstract class EfQueryHandler
     {
         protected SqlApplicationDbContext Context { get; }
 

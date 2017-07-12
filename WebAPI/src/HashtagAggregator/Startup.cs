@@ -2,25 +2,25 @@
 using System.Net;
 using Autofac;
 using AutoMapper;
-using Hangfire;
 using Serilog;
 
 using HashtagAggregator.Configuration;
-using HashtagAggregator.Data.Contracts.Interface;
 using HashtagAggregator.Data.DataAccess.Context;
 using HashtagAggregator.Data.DataAccess.Interface;
 using HashtagAggregator.Data.DataAccess.Seed;
 using HashtagAggregator.DependencyInjection;
+using HashtagAggregator.Domain.Cqrs.EF.Abstract;
+using HashtagAggregator.Domain.Cqrs.EF.Handlers.Queries;
 using HashtagAggregator.Settings;
 using HashtagAggregator.Shared.Common.Helpers;
 using HashtagAggregator.Shared.Contracts.Interfaces;
-
+using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
+
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -60,13 +60,9 @@ namespace HashtagAggregator
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
             services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
-            services.Configure<TwitterAuthSettings>(Configuration.GetSection("TwitterAuthSettings"));
             services.Configure<VkAuthSettings>(Configuration.GetSection("VkAuthSettings"));
             services.Configure<VkSettings>(Configuration.GetSection("VkSettings"));
-            services.Configure<InternetUpdateSettings>(Configuration.GetSection("InternetUpdateSettings"));
-            services.Configure<TwitterApiSettings>(Configuration.GetSection("TwitterApiSettings"));
 
-            services.AddMemoryCache();
             services.AddMvc(options =>
             {
                 options.CacheProfiles.Add("Default",
@@ -75,22 +71,17 @@ namespace HashtagAggregator
                         Duration = 60
                     });
             });
-
+            services.AddMediatR(typeof(EfQueryHandler));
             var connectionString = Configuration.GetSection("AppSettings:ConnectionString").Value;
             services.AddEntityFrameworkSqlServer()
-                .AddDbContext<SqlApplicationDbContext>(
-                options => options.UseSqlServer(connectionString));
+                .AddDbContext<SqlApplicationDbContext>();
 
             IDbSeeder dbSeeder = new DbSeeder();
             dbSeeder.Seed(connectionString);
 
             services.AddSingleton<IConfiguration>(Configuration);
-            services.AddSingleton<IMemoryCacheWrapper, MemoryCacheMock>();
             services.AddScoped(sp => mapperConfiguration.CreateMapper());
             mapperConfiguration.AssertConfigurationIsValid();
-
-            //hangfire
-            services.AddHangfire(config => config.UseSqlServerStorage(connectionString));
 
             services.AddCors(options => options.AddPolicy("CorsPolicy",
             builder => builder.AllowAnyOrigin()
@@ -99,8 +90,6 @@ namespace HashtagAggregator
             .AllowCredentials()));
 
             IContainer container = new AutofacModulesConfigurator().Configure(services);
-            GlobalConfiguration.Configuration.UseActivator(new AutofacContainerJobActivator(container));
-
             return container.Resolve<IServiceProvider>();
         }
 
@@ -138,8 +127,6 @@ namespace HashtagAggregator
             app.UseStatusCodePages();
             app.UseStaticFiles();
             app.UseDefaultFiles();
-            app.UseHangfireDashboard();
-            app.UseHangfireServer();
             app.UseMvc();
         }
     }

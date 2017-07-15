@@ -3,7 +3,6 @@ using System.Net;
 using Autofac;
 using AutoMapper;
 using Serilog;
-
 using HashtagAggregator.Configuration;
 using HashtagAggregator.Data.DataAccess.Context;
 using HashtagAggregator.Data.DataAccess.Interface;
@@ -11,13 +10,13 @@ using HashtagAggregator.Data.DataAccess.Seed;
 using HashtagAggregator.DependencyInjection;
 using HashtagAggregator.Domain.Cqrs.EF.Abstract;
 using HashtagAggregator.Settings;
+using IdentityServer4.Models;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -81,10 +80,10 @@ namespace HashtagAggregator
             mapperConfiguration.AssertConfigurationIsValid();
 
             services.AddCors(options => options.AddPolicy("CorsPolicy",
-            builder => builder.AllowAnyOrigin()
-            .AllowAnyMethod()
-            .AllowAnyHeader()
-            .AllowCredentials()));
+                builder => builder.AllowAnyOrigin()
+                    .AllowAnyMethod()
+                    .AllowAnyHeader()
+                    .AllowCredentials()));
 
             IContainer container = new AutofacModulesConfigurator().Configure(services);
             return container.Resolve<IServiceProvider>();
@@ -101,7 +100,7 @@ namespace HashtagAggregator
                 options.Run(
                     async context =>
                     {
-                        context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
+                        context.Response.StatusCode = (int) HttpStatusCode.InternalServerError;
                         var ex = context.Features.Get<IExceptionHandlerFeature>();
                         if (ex != null)
                         {
@@ -118,7 +117,9 @@ namespace HashtagAggregator
             {
                 Authority = Configuration.GetSection("EndpointSettings:AuthEndpoint").Value,
                 RequireHttpsMetadata = false, //todo: should be true when enabled https
-                ApiName = "statisticsapi"
+                ApiName = "statisticsapi",
+                ApiSecret = "hashtagaggreggatorsapiservice",
+                CacheDuration = TimeSpan.FromMinutes(10)
             });
 
             app.UseStatusCodePages();

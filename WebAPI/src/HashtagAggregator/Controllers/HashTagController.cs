@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using AutoMapper;
 using HashtagAggregator.Core.Models.Queries;
+using HashtagAggregator.Shared.Common.Infrastructure;
 using HashtagAggregator.ViewModels;
 using MediatR;
 
@@ -42,7 +43,7 @@ namespace HashtagAggregator.Controllers
         [HttpGet("children/{parentName}")]
         public async Task<IEnumerable<HashtagViewModel>> Get(string parentName)
         {
-            var query = new HashTagByParentNameQuery {HashTag = parentName};
+            var query = new HashTagByParentNameQuery {HashTag = new HashTagWord(parentName)};
             var result = await mediator.Send(query);
             var results = Mapper.Map<IEnumerable<HashtagViewModel>>(result.HashTags);
             return results;

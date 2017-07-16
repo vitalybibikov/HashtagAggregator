@@ -13,7 +13,6 @@ namespace HashtagAggregator
                 .UseIISIntegration()
                 .UseStartup<Startup>()
                 .UseUrls("http://localhost:5000/")
-                .UseApplicationInsights()
                 .Build();
 
             host.Run();

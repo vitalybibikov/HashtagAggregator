@@ -24,7 +24,7 @@ namespace HashtagAggregator.Domain.Cqrs.EF.Handlers.Queries
             var messages = await Context.Messages
                 .Where(
                     message => message.MessageHashTagRelations.Any(
-                        rel => rel.HashTagEntity.HashTag == query.HashTag.NoHashTag)
+                        rel => rel.HashTagEntity.HashTag == query.HashTag.TagWithHash)
                 )
                 .ToListAsync();
 

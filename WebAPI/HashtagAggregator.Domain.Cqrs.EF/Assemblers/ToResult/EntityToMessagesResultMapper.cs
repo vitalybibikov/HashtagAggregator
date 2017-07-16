@@ -18,9 +18,9 @@ namespace HashtagAggregator.Domain.Cqrs.EF.Assemblers.ToResult
             {
                 SocialMediaType mediaType;
                 Enum.TryParse(entity.MediaType.ToString(), out mediaType);
-                EntityToUserResultMapper mapper = new EntityToUserResultMapper();
+                var mapper = new EntityToUserResultMapper();
 
-                MessageQueryResult message = new MessageQueryResult
+                var message = new MessageQueryResult
                 {
                     Id = entity.Id,
                     MessageText = entity.MessageText,
@@ -36,8 +36,6 @@ namespace HashtagAggregator.Domain.Cqrs.EF.Assemblers.ToResult
                     NetworkId = entity.NetworkId,
                     User = mapper.MapSingle(entity.User)
                 };
-
-
                 results.Messages.Add(message);
             }
             return results;

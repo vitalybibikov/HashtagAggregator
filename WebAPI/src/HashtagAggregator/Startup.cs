@@ -17,6 +17,7 @@ using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -70,7 +71,7 @@ namespace HashtagAggregator
             services.AddMediatR(typeof(EfQueryHandler));
             var connectionString = Configuration.GetSection("AppSettings:ConnectionString").Value;
             services.AddEntityFrameworkSqlServer()
-                .AddDbContext<SqlApplicationDbContext>();
+                .AddDbContext<SqlApplicationDbContext>(options => options.UseSqlServer(connectionString));
 
             IDbSeeder dbSeeder = new DbSeeder();
             dbSeeder.Seed(connectionString);

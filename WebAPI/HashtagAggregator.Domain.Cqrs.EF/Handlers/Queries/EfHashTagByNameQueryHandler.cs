@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using HashtagAggregator.Core.Cqrs.Interface.Queries;
 using HashtagAggregator.Core.Models.Queries;
@@ -19,8 +20,10 @@ namespace HashtagAggregator.Domain.Cqrs.EF.Handlers.Queries
         public async Task<HashTagsQueryResult> Handle(HashTagByParentNameQuery query)
         {
             var mapper = new EntityToHashTagResultMapper();
-            var result = await Context.Hashtags.Where(x => x.Parent.HashTag == query.HashTag).ToListAsync();
-            return mapper.MapBunch(result);
+            var parents = await Context.Hashtags.Where(x => x.HashTag == query.HashTag.TagWithHash).ToListAsync();
+            var result = await Context.Hashtags.Where(x => x.Parent.HashTag.Equals(query.HashTag.TagWithHash, StringComparison.OrdinalIgnoreCase)).ToListAsync();
+            parents = parents.Concat(result).ToList();
+            return mapper.MapBunch(parents);
         }
     }
 }

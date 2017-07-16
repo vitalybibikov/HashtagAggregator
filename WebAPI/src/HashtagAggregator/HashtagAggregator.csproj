@@ -7,7 +7,6 @@
     <OutputType>Exe</OutputType>
     <PackageId>HashtagAggregator</PackageId>
     <PackageTargetFallback>$(PackageTargetFallback);dnxcore50</PackageTargetFallback>
-    <RuntimeFrameworkVersion>1.1.1</RuntimeFrameworkVersion>
     <Description>HashtagAggregator Main API</Description>
     <Copyright>Vitaly Bibikov</Copyright>
     <Authors>Vitaly Bibikov</Authors>
@@ -48,11 +47,13 @@
     <PackageReference Include="Microsoft.AspNetCore.Routing" Version="1.1.2" />
     <PackageReference Include="Microsoft.AspNetCore.Server.IISIntegration" Version="1.1.2" />
     <PackageReference Include="Microsoft.AspNetCore.Server.Kestrel" Version="1.1.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="1.1.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="1.1.2" />
     <PackageReference Include="Microsoft.Extensions.Configuration.EnvironmentVariables" Version="1.1.2" />
     <PackageReference Include="Microsoft.Extensions.Configuration.FileExtensions" Version="1.1.2" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="1.1.2" />
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="1.1.2" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="2.0.0-preview2-final" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="1.1.1" />
     <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="1.1.2" />
     <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="1.1.2" />
     <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="1.1.2" />
@@ -61,7 +62,7 @@
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics" Version="1.1.2" />
     <PackageReference Include="Serilog.Sinks.File" Version="3.2.0" />
     <PackageReference Include="Serilog.Settings.Configuration" Version="2.4.0" />
-    <PackageReference Include="AutofacSerilogIntegration" Version="2.0.1-dev-00023" />
+    <PackageReference Include="AutofacSerilogIntegration" Version="2.0.0" />
     <PackageReference Include="Serilog.Sinks.Literate" Version="3.0.0" />
     <PackageReference Include="Serilog.Extensions.Logging" Version="1.4.1-dev-10147" />
     <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="1.1.2" />

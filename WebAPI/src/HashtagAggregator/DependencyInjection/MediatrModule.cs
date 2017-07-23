@@ -3,7 +3,7 @@ using Autofac;
 using Autofac.Features.Variance;
 using MediatR;
 
-namespace HashTagAggregatorConsumer.Service.Configuration.Modules
+namespace HashtagAggregator.DependencyInjection
 {
     public class MediatrModule : Module
     {

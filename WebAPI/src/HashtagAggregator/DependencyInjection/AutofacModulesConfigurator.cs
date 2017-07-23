@@ -1,7 +1,6 @@
 ﻿using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using AutofacSerilogIntegration;
-using HashTagAggregatorConsumer.Service.Configuration.Modules;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace HashtagAggregator.DependencyInjection
@@ -13,8 +12,9 @@ namespace HashtagAggregator.DependencyInjection
             var builder = new ContainerBuilder();
             builder.RegisterLogger();
             builder.RegisterModule<MediatrModule>();
+            builder.RegisterModule<StartableModule>();
             builder.Populate(services);
-            
+
             return builder.Build();
         }
     }

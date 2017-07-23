@@ -9,8 +9,8 @@ using HashtagAggregator.Data.DataAccess.Interface;
 using HashtagAggregator.Data.DataAccess.Seed;
 using HashtagAggregator.DependencyInjection;
 using HashtagAggregator.Domain.Cqrs.EF.Abstract;
+using HashtagAggregator.Infrastructure;
 using HashtagAggregator.Settings;
-using IdentityServer4.Models;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics;
@@ -59,6 +59,9 @@ namespace HashtagAggregator
             services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
             services.Configure<VkAuthSettings>(Configuration.GetSection("VkAuthSettings"));
             services.Configure<VkSettings>(Configuration.GetSection("VkSettings"));
+            services.Configure<EndpointSettings>(Configuration.GetSection("EndpointSettings"));
+            services.Configure<VkConsumeSettings>(Configuration.GetSection("VkConsumeSettings"));
+            services.Configure<TwitterConsumeSettings>(Configuration.GetSection("TwitterConsumeSettings"));
 
             services.AddMvc(options =>
             {
@@ -86,7 +89,9 @@ namespace HashtagAggregator
                     .AllowAnyHeader()
                     .AllowCredentials()));
 
-            IContainer container = new AutofacModulesConfigurator().Configure(services);
+            var container = new AutofacModulesConfigurator().Configure(services);
+            var starter = new ServiceStarter(container);
+            starter.Start();
             return container.Resolve<IServiceProvider>();
         }
 

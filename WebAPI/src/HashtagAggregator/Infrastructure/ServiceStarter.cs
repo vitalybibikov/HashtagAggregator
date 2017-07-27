@@ -2,17 +2,21 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Autofac;
+
 using HashtagAggregator.Infrastructure.Services.Interface;
+using Microsoft.Extensions.Logging;
 
 namespace HashtagAggregator.Infrastructure
 {
-    public class ServiceStarter
+    public class ServiceStarter : IServiceStarter
     {
-        private readonly IContainer container;
+        private readonly ILifetimeScope container;
+        private readonly ILogger<ServiceStarter> logger;
 
-        public ServiceStarter(IContainer container)
+        public ServiceStarter(ILifetimeScope container, ILogger<ServiceStarter> logger)
         {
             this.container = container;
+            this.logger = logger;
         }
 
         public void Start()
@@ -26,9 +30,9 @@ namespace HashtagAggregator.Infrastructure
                     {
                         Task.Run(() => service.Start()).Wait();
                     }
-                    catch (Exception e)
+                    catch (Exception ex)
                     {
-                        Console.WriteLine(e);
+                        logger.LogInformation("Failed to create service.", ex);
                     }
                 }
             }

@@ -39,7 +39,14 @@ namespace HashtagAggregator
             Log.Logger = new LoggerConfiguration()
                 .ReadFrom
                 .Configuration(Configuration)
+                .WriteTo.ApplicationInsightsTraces(
+                    Configuration.GetSection("ApplicationInsights:InstrumentationKey").Value)
                 .CreateLogger();
+
+            if (env.IsEnvironment("dev"))
+            {
+                builder.AddApplicationInsightsSettings(developerMode: true);
+            }
 
             mapperConfiguration = new MapperConfiguration(cfg =>
             {
@@ -62,7 +69,7 @@ namespace HashtagAggregator
             services.Configure<EndpointSettings>(Configuration.GetSection("EndpointSettings"));
             services.Configure<VkConsumeSettings>(Configuration.GetSection("VkConsumeSettings"));
             services.Configure<TwitterConsumeSettings>(Configuration.GetSection("TwitterConsumeSettings"));
-
+            services.AddApplicationInsightsTelemetry(Configuration);
             services.AddMvc(options =>
             {
                 options.CacheProfiles.Add("Default",
@@ -90,13 +97,12 @@ namespace HashtagAggregator
                     .AllowCredentials()));
 
             var container = new AutofacModulesConfigurator().Configure(services);
-            var starter = new ServiceStarter(container);
-            starter.Start();
+
             return container.Resolve<IServiceProvider>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory, IServiceStarter starter)
         {
             loggerFactory.AddDebug();
             loggerFactory.AddSerilog();
@@ -111,13 +117,15 @@ namespace HashtagAggregator
                         if (ex != null)
                         {
                             var err = $"Error: {ex.Error.Message}{ex.Error.StackTrace}";
-                            System.Diagnostics.Trace.TraceError(err);
+                            Log.Error(ex.Error, "Server Error", ex);
                             await context.Response.WriteAsync(err).ConfigureAwait(false);
                         }
                     });
             });
 
             app.UseCors("CorsPolicy");
+
+            starter.Start();
 
             app.UseIdentityServerAuthentication(new IdentityServerAuthenticationOptions
             {

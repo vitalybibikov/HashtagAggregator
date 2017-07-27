@@ -13,6 +13,8 @@
     <RepositoryType>GIT</RepositoryType>
     <RepositoryUrl>https://github.com/EvilAvenger/HashtagAggregator</RepositoryUrl>
     <PackageProjectUrl>https://github.com/EvilAvenger/HashtagAggregator</PackageProjectUrl>
+    <ApplicationInsightsResourceId>/subscriptions/8d305b0e-81ea-4a2e-8498-8d6d76cabd87/resourcegroups/Default-ApplicationInsights-EastUS/providers/microsoft.insights/components/HashtagAggregator</ApplicationInsightsResourceId>
+    <ApplicationInsightsAnnotationResourceId>/subscriptions/8d305b0e-81ea-4a2e-8498-8d6d76cabd87/resourcegroups/Default-ApplicationInsights-EastUS/providers/microsoft.insights/components/HashtagAggregator</ApplicationInsightsAnnotationResourceId>
   </PropertyGroup>
 
   <ItemGroup>
@@ -60,6 +62,7 @@
     <PackageReference Include="AutoMapper" Version="6.1.1" />
     <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="4.1.0" />
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics" Version="1.1.2" />
+    <PackageReference Include="Serilog.Sinks.ApplicationInsights" Version="2.2.1" />
     <PackageReference Include="Serilog.Sinks.File" Version="3.2.0" />
     <PackageReference Include="Serilog.Settings.Configuration" Version="2.4.0" />
     <PackageReference Include="AutofacSerilogIntegration" Version="2.0.0" />

@@ -39,7 +39,7 @@
 
   <ItemGroup>
     <PackageReference Include="HashtagAggregator.Core.Contracts" Version="1.0.4" />
-    <PackageReference Include="HashtagAggregator.Data.DataAccess" Version="1.0.2" />
+    <PackageReference Include="HashtagAggregator.Data.DataAccess" Version="1.0.7" />
     <PackageReference Include="IdentityServer4" Version="1.5.2" />
     <PackageReference Include="IdentityServer4.AccessTokenValidation" Version="1.2.1" />
     <PackageReference Include="MediatR" Version="3.0.1" />
@@ -60,7 +60,7 @@
     <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="1.1.2" />
     <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="1.1.2" />
     <PackageReference Include="AutoMapper" Version="6.1.1" />
-    <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="4.1.0" />
+    <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="4.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics" Version="1.1.2" />
     <PackageReference Include="Serilog.Sinks.ApplicationInsights" Version="2.2.1" />
     <PackageReference Include="Serilog.Sinks.File" Version="3.2.0" />

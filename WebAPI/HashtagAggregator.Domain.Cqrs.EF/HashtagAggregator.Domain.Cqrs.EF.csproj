@@ -17,7 +17,7 @@
   <ItemGroup>
     <PackageReference Include="HashtagAggregator.Core.Contracts" Version="1.0.4" />
     <PackageReference Include="HashtagAggregator.Core.Entities" Version="1.0.1" />
-    <PackageReference Include="HashtagAggregator.Data.DataAccess" Version="1.0.2" />
+    <PackageReference Include="HashtagAggregator.Data.DataAccess" Version="1.0.7" />
     <PackageReference Include="MediatR" Version="3.0.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="1.1.2" />
     <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />

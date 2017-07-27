@@ -83,9 +83,6 @@ namespace HashtagAggregator
             services.AddEntityFrameworkSqlServer()
                 .AddDbContext<SqlApplicationDbContext>(options => options.UseSqlServer(connectionString));
 
-            IDbSeeder dbSeeder = new DbSeeder();
-            dbSeeder.Seed(connectionString);
-
             services.AddSingleton<IConfiguration>(Configuration);
             services.AddScoped(sp => mapperConfiguration.CreateMapper());
             mapperConfiguration.AssertConfigurationIsValid();
@@ -102,7 +99,7 @@ namespace HashtagAggregator
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory, IServiceStarter starter)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory, IServiceStarter starter, IDbSeeder seeder)
         {
             loggerFactory.AddDebug();
             loggerFactory.AddSerilog();
@@ -125,8 +122,9 @@ namespace HashtagAggregator
 
             app.UseCors("CorsPolicy");
 
+            seeder.Seed(Configuration.GetSection("AppSettings:ConnectionString").Value);
             starter.Start();
-
+           
             app.UseIdentityServerAuthentication(new IdentityServerAuthenticationOptions
             {
                 Authority = Configuration.GetSection("EndpointSettings:AuthEndpoint").Value,

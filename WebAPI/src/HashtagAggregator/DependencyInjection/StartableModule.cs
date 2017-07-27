@@ -1,4 +1,6 @@
 ﻿using Autofac;
+using HashtagAggregator.Data.DataAccess.Interface;
+using HashtagAggregator.Data.DataAccess.Seed;
 using HashtagAggregator.Infrastructure;
 using HashtagAggregator.Infrastructure.Services;
 using HashtagAggregator.Infrastructure.Services.Interface;
@@ -14,6 +16,7 @@ namespace HashtagAggregator.DependencyInjection
             builder.RegisterType<TwitterService>().As<IServiceStartable>().InstancePerLifetimeScope();
             builder.RegisterType<ServiceNotifier>().As<IServiceNotifier>().InstancePerLifetimeScope();
             builder.RegisterType<ServiceStarter>().As<IServiceStarter>().InstancePerLifetimeScope();
+            builder.RegisterType<DbSeeder>().As<IDbSeeder>().SingleInstance();
         }
     }
 }

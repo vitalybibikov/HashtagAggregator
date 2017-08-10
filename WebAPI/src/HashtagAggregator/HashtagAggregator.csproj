@@ -15,6 +15,7 @@
     <PackageProjectUrl>https://github.com/EvilAvenger/HashtagAggregator</PackageProjectUrl>
     <ApplicationInsightsResourceId>/subscriptions/8d305b0e-81ea-4a2e-8498-8d6d76cabd87/resourcegroups/Default-ApplicationInsights-EastUS/providers/microsoft.insights/components/HashtagAggregator</ApplicationInsightsResourceId>
     <ApplicationInsightsAnnotationResourceId>/subscriptions/8d305b0e-81ea-4a2e-8498-8d6d76cabd87/resourcegroups/Default-ApplicationInsights-EastUS/providers/microsoft.insights/components/HashtagAggregator</ApplicationInsightsAnnotationResourceId>
+    <CodeAnalysisRuleSet>..\..\StyleCop.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
 
   <ItemGroup>
@@ -71,6 +72,7 @@
     <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="1.1.2" />
     <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="1.1.2" />
     <PackageReference Include="System.Diagnostics.TraceSource" Version="4.3.0" />
+    <PackageReference Include="StyleCop.Analyzers" Version="1.0.2" />
   </ItemGroup>
 
   <ItemGroup>

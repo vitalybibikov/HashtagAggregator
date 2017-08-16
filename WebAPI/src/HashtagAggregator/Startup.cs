@@ -6,7 +6,6 @@ using Serilog;
 using HashtagAggregator.Configuration;
 using HashtagAggregator.Data.DataAccess.Context;
 using HashtagAggregator.Data.DataAccess.Interface;
-using HashtagAggregator.Data.DataAccess.Seed;
 using HashtagAggregator.DependencyInjection;
 using HashtagAggregator.Domain.Cqrs.EF.Abstract;
 using HashtagAggregator.Infrastructure;

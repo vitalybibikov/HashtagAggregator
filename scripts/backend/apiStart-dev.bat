@@ -5,13 +5,13 @@ echo Started
 SET currentPath=%~dp0
 SET apiPath=%~dp0\..\..\..\HashtagAggregator\WebAPI\src\HashtagAggregator
 
-SET ASPNETCORE_ENVIRONMENT=dev
+setx ASPNETCORE_ENVIRONMENT dev
 
 cd %apiPath%
 
 echo %apiPath%
 
-dotnet run 
+dotnet run --no-launch-profile
 
 cd %currentPath%
 

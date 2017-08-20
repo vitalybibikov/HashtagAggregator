@@ -6,7 +6,6 @@ using Serilog;
 using HashtagAggregator.Configuration;
 using HashtagAggregator.Data.DataAccess.Context;
 using HashtagAggregator.Data.DataAccess.Interface;
-using HashtagAggregator.Data.DataAccess.Seed;
 using HashtagAggregator.DependencyInjection;
 using HashtagAggregator.Domain.Cqrs.EF.Abstract;
 using HashtagAggregator.Infrastructure;
@@ -21,6 +20,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Swashbuckle.AspNetCore.Swagger;
 
 namespace HashtagAggregator
 {
@@ -39,7 +39,14 @@ namespace HashtagAggregator
             Log.Logger = new LoggerConfiguration()
                 .ReadFrom
                 .Configuration(Configuration)
+                .WriteTo.ApplicationInsightsTraces(
+                    Configuration.GetSection("ApplicationInsights:InstrumentationKey").Value)
                 .CreateLogger();
+
+            if (env.IsEnvironment("dev"))
+            {
+                builder.AddApplicationInsightsSettings(developerMode: true);
+            }
 
             mapperConfiguration = new MapperConfiguration(cfg =>
             {
@@ -62,7 +69,7 @@ namespace HashtagAggregator
             services.Configure<EndpointSettings>(Configuration.GetSection("EndpointSettings"));
             services.Configure<VkConsumeSettings>(Configuration.GetSection("VkConsumeSettings"));
             services.Configure<TwitterConsumeSettings>(Configuration.GetSection("TwitterConsumeSettings"));
-
+            services.AddApplicationInsightsTelemetry(Configuration);
             services.AddMvc(options =>
             {
                 options.CacheProfiles.Add("Default",
@@ -71,13 +78,16 @@ namespace HashtagAggregator
                         Duration = 60
                     });
             });
+
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new Info { Title = "HashtagAggregator", Version = "v1" });
+            });
+
             services.AddMediatR(typeof(EfQueryHandler));
             var connectionString = Configuration.GetSection("AppSettings:ConnectionString").Value;
             services.AddEntityFrameworkSqlServer()
                 .AddDbContext<SqlApplicationDbContext>(options => options.UseSqlServer(connectionString));
-
-            IDbSeeder dbSeeder = new DbSeeder();
-            dbSeeder.Seed(connectionString);
 
             services.AddSingleton<IConfiguration>(Configuration);
             services.AddScoped(sp => mapperConfiguration.CreateMapper());
@@ -90,13 +100,13 @@ namespace HashtagAggregator
                     .AllowCredentials()));
 
             var container = new AutofacModulesConfigurator().Configure(services);
-            var starter = new ServiceStarter(container);
-            starter.Start();
+
             return container.Resolve<IServiceProvider>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory,
+            IServiceStarter starter, IDbSeeder seeder)
         {
             loggerFactory.AddDebug();
             loggerFactory.AddSerilog();
@@ -111,13 +121,22 @@ namespace HashtagAggregator
                         if (ex != null)
                         {
                             var err = $"Error: {ex.Error.Message}{ex.Error.StackTrace}";
-                            System.Diagnostics.Trace.TraceError(err);
+                            Log.Error(ex.Error, "Server Error", ex);
                             await context.Response.WriteAsync(err).ConfigureAwait(false);
                         }
                     });
             });
 
             app.UseCors("CorsPolicy");
+
+            seeder.Seed(Configuration.GetSection("AppSettings:ConnectionString").Value);
+            starter.Start();
+
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+            });
 
             app.UseIdentityServerAuthentication(new IdentityServerAuthenticationOptions
             {

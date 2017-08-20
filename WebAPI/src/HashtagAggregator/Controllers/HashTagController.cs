@@ -24,7 +24,9 @@ namespace HashtagAggregator.Controllers
             Mapper = mapper;
         }
 
-        // GET: api/hashtag/parent
+        /// <summary>
+        /// Returns set of allowed parent tags in the system.
+        /// </summary>
         [HttpGet("parent")]
         public async Task<IEnumerable<HashtagViewModel>> Get()
         {
@@ -34,6 +36,10 @@ namespace HashtagAggregator.Controllers
             return results;
         }
 
+        /// <summary>
+        /// Returns a set of child hashtags by parent tag id
+        /// </summary>
+        /// <param name="id">Id of the parent</param>
         [HttpGet("children/{id:long}")]
         public async Task<IEnumerable<HashtagViewModel>> Get(long id)
         {
@@ -43,6 +49,10 @@ namespace HashtagAggregator.Controllers
             return results;
         }
 
+        /// <summary>
+        /// Returns set of hashtags that are realted to parent tag.
+        /// </summary>
+        /// <param name="parentName">Parent tag for child tags</param>
         [HttpGet("children/{parentName}")]
         public async Task<IEnumerable<HashtagViewModel>> Get(string parentName)
         {

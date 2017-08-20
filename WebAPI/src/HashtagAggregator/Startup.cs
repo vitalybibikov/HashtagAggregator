@@ -20,6 +20,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Swashbuckle.AspNetCore.Swagger;
 
 namespace HashtagAggregator
 {
@@ -77,6 +78,12 @@ namespace HashtagAggregator
                         Duration = 60
                     });
             });
+
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new Info { Title = "HashtagAggregator", Version = "v1" });
+            });
+
             services.AddMediatR(typeof(EfQueryHandler));
             var connectionString = Configuration.GetSection("AppSettings:ConnectionString").Value;
             services.AddEntityFrameworkSqlServer()
@@ -98,7 +105,8 @@ namespace HashtagAggregator
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory, IServiceStarter starter, IDbSeeder seeder)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory,
+            IServiceStarter starter, IDbSeeder seeder)
         {
             loggerFactory.AddDebug();
             loggerFactory.AddSerilog();
@@ -123,7 +131,13 @@ namespace HashtagAggregator
 
             seeder.Seed(Configuration.GetSection("AppSettings:ConnectionString").Value);
             starter.Start();
-           
+
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+            });
+
             app.UseIdentityServerAuthentication(new IdentityServerAuthenticationOptions
             {
                 Authority = Configuration.GetSection("EndpointSettings:AuthEndpoint").Value,

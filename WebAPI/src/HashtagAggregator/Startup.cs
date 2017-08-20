@@ -87,8 +87,9 @@ namespace HashtagAggregator
 
             services.AddMediatR(typeof(EfQueryHandler));
             var connectionString = Configuration.GetSection("AppSettings:ConnectionString").Value;
+
             services.AddEntityFrameworkSqlServer()
-                .AddDbContext<SqlApplicationDbContext>(options => options.UseSqlServer(connectionString));
+                .AddDbContextPool<SqlApplicationDbContext>(options => options.UseSqlServer(connectionString));
 
             services.AddSingleton<IConfiguration>(Configuration);
             services.AddScoped(sp => mapperConfiguration.CreateMapper());
@@ -146,16 +147,6 @@ namespace HashtagAggregator
 
             app.UseSwagger();
             app.UseSwaggerUI(c => { c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1"); });
-
-
-            //            app.UseIdentityServerAuthentication(new IdentityServerAuthenticationOptions
-            //            {
-            //             
-            //                RequireHttpsMetadata = false, //todo: should be true when enabled https
-            //                ApiName = "statisticsapi",
-            //                ApiSecret = "hashtagaggreggatorsapiservice",
-            //                CacheDuration = TimeSpan.FromMinutes(10)
-            //            });
 
             app.UseAuthentication();
             app.UseStatusCodePages();

@@ -11,6 +11,7 @@ using HashtagAggregator.Domain.Cqrs.EF.Abstract;
 using HashtagAggregator.Infrastructure;
 using HashtagAggregator.Settings;
 using MediatR;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Hosting;
@@ -81,17 +82,30 @@ namespace HashtagAggregator
 
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new Info { Title = "HashtagAggregator", Version = "v1" });
+                c.SwaggerDoc("v1", new Info {Title = "HashtagAggregator", Version = "v1"});
             });
 
             services.AddMediatR(typeof(EfQueryHandler));
             var connectionString = Configuration.GetSection("AppSettings:ConnectionString").Value;
+
             services.AddEntityFrameworkSqlServer()
-                .AddDbContext<SqlApplicationDbContext>(options => options.UseSqlServer(connectionString));
+                .AddDbContextPool<SqlApplicationDbContext>(options => options.UseSqlServer(connectionString));
 
             services.AddSingleton<IConfiguration>(Configuration);
             services.AddScoped(sp => mapperConfiguration.CreateMapper());
             mapperConfiguration.AssertConfigurationIsValid();
+
+            services.AddAuthentication(options =>
+                {
+                    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+                })
+                .AddJwtBearer(o =>
+                {
+                    o.Authority = Configuration.GetSection("EndpointSettings:AuthEndpoint").Value;
+                    o.Audience = "statisticsapi";
+                    o.RequireHttpsMetadata = false;
+                });
 
             services.AddCors(options => options.AddPolicy("CorsPolicy",
                 builder => builder.AllowAnyOrigin()
@@ -104,7 +118,6 @@ namespace HashtagAggregator
             return container.Resolve<IServiceProvider>();
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory,
             IServiceStarter starter, IDbSeeder seeder)
         {
@@ -133,20 +146,9 @@ namespace HashtagAggregator
             starter.Start();
 
             app.UseSwagger();
-            app.UseSwaggerUI(c =>
-            {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
-            });
+            app.UseSwaggerUI(c => { c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1"); });
 
-            app.UseIdentityServerAuthentication(new IdentityServerAuthenticationOptions
-            {
-                Authority = Configuration.GetSection("EndpointSettings:AuthEndpoint").Value,
-                RequireHttpsMetadata = false, //todo: should be true when enabled https
-                ApiName = "statisticsapi",
-                ApiSecret = "hashtagaggreggatorsapiservice",
-                CacheDuration = TimeSpan.FromMinutes(10)
-            });
-
+            app.UseAuthentication();
             app.UseStatusCodePages();
             app.UseStaticFiles();
             app.UseDefaultFiles();

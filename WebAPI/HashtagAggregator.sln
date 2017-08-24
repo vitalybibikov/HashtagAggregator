@@ -1,13 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26430.15
+VisualStudioVersion = 15.0.26730.3
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{150D8B9D-3032-41DE-9BC1-E259047AA970}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{06236E42-A81F-4831-9EE8-A7C4454EF3F3}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{7178C8CC-19D3-4350-8531-664A79A0C0B4}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{69BD6B5D-B997-49C3-872C-967243F258EE}"
 EndProject
@@ -26,8 +24,6 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HashtagAggregator.Domain.Cqrs.EF", "HashtagAggregator.Domain.Cqrs.EF\HashtagAggregator.Domain.Cqrs.EF.csproj", "{155BF417-E5CA-4A3C-8F93-5B138B466C4F}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HashTagAggregator.Tests.DataHelpers", "HashTagAggregator.Tests.DataHelpers\HashTagAggregator.Tests.DataHelpers.csproj", "{D946987C-74D8-4FA2-9599-8945DE9FB145}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HashtagAggregator.Data.Internet.Vk", "HashtagAggregator.Data.Internet.Vk\HashtagAggregator.Data.Internet.Vk.csproj", "{A3C0C348-C354-4225-AE45-E8A28E20C1DA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -59,16 +55,11 @@ Global
 		{D946987C-74D8-4FA2-9599-8945DE9FB145}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D946987C-74D8-4FA2-9599-8945DE9FB145}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D946987C-74D8-4FA2-9599-8945DE9FB145}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A3C0C348-C354-4225-AE45-E8A28E20C1DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A3C0C348-C354-4225-AE45-E8A28E20C1DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A3C0C348-C354-4225-AE45-E8A28E20C1DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A3C0C348-C354-4225-AE45-E8A28E20C1DA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{7178C8CC-19D3-4350-8531-664A79A0C0B4} = {150D8B9D-3032-41DE-9BC1-E259047AA970}
 		{69BD6B5D-B997-49C3-872C-967243F258EE} = {150D8B9D-3032-41DE-9BC1-E259047AA970}
 		{B7DCEB1B-1E50-469A-A36E-206D5863D092} = {150D8B9D-3032-41DE-9BC1-E259047AA970}
 		{C0A6C582-F7FE-44CA-8FC2-BBB3A62C961E} = {150D8B9D-3032-41DE-9BC1-E259047AA970}
@@ -78,6 +69,8 @@ Global
 		{4DDA0C5D-2EF8-46A6-B23B-17B50B4D14E2} = {69BD6B5D-B997-49C3-872C-967243F258EE}
 		{155BF417-E5CA-4A3C-8F93-5B138B466C4F} = {C0A6C582-F7FE-44CA-8FC2-BBB3A62C961E}
 		{D946987C-74D8-4FA2-9599-8945DE9FB145} = {B7DCEB1B-1E50-469A-A36E-206D5863D092}
-		{A3C0C348-C354-4225-AE45-E8A28E20C1DA} = {7178C8CC-19D3-4350-8531-664A79A0C0B4}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {35D33A3E-F32F-4512-9864-C7372FA79D5A}
 	EndGlobalSection
 EndGlobal

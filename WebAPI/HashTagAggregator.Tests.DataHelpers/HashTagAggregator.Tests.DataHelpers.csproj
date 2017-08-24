@@ -6,8 +6,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Bogus" Version="15.0.6" />
-    <PackageReference Include="HashtagAggregator.Core.Entities" Version="1.0.1" />
+    <PackageReference Include="Bogus" Version="16.0.2" />
+    <PackageReference Include="HashtagAggregator.Core.Entities" Version="1.0.3" />
+    <PackageReference Include="HashtagAggregator.Shared.Common" Version="1.0.5" />
     <PackageReference Include="StyleCop.Analyzers" Version="1.1.0-beta004" />
   </ItemGroup>
 

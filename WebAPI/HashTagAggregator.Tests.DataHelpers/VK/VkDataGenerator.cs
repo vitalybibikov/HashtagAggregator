@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using Bogus.DataSets;
 
 using HashtagAggregator.Core.Entities.VkEntities;
+using HashtagAggregator.Shared.Common.Extensions;
 using HashTagAggregator.Tests.DataHelpers.Common;
-using HashTagAggregator.Tests.DataHelpers.TestHelpers;
+
 
 namespace HashTagAggregator.Tests.DataHelpers.VK
 {

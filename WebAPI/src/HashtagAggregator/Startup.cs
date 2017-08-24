@@ -70,7 +70,6 @@ namespace HashtagAggregator
             services.Configure<EndpointSettings>(Configuration.GetSection("EndpointSettings"));
             services.Configure<VkConsumeSettings>(Configuration.GetSection("VkConsumeSettings"));
             services.Configure<TwitterConsumeSettings>(Configuration.GetSection("TwitterConsumeSettings"));
-            services.AddApplicationInsightsTelemetry(Configuration);
             services.AddMvc(options =>
             {
                 options.CacheProfiles.Add("Default",

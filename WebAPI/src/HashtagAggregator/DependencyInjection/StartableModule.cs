@@ -12,6 +12,7 @@ namespace HashtagAggregator.DependencyInjection
         protected override void Load(ContainerBuilder builder)
         {
             builder.RegisterType<TwitterConsumerService>().As<IServiceStartable>().InstancePerLifetimeScope();
+            builder.RegisterType<VkConsumerService>().As<IServiceStartable>().InstancePerLifetimeScope();
             builder.RegisterType<VkService>().As<IServiceStartable>().InstancePerLifetimeScope();
             builder.RegisterType<TwitterService>().As<IServiceStartable>().InstancePerLifetimeScope();
             builder.RegisterType<ServiceNotifier>().As<IServiceNotifier>().InstancePerLifetimeScope();

@@ -1,4 +1,5 @@
 ﻿using System.IO;
+using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 
 namespace HashtagAggregator
@@ -7,16 +8,15 @@ namespace HashtagAggregator
     {
         public static void Main(string[] args)
         {
-            var host = new WebHostBuilder()
-                .UseKestrel()
+            BuildWebHost(args).Run();
+        }
+
+        public static IWebHost BuildWebHost(string[] args) =>
+            WebHost.CreateDefaultBuilder(args)
                 .UseContentRoot(Directory.GetCurrentDirectory())
-                .UseIISIntegration()
-                .UseStartup<Startup>()
                 .UseUrls("http://localhost:5000/")
+                .UseStartup<Startup>()
                 .UseApplicationInsights()
                 .Build();
-
-            host.Run();
-        }
     }
 }

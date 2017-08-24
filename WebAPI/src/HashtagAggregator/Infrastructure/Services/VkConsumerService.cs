@@ -7,15 +7,15 @@ using Microsoft.Extensions.Options;
 
 namespace HashtagAggregator.Infrastructure.Services
 {
-    public class TwitterConsumerService : IServiceStartable
+    public class VkConsumerService : IServiceStartable
     {
         private readonly IServiceNotifier notifier;
         private readonly IOptions<EndpointSettings> settings;
-        private readonly IOptions<TwitterConsumeSettings> consumeSettings;
+        private readonly IOptions<VkConsumeSettings> consumeSettings;
 
-        public TwitterConsumerService(IServiceNotifier notifier,
+        public VkConsumerService(IServiceNotifier notifier, 
             IOptions<EndpointSettings> settings,
-            IOptions<TwitterConsumeSettings> consumeSettings)
+            IOptions<VkConsumeSettings> consumeSettings)
         {
             this.notifier = notifier;
             this.settings = settings;

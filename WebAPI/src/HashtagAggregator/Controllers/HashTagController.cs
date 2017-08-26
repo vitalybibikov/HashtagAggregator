@@ -15,6 +15,7 @@ namespace HashtagAggregator.Controllers
     {
         private readonly IMediator mediator;
         private readonly ILogger<HashTagController> logger;
+
         private IMapper Mapper { get; }
 
         public HashTagController(IMapper mapper, IMediator mediator, ILogger<HashTagController> logger)
@@ -57,7 +58,10 @@ namespace HashtagAggregator.Controllers
         public async Task<IEnumerable<HashtagViewModel>> Get(string parentName)
         {
             logger.LogInformation("Information from Get Hashtag");
-            var query = new HashTagByParentNameQuery {HashTag = new HashTagWord(parentName)};
+            var query = new HashTagByParentNameQuery
+            {
+                HashTag = new HashTagWord(parentName)
+            };
             var result = await mediator.Send(query);
             var results = Mapper.Map<IEnumerable<HashtagViewModel>>(result.HashTags);
             return results;

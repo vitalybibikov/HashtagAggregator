@@ -13,7 +13,8 @@ namespace HashtagAggregator.Domain.Cqrs.EF.Handlers.Queries
 {
     public class EfMessagesGetQueryHandler : EfQueryHandler, IEfMessagesGetQueryHandler
     {
-        public EfMessagesGetQueryHandler(SqlApplicationDbContext context) : base(context)
+        public EfMessagesGetQueryHandler(SqlApplicationDbContext context)
+            : base(context)
         {
         }
 
@@ -25,8 +26,7 @@ namespace HashtagAggregator.Domain.Cqrs.EF.Handlers.Queries
                 .Where(
                     message => message.MessageHashTagRelations.Any(
                         rel => rel.HashTagEntity.HashTag == query.HashTag.TagWithHash)
-                )
-                .ToListAsync();
+                ).ToListAsync();
 
             return mapper.MapBunch(messages, query.HashTag);
         }

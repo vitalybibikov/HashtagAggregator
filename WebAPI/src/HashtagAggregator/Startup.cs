@@ -27,28 +27,11 @@ namespace HashtagAggregator
 {
     public class Startup
     {
-        public Startup(IHostingEnvironment env)
+        public readonly IConfiguration configuration;
+
+        public Startup(IConfiguration configuration)
         {
-            var builder = new ConfigurationBuilder()
-                .SetBasePath(env.ContentRootPath)
-                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
-                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
-                .AddEnvironmentVariables();
-            Configuration = builder.Build();
-
-            //Configure Serilog
-            Log.Logger = new LoggerConfiguration()
-                .ReadFrom
-                .Configuration(Configuration)
-                .WriteTo.ApplicationInsightsTraces(
-                    Configuration.GetSection("ApplicationInsights:InstrumentationKey").Value)
-                .CreateLogger();
-
-            if (env.IsEnvironment("dev"))
-            {
-                builder.AddApplicationInsightsSettings(developerMode: true);
-            }
-
+            this.configuration = configuration;
             mapperConfiguration = new MapperConfiguration(cfg =>
             {
                 cfg.AddProfile(new AutoMapperProfileConfiguration());
@@ -59,17 +42,15 @@ namespace HashtagAggregator
 
         public IMapper Mapper { get; set; }
 
-        public IConfigurationRoot Configuration { get; }
-
         // This method gets called by the runtime. Use this method to add services to the container.
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
-            services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
-            services.Configure<VkAuthSettings>(Configuration.GetSection("VkAuthSettings"));
-            services.Configure<VkSettings>(Configuration.GetSection("VkSettings"));
-            services.Configure<EndpointSettings>(Configuration.GetSection("EndpointSettings"));
-            services.Configure<VkConsumeSettings>(Configuration.GetSection("VkConsumeSettings"));
-            services.Configure<TwitterConsumeSettings>(Configuration.GetSection("TwitterConsumeSettings"));
+            services.Configure<AppSettings>(configuration.GetSection("AppSettings"));
+            services.Configure<VkAuthSettings>(configuration.GetSection("VkAuthSettings"));
+            services.Configure<VkSettings>(configuration.GetSection("VkSettings"));
+            services.Configure<EndpointSettings>(configuration.GetSection("EndpointSettings"));
+            services.Configure<VkConsumeSettings>(configuration.GetSection("VkConsumeSettings"));
+            services.Configure<TwitterConsumeSettings>(configuration.GetSection("TwitterConsumeSettings"));
             services.AddMvc(options =>
             {
                 options.CacheProfiles.Add("Default",
@@ -85,12 +66,11 @@ namespace HashtagAggregator
             });
 
             services.AddMediatR(typeof(EfQueryHandler));
-            var connectionString = Configuration.GetSection("AppSettings:ConnectionString").Value;
+            var connectionString = configuration.GetSection("AppSettings:ConnectionString").Value;
 
             services.AddEntityFrameworkSqlServer()
                 .AddDbContextPool<SqlApplicationDbContext>(options => options.UseSqlServer(connectionString));
 
-            services.AddSingleton<IConfiguration>(Configuration);
             services.AddScoped(sp => mapperConfiguration.CreateMapper());
             mapperConfiguration.AssertConfigurationIsValid();
 
@@ -101,7 +81,7 @@ namespace HashtagAggregator
                 })
                 .AddJwtBearer(o =>
                 {
-                    o.Authority = Configuration.GetSection("EndpointSettings:AuthEndpoint").Value;
+                    o.Authority = configuration.GetSection("EndpointSettings:AuthEndpoint").Value;
                     o.Audience = "statisticsapi";
                     o.RequireHttpsMetadata = false;
                 });
@@ -117,12 +97,8 @@ namespace HashtagAggregator
             return container.Resolve<IServiceProvider>();
         }
 
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory,
-            IServiceStarter starter, IDbSeeder seeder)
+        public void Configure(IApplicationBuilder app, IServiceStarter starter, IDbSeeder seeder)
         {
-            loggerFactory.AddDebug();
-            loggerFactory.AddSerilog();
-
             app.UseExceptionHandler(options =>
             {
                 options.Run(
@@ -141,7 +117,7 @@ namespace HashtagAggregator
 
             app.UseCors("CorsPolicy");
 
-            seeder.Seed(Configuration.GetSection("AppSettings:ConnectionString").Value);
+            seeder.Seed(configuration.GetSection("AppSettings:ConnectionString").Value);
             starter.Start();
 
             app.UseSwagger();

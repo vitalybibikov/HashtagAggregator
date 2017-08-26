@@ -21,7 +21,9 @@ namespace HashtagAggregator.Domain.Cqrs.EF.Handlers.Queries
         {
             var mapper = new EntityToHashTagResultMapper();
             var parents = await Context.Hashtags.Where(x => x.HashTag == query.HashTag.TagWithHash).ToListAsync();
-            var result = await Context.Hashtags.Where(x => x.Parent.HashTag.Equals(query.HashTag.TagWithHash, StringComparison.OrdinalIgnoreCase)).ToListAsync();
+            var result = await Context.Hashtags.Where(x => x.Parent.HashTag.Equals(
+                query.HashTag.TagWithHash, 
+                StringComparison.OrdinalIgnoreCase)).ToListAsync();
             parents = parents.Concat(result).ToList();
             return mapper.MapBunch(parents);
         }

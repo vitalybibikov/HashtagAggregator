@@ -30,7 +30,7 @@ namespace HashtagAggregator.Infrastructure.Services
                 RequestUri =
                     new Uri(
                         $"{settings.Value.ConsumerEndpoint}/api/heartbeat/start/" +
-                        $"{consumeSettings.Value.QueueName}/{consumeSettings.Value.Interval}")
+                        $"{consumeSettings.Value.QueueName}/{consumeSettings.Value.Interval}"),
             };
             await notifier.Send(message);
         }

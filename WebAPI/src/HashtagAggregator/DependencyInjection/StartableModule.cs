@@ -15,6 +15,7 @@ namespace HashtagAggregator.DependencyInjection
             builder.RegisterType<VkConsumerService>().As<IServiceStartable>().InstancePerLifetimeScope();
             builder.RegisterType<VkService>().As<IServiceStartable>().InstancePerLifetimeScope();
             builder.RegisterType<TwitterService>().As<IServiceStartable>().InstancePerLifetimeScope();
+
             builder.RegisterType<ServiceNotifier>().As<IServiceNotifier>().InstancePerLifetimeScope();
             builder.RegisterType<ServiceStarter>().As<IServiceStarter>().InstancePerLifetimeScope();
             builder.RegisterType<DbSeeder>().As<IDbSeeder>().SingleInstance();
